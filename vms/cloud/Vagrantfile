@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#
+# Make a cloud using Vagrant and puppet.
+#
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  numNodes = 4
+  ipAddrPrefix = "10.1.33.1"
+
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--memory", 1024]
+  end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "../../puppet/manifests"
+    puppet.manifest_file = "default.pp"
+    puppet.module_path = "../../puppet/modules"
+    puppet.options = "--verbose --debug"
+  end
+
+  # Provision Config for each of the nodes
+  1.upto(numNodes) do |num|
+    nodeName = ("node" + num.to_s).to_sym
+    config.vm.define nodeName do |node|
+      node.vm.box = "precise64"
+      node.vm.network :private_network, ip: ipAddrPrefix + num.to_s
+      node.vm.provider "virtualbox" do |v|
+        v.name = "Cloud_VM_" + num.to_s
+      end
+    end
+  end
+
+end

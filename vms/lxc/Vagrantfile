@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "quantal64"
+  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "http://dl.dropbox.com/u/13510779/lxc-quantal-amd64-2013-05-08.box"
+
+  config.vm.define :vbox do |vbox_config|
+    vbox_config.vm.network :forwarded_port, guest: 3000, host: 3001
+
+    vbox_config.vm.provision :shell, inline:
+      # vagrant-lxc required dependencies and vagrant itself
+      'sudo apt-get install -y redir lxc &&
+      wget -q "http://files.vagrantup.com/packages/64e360814c3ad960d810456add977fd4c7d47ce6/vagrant_`uname -m`.deb" -O /tmp/vagrant.deb && sudo dpkg -i /tmp/vagrant.deb'
+
+  end
+
+  config.vm.define :lxc do |lxc_config|
+    #lxc_config.vm.network :forwarded_port, guest: 80, host: 3000
+    lxc_config.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "../../puppet/manifests"
+      puppet.manifest_file = "default.pp"
+      puppet.module_path = "../../puppet/modules"
+      puppet.options = "--verbose --debug"
+    end
+
+  end
+
+end
