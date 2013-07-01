@@ -1,0 +1,65 @@
+;;
+;; Emacs
+;; (c) 2013 Nicolas Lamirault
+;;
+
+(require 'package)
+;; (add-to-list 'package-archives
+;;     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+
+;; Default theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'zenburn t)
+
+(load "server")
+(unless (server-running-p)
+    (server-start))
+
+(setq-default fill-column 120)
+
+;; Preinstalled packages
+(defvar auto-install-packages 
+  (list 
+   'css-mode
+   'python-mode
+   'ruby-mode 
+   'jedi
+   'sr-speedbar
+   'puppet-mode
+   'web-mode)
+  "Libraries that should be installed by default.")
+
+
+(defun my-elpa-install ()
+  "Install all default packages that aren't installed."
+  (interactive)
+  (dolist (package auto-install-packages)
+    (unless (or (member package package-activated-list)
+                (functionp package))
+      (message "Installing %s" (symbol-name package))
+      (package-install package))))
+
+(unless package-archive-contents (package-refresh-contents))
+(my-elpa-install)
+
+;; Pb ropemacs et emacs prelude. Changement binding
+(setq ropemacs-global-prefix "C-c r")
+
+(setq home-dir (concat (expand-file-name "~") "/"))
+(load-file (concat home-dir ".emacs.d/mbs.el"))
+(load-file (concat home-dir ".emacs.d/openstack.el"))
+(load-file (concat home-dir ".emacs.d/python.el"))
+(load-file (concat home-dir ".emacs.d/php.el"))
+(load-file (concat home-dir ".emacs.d/puppet.el"))
+
+(require 'ido)
+(ido-mode t)                            
+
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)

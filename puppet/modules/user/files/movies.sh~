@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Title           : movies.sh
+# Version         : 0.0.0
+# Copyright       : Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
+# ------------------------------------------------------
+
+IFS="
+"
+movies=`find . -type f -a -name "*.avi"`
+for movie in $movies
+do
+    echo "Movie: $movie"
+    dest=`echo $movie|sed -e "s/
+done
