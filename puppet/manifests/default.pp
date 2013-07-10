@@ -4,7 +4,6 @@ import 'development'
 
 include common
 
-
 $myuser = "vagrant"
 
 stage { pre: before => Stage[main] }
@@ -36,8 +35,11 @@ class { 'emacs':
     username    => $myuser
 }
 
-
 class { 'development::pythondev': 
       username => $myuser
+}
+
+class { 'commonlisp':
+    username    => $myuser
 }
 

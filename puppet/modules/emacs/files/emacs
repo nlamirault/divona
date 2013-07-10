@@ -51,11 +51,15 @@
 (setq ropemacs-global-prefix "C-c r")
 
 (setq home-dir (concat (expand-file-name "~") "/"))
-(load-file (concat home-dir ".emacs.d/mbs.el"))
-(load-file (concat home-dir ".emacs.d/openstack.el"))
-(load-file (concat home-dir ".emacs.d/python.el"))
-(load-file (concat home-dir ".emacs.d/php.el"))
-(load-file (concat home-dir ".emacs.d/puppet.el"))
+
+;; Load all load-*.el files in the .emacs.d directory
+(mapcar 'load-file
+ (file-expand-wildcards "~/.emacs.d/*.el" t))
+;; (load-file (concat home-dir ".emacs.d/mbs.el"))
+;; (load-file (concat home-dir ".emacs.d/openstack.el"))
+;; (load-file (concat home-dir ".emacs.d/python.el"))
+;; (load-file (concat home-dir ".emacs.d/php.el"))
+;; (load-file (concat home-dir ".emacs.d/puppet.el"))
 
 (require 'ido)
 (ido-mode t)                            
@@ -63,3 +67,4 @@
 (setq mac-option-modifier nil
       mac-command-modifier 'meta
       x-select-enable-clipboard t)
+
