@@ -1,0 +1,93 @@
+#
+# Base settings for Debian
+#
+#
+
+- name: Install defaults packages
+  apt: pkg=$item state=installed
+  with_items:
+    - man-db
+    - apt-file
+    - wget
+    - curl
+    - ngrep
+    - tree
+    - bash-completion
+    - language-pack-fr
+    - git
+    - gitk
+    - unzip
+    - logrotate
+    - rsyslog
+    - sysstat
+    - tmux
+    - w3m
+    - libgtk2.0-0
+    - libswt-gtk-3-jni
+    - libswt-gtk-3-java
+    - mlocate
+    - genisoimage
+    - dnsutils
+    - vim
+
+- name: Install Python tools
+  apt: pkg=$item state=installed
+  with_items:
+    - python-pip
+    - pylint
+    - python-pycurl
+
+- name: Install window manager
+  apt: pkg=$item state=installed
+  with_items:
+    - openbox
+    - openbox-themes
+    - obconf
+    - obmenu
+    - conky-all
+    - thunar
+    - thunar-volman
+    - thunar-archive-plugin
+    - tint2
+
+- name: Install web applications
+  apt: pkg=$item state=installed
+  with_items:
+    - chromium-browser
+    - midori
+
+- name: Install email applications
+  apt: pkg=$item state=installed
+  with_items:
+    - thunderbird
+    - thunderbird-locale-fr
+
+- name: Install graphics applications
+  apt: pkg=$item state=installed
+  with_items:
+    - gimp
+    - inkscape
+    - evince
+    - vlc
+
+- name: Install communications applications
+  apt: pkg=$item state=installed
+  with_items:
+    - irssi
+    - vinagre
+    - rdesktop
+
+- name: Install ChangeLog
+  copy: >
+    src=files/ChangeLog dest=/etc/
+    owner=root mode=644
+
+- name: Install motd
+  copy: >
+    src=files/motd dest=/etc/
+    owner=root mode=644
+
+- name: Install apt sources.list
+  copy: >
+    src=files/sources.list dest=/etc/apt/
+    owner=root mode=644

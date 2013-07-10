@@ -1,0 +1,12 @@
+---
+- hosts: vagrant
+  sudo: yes
+  tasks:
+    - include: tasks/package.yml
+
+- hosts: vagrant
+  sudo: no
+  vars_files:
+    - vars.yml
+  tasks:
+    - include: tasks/config.yml

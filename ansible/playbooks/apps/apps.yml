@@ -1,0 +1,8 @@
+---
+- hosts: vagrant
+  vars_files:
+    - vars_files
+  tasks:
+    - include tasks/ant.yml
+    - include tasks/idea.yml
+    - include tasks/gradle.yml

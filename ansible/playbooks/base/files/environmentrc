@@ -1,0 +1,24 @@
+export LC_ALL=fr_FR.UTF-8
+export LANG=_FR.UTF-8
+
+export HOSTNAME=$(hostname)
+export EDITOR=vim
+export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
+
+alias ll='ls -al'
+alias l='ll -tr' 
+alias clean='find . \( -name ".*~" -o -name "*~" -o -name ".saves*" -o -name ".#*" \) -print -exec /bin/rm {} \;'
+
+alias changelog="cat /etc/ChangeLog"
+alias team="cat /etc/motd"
+
+export WORKON_HOME=$HOME/.virtualenvs
+alias python_venvwrapper="source /usr/local/bin/virtualenvwrapper.sh"
+
+alias vncserveur='x11vnc -no6 -noipv6 -nossl -solid darkblue -noxinerama -noxrandr -modtweak -cursor arrow -noalphablend -ncache 6 -forever -noxdamage -noxdamage -forever'
+
+alias Perso_HOME="$HOME/Perso"
+alias eclipse="eclipse 2>&1 >/dev/null &"
+alias idea="idea.sh 2>&1 >/dev/null &"
+alias tmux_dev="tmux -f $HOME/.tmux.conf attach"
+

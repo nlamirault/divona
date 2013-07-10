@@ -1,0 +1,9 @@
+#
+# Install Intellij IDEA
+#
+
+- name: Download Intellij IDEA
+  get_url: url=http://download-ln.jetbrains.com/idea/ideaIC-12.1.4.tar.gz dest=/home/$user/Apps/ mode=0640
+
+- name: Extract Intellij IDEA
+  command: tar zxf /home/$user/Apps/ideaIC-12.1.4.tar.gz -C /home/$user/Apps/

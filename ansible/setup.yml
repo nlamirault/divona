@@ -1,0 +1,4 @@
+- include: playbooks/base/base.yml
+- include: playbooks/emacs/emacs.yml
+
+

@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "raring64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.hostname = "LamRaringUbuntu"
+  config.vm.network :private_network, ip: "10.1.2.33"
+
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+  
+  config.vm.provider :virtualbox do |vb|
+    #vb.gui = true
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.name = "LamRaringUbuntu"
+  end
+          
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "../../../setup.yml"
+    ansible.inventory_file = "../../../ansible_hosts"
+    ansible.options = '-vv'
+  end
+
+end

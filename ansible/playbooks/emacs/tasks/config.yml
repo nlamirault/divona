@@ -1,0 +1,16 @@
+- name: Emacs configuration files
+  copy: src=files/emacs dest=/home/$user/.emacs
+
+- name: Creates Emacs directory
+  command: mkdir /home/$user/.emacs.d creates=/home/$user/.emacs.d
+
+- name: Emacs .el files
+  copy: src={{ item }} dest=/home/$user/.emacs.d/
+  with_fileglob:
+    - files/*.el
+
+- name: Creates Emacs themes directory
+  command: mkdir /home/$user/.emacs.d/themes
+
+- name: Emacs theme
+  copy: src=files/themes/zenburn-theme.el dest=/home/$user/.emacs.d/themes/
