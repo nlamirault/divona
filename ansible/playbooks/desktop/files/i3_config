@@ -11,6 +11,14 @@
 
 set $mod Mod4
 
+#workspace names
+# set $ws1 1:dev
+# set $ws2 2:web_dev
+# set $ws3 3:comm
+# set $ws4 4:mail
+# set $ws5 5:web
+# set $ws6 6:irc
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -27,15 +35,19 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec gnome-terminal
 
+# Lock screen
+#bindsym $mod+l exec ~/bin/i3lock.sh
+
 # kill focused window
 bindsym $mod+Shift+a kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run -nb "#000000" -nf "#ffffff" -sb "#000000" -sf "#1793d0"
+bindsym $mod+d exec dmenu_run -nb "#000000" -nf "#6FC3DF" -sb "#000000" -sf "#DF740C"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -144,10 +156,42 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# colors
+# class border background text indicator
+
+#client.focused          #EE3B3B #EE3B3B #EE3B3B
+#client.focused_inactive #EE3B3B #191919 #EE3B3B
+#client.unfocused        #EE3B3B #191919 #999999
+#client.urgent           #EE3B3B #EE3B3B #EE3B3B
+#client.background       #121212
+
+#client.focused          #4c7899 #285577 #ffffff #2e9ef4
+#client.focused_inactive #333333 #5f676a #ffffff #484e50
+#client.unfocused        #333333 #222222 #888888 #292d2e
+#client.urgent           #2f343a #900000 #ffffff #900000
+
+client.focused          #4c7899 #000000 #DF740C #2e9ef4
+client.focused_inactive #333333 #000000 #DF740C #484e50
+client.unfocused        #333333 #000000 #6FC3DF #292d2e
+client.urgent           #2f343a #900000 #DF740C #900000
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+      status_command i3status
+      colors {
+            background          #181818
+            statusline          #f8f8f2
+            # class border background text
+            #focused_workspace   #66d9ef #34bdef #181818
+            #active_workspace    #181818 #a3babf #5e7175
+            #inactive_workspace  #181818 #5e7175 #a3babf
+            #urgent_workspace    #181818 #fd971f #181818
+            focused_workspace   #66d9ef #000000 #DF740C
+            active_workspace    #181818 #000000 #6FC3DF
+            inactive_workspace  #181818 #000000 #6FC3DF
+            urgent_workspace    #181818 #000000 #6FC3DF
+        }
 }
 
 exec nm-applet &
