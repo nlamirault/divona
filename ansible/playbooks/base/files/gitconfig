@@ -7,9 +7,8 @@
     status = auto
     branch = auto
 [alias]
-        #lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-        lg = log --format='%Cred%h%Creset %ad %C(bold cyan)%an%Creset - %s%C(white)%d%Creset' --graph --date=short --abbrev-commit
         lgtree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        lg = log --graph --format='%Cred%h%Creset %ad %C(bold cyan)%an%Creset - %s - %C(yellow)%d%Creset' --date=short --abbrev-commit
         #lgme = log --since yesterday --oneline --author 'Nicolas Lamirault'
         lgme = log --oneline --author 'Your User'
         ucommits = shortlog -sn
