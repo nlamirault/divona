@@ -17,6 +17,7 @@
 ;;(load-theme 'zenburn t)
 (load-theme 'noctilux t)
 ;;(load-theme 'moe-dark t)
+;;(load-theme 'solarized-dark  t)
 
 (load "server")
 (unless (server-running-p)
@@ -24,29 +25,43 @@
 
 (setq-default fill-column 120)
 
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;; Preinstalled packages
-(defvar auto-install-packages
-  (list
-   'css-mode
-   ;; Go
-   'go-mode
-   'go-play
-   'go-autocomplete
-   'go-eldoc
-   ;; OCaml
-   'tuareg
-   ;; Python
-   'elpy
-   'jedi
-   'python-mode
-   ;; Misc
-   'markdown-mode
-   'puppet-mode
-   'ruby-mode
-   'sr-speedbar
-   'web-mode
-   'yaml-mode)
-  "Libraries that should be installed by default.")
+;; (defvar auto-install-packages
+;;   (list
+;;    'css-mode
+;;    ;; Common Lisp
+;;    'slime
+;;    'ac-slime
+;;    ;; Go
+;;    'go-mode
+;;    'go-play
+;;    'go-autocomplete
+;;    'go-eldoc
+;;    'flymake-go
+;;    ;; OCaml
+;;    'tuareg
+;;    ;; Python
+;;    'elpy
+;;    'jedi
+;;    'python-mode
+;;    ;; Haskell
+;;    'haskell-mode
+;;    'flymake-hlint
+;;    ;; Erlang
+;;    'erlang
+;;    ;; Scheme
+;;    'geiser
+;;    ;; Misc
+;;    'markdown-mode
+;;    'puppet-mode
+;;    'ruby-mode
+;;    'sr-speedbar
+;;    'web-mode
+;;    'yaml-mode)
+;;   "Libraries that should be installed by default.")
 
 
 (defun my-elpa-install ()
