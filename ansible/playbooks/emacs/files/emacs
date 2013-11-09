@@ -4,9 +4,6 @@
 ;;
 
 (require 'package)
-;; (add-to-list 'package-archives
-;;     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -17,7 +14,7 @@
 ;;(load-theme 'zenburn t)
 (load-theme 'noctilux t)
 ;;(load-theme 'moe-dark t)
-;;(load-theme 'solarized-dark  t)
+
 
 (load "server")
 (unless (server-running-p)
@@ -27,36 +24,17 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
+(add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
 
 ;; Preinstalled packages
 ;; (defvar auto-install-packages
 ;;   (list
 ;;    'css-mode
-;;    ;; Common Lisp
-;;    'slime
-;;    'ac-slime
-;;    ;; Go
-;;    'go-mode
-;;    'go-play
-;;    'go-autocomplete
-;;    'go-eldoc
-;;    'flymake-go
-;;    ;; OCaml
-;;    'tuareg
-;;    ;; Python
 ;;    'elpy
 ;;    'jedi
-;;    'python-mode
-;;    ;; Haskell
-;;    'haskell-mode
-;;    'flymake-hlint
-;;    ;; Erlang
-;;    'erlang
-;;    ;; Scheme
-;;    'geiser
-;;    ;; Misc
 ;;    'markdown-mode
 ;;    'puppet-mode
+;;    'python-mode
 ;;    'ruby-mode
 ;;    'sr-speedbar
 ;;    'web-mode
@@ -64,20 +42,20 @@
 ;;   "Libraries that should be installed by default.")
 
 
-(defun my-elpa-install ()
-  "Install all default packages that aren't installed."
-  (interactive)
-  (dolist (package auto-install-packages)
-    (unless (or (member package package-activated-list)
-                (functionp package))
-      (message "Installing %s" (symbol-name package))
-      (package-install package))))
+;; (defun my-elpa-install ()
+;;   "Install all default packages that aren't installed."
+;;   (interactive)
+;;   (dolist (package auto-install-packages)
+;;     (unless (or (member package package-activated-list)
+;;                 (functionp package))
+;;       (message "Installing %s" (symbol-name package))
+;;       (package-install package))))
 
-(unless package-archive-contents (package-refresh-contents))
-(my-elpa-install)
+;; (unless package-archive-contents (package-refresh-contents))
+;; (my-elpa-install)
 
 ;; Pb ropemacs et emacs prelude. Changement binding
-(setq ropemacs-global-prefix "C-c r")
+;; (setq ropemacs-global-prefix "C-c r")
 
 (setq home-dir (concat (expand-file-name "~") "/"))
 
@@ -97,8 +75,3 @@
 
 (require 'tool-bar)
 (tool-bar-mode nil)
-
-; show the current line and column numbers in the stats bar as well
-(line-number-mode t)
-(column-number-mode t)
-(blink-cursor-mode nil)

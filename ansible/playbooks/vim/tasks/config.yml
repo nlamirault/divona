@@ -1,0 +1,10 @@
+- name: VIM directory
+  action: file path=/home/$user/.vim state=directory
+
+- name: VIM Bundle directory
+  action: file path=/home/$user/.vim/bundle state=directory
+
+- name: VIM Vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/home/$user/.vim/bundle/vundle
+
+

@@ -1,5 +1,2 @@
 [vagrant]
-10.1.2.33
-
-[vagrant:vars]
-user: vagrant
+127.0.0.1

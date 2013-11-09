@@ -6,13 +6,21 @@ Development environment configuration for Linux.
 Configuration
 -------------
 
-Edit file *puppet/manifests/default.pp*, and change value of *myuser*.
+Check Ansible is working :
+
+    $  ansible -c local -m ping all -i ansible_hosts
 
 Installation
 ------------
 
- Launch puppet with :
-
-      puppet apply puppet/manifests/default.pp -d
+    $ sudo ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=nicolas"
 
 
+BUG
+---
+
+
+Contact
+-------
+
+Nicolas Lamirault <nicolas.lamirault@gmail.com>

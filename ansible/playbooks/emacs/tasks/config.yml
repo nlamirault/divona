@@ -2,15 +2,29 @@
   copy: src=files/emacs dest=/home/$user/.emacs
 
 - name: Creates Emacs directory
-  command: mkdir /home/$user/.emacs.d creates=/home/$user/.emacs.d
+  action: file path=/home/$user/.emacs.d state=directory
 
 - name: Emacs .el files
-  copy: src={{ item }} dest=/home/$user/.emacs.d/
+  copy: src=$item dest=/home/$user/.emacs.d/
   with_fileglob:
     - files/*.el
 
+- name: Cask file
+  copy: src=files/Cask dest=/home/$user/.emacs.d/
+
 - name: Creates Emacs themes directory
-  command: mkdir /home/$user/.emacs.d/themes
+  action: file path=/home/$user/.emacs.d/themes state=directory
 
 - name: Emacs theme
-  copy: src=files/themes/zenburn-theme.el dest=/home/$user/.emacs.d/themes/
+  copy: src=$item dest=/home/$user/.emacs.d/themes/
+  with_fileglob:
+    - files/themes/*.el
+
+- name: Download Cask
+  command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /home/$user/Apps/cask.py creates=/home/$user/.cask
+
+- name: Install Cask
+  command: python /home/$user/Apps/cask.py chdir=/home/$user/.emacs.d/ creates=/home/$user/.cask
+
+- name: Configure Emacs using Cask
+  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d
