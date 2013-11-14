@@ -27,3 +27,9 @@
 
 - name: Create Applications directory
   command: mkdir /home/$user/Apps creates=/home/$user/Apps
+
+- name: Creates i3 directory
+  command: mkdir /home/$user/.i3 creates=/home/$user/.i3
+
+- name: Install i3 configuration
+  copy: src=files/i3_config dest=/home/$user/.i3/config

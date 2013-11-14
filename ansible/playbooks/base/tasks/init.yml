@@ -47,7 +47,7 @@
     src=files/motd dest=/etc/
     owner=root mode=644
 
-- name: Install apt sources.list
-  copy: >
-    src=files/sources.list dest=/etc/apt/
-    owner=root mode=644
+#- name: Install apt sources.list
+#  copy: >
+#    src=files/sources.list dest=/etc/apt/
+#    owner=root mode=644
