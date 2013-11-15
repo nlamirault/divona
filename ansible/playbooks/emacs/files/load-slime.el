@@ -2,5 +2,7 @@
 ;; Slime configuration
 ;;
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(let ((filename "~/quicklisp/slime-helpel.el"))
+  (when (file-exists-p filename)
+    (load (expand-file-name filename))))
 (setq inferior-lisp-program "/usr/bin/sbcl")
