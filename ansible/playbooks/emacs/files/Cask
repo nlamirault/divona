@@ -40,4 +40,6 @@
 (depends-on "pkg-info") ;; "0.3")
 (depends-on "magit")
 (depends-on "projectile")
+(depends-on "helm")
+
 
