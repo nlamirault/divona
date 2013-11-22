@@ -29,15 +29,11 @@ export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
 COLUMNS=250
 export COLUMNS
 
-#if [ -f $HOME/.bashrc ]; then
-#	source $HOME/.bashrc
-#fi
+if [ -f $HOME/.bashrc ]; then
+	source $HOME/.bashrc
+fi
 
 export ME=1920
-
-alias gruyere="ssh gruyere01b.int33.cvf"
-
-alias mbsfiler="gvfs-mount smb://usr-filer01b.ent33.cvf/directions"
 
 alias laptop_screen_off="xrandr --output LVDS-0 --off --output VGA-0 --mode 1920x1080 --output DP-1 --mode 1680x1050 --left-of VGA-0"
 alias laptop_screen-on="xrandr --output VGA-0 --off --output DP-1 --off && xrandr --output LVDS-0 --auto"
