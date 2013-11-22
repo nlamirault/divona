@@ -79,3 +79,6 @@ export PATH=$PATH:$JAVA_HOME/bin:$HOME/bin
 if [ -f ~/.environmentrc ]; then
     . ~/.environmentrc
 fi
+if [ -f ~/.ubuntudevrc ]; then
+    . ~/.ubuntudevrc
+fi
