@@ -22,3 +22,4 @@ alias eclipse="eclipse 2>&1 >/dev/null &"
 alias idea="idea.sh 2>&1 >/dev/null &"
 alias tmux_dev="tmux -f $HOME/.tmux.conf attach"
 
+alias docker_clean="docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs sudo docker rm"
