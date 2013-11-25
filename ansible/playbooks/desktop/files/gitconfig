@@ -13,7 +13,8 @@
         lgme = log --oneline --author 'Your User'
         ucommits = shortlog -sn
 
-        undo = reset --hard
+        cancel = reset --hard
+        undo = revert HEAD
         diffstat = diff --stat -r
         whatsnew = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
