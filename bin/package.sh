@@ -121,4 +121,4 @@ read correct
 [ "$correct" != "y" ] && exit
 
 popd > /dev/null
-dput ppa:nlamirault/divona divona_${VERSION}-${INC}~${CODENAME}_source.changes
+dput ppa:nlamirault/divona ../divona_${VERSION}-${INC}~${CODENAME}_source.changes

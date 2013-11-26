@@ -7,4 +7,5 @@
   apt: pkg=$item state=installed
   with_items:
     - packaging-dev
+    - debsig-verify
 

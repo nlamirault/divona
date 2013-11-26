@@ -13,6 +13,19 @@ Check Ansible is working :
 Installation
 ------------
 
+* From Git:
+
+        $ git clone https://github.com/nlamirault/divona.git
+
+* From Ubuntu using [PPA](https://launchpad.net/~nlamirault/+archive/divona):
+
+        $ sudo add-apt-repository ppa:nlamirault/divona
+		$ sudo apt-get update
+		$ sudo apt-get install divona
+
+Configuration
+-------------
+
     $ sudo ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=nicolas"
 
 
