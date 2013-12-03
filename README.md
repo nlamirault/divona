@@ -1,17 +1,14 @@
-Divona
-======
+# Divona [![Build Status](https://travis-ci.org/nlamirault/divona.png)](https://travis-ci.org/nlamirault/divona)
 
 Development environment configuration for Linux.
 
-Configuration
--------------
+## Configuration
 
 Check Ansible is working :
 
     $  ansible -c local -m ping all -i ansible_hosts
 
-Installation
-------------
+## Installation
 
 * From Git:
 
@@ -23,17 +20,14 @@ Installation
 		$ sudo apt-get update
 		$ sudo apt-get install divona
 
-Configuration
--------------
+## Configuration
 
     $ sudo ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=nicolas"
 
 
-BUG
----
+## BUG
 
 
-Contact
--------
+## Contact
 
 Nicolas Lamirault <nicolas.lamirault@gmail.com>
