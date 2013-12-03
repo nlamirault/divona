@@ -20,12 +20,14 @@
 (depends-on "go-eldoc") ;; "20131029.1013")
 (depends-on "flymake-go") ;; "20130314.1541")
 
-
 ;; Python
 (depends-on "python-mode") ;; "6.0.10")
 (depends-on "jedi") ;; "20130714.1415")
 (depends-on "elpy") ;; "20130809.1821")
 (depends-on "tox")
+
+;; OCaml
+(depends-on "tuareg")
 
 ;; Ruby
 (depends-on "ruby-mode") ;; "1.1")
