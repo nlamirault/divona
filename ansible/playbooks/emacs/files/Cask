@@ -11,7 +11,7 @@
 (depends-on "puppet-mode")
 (depends-on "sr-speedbar")
 (depends-on "yaml-mode")
-(depends-on "flycheck")
+;;(depends-on "flycheck")
 
 ;; Go lang
 (depends-on "go-mode")
