@@ -5,5 +5,8 @@
   apt: update_cache=yes
 
 - name: Install Emacs Snapshot
-  apt: pkg=emacs-snapshot-gtk state=installed
-
+  apt: pkg=$item state=installed
+  with_items:
+    - emacs-snapshot-el
+    - emacs-snapshot-gtk
+    - emacs-snapshot

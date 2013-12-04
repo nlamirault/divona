@@ -26,5 +26,8 @@
 - name: Install Cask
   command: python /home/$user/Apps/cask.py chdir=/home/$user/.emacs.d/ creates=/home/$user/.cask
 
+- name: Check Cask executable file
+  file: path=/home/$user/.cask/bin/cask owner=$user group=$user mode=0755
+
 - name: Configure Emacs using Cask
-  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d
+  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/
