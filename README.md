@@ -1,4 +1,6 @@
-# Divona [![Build Status](https://travis-ci.org/nlamirault/divona.png)](https://travis-ci.org/nlamirault/divona)
+# Divona 
+
+[![Build Status](https://travis-ci.org/nlamirault/divona.png)](https://travis-ci.org/nlamirault/divona)
 
 Development environment configuration for Linux.
 
