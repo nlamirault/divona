@@ -1,0 +1,7 @@
+---
+- hosts: vagrant
+  sudo: yes
+  tasks:
+    - include: tasks/lucid.yml
+    - include: tasks/init.yml
+

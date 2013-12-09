@@ -33,5 +33,5 @@
 #[commit]
 #	template=~/.git.commit.template
 
-[push]
-	default = simple
+#[push]
+#	default = simple

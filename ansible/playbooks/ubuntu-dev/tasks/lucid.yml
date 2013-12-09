@@ -1,0 +1,8 @@
+#
+# Ubuntu packaging software for Lucid (TravisCI)
+#
+#
+
+- name: Install Lucid backports
+  apt_repository: repo='deb http://archive.ubuntu.com/ubuntu/ lucid-backports main restricted universe multiverse' state=present
+
