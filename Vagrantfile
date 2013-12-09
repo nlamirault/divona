@@ -4,8 +4,8 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define :travis do |travis_config|
-    travis_config.vm.box = "lucid32"
-    travis_config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+    travis_config.vm.box = "precise32"
+    travis_config.vm.box_url = "http://files.vagrantup.com/precise32.box"
     travis_config.vm.hostname = "TravisCI"
 
     travis_config.vm.network :private_network, :ip => '10.10.0.201'

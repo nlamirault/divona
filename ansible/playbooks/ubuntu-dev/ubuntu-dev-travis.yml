@@ -2,6 +2,6 @@
 - hosts: vagrant
   sudo: yes
   tasks:
-    - include: tasks/lucid.yml
+    - include: tasks/precise.yml
     - include: tasks/init.yml
 
