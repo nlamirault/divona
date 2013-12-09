@@ -26,9 +26,9 @@ Check Ansible is working :
 
     $ sudo ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=nicolas"
 
+## Changelog
 
-## BUG
-
+A changelog is available [here](ChangeLog.md).
 
 ## Contact
 
