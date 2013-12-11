@@ -3,18 +3,17 @@
 ;; (c) 2013 Nicolas Lamirault
 ;;
 
-(require 'package)
+;;(require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-(package-initialize)
+;;(package-initialize)
 
 ;; Default theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ;;(load-theme 'zenburn t)
 (load-theme 'noctilux t)
 ;;(load-theme 'moe-dark t)
-
 
 (load "server")
 (unless (server-running-p)
@@ -29,12 +28,23 @@
 ;; Preinstalled packages
 ;; (defvar auto-install-packages
 ;;   (list
+;;    'projectile
+;;    'ac-mode
 ;;    'css-mode
+;;    'flycheck
+;;    'flycheck-color-mode-line
+;;    ;; Go
+;;    'go-mode
+;;    'go-play
+;;    'go-autocomplete
+;;    'go-eldoc
+;;    ;; Python
 ;;    'elpy
 ;;    'jedi
+;;    'python-mode
+;;    ;; Misc
 ;;    'markdown-mode
 ;;    'puppet-mode
-;;    'python-mode
 ;;    'ruby-mode
 ;;    'sr-speedbar
 ;;    'web-mode
@@ -55,7 +65,7 @@
 ;; (my-elpa-install)
 
 ;; Pb ropemacs et emacs prelude. Changement binding
-;; (setq ropemacs-global-prefix "C-c r")
+;;(setq ropemacs-global-prefix "C-c r")
 
 (setq home-dir (concat (expand-file-name "~") "/"))
 
@@ -76,11 +86,11 @@
 (require 'tool-bar)
 (tool-bar-mode nil)
 
-;; show the current line and column numbers in the stats bar as well
+; show the current line and column numbers in the stats bar as well
 (line-number-mode t)
 (column-number-mode t)
 (blink-cursor-mode nil)
 
-(helm-mode 1)
-(global-set-key (kbd "C-c h") 'helm-mini)
 
+
+(add-hook 'after-init-hook #'global-flycheck-mode)

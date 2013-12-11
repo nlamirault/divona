@@ -11,7 +11,7 @@
 (depends-on "puppet-mode")
 (depends-on "sr-speedbar")
 (depends-on "yaml-mode")
-;;(depends-on "flycheck")
+(depends-on "flycheck")
 
 ;; Go lang
 (depends-on "go-mode")
@@ -20,11 +20,13 @@
 (depends-on "go-eldoc") ;; "20131029.1013")
 (depends-on "flymake-go") ;; "20130314.1541")
 
+
 ;; Python
-(depends-on "python-mode") ;; "6.0.10")
-(depends-on "jedi") ;; "20130714.1415")
-(depends-on "elpy") ;; "20130809.1821")
+(depends-on "python-mode")
+(depends-on "jedi")
+(depends-on "elpy")
 (depends-on "tox")
+(depends-on "virtualenvwrapper")
 
 ;; OCaml
 (depends-on "tuareg")
@@ -44,4 +46,5 @@
 (depends-on "projectile")
 (depends-on "helm")
 
-
+;; UI
+(depends-on "smart-mode-line")
