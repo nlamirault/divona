@@ -28,9 +28,6 @@
 (depends-on "tox")
 (depends-on "virtualenvwrapper")
 
-;; OCaml
-(depends-on "tuareg")
-
 ;; Ruby
 (depends-on "ruby-mode") ;; "1.1")
 

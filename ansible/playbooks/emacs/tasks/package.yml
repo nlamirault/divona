@@ -5,8 +5,7 @@
   apt: update_cache=yes
 
 - name: Install Emacs Snapshot
-  apt: pkg=$item state=installed
-  with_items:
-    - emacs-snapshot-el
-    - emacs-snapshot-gtk
-    - emacs-snapshot
+  apt: pkg=emacs-snapshot-gtk state=present
+
+- name: Download Cask
+  command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /tmp/cask.py

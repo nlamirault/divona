@@ -1,16 +1,17 @@
+- name: Install Cask
+  command: python /tmp/cask.py creates=/home/$user/.cask
+
 - name: Emacs configuration files
   copy: src=files/emacs dest=/home/$user/.emacs
 
 - name: Creates Emacs directory
   action: file path=/home/$user/.emacs.d state=directory
 
-- name: Emacs .el files
+- name: Emacs configuration files
   copy: src=$item dest=/home/$user/.emacs.d/
   with_fileglob:
     - files/*.el
-
-- name: Cask file
-  copy: src=files/Cask dest=/home/$user/.emacs.d/
+    - files/Cask
 
 - name: Creates Emacs themes directory
   action: file path=/home/$user/.emacs.d/themes state=directory
@@ -20,14 +21,5 @@
   with_fileglob:
     - files/themes/*.el
 
-- name: Download Cask
-  command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /home/$user/Apps/cask.py creates=/home/$user/.cask
-
-- name: Install Cask
-  command: python /home/$user/Apps/cask.py chdir=/home/$user/.emacs.d/ creates=/home/$user/.cask
-
-- name: Check Cask executable file
-  file: path=/home/$user/.cask/bin/cask owner=$user group=$user mode=0755
-
-#- name: Configure Emacs using Cask
-#  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/
+- name: Emacs configuration using Cask
+  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/
