@@ -20,7 +20,6 @@
 (depends-on "go-eldoc") ;; "20131029.1013")
 (depends-on "flymake-go") ;; "20130314.1541")
 
-
 ;; Python
 (depends-on "python-mode")
 (depends-on "jedi")
@@ -30,6 +29,9 @@
 
 ;; Ruby
 (depends-on "ruby-mode") ;; "1.1")
+
+;; Scheme
+(depends-on "geiser")
 
 ;; Web
 (depends-on "web-mode") ;; "20131028.1439")
