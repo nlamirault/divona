@@ -21,5 +21,8 @@
   with_fileglob:
     - files/themes/*.el
 
+- name: Check Cask installation
+  command: ls /home/$user/.cask/ && ls /home/$user/.emacs.d/ 
+
 - name: Emacs configuration using Cask
   command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/
