@@ -1,10 +1,10 @@
 ---
-- hosts: vagrant_dev
+- hosts: vagrant
   sudo: yes
   tasks:
     - include: tasks/package.yml
 
-- hosts: vagrant_dev
+- hosts: vagrant
   sudo: no
   tasks:
     - include: tasks/config.yml
