@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define :openbsd do |openbsd_config|
+    openbsd_config.vm.box = "OpenBSD_5.2"
+    openbsd_config.vm.box_url = "https://dl.dropbox.com/s/5ietqc3thdholuh/openbsd-52-64.box"
+
+    openbsd_config.vm.hostname = "LamOpenBSD"
+    openbsd_config.vm.network :private_network, :ip => '10.1.4.33'
+
+    openbsd_config.ssh.forward_agent = true
+    openbsd_config.ssh.forward_x11 = true
+
+    # Share an additional folder to the guest VM. The first argument is
+    # the path on the host to the actual folder. The second argument is
+    # the path on the guest to mount the folder. And the optional third
+    # argument is a set of non-required options.
+    # config.vm.synced_folder "../data", "/vagrant_data"
+
+    openbsd_config.vm.provider :virtualbox do |vb|
+      #vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.name = "LamOpenBSD"
+    end
+
+  end
+
+end

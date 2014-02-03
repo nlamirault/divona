@@ -22,6 +22,7 @@ export ANT_HOME=$APPS/apache-ant-1.8.2
 export PATH=$PATH:$ANT_HOME/bin
 
 export PATH="$HOME/.cask/bin:$PATH"
+export PATH="$HOME/.evm/bin:$PATH"
 
 export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
 

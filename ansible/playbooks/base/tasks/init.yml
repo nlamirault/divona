@@ -29,6 +29,7 @@
     - genisoimage
     - dnsutils
     - vim
+    - texi2html
 
 - name: Install Python tools
   apt: pkg=$item state=installed
