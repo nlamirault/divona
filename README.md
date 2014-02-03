@@ -1,6 +1,6 @@
 # Divona 
 
-[![Build Status](https://travis-ci.org/nlamirault/divona.png)](https://travis-ci.org/nlamirault/divona)
+[![wercker status](https://app.wercker.com/status/c7d97c1954dfa32673abfcc7dae1ffc9 "wercker status")](https://app.wercker.com/project/bykey/c7d97c1954dfa32673abfcc7dae1ffc9)
 
 Development environment configuration for Linux.
 

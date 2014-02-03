@@ -30,6 +30,9 @@
 ;; Ruby
 (depends-on "ruby-mode")
 
+;; Scheme
+(depends-on "geiser")
+
 ;; Web
 (depends-on "web-mode")
 (depends-on "php-mode")
