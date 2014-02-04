@@ -30,8 +30,9 @@
 ;; Ruby
 (depends-on "ruby-mode")
 
-;; Scheme
-(depends-on "geiser")
+;; Erlang
+(depends-on "erlang")
+
 
 ;; Web
 (depends-on "web-mode")
@@ -46,26 +47,19 @@
 (depends-on "puppet-mode")
 
 ;; Utilities
-(depends-on "pkg-info")
+(depends-on "pkg-info") ;; "0.3")
 (depends-on "magit")
 (depends-on "projectile")
 (depends-on "helm")
 (depends-on "helm-projectile")
 (depends-on "project-persist")
 (depends-on "helm-project-persist")
+
 (depends-on "multi-term")
 (depends-on "project-explorer")
-(depends-on "prodigy")
-
-;; UI
-(depends-on "smart-mode-line")
-(depends-on "diminish")
-(depends-on "powerline")
-(depends-on "direx")
-
 
 ;; Mail
-;;(depends-on "mu4e")
+(depends-on "mu4e")
 (depends-on "w3m")
 (depends-on "offlineimap")
 
@@ -75,5 +69,16 @@
 (depends-on "weather-metno")
 ;;(depends-on "org-jira")
 
+(depends-on "org-ehtml")
+
+(depends-on "htmlize")
+(depends-on "web-server")
+
 ;; UI
 (depends-on "smart-mode-line")
+(depends-on "diminish")
+(depends-on "powerline")
+(depends-on "popwin")
+(depends-on "direx")
+
+(depends-on "moe-theme")
