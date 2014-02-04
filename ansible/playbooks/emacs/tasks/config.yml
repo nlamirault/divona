@@ -7,6 +7,9 @@
 - name: Creates Emacs directory
   action: file path=/home/$user/.emacs.d state=directory owner=$user
 
+- name: List Emacs directory
+  shell: ls -R /home/$user/.emacs.d
+
 - name: Emacs configuration files
   copy: src=$item dest=/home/$user/.emacs.d/ owner=$user
   with_fileglob:
