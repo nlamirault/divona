@@ -2,22 +2,22 @@
   command: python /tmp/cask.py creates=/home/$user/.cask
 
 - name: Emacs configuration files
-  copy: src=files/emacs dest=/home/$user/.emacs
+  copy: src=files/emacs dest=/home/$user/.emacs owner=$user
 
 - name: Creates Emacs directory
-  action: file path=/home/$user/.emacs.d state=directory
+  action: file path=/home/$user/.emacs.d state=directory owner=$user
 
 - name: Emacs configuration files
-  copy: src=$item dest=/home/$user/.emacs.d/
+  copy: src=$item dest=/home/$user/.emacs.d/ owner=$user
   with_fileglob:
     - files/*.el
     - files/Cask
 
 - name: Creates Emacs themes directory
-  action: file path=/home/$user/.emacs.d/themes state=directory
+  action: file path=/home/$user/.emacs.d/themes state=directory owner=$user
 
 - name: Emacs theme
-  copy: src=$item dest=/home/$user/.emacs.d/themes/
+  copy: src=$item dest=/home/$user/.emacs.d/themes/ owner=$user
   with_fileglob:
     - files/themes/*.el
 
