@@ -1,5 +1,5 @@
 - name: add the emacs-snapshot PPA
-  apt_repository: repo=ppa:cassou/emacs
+  apt_repository: repo=ppa:ubuntu-elisp/ppa
 
 - name: Update repositories
   apt: update_cache=yes
@@ -9,9 +9,3 @@
 
 - name: Download Cask
   command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /tmp/cask.py
-
-- name: Download Emacs Version Manager
-  command: curl -fsSkL https://raw.github.com/rejeep/evm/master/go -o /tmp/evm.sh
-
-- name: Creates EVM directory
-  action: file path=/usr/local/evm state=directory owner=$user mode=644
