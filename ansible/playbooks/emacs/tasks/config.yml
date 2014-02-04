@@ -1,9 +1,6 @@
 - name: Install Cask
   command: python /tmp/cask.py creates=/home/$user/.cask
 
-- name: Install Emacs Version Manager
-  command: chmod +x /tmp/evm.sh && /tmp/emv.sh
-
 - name: Emacs configuration files
   copy: src=files/emacs dest=/home/$user/.emacs
 
