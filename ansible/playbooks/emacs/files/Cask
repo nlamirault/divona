@@ -54,9 +54,9 @@
 (depends-on "helm-projectile")
 (depends-on "project-persist")
 (depends-on "helm-project-persist")
-
 (depends-on "multi-term")
 (depends-on "project-explorer")
+(depends-on "lice")
 
 ;; Mail
 (depends-on "mu4e")
