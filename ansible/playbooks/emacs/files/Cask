@@ -6,6 +6,8 @@
 
 ;; Misc
 (depends-on "cask")
+(depends-on "pallet")
+
 (depends-on "auto-complete")
 (depends-on "markdown-mode")
 (depends-on "sr-speedbar")
@@ -57,6 +59,9 @@
 (depends-on "multi-term")
 (depends-on "project-explorer")
 (depends-on "lice")
+(depends-on "commander")
+(depends-on "smex")
+(depends-on "swoop")
 
 ;; Mail
 (depends-on "mu4e")

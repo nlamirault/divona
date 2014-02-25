@@ -7,13 +7,10 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-;;(package-initialize)
+(package-initialize)
 
-;; Default theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;;(load-theme 'zenburn t)
-(load-theme 'noctilux t)
-;;(load-theme 'moe-dark t)
+(setq home-dir (concat (expand-file-name "~") "/"))
+(set-language-environment "UTF-8")
 
 (load "server")
 (unless (server-running-p)
@@ -24,54 +21,13 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
+(require 'pallet)
 
-;; Preinstalled packages
-;; (defvar auto-install-packages
-;;   (list
-;;    'projectile
-;;    'ac-mode
-;;    'css-mode
-;;    'flycheck
-;;    'flycheck-color-mode-line
-;;    ;; Go
-;;    'go-mode
-;;    'go-play
-;;    'go-autocomplete
-;;    'go-eldoc
-;;    ;; Python
-;;    'elpy
-;;    'jedi
-;;    'python-mode
-;;    ;; Misc
-;;    'markdown-mode
-;;    'puppet-mode
-;;    'ruby-mode
-;;    'sr-speedbar
-;;    'web-mode
-;;    'yaml-mode)
-;;   "Libraries that should be installed by default.")
-
-
-;; (defun my-elpa-install ()
-;;   "Install all default packages that aren't installed."
-;;   (interactive)
-;;   (dolist (package auto-install-packages)
-;;     (unless (or (member package package-activated-list)
-;;                 (functionp package))
-;;       (message "Installing %s" (symbol-name package))
-;;       (package-install package))))
-
-;; (unless package-archive-contents (package-refresh-contents))
-;; (my-elpa-install)
-
-;; Pb ropemacs et emacs prelude. Changement binding
-;;(setq ropemacs-global-prefix "C-c r")
-
-(setq home-dir (concat (expand-file-name "~") "/"))
-
-;; Load all load-*.el files in the .emacs.d directory
 (mapcar 'load-file
  (file-expand-wildcards "~/.emacs.d/*.el" t))
+
+(when (file-readable-p "~/.emacs.d/custom/user.el")
+  (load "~/.emacs.d/custom/user.el"))
 
 (require 'ido)
 (ido-mode t)
@@ -92,5 +48,10 @@
 (blink-cursor-mode nil)
 
 
+
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
