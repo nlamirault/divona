@@ -10,19 +10,16 @@
 - name: List Emacs directory
   shell: ls -R /home/$user/.emacs.d
 
+- name: Creates Emacs directory for configuration
+  action: file path=/home/$user/.emacs.d/lisp state=directory owner=$user
+
 - name: Emacs configuration files
-  copy: src=$item dest=/home/$user/.emacs.d/ owner=$user
+  copy: src=$item dest=/home/$user/.emacs.d/lisp owner=$user
   with_fileglob:
     - files/*.el
-    - files/Cask
 
-- name: Creates Emacs themes directory
-  action: file path=/home/$user/.emacs.d/themes state=directory owner=$user
-
-- name: Emacs theme
-  copy: src=$item dest=/home/$user/.emacs.d/themes/ owner=$user
-  with_fileglob:
-    - files/themes/*.el
+- name: Emacs Cask configuration
+  copy: src=files/Cask dest=/home/$user/.emacs.d owner=$user
 
 - name: Emacs configuration using Cask
   command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/

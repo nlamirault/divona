@@ -5,6 +5,8 @@
 
 
 (require 'go-mode-load)
+(add-hook 'go-eldoc-setup)
+
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook
 	  (lambda ()

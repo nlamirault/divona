@@ -1,5 +1,5 @@
 ;;; buffers.el
-
+;;
 ;; Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 ;;; Code:

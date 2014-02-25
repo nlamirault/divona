@@ -1,57 +1,21 @@
 ;;
-;; Emacs
-;; (c) 2013 Nicolas Lamirault
+;; Emacs setup
+;; Copyright (c) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 ;;
 
 ;;(require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-(package-initialize)
-
-(setq home-dir (concat (expand-file-name "~") "/"))
-(set-language-environment "UTF-8")
-
-(load "server")
-(unless (server-running-p)
-    (server-start))
-
-(setq-default fill-column 120)
+;;(package-initialize)
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
 (require 'pallet)
 
-(mapcar 'load-file
- (file-expand-wildcards "~/.emacs.d/*.el" t))
+(require 'init-loader)
+(init-loader-load "~/.emacs.d/")
 
 (when (file-readable-p "~/.emacs.d/custom/user.el")
   (load "~/.emacs.d/custom/user.el"))
-
-(require 'ido)
-(ido-mode t)
-
-(setq mac-option-modifier nil
-      mac-command-modifier 'meta
-      x-select-enable-clipboard t)
-
-(global-linum-mode t)
-(setq column-number-mode t)
-
-(require 'tool-bar)
-(tool-bar-mode nil)
-
-; show the current line and column numbers in the stats bar as well
-(line-number-mode t)
-(column-number-mode t)
-(blink-cursor-mode nil)
-
-
-
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-language-environment "UTF-8")
-(prefer-coding-system 'utf-8)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
