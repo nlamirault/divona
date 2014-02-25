@@ -14,3 +14,11 @@
 (line-number-mode t)
 (column-number-mode t)
 (blink-cursor-mode nil)
+
+(require 'tool-bar)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+(when (not console-p)
+  (setq x-select-enable-clipboard t))
