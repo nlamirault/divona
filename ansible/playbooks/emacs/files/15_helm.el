@@ -5,7 +5,7 @@
 (helm-mode 1)
 
 (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x M-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 
@@ -17,4 +17,3 @@
             do (add-to-list 'helm-boring-buffer-regexp-list name))
 (loop for ext in '("\\.elc$" "\\.pyc$")
             do (add-to-list 'helm-boring-file-regexp-list ext))
-
