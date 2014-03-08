@@ -5,7 +5,7 @@
 (helm-mode 1)
 
 (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 

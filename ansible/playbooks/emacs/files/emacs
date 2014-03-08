@@ -15,7 +15,7 @@
 (require 'pallet)
 
 (require 'init-loader)
-(init-loader-load "~/.emacs.d/")
+(init-loader-load "~/.emacs.d/lisp")
 
 (when (file-readable-p "~/.emacs.d/custom/user.el")
   (load "~/.emacs.d/custom/user.el"))
