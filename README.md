@@ -1,6 +1,7 @@
 # Divona 
 
 [![wercker status](https://app.wercker.com/status/c7d97c1954dfa32673abfcc7dae1ffc9 "wercker status")](https://app.wercker.com/project/bykey/c7d97c1954dfa32673abfcc7dae1ffc9)
+[![Build Status](https://drone.io/github.com/nlamirault/divona/status.png)](https://drone.io/github.com/nlamirault/divona/latest)
 
 Development environment configuration for Linux.
 
