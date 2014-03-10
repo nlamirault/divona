@@ -1,0 +1,13 @@
+- name: Install window manager
+  apt: pkg=$item state=installed
+  with_items:
+    - i3
+    - openbox
+    - openbox-themes
+    - obconf
+    - obmenu
+    - conky-all
+    - thunar
+    - thunar-volman
+    - thunar-archive-plugin
+    - tint2
