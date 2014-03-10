@@ -8,4 +8,4 @@
   apt: pkg=$item state=installed
   with_items:
     - btsync
-    - btysnc-user
+    - btsync-user
