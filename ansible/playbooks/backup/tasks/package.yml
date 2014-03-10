@@ -1,0 +1,11 @@
+- name: Add the BTSync PPA
+  apt_repository: repo=ppa:tuxpoldo/btsync
+
+- name: Update repositories
+  apt: update_cache=yes
+
+- name: Install BTSync
+  apt: pkg=$item state=installed
+  with_items:
+    - btsync
+    - btysnc-user
