@@ -1,7 +1,7 @@
 ;; Scheme configuration
 ;;
 
-(require 'geiser)
+(require 'geiser-install)
 (setq geiser-active-implementations '(guile))
 ;;(setq geiser-impl-installed-implementations '(guile))
 
