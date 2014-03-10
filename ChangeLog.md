@@ -4,6 +4,7 @@ Divona ChangeLog
 Version 0.2.0 (2014-03-10)
 --------------------------
 
+- Add backup tools
 - Add Common Lisp setup
 - Update Emacs python, scheme, helm configurations
 
