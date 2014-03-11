@@ -14,35 +14,6 @@
 (setq g-user-email user-mail-address)
 
 
-
-;; PGP
-;; ------
-
-;; Automatically sign when sending mails or posts to gmane
-;; (add-hook 'message-setup-hook
-;;           (lambda ()
-;; 	    (if (or (message-mail-p)
-;; 		    (string-match "gmane" gnus-newsgroup-name))
-;; 		(mml-secure-message-sign-pgpmime))))
-;;(add-hook 'gnus-message-setup-hook 'mml-secure-message-sign)
-;;(add-hook 'message-setup-hook 'mml-secure-message-sign)
-
-
-;; GMane
-;; ----------
-
-;;(setq gnus-select-method '(nntp "news.gmane.org"))
-
-;; (setq gnus-select-method
-;;        '(nntp "news.gwene.org"
-;;               (nntp-address "news.gwene.org")
-;;               (nnir-search-engine gmane)))
-
-
-(setq gnus-cacheable-groups "^gmane")
-
-(setq gnus-secondary-select-methods '((nnml "")))
-
 ;; GMail
 ;; ---------
 
@@ -79,6 +50,26 @@
       smtpmail-default-smtp-server smtpmail-smtp-server
       smtpmail-auth-credentials (expand-file-name "~/.authinfo")
       smtpmail-stream-type 'ssl)
+
+
+;; Newsgroup
+;; -----------
+
+(add-to-list 'gnus-secondary-select-methods
+             '(nntp "news.gmane.org"))
+
+
+;; PGP
+;; ------
+
+;; Automatically sign when sending mails or posts to gmane
+;; (add-hook 'message-setup-hook
+;;           (lambda ()
+;; 	    (if (or (message-mail-p)
+;; 		    (string-match "gmane" gnus-newsgroup-name))
+;; 		(mml-secure-message-sign-pgpmime))))
+;;(add-hook 'gnus-message-setup-hook 'mml-secure-message-sign)
+;;(add-hook 'message-setup-hook 'mml-secure-message-sign)
 
 
 ;; Posting
@@ -182,26 +173,28 @@
 ;; UI Organization
 ;; ----------------
 
-;; (gnus-add-configuration
-;;  '(summary
-;;    (horizontal 1.0
-;;                (vertical 0.30 (group 1.0))
-;;                (vertical 1.0 (summary 1.0 point)))))
-
-;; (gnus-add-configuration
-;;  '(article
-;;    (horizontal 1.0
-;;                (vertical 0.30
-;;                          (group 1.0))
-;;                (vertical 1.0
-;;                          (horizontal 0.5
-;;                                      (summary 1.0))
-;;                          (article 1.0)))))
+(gnus-add-configuration
+ '(article
+   (horizontal 1.0
+        (vertical 60 (group 1.0))
+        (vertical 1.0
+    (summary 0.20 point)
+    (article 1.0)))))
 
 (gnus-add-configuration
-   ;; two panes side-by-side
- '(summary (horizontal 1.0
-		       (summary 1.0 point))))
+ '(summary
+   (horizontal 1.0
+        (vertical 60 (group 1.0))
+        (vertical 1.0 (summary 1.0 point)))))
+
+
+;; (gnus-add-configuration
+;;  '(summary (horizontal 1.0
+;; 		       (summary 1.0 point))))
+
+;; (gnus-add-configuration
+;;  '(article (vertical 1.0 (summary 0.25 point)
+;; 		     (article 1.0))))
 
 
 ;; Sorting

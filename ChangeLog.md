@@ -1,6 +1,8 @@
 Divona ChangeLog
 ================
 
+- Init Gnus configuration for GMail
+
 Version 0.2.0 (2014-03-10)
 --------------------------
 
