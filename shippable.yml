@@ -1,0 +1,8 @@
+language: python
+python:
+    - "2.7"
+script:
+    sudo apt-add-repository ppa:rquillo/ansible
+    sudo apt-get update
+    sudo apt-get install ansible
+    sudo ansible-playbook --verbose -c local -i ansible/ansible_hosts ansible/setup.yml --extra-vars="user=ubuntu"

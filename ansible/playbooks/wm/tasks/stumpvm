@@ -1,0 +1,12 @@
+sudo apt-get -u install autoconf texinfo
+
+cd $HOME/Apps && curl -O http://beta.quicklisp.org/quicklisp.lisp
+
+mkdir $HOME/Apps/quicklisp
+
+sbcl --load quicklisp.lisp
+
+(quicklisp-quickstart:install :path "/home/nlamirault/Apps/quicklisp/")
+
+cd $HOME/Apps && git clone https://github.com/sabetts/stumpwm.git
+

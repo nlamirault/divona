@@ -1,5 +1,7 @@
 - include: playbooks/base/base.yml
+- include: playbooks/wm/wm.yml
 - include: playbooks/desktop/desktop.yml
 - include: playbooks/emacs/emacs.yml
 - include: playbooks/vim/vim.yml
+- include: playbooks/backup/backup.yml
 - include: playbooks/finish/finish.yml

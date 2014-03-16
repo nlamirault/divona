@@ -3,6 +3,10 @@
 ;; Copyright (c) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 ;;
 
+;; Debug or not
+;;(setq debug-on-error t)
+
+
 ;;(require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -15,7 +19,9 @@
 (require 'pallet)
 
 (require 'init-loader)
-(init-loader-load "~/.emacs.d/lisp")
+(init-loader-load "~/.emacs.d/lisp/")
 
-(when (file-readable-p "~/.emacs.d/custom/user.el")
-  (load "~/.emacs.d/custom/user.el"))
+(let ((user-customization "~/.emacs.d/custom/user.el"))
+  (when (file-readable-p user-customization)
+    (load user-customization)))
+
