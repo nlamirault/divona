@@ -1,0 +1,2 @@
+- name: Change home directory rights
+  action: file path=/home/$user state=directory owner=$user group=$user recurse=yes
