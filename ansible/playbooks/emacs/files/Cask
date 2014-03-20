@@ -35,6 +35,8 @@
 ;; Erlang
 (depends-on "erlang")
 
+;; Scheme
+(depends-on "geiser")
 
 ;; Web
 (depends-on "web-mode")
@@ -64,6 +66,8 @@
 (depends-on "swoop")
 (depends-on "emamux")
 (depends-on "init-loader")
+(depends-on "fabric")
+(depends-on "prodigy")
 
 ;; Mail
 ;;(depends-on "mu4e")
@@ -75,8 +79,9 @@
 (depends-on "google-weather")
 (depends-on "weather-metno")
 ;;(depends-on "org-jira")
-
 (depends-on "org-ehtml")
+(depends-on "calfw")
+(depends-on "orgbox")
 
 (depends-on "htmlize")
 (depends-on "web-server")
@@ -88,9 +93,25 @@
 (depends-on "popwin")
 (depends-on "direx")
 
+;; Gnus
+(depends-on "google-contacts")
+
 (depends-on "moe-theme")
 (depends-on "zenburn-theme")
 (depends-on "color-theme-sanityinc-tomorrow")
 (depends-on "noctilux-theme")
 (depends-on "afternoon-theme")
 (depends-on "ample-theme")
+(depends-on "subatomic-theme")
+(depends-on "monokai-theme")
+
+(development
+  (depends-on "s")
+  (depends-on "dash")
+  (depends-on "ctable")
+  (depends-on "request")
+  (depends-on "pkg-info")
+  (depends-on "f")
+  (depends-on "ert")
+  (depends-on "ert-runner")
+)

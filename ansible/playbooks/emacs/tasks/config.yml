@@ -1,14 +1,8 @@
 - name: Install Cask
   command: python /tmp/cask.py creates=/home/$user/.cask
 
-- name: Emacs configuration files
-  copy: src=files/emacs dest=/home/$user/.emacs owner=$user
-
 - name: Creates Emacs directory
   action: file path=/home/$user/.emacs.d state=directory owner=$user
-
-- name: List Emacs directory
-  shell: ls -R /home/$user/.emacs.d
 
 - name: Creates Emacs directory for configuration
   action: file path=/home/$user/.emacs.d/lisp state=directory owner=$user

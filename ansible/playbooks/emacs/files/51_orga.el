@@ -4,10 +4,18 @@
 
 
 (require 'org)
+(require 'orgbox)
 ;;(require 'org-contacts)
 ;;(require 'org-jira)
 (require 'google-weather)
 (require 'org-google-weather)
+
+(require 'calfw)
+(require 'calfw-org)
+;;(require 'calfw-howm)
+(require 'calfw-org)
+(require 'calfw-ical)
+
 
 (setq org-directory "~/Org")
 (setq org-agenda-files (list org-directory))
@@ -141,6 +149,8 @@
 (require 'ox-html)
 (require 'ox-latex)
 (require 'ox-ascii)
+
+
 
 
 (provide 'orga)
