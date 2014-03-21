@@ -4,4 +4,4 @@
 - include: playbooks/emacs/emacs.yml
 - include: playbooks/vim/vim.yml
 - include: playbooks/backup/backup.yml
-
+- include: playbooks/finish/finish.yml
