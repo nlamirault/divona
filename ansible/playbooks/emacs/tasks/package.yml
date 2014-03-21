@@ -9,3 +9,4 @@
 
 - name: Download Cask
   command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /tmp/cask.py
+

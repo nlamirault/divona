@@ -1,19 +1,8 @@
 - name: Install Cask
   command: python /tmp/cask.py creates=/home/$user/.cask
 
-- name: Creates Emacs directory
-  action: file path=/home/$user/.emacs.d state=directory owner=$user
+- name: Download Scame
+  command: curl -fsSkL https://raw.github.com/nlamirault/scame/master/scame -o /tmp/scame
 
-- name: Creates Emacs directory for configuration
-  action: file path=/home/$user/.emacs.d/lisp state=directory owner=$user
-
-- name: Emacs configuration files
-  copy: src=$item dest=/home/$user/.emacs.d/lisp owner=$user
-  with_fileglob:
-    - files/*.el
-
-- name: Emacs Cask configuration
-  copy: src=files/Cask dest=/home/$user/.emacs.d owner=$user
-
-- name: Emacs configuration using Cask
-  command: /home/$user/.cask/bin/cask chdir=/home/$user/.emacs.d/
+- name: Install Scame
+  command: bash /tmp/scame
