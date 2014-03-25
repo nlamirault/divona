@@ -1,0 +1,4 @@
+- name: Install BTSync
+  with_items:
+    - btsync
+    - btsync-user

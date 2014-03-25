@@ -2,10 +2,12 @@
 - hosts: vagrant
   sudo: yes
   tasks:
-    - include: tasks/init.yml
+    - include: tasks/debian_init.yml
+      when: ansible_os_family == 'Debian'
+    - include: tasks/arch_init.yml
+      when: ansible_os_family == 'Archlinux'
 
 - hosts: vagrant
   sudo: no
   tasks:
     - include: tasks/dotfiles.yml
-

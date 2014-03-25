@@ -2,5 +2,9 @@
 - hosts: vagrant
   sudo: yes
   tasks:
-    - include: tasks/package.yml
+    - include: tasks/debian_package.yml
+      when: ansible_os_family == "Debian"
+    - include: tasks/arch_package.yml
+      when: ansible_os_family == "Archlinux"
+
 

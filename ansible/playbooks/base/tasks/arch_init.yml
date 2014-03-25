@@ -1,0 +1,57 @@
+#
+# Base settings for Arch
+#
+#
+
+- name: Install Arch Pacman file
+  copy: src=files/pacman.conf dest=/etc/ owner=root mode=644
+
+- name: Install Yaourt
+  pacman: name=yaourt state=installed update_cache=yes
+
+- name: Install defaults packages
+  pacman: name=$item state=installed update_cache=yes
+  with_items:
+    - man-db
+    - wget
+    - curl
+    - ngrep
+    - tree
+    - bash-completion
+    - git-core
+    - tig
+    - unzip
+    - logrotate
+    - rsyslog
+    - sysstat
+    - tmux
+    - w3m
+    - mlocate
+    - dnsutils
+    - vim
+    - texi2html
+
+- name: Install X
+  pacman: name=$item state=installed
+  with_items:
+    - xorg-server
+    - xorg-xinit
+    - xorg-server-utils
+    - slim
+
+- name: Install Python tools
+  apt: pkg=$item state=installed
+  with_items:
+    - python-pip
+    - python-pylint
+    - python-pycurl
+    - python2-pycurl
+
+- name: Install ChangeLog
+  copy: src=files/ChangeLog dest=/etc/ owner=root mode=644
+
+- name: Install motd
+  copy: src=files/motd dest=/etc/ owner=root mode=644
+
+- name: Install apt sources.list
+  copy: src=files/pacman.conf dest=/etc/ owner=root mode=644
