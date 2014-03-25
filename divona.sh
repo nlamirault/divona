@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-    echo "$0 <username>"
+    echo "$0 <username> <hosts>"
     exit 1
 fi
 
@@ -15,4 +15,4 @@ echo "Check valid hosts"
 ansible -c local -m ping all -i ansible/ansible_hosts
 
 echo "Configure"
-sudo ansible-playbook -c local -i ansible/ansible_hosts ansible/setup.yml --extra-vars="user=$1"
+sudo ansible-playbook -c local -i $2 ansible/setup.yml --extra-vars="user=$1"
