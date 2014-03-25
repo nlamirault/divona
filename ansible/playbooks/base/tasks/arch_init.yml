@@ -40,10 +40,12 @@
     - slim
 
 - name: Install Python tools
-  apt: pkg=$item state=installed
+  pacman: name=$item state=installed
   with_items:
     - python-pip
+    - python2-pip
     - python-pylint
+    - python2-pylint
     - python-pycurl
     - python2-pycurl
 
