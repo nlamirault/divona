@@ -10,7 +10,7 @@
   pacman: name=yaourt state=installed update_cache=yes
 
 - name: Install defaults packages
-  pacman: name=$item state=installed update_cache=yes
+  pacman: name=$item state=installed
   with_items:
     - man-db
     - wget
