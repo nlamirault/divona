@@ -6,6 +6,9 @@
 - name: Install Arch Pacman file
   copy: src=files/pacman.conf dest=/etc/ owner=root mode=644
 
+- name: Arch refresh keys
+  command: pacman-key --refresh-keys
+
 - name: Install Yaourt
   pacman: name=yaourt state=installed update_cache=yes
 
