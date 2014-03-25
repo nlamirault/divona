@@ -1,7 +1,7 @@
 - name: Install window manager
   pacman: name=$item state=installed
   with_items:
-    - i3
+    - i3-wm
     - i3status
     - i3lock
     - dmenu
