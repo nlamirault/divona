@@ -1,0 +1,16 @@
+- name: Install window manager
+  pacman: name=$item state=installed
+  with_items:
+    - i3
+    - i3status
+    - i3lock
+    - dmenu
+    - openbox
+    - openbox-themes
+    - obconf
+    - obmenu
+    - conky
+    - thunar
+    - thunar-volman
+    - thunar-archive-plugin
+    - tint2

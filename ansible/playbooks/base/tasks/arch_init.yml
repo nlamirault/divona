@@ -54,6 +54,3 @@
 
 - name: Install motd
   copy: src=files/motd dest=/etc/ owner=root mode=644
-
-- name: Install apt sources.list
-  copy: src=files/pacman.conf dest=/etc/ owner=root mode=644
