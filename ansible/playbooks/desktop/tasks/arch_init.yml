@@ -13,7 +13,7 @@
   pacman: name=$item state=installed
   with_items:
     - thunderbird
-    - thunderbird-locale-fr
+    - thunderbird-i18n-fr
 
 - name: Install graphics applications
   pacman: name=$item state=installed

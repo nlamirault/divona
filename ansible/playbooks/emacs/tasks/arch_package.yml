@@ -1,2 +1,2 @@
 - name: Install Emacs
-  pacman: name=emacs-snapshot state=installed
+  pacman: name=emacs state=installed

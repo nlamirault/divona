@@ -7,5 +7,3 @@
 - name: Install Emacs Snapshot
   apt: pkg=emacs-snapshot state=installed
 
-- name: Download Cask
-  command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /tmp/cask.py
