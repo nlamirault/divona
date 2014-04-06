@@ -33,6 +33,8 @@
     - dnsutils
     - vim
     - texi2html
+    - networkmanager
+    - network-manager-applet
 
 - name: Install X
   pacman: name=$item state=installed
@@ -41,6 +43,12 @@
     - xorg-xinit
     - xorg-server-utils
     - slim
+
+- name: Install LXDE
+  pacman: name=$item state=installed
+  with_items:
+    - lxde
+    - lxnm
 
 - name: Install Python tools
   pacman: name=$item state=installed
