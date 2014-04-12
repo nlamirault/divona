@@ -1,0 +1,2 @@
+- name: Install sbclrc
+  copy: src=files/sbclrc dest=/home/$user/.sbclrc
