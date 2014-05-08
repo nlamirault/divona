@@ -24,6 +24,9 @@ export PATH=$PATH:$ANT_HOME/bin
 export PATH="$HOME/.cask/bin:$PATH"
 export PATH="$HOME/.evm/bin:$PATH"
 
+export GOPATH=$HOME/Apps/golang
+export PATH=$PATH:$GOPATH/bin
+
 export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
 
 # pour dpkg

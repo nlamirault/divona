@@ -35,6 +35,7 @@
     - texi2html
     - networkmanager
     - network-manager-applet
+    - terminator
 
 - name: Install X
   pacman: name=$item state=installed
@@ -60,6 +61,11 @@
     - python2-pylint
     - python-pycurl
     - python2-pycurl
+
+- name: Install Ruby
+  pacman: name=$item state=installed
+  with_items:
+    - ruby
 
 - name: Install ChangeLog
   copy: src=files/ChangeLog dest=/etc/ owner=root mode=644

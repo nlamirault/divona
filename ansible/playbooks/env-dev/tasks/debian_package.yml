@@ -1,0 +1,52 @@
+- name: Install Common Lisp environment
+  apt: pkg=$item state=installed
+  with_items:
+    - sbcl
+
+- name: Intall GO environment
+  apt: pkg=$item state=installed
+  with_items:
+    - golang
+    - golang-go
+    - golang-doc
+    - golang-src
+
+- name: Add the OCaml PPA
+  apt_repository: repo=ppa:avsm/ppa
+
+- name: Update repositories
+  apt: update_cache=yes
+
+- name: Install OCaml environment
+  apt: pkg=$item state=installed
+  with_items:
+    - ocaml
+    - ocaml-findlib
+    - opam
+    - oasis
+
+- name: Add the Erlang PPA
+  apt_repository: repo=ppa:bigkevmcd/ppa
+
+- name: Update repositories
+  apt: update_cache=yes
+
+- name: Install Erlang environment
+  apt: pkg=$item state=installed
+  with_items:
+    - erlang
+    - erlang-doc
+    - erlang-manpages
+    - erlang-mode
+
+- name: Install Haskell environment
+  apt: pkg=$item state=installed
+  with_items:
+    - ghc
+    - cabal-install
+
+- name: Install Scheme environment
+  apt: pkg=$item state=installed
+  with_items:
+    - guile
+    - racket

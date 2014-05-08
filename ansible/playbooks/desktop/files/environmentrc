@@ -1,5 +1,5 @@
 #export LC_ALL=fr_FR.UTF-8
-#export LANG=_FR.UTF-8
+#export LANG=fr_FR.UTF-8
 
 export HOSTNAME=$(hostname)
 export EDITOR=vim
@@ -23,3 +23,5 @@ alias idea="idea.sh 2>&1 >/dev/null &"
 alias tmux_dev="tmux -f $HOME/.tmux.conf attach"
 
 alias docker_clean="docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs sudo docker rm"
+
+alias vi='vim'
