@@ -44,11 +44,12 @@
     - xorg-server-utils
     - slim
 
-- name: Install LXDE
+- name: Install XDE
   pacman: name=$item state=installed
   with_items:
-    - lxde
-    - lxnm
+    - xfce4
+    - xfce4-goodies
+    - xfce-notifyd
 
 - name: Install Python tools
   pacman: name=$item state=installed
