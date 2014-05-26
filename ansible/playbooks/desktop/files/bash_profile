@@ -1,43 +1,4 @@
-PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/bin/X11:/usr/sbin:/usr/lib/postgresql/bin/:/home/nlamirault/bin:/usr/games/:/usr/lib/openoffice/program/
-export PATH
-
-INFOPATH=/usr/local/info/:usr/info/:/usr/share/info/:/usr/share/info/emacs-21/:/home/nlamirault/info/
-export INFOPATH
-
-EDITOR=/usr/bin/vim
-CVSEDITOR=/usr/bin/vim
-export EDITOR CVSEDITOR
-
-APPS=$HOME/Apps
-
-export JAVA_HOME=$APPS/jdk1.6.0_26
-export PATH=$PATH:$JAVA_HOME/bin
-
-export MAVEN_1_HOME=$APPS/maven-1.1
-export MAVEN_2_HOME=$APPS/apache-maven-2.2.1
-export MAVEN_3_HOME=$APPS/apache-maven-3.0.3
-export PATH=$PATH:$MAVEN_1_HOME/bin:$MAVEN_3_HOME/bin
-
-export ANT_HOME=$APPS/apache-ant-1.8.2
-export PATH=$PATH:$ANT_HOME/bin
-
-export PATH="$HOME/.cask/bin:$PATH"
-export PATH="$HOME/.evm/bin:$PATH"
-
-export GOPATH=$HOME/Apps/golang
-export PATH=$PATH:$GOPATH/bin
-
-export HISTTIMEFORMAT="%h/%d - %H:%M:%S "
-
-# pour dpkg
-COLUMNS=250
-export COLUMNS
 
 if [ -f $HOME/.bashrc ]; then
 	source $HOME/.bashrc
 fi
-
-export ME=1920
-
-alias laptop_screen_off="xrandr --output LVDS-0 --off --output VGA-0 --mode 1920x1080 --output DP-1 --mode 1680x1050 --left-of VGA-0"
-alias laptop_screen-on="xrandr --output VGA-0 --off --output DP-1 --off && xrandr --output LVDS-0 --auto"
