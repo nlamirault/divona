@@ -51,7 +51,7 @@
   with_items:
     - xfce4
     - xfce4-goodies
-    - xfce-notify
+    - xfce4-notifyd
 
 - name: Install Python tools
   pacman: name={{ item }} state=installed
