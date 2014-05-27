@@ -4,19 +4,19 @@
 #
 
 - name: Install web applications
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
-    - chromium-browser
+    #- chromium-browser
     - midori
 
 - name: Install email applications
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - thunderbird
     - thunderbird-locale-fr
 
 - name: Install graphics applications
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - gimp
     - inkscape
@@ -24,9 +24,8 @@
     - vlc
 
 - name: Install communications applications
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - irssi
     - vinagre
     - rdesktop
-

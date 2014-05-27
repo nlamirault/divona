@@ -4,19 +4,19 @@
 #
 
 - name: Install web applications
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - chromium
     - midori-gtk3
 
 - name: Install email applications
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - thunderbird
     - thunderbird-i18n-fr
 
 - name: Install graphics applications
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - gimp
     - inkscape
@@ -24,7 +24,7 @@
     - vlc
 
 - name: Install communications applications
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - irssi
     - vinagre

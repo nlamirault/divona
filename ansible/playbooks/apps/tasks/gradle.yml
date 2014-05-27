@@ -3,7 +3,7 @@
 #
 
 - name: Download Gradle
-  get_url: url=http://services.gradle.org/distributions/gradle-1.6-all.zip dest=/home/$user/Apps/ mode=0640
+  get_url: url=http://services.gradle.org/distributions/gradle-1.6-all.zip dest=/home/{{ user }}/Apps/ mode=0640
 
 - name: Extract Gradle
-  command: unzip /home/$user/Apps/gradle-1.6-all.zip -d /home/$user/Apps/
+  command: unzip /home/{{ user }}/Apps/gradle-1.6-all.zip -d /home/{{ user }}/Apps/

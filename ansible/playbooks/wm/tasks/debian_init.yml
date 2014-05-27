@@ -1,9 +1,9 @@
 - name: Install window manager
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - i3
     - openbox
-    - openbox-themes
+    # - openbox-themes
     - obconf
     - obmenu
     - conky-all

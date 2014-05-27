@@ -1,2 +1,2 @@
 - name: Create Applications directory
-  command: mkdir /home/$user/Apps creates=/home/$user/Apps
+  command: mkdir /home/{{ user }}/Apps creates=/home/{{ user }}/Apps

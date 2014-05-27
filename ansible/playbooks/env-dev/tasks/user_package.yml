@@ -1,11 +1,11 @@
 - name: Download Quicklisp
-  command: curl -fsSkL http://beta.quicklisp.org/quicklisp.lisp -o /home/$user/Apps/quicklisp.lisp
+  command: curl -fsSkL http://beta.quicklisp.org/quicklisp.lisp -o /home/{{ user }}/Apps/quicklisp.lisp
 
 - name: Install Quicklisp
-  command: sbcl --init init.lisp chdir=/home/$user/
+  command: sbcl --init init.lisp chdir=/home/{{ user }}/
 
 - name: Install OCaml tools
-  command: yaourt -S --noconfirm $item
+  command: yaourt -S --noconfirm {{ item }}
   with_items:
     - opam
 #     - ocaml-findlib

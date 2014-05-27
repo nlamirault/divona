@@ -1,10 +1,10 @@
 - name: Install Common Lisp environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - sbcl
 
 - name: Intall GO environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - golang
     - golang-go
@@ -18,7 +18,7 @@
   apt: update_cache=yes
 
 - name: Install OCaml environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - ocaml
     - ocaml-findlib
@@ -32,7 +32,7 @@
   apt: update_cache=yes
 
 - name: Install Erlang environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - erlang
     - erlang-doc
@@ -40,13 +40,13 @@
     - erlang-mode
 
 - name: Install Haskell environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - ghc
     - cabal-install
 
 - name: Install Scheme environment
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - guile
     - racket

@@ -5,7 +5,7 @@
   apt: update_cache=yes
 
 - name: Install BTSync
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - btsync
     - btsync-user
