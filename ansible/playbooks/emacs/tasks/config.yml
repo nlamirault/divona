@@ -2,7 +2,7 @@
   command: curl -fsSkL https://raw.github.com/cask/cask/master/go -o /tmp/cask.py
 
 #- name: Install Cask
-#  command: python /tmp/cask.py creates=/home/$user/.cask
+#  command: python /tmp/cask.py creates=/home/{{ user }}/.cask
 
 - name: Download Scame
   command: curl -fsSkL https://raw.github.com/nlamirault/scame/master/scame -o /tmp/scame.py

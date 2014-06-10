@@ -13,8 +13,9 @@
   pacman: name=yaourt state=installed update_cache=yes
 
 - name: Install defaults packages
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
+    - openssh
     - man-db
     - wget
     - curl
@@ -38,7 +39,7 @@
     - terminator
 
 - name: Install X
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - xorg-server
     - xorg-xinit
@@ -46,14 +47,14 @@
     - slim
 
 - name: Install XDE
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - xfce4
     - xfce4-goodies
-    - xfce-notifyd
+    - xfce4-notifyd
 
 - name: Install Python tools
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - python-pip
     - python2-pip
@@ -63,7 +64,7 @@
     - python2-pycurl
 
 - name: Install Ruby
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - ruby
 

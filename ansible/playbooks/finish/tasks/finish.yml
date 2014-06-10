@@ -1,5 +1,5 @@
 - name: Change Emacs directory rights
-  action: file path=/home/$user/.emacs.d state=directory owner=$user group=users recurse=yes
+  action: file path=/home/{{ user }}/.emacs.d state=directory owner={{ user }} group=users recurse=yes
 
 - name: Change Applications directory rights
-  action: file path=/home/$user/Apps state=directory owner=$user group=users recurse=yes
+  action: file path=/home/{{ user }}/Apps state=directory owner={{ user }} group=users recurse=yes

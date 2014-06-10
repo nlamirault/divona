@@ -11,13 +11,13 @@
   pacman: name=erlang state=installed
 
 - name: Install Haskell environment
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - ghc
     - cabal-install
 
 - name: Install Scheme environments
-  pacman: name=$item state=installed
+  pacman: name={{ item }} state=installed
   with_items:
     - racket
     - guile
