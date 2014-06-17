@@ -5,6 +5,12 @@
 
 Development environment configuration for Linux.
 
+## Requirements
+
+* Ansible
+* Git
+
+
 ## Configuration
 
 Check Ansible is working :
