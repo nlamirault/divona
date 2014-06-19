@@ -30,6 +30,7 @@
     - dnsutils
     - vim
     - texi2html
+    - terminator
 
 - name: Install Python tools
   apt: pkg={{ item }} state=installed

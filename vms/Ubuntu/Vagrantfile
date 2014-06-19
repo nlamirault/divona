@@ -2,24 +2,31 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "trusty64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.hostname = "LamUbuntu"
-  config.vm.network :private_network, ip: "10.1.2.33"
 
-  config.ssh.forward_agent = true
-  config.ssh.forward_x11 = true
+  config.vm.define :ubuntu_dev do |ubuntu_config|
+    ubuntu_config.vm.box = "trusty64"
+    ubuntu_config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    ubuntu_config.vm.hostname = "LamUbuntuDev"
 
-  config.vm.provider :virtualbox do |vb|
-    #vb.gui = true
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.name = "LamUbuntu"
-  end
+    ubuntu_config.vm.network :private_network, :ip => '10.33.33.33'
 
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook = "../../setup.yml"
-    ansible.inventory_path = "../../ansible_hosts"
-    ansible.verbose = '-vv'
+    ubuntu_config.ssh.forward_agent = true
+    ubuntu_config.ssh.forward_x11 = true
+
+    ubuntu_config.vm.provider :virtualbox do |vb|
+      #vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+      vb.name = "LamUbuntuDev"
+    end
+
+    ubuntu_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "../../ansible/setup.yml"
+      ansible.inventory_path = "../../ansible/ansible_hosts"
+      ansible.verbose = '-vv'
+    end
+
   end
 
 end
