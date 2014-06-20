@@ -1,0 +1,12 @@
+---
+- name: Divona provisionning
+  hosts: vagrant
+  sudo: yes
+  roles:
+    - common
+    - base
+    - wm
+    - desktop
+    - emacs
+    - vim
+    - finish

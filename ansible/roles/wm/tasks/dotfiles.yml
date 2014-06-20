@@ -1,0 +1,8 @@
+- name: Creates i3 directory
+  command: mkdir /home/{{ user }}/.i3 creates=/home/{{ user }}/.i3
+
+- name: Install i3 configuration
+  copy: src=i3_config dest=/home/{{ user }}/.i3/config
+
+- name: Install i3 tools
+  copy: src=i3lock.sh dest=/home/{{ user }}/bin/i3_lock.sh

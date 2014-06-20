@@ -1,0 +1,3 @@
+- include: debian.yml
+- include: arch.yml
+- include: bsd.yml
