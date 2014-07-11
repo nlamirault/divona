@@ -4,7 +4,7 @@
 #
 
 - name: Install Arch Pacman file
-  copy: src=files/pacman.conf dest=/etc/ owner=root mode=644
+  copy: src=pacman.conf dest=/etc/ owner=root mode=644
 
 - name: Arch refresh keys
   command: pacman-key --refresh-keys
@@ -62,7 +62,7 @@
     - ruby
 
 - name: Install ChangeLog
-  copy: src=files/ChangeLog dest=/etc/ owner=root mode=644
+  copy: src=ChangeLog dest=/etc/ owner=root mode=644
 
 - name: Install motd
-  copy: src=files/motd dest=/etc/ owner=root mode=644
+  copy: src=motd dest=/etc/ owner=root mode=644
