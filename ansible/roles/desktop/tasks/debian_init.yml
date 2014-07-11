@@ -3,6 +3,13 @@
 #
 #
 
+- name: Install X
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - xinit
+    - gdm
+    #- slim
+
 - name: Install web applications
   apt: pkg={{ item }} state=installed
   with_items:

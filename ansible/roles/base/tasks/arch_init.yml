@@ -46,13 +46,6 @@
     - xorg-server-utils
     - slim
 
-- name: Install XDE
-  pacman: name={{ item }} state=installed
-  with_items:
-    - xfce4
-    - xfce4-goodies
-    - xfce4-notifyd
-
 - name: Install Python tools
   pacman: name={{ item }} state=installed
   with_items:

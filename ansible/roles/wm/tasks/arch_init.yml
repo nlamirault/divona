@@ -14,3 +14,10 @@
     - thunar-volman
     - thunar-archive-plugin
     - tint2
+
+- name: Install XFCE
+  pacman: name={{ item }} state=installed
+  with_items:
+    - xfce4
+    - xfce4-goodies
+    - xfce4-notifyd
