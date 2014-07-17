@@ -1,6 +1,6 @@
 ---
 - name: Divona provisionning
-  hosts: vagrant
+  hosts: all
   sudo: yes
   roles:
     - common
