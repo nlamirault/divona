@@ -106,7 +106,7 @@ alias la='ls -A'
 alias l='ls -l'
 
 if [ -d ~/.bash.d ]; then
-    for file in ~/.bash.d
+    for file in `ls ~/.bash.d`
     do
         . ~/.bash.d/$file
     done
