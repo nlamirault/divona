@@ -99,7 +99,7 @@ augroup END
 " NOTE: comments after Bundle command are not allowed..
  
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -116,6 +116,8 @@ Bundle 'FuzzyFinder'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle 'rodjek/vim-puppet'
+
+Plugin 'itchyny/lightline.vim'
 
 filetype plugin indent on     " required!
 
