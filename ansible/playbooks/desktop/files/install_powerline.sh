@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Install Powerline using PIP"
-pip install --user git+git://github.com/Lokaltog/powerline
+pip2 install --user git+git://github.com/Lokaltog/powerline
 
 echo "Configure fonts"
 wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
