@@ -5,4 +5,4 @@ build:
             name: Ansible configuration
             code: |
                 ls -R /home/
-                sudo ansible-playbook --verbose -c local -i ansible/ansible_hosts ansible/setup.yml --extra-vars="user=ubuntu"
+                sudo ansible-playbook --verbose -c local -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
