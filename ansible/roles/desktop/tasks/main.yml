@@ -1,0 +1,9 @@
+---
+- include: debian_init.yml
+  when: ansible_os_family == 'Debian'
+- include: arch_init.yml
+  when: ansible_os_family == 'Archlinux'
+- include: freebsd_init.yml
+  when: ansible_os_family == 'FreeBSD'
+
+- include: dotfiles.yml

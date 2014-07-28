@@ -1,9 +1,0 @@
-#
-# Install Apache Ant
-#
-
-- name: Download Apache Ant 1.9.1
-  get_url: url=http://mirrors.ircam.fr/pub/apache/ant/binaries/apache-ant-1.9.1-bin.tar.gz dest=/home/{{ user }}/Apps/ mode=0640
-
-- name: Extract Apache Ant 1.9.1
-  command: tar zxf /home/{{ user }}/Apps/apache-ant-1.9.1-bin.tar.gz -C /home/{{ user }}/Apps/

@@ -1,0 +1,7 @@
+---
+# file: group_vars/all
+
+company-name: Divona.
+systemowner-name: Nicolas Lamirault
+systemowner-initials: NL
+systemowner-mail-address: nicolas.lamirault@gmail.com

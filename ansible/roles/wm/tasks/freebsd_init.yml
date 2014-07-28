@@ -1,0 +1,18 @@
+- name: Install window manager
+  pkgng: pkg={{ item }} state=present
+  with_items:
+    - i3
+    - openbox
+    # - openbox-themes
+    - obconf
+    - obmenu
+    - conky
+    - Thunar
+    - thunar-archive-plugin
+    - tint2
+
+- name: Install XFCE4
+  pkgng: pkg={{ item }} state=present
+  with_items:
+    - xfce4-wm
+    - xfce4-notifyd

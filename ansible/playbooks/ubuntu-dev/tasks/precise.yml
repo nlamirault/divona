@@ -1,8 +1,0 @@
-#
-# Ubuntu packaging software for Lucid (TravisCI)
-#
-#
-
-- name: Install Precise backports
-  apt_repository: repo='deb http://archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse' state=present
-

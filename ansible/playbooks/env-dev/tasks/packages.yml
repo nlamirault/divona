@@ -1,8 +1,0 @@
-- name: Download Get Pip
-  command: curl -fsSkL https://raw.github.com/pypa/pip/master/contrib/get-pip.py -o /tmp/get-pip.py
-
-- name: Launch PIP installation
-  command: /usr/bin/python /tmp/get-pip.py
-
-- name: Install virtualenvwrapper
-  pip: name=virtualenvwrapper

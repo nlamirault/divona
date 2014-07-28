@@ -1,0 +1,23 @@
+- name: Install window manager
+  pacman: name={{ item }} state=installed
+  with_items:
+    - i3-wm
+    - i3status
+    - i3lock
+    - dmenu
+    - openbox
+    - openbox-themes
+    - obconf
+    - obmenu
+    - conky
+    - thunar
+    - thunar-volman
+    - thunar-archive-plugin
+    - tint2
+
+- name: Install XFCE
+  pacman: name={{ item }} state=installed
+  with_items:
+    - xfce4
+    - xfce4-goodies
+    - xfce4-notifyd

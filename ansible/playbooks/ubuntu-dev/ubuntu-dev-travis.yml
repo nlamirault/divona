@@ -1,7 +1,0 @@
----
-- hosts: vagrant
-  sudo: yes
-  tasks:
-    - include: tasks/precise.yml
-    - include: tasks/init.yml
-

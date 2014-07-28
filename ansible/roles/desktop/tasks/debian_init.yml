@@ -1,0 +1,38 @@
+#
+# Desktop settings
+#
+#
+
+- name: Install X
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - xinit
+    - gdm
+    #- slim
+
+- name: Install web applications
+  apt: pkg={{ item }} state=installed
+  with_items:
+    #- chromium-browser
+    - midori
+
+- name: Install email applications
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - thunderbird
+    - thunderbird-locale-fr
+
+- name: Install graphics applications
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - gimp
+    - inkscape
+    - evince
+    - vlc
+
+- name: Install communications applications
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - irssi
+    - vinagre
+    - rdesktop
