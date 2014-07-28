@@ -23,11 +23,6 @@ Check Ansible is working :
 
         $ git clone https://github.com/nlamirault/divona.git
 
-* From Ubuntu using [PPA](https://launchpad.net/~nlamirault/+archive/divona):
-
-        $ sudo add-apt-repository ppa:nlamirault/divona
-		$ sudo apt-get update
-		$ sudo apt-get install divona
 
 ## Configuration
 
