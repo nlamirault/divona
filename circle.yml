@@ -1,16 +1,10 @@
-machine:
-  pre:
-    - sudo pip install ansible
-  services:
-    - docker
-
 dependencies:
-  cache_directories:
-    - "~/docker"
-  override:
-    - docker info
-    - sudo ansible -c local -m ping all -i ansible/hosts/local
+  pre:
+    - sudo pip install paramiko PyYAML jinja2 httplib2
+    - sudo pip install ansible
 
 test:
+  pre:
+    - sudo ansible -c local -m ping all -i ansible/hosts/local
   override:
     - sudo ansible-playbook  -c local -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
