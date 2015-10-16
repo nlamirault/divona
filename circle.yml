@@ -1,0 +1,16 @@
+machine:
+  pre:
+    - pip install ansible
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - docker info
+    - ansible -c local -m ping all -i ansible/hosts/local
+
+test:
+  override:
+    - ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=divona"
