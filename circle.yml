@@ -13,4 +13,4 @@ dependencies:
 
 test:
   override:
-    - sudo ansible-playbook -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
+    - sudo ansible-playbook  -c local -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
