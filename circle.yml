@@ -1,6 +1,6 @@
 machine:
   pre:
-    - pip install ansible
+    - sudo pip install ansible
   services:
     - docker
 
@@ -9,8 +9,8 @@ dependencies:
     - "~/docker"
   override:
     - docker info
-    - ansible -c local -m ping all -i ansible/hosts/local
+    - sudo ansible -c local -m ping all -i ansible/hosts/local
 
 test:
   override:
-    - ansible-playbook -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
+    - sudo ansible-playbook -i ansible/hosts/local ansible/divona.yml --extra-vars="user=ubuntu"
