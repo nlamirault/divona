@@ -4,4 +4,3 @@
 - include: arch_package.yml
   when: ansible_os_family == 'Archlinux'
 
-- include: config.yml
