@@ -12,17 +12,17 @@
 set $mod Mod4
 
 # autostart
-exec feh --bg-scale ~/share/archlinux-simplyblack.png.png
+exec feh --bg-scale ~/share/archlinux-simplyblack.png
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango: Monospace 6
+# font pango: Monospace 6
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -201,4 +201,4 @@ bar {
         }
 }
 
-exec nm-applet &
+# exec nm-applet &
