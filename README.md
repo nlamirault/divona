@@ -1,7 +1,13 @@
-# Divona 
+# Divona
 
-[![wercker status](https://app.wercker.com/status/c7d97c1954dfa32673abfcc7dae1ffc9 "wercker status")](https://app.wercker.com/project/bykey/c7d97c1954dfa32673abfcc7dae1ffc9)
-[![Build Status](https://drone.io/github.com/nlamirault/divona/status.png)](https://drone.io/github.com/nlamirault/divona/latest)
+[![License Apache 2][badge-license]](LICENSE)
+[![GitHub version](https://badge.fury.io/gh/nlamirault%2Fdivona.svg)](https://badge.fury.io/gh/nlamirault%2Fdivona)
+
+Master :
+* [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/master.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/master)
+
+Develop :
+* [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/develop)
 
 Development environment configuration for Linux.
 
