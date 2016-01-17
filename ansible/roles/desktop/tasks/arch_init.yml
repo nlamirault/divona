@@ -7,7 +7,7 @@
   pacman: name={{ item }} state=installed
   with_items:
     - chromium
-    - midori-gtk3
+    - midori
 
 - name: Install email applications
   pacman: name={{ item }} state=installed
