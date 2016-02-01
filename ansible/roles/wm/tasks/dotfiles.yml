@@ -1,5 +1,8 @@
+- name: Creates user configuration directory
+  action: file path=/home/{{ user }}/.config state=directory owner={{ user }} group=users recurse=yes
+
 - name: Creates i3 directory
-  command: mkdir -p /home/{{ user }}/.config/i3 creates=/home/{{ user }}/.config/i3
+  action: file path=/home/{{ user }}/.config/i3 state=directory owner={{ user }} group=users recurse=yes
 
 - name: Install i3 configuration
   copy: src=i3_config dest=/home/{{ user }}/.config/i3
