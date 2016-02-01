@@ -16,6 +16,7 @@
   pacman: name={{ item }} state=installed
   with_items:
     - openssh
+    - dhclient
     - man-db
     - wget
     - curl
@@ -34,8 +35,7 @@
     - dnsutils
     - vim
     - texi2html
-    - networkmanager
-    - network-manager-applet
+    - termite
     - terminator
 
 - name: Install X
