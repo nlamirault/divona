@@ -5,6 +5,7 @@
     - i3status
     - i3lock
     - dmenu
+    - rofi
     - openbox
     - openbox-themes
     - obconf

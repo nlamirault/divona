@@ -37,6 +37,7 @@
     - texi2html
     - termite
     - terminator
+    - feh
 
 - name: Install X
   pacman: name={{ item }} state=installed
@@ -45,6 +46,7 @@
     - xorg-xinit
     - xorg-server-utils
     - slim
+    - slim-themes
 
 - name: Install Python tools
   pacman: name={{ item }} state=installed
