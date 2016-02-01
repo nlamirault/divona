@@ -1,5 +1,5 @@
 - name: Creates i3 directory
-  command: mkdir /home/{{ user }}/.config/i3 creates=/home/{{ user }}/.config/i3
+  command: mkdir -p /home/{{ user }}/.config/i3 creates=/home/{{ user }}/.config/i3
 
 - name: Install i3 configuration
   copy: src=i3_config dest=/home/{{ user }}/.config/i3
