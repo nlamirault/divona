@@ -23,7 +23,7 @@
     - mlocate
     - genisoimage
     - dnsutils
-    - vim
+    - neovim
     - terminator
 
 - name: Install Python tools

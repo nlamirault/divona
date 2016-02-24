@@ -33,7 +33,7 @@
     - w3m
     - mlocate
     - dnsutils
-    - vim
+    - neovim
     - texi2html
     - termite
     - terminator
