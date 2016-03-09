@@ -1,0 +1,5 @@
+- name: Download Arduino 1.6.7
+  get_url: url=https://downloads.arduino.cc/arduino-1.6.7-linux64.tar.xz dest=$HOME/Apps/arduino-1.6.7-linux64.tar.xz mode=0440
+
+- name: Download Fritzing 0.9.2
+  get_url: url=http://fritzing.org/media/downloads/fritzing-0.9.2b.linux.AMD64.tar.bz2 dest=$HOME/Apps/fritzing-0.9.2b.linux.AMD64.tar.bz2 mode=0440
