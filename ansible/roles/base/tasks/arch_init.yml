@@ -6,8 +6,8 @@
 - name: Install Arch Pacman file
   copy: src=pacman.conf dest=/etc/ owner=root mode=644
 
-- name: Arch refresh keys
-  command: pacman-key --refresh-keys
+# - name: Arch refresh keys
+#   command: pacman-key --refresh-keys
 
 - name: Install Yaourt
   pacman: name=yaourt state=installed update_cache=yes
@@ -47,6 +47,7 @@
     - xorg-server-utils
     - slim
     - slim-themes
+    - archlinux-themes-slim
 
 - name: Install Python tools
   pacman: name={{ item }} state=installed
