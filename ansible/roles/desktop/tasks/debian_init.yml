@@ -16,12 +16,6 @@
     #- chromium-browser
     - midori
 
-- name: Install email applications
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - thunderbird
-    - thunderbird-locale-fr
-
 - name: Install graphics applications
   apt: pkg={{ item }} state=installed
   with_items:

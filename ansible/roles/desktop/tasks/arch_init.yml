@@ -9,12 +9,6 @@
     - chromium
     - midori
 
-- name: Install email applications
-  pacman: name={{ item }} state=installed
-  with_items:
-    - thunderbird
-    - thunderbird-i18n-fr
-
 - name: Install graphics applications
   pacman: name={{ item }} state=installed
   with_items:
