@@ -1,0 +1,11 @@
+- name: Install Docker
+  pacman: name={{ item }} state=installed
+  with_items:
+    - docker
+
+- name: Install Virtualbox
+  pacman: name={{ item }} state=installed
+  with_items:
+    - virtualbox
+    # - virtualbox-host-dkms
+    # - linux-headers

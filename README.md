@@ -23,17 +23,21 @@ Check Ansible is working :
 
     $  ansible -c local -m ping all -i ansible/hosts/local_arch
 
+
 ## Installation
 
-        $ git clone https://github.com/nlamirault/divona.git
+    $ git clone https://github.com/nlamirault/divona.git
+
 
 ## Configuration
 
     $ sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/divona.yml --extra-vars="user=nicolas"
 
+
 ## Changelog
 
 A changelog is available [here](ChangeLog.md).
+
 
 ## Contact
 

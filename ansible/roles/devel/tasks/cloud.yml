@@ -1,0 +1,13 @@
+- name: User in Docker group
+  user: name={{ user }} groups=docker append=yes
+
+- name: Docker service enable
+  service: name={{item}} state=started
+  with_items:
+    - docker
+
+- name: Install Packer
+  get_url: url=https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip dest=/home/{{ user }}/Apps/packer_0.10.1_linux_amd64.zip mode=0440
+
+- name: Install Terraform
+  get_url: url=https://releases.hashicorp.com/terraform/0.6.16/terraform_0.6.16_linux_amd64.zip dest=/home/{{ user }}/Apps/terraform_0.6.16_linux_amd64.zip mode=0440
