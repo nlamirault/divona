@@ -1,4 +1,4 @@
-# Divona
+# Divona #
 
 [![License Apache 2][badge-license]](LICENSE)
 [![GitHub version](https://badge.fury.io/gh/nlamirault%2Fdivona.svg)](https://badge.fury.io/gh/nlamirault%2Fdivona)
@@ -21,23 +21,15 @@ Development environment configuration for Linux.
 
 Check Ansible is working :
 
-    $  ansible -c local -m ping all -i ansible_hosts
+    $  ansible -c local -m ping all -i ansible/hosts/local_arch
 
 ## Installation
 
-* From Git:
-
         $ git clone https://github.com/nlamirault/divona.git
-
-* From Ubuntu using [PPA](https://launchpad.net/~nlamirault/+archive/divona):
-
-        $ sudo add-apt-repository ppa:nlamirault/divona
-		$ sudo apt-get update
-		$ sudo apt-get install divona
 
 ## Configuration
 
-    $ sudo ansible-playbook -c local -i ansible_hosts setup.yml --extra-vars="user=nicolas"
+    $ sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/divona.yml --extra-vars="user=nicolas"
 
 ## Changelog
 

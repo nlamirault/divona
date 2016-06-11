@@ -15,15 +15,17 @@
 - name: Install defaults packages
   pacman: name={{ item }} state=installed
   with_items:
-    - openssh
+    - bash-completion
     - dhclient
+    - openssh
     - man-db
     - wget
     - curl
+    - dunst
     - ngrep
     - tree
-    - bash-completion
     - git-core
+    - gnupg
     - tig
     - unzip
     - logrotate
