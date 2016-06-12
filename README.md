@@ -16,12 +16,10 @@ Development environment configuration for Linux.
 * Ansible
 * Git
 
-
-## Configuration
-
-Check Ansible is working :
-
-    $  ansible -c local -m ping all -i ansible/hosts/local_arch
+Tools:
+- Linux: we use system packaging ([apt][https://wiki.debian.org/Apt] or [pacman][https://wiki.archlinux.org/index.php/pacman])
+- OSX: [homebrew][http://brew.sh/]
+- Windows: [chocolatey][https://chocolatey.org]
 
 
 ## Installation
@@ -29,9 +27,34 @@ Check Ansible is working :
     $ git clone https://github.com/nlamirault/divona.git
 
 
-## Configuration
+## Usage
 
-    $ sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/divona.yml --extra-vars="user=nicolas"
+* Help:
+
+        $ make
+        ==== divona [1.0.0] ====
+        clean                : Cleanup
+        default              : Default environment
+        dev                  : Development environment
+        init                 : Install requirements
+        iot                  : Internet Of Things
+        ping                 : Check Ansible installation
+
+* Check Ansible is working :
+
+        $ make ping host=ansible/hosts/xxxxx
+
+* Configure the default environment:
+
+        $ make default host=ansible/hosts/xxxx
+
+* Configure the development environment:
+
+        $ make dev host=ansible/hosts/xxxx
+
+* Configure the Internet of Things environment:
+
+        $ make iot host=ansible/hosts/xxxx
 
 
 ## Changelog
