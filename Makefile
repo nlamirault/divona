@@ -45,19 +45,19 @@ init: ## Install requirements
 .PHONY: ping
 ping: ## Check Ansible installation
 	@echo -e "$(OK_COLOR)[$(APP)] Check ansible$(NO_COLOR)"
-	ansible -c local -m ping all -i ansible/hosts/local_arch
+	@ansible -c local -m ping all -i $(host)
 
 .PHONY: default
 default: ## Default environment
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/divona.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/divona.yml --extra-vars="user=nicolas"
 
 .PHONY: dev
 dev: ## Development environment
 	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
-	@sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/dev.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/dev.yml --extra-vars="user=nicolas"
 
 .PHONY: iot
 iot: ## Internet Of Things
 	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
-	@sudo ansible-playbook -c local -i ansible/hosts/local_arch ansible/iot.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=nicolas"

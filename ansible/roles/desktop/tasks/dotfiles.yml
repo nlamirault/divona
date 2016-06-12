@@ -1,5 +1,0 @@
-- name: Install inputrc
-  copy: src=inputrc dest=/home/{{ user }}/.inputrc
-
-- name: Create Applications directory
-  command: mkdir /home/{{ user }}/Apps creates=/home/{{ user }}/Apps

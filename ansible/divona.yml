@@ -1,7 +1,6 @@
 ---
 - name: Divona provisionning
   hosts: all
-  sudo: yes
   roles:
     - common
     - base

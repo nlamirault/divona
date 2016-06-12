@@ -1,0 +1,14 @@
+#
+# Base settings for OSX
+#
+#
+
+- name: Install libraries with homebrew
+  sudo: no
+  homebrew: name={{ item }} state=present
+  with_items:
+    - git
+    - gnupg
+    - tmux
+    - vim
+    - wget
