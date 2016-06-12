@@ -1,6 +1,0 @@
----
-- include: debian_package.yml
-  when: ansible_os_family == 'Debian'
-- include: arch_package.yml
-  when: ansible_os_family == 'Archlinux'
-

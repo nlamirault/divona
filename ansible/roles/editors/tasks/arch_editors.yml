@@ -1,0 +1,17 @@
+- name: Install Emacs
+  pacman: name=emacs state=installed
+
+- name: Install Neovim
+  pacman: name=neovim state=installed
+
+# - name: Install Atom
+#   yaourt: name=atom-editor state=installed
+
+- name: VIM directory
+  action: file path=/home/{{ user }}/.vim state=directory
+
+- name: VIM Bundle directory
+  action: file path=/home/{{ user }}/.vim/bundle state=directory
+
+- name: VIM Vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle

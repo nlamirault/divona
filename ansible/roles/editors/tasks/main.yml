@@ -1,0 +1,9 @@
+---
+- include: debian_editors.yml
+  when: ansible_os_family == 'Debian'
+- include: arch_editors.yml
+  when: ansible_os_family == 'Archlinux'
+- include: osx_editors.yml
+  when: ansible_os_family == 'Darwin'
+- include: win_editors.yml
+  when: ansible_os_family == 'Windows'

@@ -35,7 +35,6 @@
     - w3m
     - mlocate
     - dnsutils
-    - neovim
     - texi2html
     - termite
     - terminator

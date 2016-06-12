@@ -6,7 +6,6 @@
     - base
     - wm
     - desktop
-    - emacs
-    - vim
+    - editors
     - x11
     - finish

@@ -1,18 +1,21 @@
-Divona ChangeLog
-================
+# Divona ChangeLog
 
-- Add support for [Arch Linux](https://www.archlinux.org/)
-- Init Gnus configuration for GMail
+## Version 1.0.0 (06/12/2016)
 
-Version 0.2.0 (2014-03-10)
---------------------------
+- Add support for OSX.
+- Add support for Arch Linux
+- Remove dotfiles
+- Configure window managers for Linux
+- Remove Emacs setup
+- Add IOT packages
+
+## Version 0.2.0 (03/10/2014)
 
 - Add backup tools
 - Add Common Lisp setup
 - Update Emacs python, scheme, helm configurations
 
-Version 0.1.0 (2013-12-09)
---------------------------
+## Version 0.1.0 (12/09/2013)
 
 - Configure Git
 - Install desktop applications : chromium, evince, thunderbird, ...
