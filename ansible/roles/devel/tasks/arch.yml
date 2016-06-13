@@ -7,5 +7,9 @@
   pacman: name={{ item }} state=installed
   with_items:
     - virtualbox
+    - virtualbox-host-modules-arch
     # - virtualbox-host-dkms
     # - linux-headers
+
+- name: Install Vagrant
+  pacman: name=vagrant state=installed

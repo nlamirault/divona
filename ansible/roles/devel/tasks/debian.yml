@@ -7,3 +7,6 @@
   apt: pkg={{ item }} state=installed
   with_items:
     - virtualbox
+
+- name: Download Vagrant
+  get_url: url=https://releases.hashicorp.com/vagrant/1.8.3/vagrant_1.8.3_x86_64.deb dest=/home/{{ user }}/Apps/vagrant_1.8.3_x86_64.deb mode=0440

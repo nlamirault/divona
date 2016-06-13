@@ -1,9 +1,17 @@
 ---
 - include: debian.yml
+  become: true
+  become_user: root
   when: ansible_os_family == 'Debian'
 - include: arch.yml
+  become: true
+  become_user: root
   when: ansible_os_family == 'Archlinux'
 - include: freebsd.yml
+  become: true
+  become_user: root
   when: ansible_os_family == 'FreeBSD'
+
 - include: languages.yml
+
 - include: cloud.yml
