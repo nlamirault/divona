@@ -6,7 +6,7 @@ Master :
 Develop :
 * [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/develop)
 
-Automated installation using [Ansible][https://www.ansible.com/]. Support Linux, OSX and Windows.
+Automated installation using [Ansible](https://www.ansible.com/). Support Linux, OSX and Windows.
 
 ## Requirements
 
@@ -14,9 +14,9 @@ Automated installation using [Ansible][https://www.ansible.com/]. Support Linux,
 * Git
 
 Tools:
-- Linux: we use distribution packaging ([apt][https://wiki.debian.org/Apt] or [pacman][https://wiki.archlinux.org/index.php/pacman])
-- OSX: [homebrew][http://brew.sh/]
-- Windows: [chocolatey][https://chocolatey.org]
+- Linux: we use distribution packaging ([apt](https://wiki.debian.org/Apt) or [pacman](https://wiki.archlinux.org/index.php/pacman))
+- OSX: [homebrew](http://brew.sh/)
+- Windows: [chocolatey](https://chocolatey.org)
 
 
 ## Installation
