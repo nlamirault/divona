@@ -50,14 +50,14 @@ ping: ## Check Ansible installation
 .PHONY: default
 default: ## Default environment
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/divona.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/divona.yml --extra-vars="user=$(user)"
 
 .PHONY: dev
 dev: ## Development environment
 	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/dev.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
 
 .PHONY: iot
 iot: ## Internet Of Things
 	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=nicolas"
+	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
