@@ -43,15 +43,15 @@ Tools:
 
 * Configure the default environment:
 
-        $ make default host=ansible/hosts/xxxx
+        $ make default host=ansible/hosts/xxxx user=yyyy
 
 * Configure the development environment:
 
-        $ make dev host=ansible/hosts/xxxx
+        $ make dev host=ansible/hosts/xxxx user=yyyy
 
 * Configure the Internet of Things environment:
 
-        $ make iot host=ansible/hosts/xxxx
+        $ make iot host=ansible/hosts/xxxx user=yyyy
 
 
 ## Changelog
@@ -62,5 +62,3 @@ A changelog is available [here](ChangeLog.md).
 ## Contact
 
 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-
-
