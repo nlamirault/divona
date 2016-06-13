@@ -4,6 +4,7 @@ os:
 
 before install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  - pip install ansible
 
 script:
   - make default host=ansible/hosts/local user=nicolas
