@@ -4,8 +4,8 @@
 - name: Install Neovim
   pacman: name=neovim state=installed
 
-# - name: Install Atom
-#   yaourt: name=atom-editor state=installed
+- name: Install Atom
+  command: 'yaourt -Sy --noconfirm atom-editor'
 
 - name: VIM directory
   action: file path=/home/{{ user }}/.vim state=directory
