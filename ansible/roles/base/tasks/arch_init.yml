@@ -65,6 +65,12 @@
   with_items:
     - ruby
 
+- name: Install cronie
+  pacman: name=cronie state=present
+
+- name: Enable cronie service
+  service: name=cronie enabled=yes state=restarted
+
 - name: Install ChangeLog
   copy: src=ChangeLog dest=/etc/ owner=root mode=644
 
