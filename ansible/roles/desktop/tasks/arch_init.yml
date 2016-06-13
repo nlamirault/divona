@@ -9,12 +9,11 @@
     - chromium
     - midori
 
-- name: Install graphics applications
+- name: Install multimedia applications
   pacman: name={{ item }} state=installed
   with_items:
     - gimp
     - inkscape
-    - evince
     - vlc
 
 - name: Install communications applications
@@ -23,3 +22,9 @@
     - irssi
     - vinagre
     - rdesktop
+
+- name: Install documentation applications
+  pacman: name={{ item }} state=installed
+  with_items:
+    - libreoffice-fresh
+    - evince
