@@ -1,0 +1,11 @@
+- name: Download Golang
+  get_url: url=https://storage.googleapis.com/golang/go1.6.2.darwin-amd64.pkg dest=/Users/{{ user }}/go1.6.2.darwin-amd64.pkg mode=0440
+
+- name: Download Rust
+  get_url: url=https://static.rust-lang.org/dist/rust-1.9.0-x86_64-apple-darwin.pkg dest=/Users/{{ user }}/rust-1.9.0-x86_64-apple-darwin.pkg mode=0440
+
+# - name: Download Swift
+#   get_url: url= dest=/home/{{ user }}/Apps/swift-2.2.1-RELEASE-ubuntu15.10.tar.gz mode=0440
+
+- name: Download NodeJS
+  get_url: url=https://nodejs.org/dist/v6.2.1/node-v6.2.1-darwin-x64.tar.gz dest=/Users/{{ user }}/node-v6.2.1-darwin-x64.tar.gz mode=0440
