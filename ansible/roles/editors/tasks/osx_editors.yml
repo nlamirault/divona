@@ -4,7 +4,7 @@
 
 - name: Install Atom
   sudo: no
-  homebrew: name=atom state=present
+  homebrew_cask: name=atom state=present
 
 - name: VIM directory
   action: file path=/Users/{{ user }}/.vim state=directory
@@ -13,4 +13,4 @@
   action: file path=/Users/{{ user }}/.vim/bundle state=directory
 
 - name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/Users/{{ user }}/.vim/bundle/vundle
