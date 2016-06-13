@@ -1,6 +1,5 @@
 ---
 - name: Development provisionning
   hosts: all
-  sudo: yes
   roles:
     - devel
