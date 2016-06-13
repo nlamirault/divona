@@ -12,3 +12,9 @@
     - tmux
     - vim
     - wget
+
+- name: Create user binary directory
+  command: mkdir /Users/{{ user }}/bin creates=/Users/{{ user }}/bin
+
+- name: Create Applications directory
+  command: mkdir /Users/{{ user }}/Apps creates=/Users/{{ user }}/Apps

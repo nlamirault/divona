@@ -7,3 +7,6 @@
   with_items:
     - git
     - cygwin
+
+- name: Create Applications directory
+  command: mkdir C:\Apps creates=C:\Apps
