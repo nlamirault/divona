@@ -1,0 +1,10 @@
+os:
+  - linux
+  - osx
+
+before install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+
+script:
+  - make default host=ansible/hosts/local user=nicolas
+  - make default host=ansible/hosts/local_osx user=nicolas
