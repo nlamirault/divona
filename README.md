@@ -6,7 +6,7 @@ Master :
 Develop :
 * [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/develop)
 
-Development environment configuration for Linux.
+Automated installation using [Ansible][https://www.ansible.com/]. Support Linux, OSX and Windows.
 
 ## Requirements
 
@@ -14,7 +14,7 @@ Development environment configuration for Linux.
 * Git
 
 Tools:
-- Linux: we use system packaging ([apt][https://wiki.debian.org/Apt] or [pacman][https://wiki.archlinux.org/index.php/pacman])
+- Linux: we use distribution packaging ([apt][https://wiki.debian.org/Apt] or [pacman][https://wiki.archlinux.org/index.php/pacman])
 - OSX: [homebrew][http://brew.sh/]
 - Windows: [chocolatey][https://chocolatey.org]
 
@@ -62,3 +62,5 @@ A changelog is available [here](ChangeLog.md).
 ## Contact
 
 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+
