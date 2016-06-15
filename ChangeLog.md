@@ -2,6 +2,7 @@
 
 ## Version 1.0.0 (06/12/2016)
 
+- Add support for Windows
 - Add support for OSX.
 - Add support for Arch Linux
 - Remove dotfiles
