@@ -1,9 +1,7 @@
 - name: Install Emacs
-  sudo: no
-  homebrew: name=emacs state=present
+  homebrew_cask: name=emacs state=present
 
 - name: Install Atom
-  sudo: no
   homebrew_cask: name=atom state=present
 
 - name: VIM directory
