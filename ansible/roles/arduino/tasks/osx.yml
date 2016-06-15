@@ -1,5 +1,13 @@
+- stat: path=/Users/{{ user }}/arduino-1.6.9-macosx.zip
+  register: arduino_archive
+
 - name: Download Arduino
   get_url: url=https://www.arduino.cc/download_handler.php?f=/arduino-1.6.9-macosx.zip dest=/Users/{{ user }}/arduino-1.6.9-macosx.zip mode=0440
+  when: arduino_archive.stat is not defined
+
+- name: path=/Users/{{ user }}/fritzing-0.9.3b.linux.AMD64.tar.bz2
+  register: fritzing_archive
 
 - name: Download Fritzing
   get_url: url=http://fritzing.org/download/0.9.3b/mac-os-x-105/Fritzing0.9.3b.dmg dest=/Users/{{ user }}/fritzing-0.9.3b.linux.AMD64.tar.bz2 mode=0440
+  when: fritzing_archive.stat is not defined

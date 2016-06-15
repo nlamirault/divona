@@ -1,11 +1,27 @@
+- stat: path=/home/{{ user }}/Apps/go1.6.linux-amd64.tar.gz
+  register: golang_archive
+
 - name: Download Golang
   get_url: url=https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz dest=/home/{{ user }}/Apps/go1.6.linux-amd64.tar.gz mode=0440
+  when: golang_archive.stat is not defined
+
+- stat: path=/home/{{ user }}/Apps/rust-1.9.0-x86_64-unknown-linux-gnu.tar.gz
+  register: rust_archive
 
 - name: Download Rust
   get_url: url=https://static.rust-lang.org/dist/rust-1.9.0-x86_64-unknown-linux-gnu.tar.gz dest=/home/{{ user }}/Apps/rust-1.9.0-x86_64-unknown-linux-gnu.tar.gz mode=0440
+  when: rust_archive.stat is not defined
+
+- stat: path=/home/{{ user }}/Apps/swift-2.2.1-RELEASE-ubuntu15.10.tar.gz
+  register: swift_archive
 
 - name: Download Swift
   get_url: url=https://swift.org/builds/swift-2.2.1-release/ubuntu1510/swift-2.2.1-RELEASE/swift-2.2.1-RELEASE-ubuntu15.10.tar.gz dest=/home/{{ user }}/Apps/swift-2.2.1-RELEASE-ubuntu15.10.tar.gz mode=0440
+  when: swift_archive.stat is not defined
+
+- stat: path=/home/{{ user }}/Apps/node-v6.2.1-linux-x64.tar.xz
+  register: node_archive
 
 - name: Download NodeJS
   get_url: url=https://nodejs.org/dist/v6.2.1/node-v6.2.1-linux-x64.tar.xz dest=/home/{{ user }}/Apps/node-v6.2.1-linux-x64.tar.xz mode=0440
+  when: node_archive.stat is not defined
