@@ -26,5 +26,4 @@
 - name: Install documentation applications
   pacman: name={{ item }} state=installed
   with_items:
-    - libreoffice-fresh
     - evince
