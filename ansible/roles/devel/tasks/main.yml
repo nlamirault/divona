@@ -20,4 +20,10 @@
 - include: win.yml
   when: ansible_os_family == 'Windows'
 
-- include: cloud.yml
+- include: cloud_linux.yml
+  when: (ansible_os_family == 'Archlinux' or
+         ansible_os_family == 'Debian')
+- include: cloud_osx.yml
+  when: ansible_os_family == 'Darwin'
+- include: cloud_win.yml
+  when: ansible_os_family == 'Windows'
