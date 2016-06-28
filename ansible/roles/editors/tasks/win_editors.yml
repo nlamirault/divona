@@ -5,4 +5,4 @@
   win_chocolatey: name=atom state=present
 
 - name: Install Vim
-  win_chocolatey: name=atom state=present
+  win_chocolatey: name=vim state=present
