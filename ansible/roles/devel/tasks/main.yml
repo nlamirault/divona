@@ -7,10 +7,10 @@
   become: true
   become_user: root
   when: ansible_os_family == 'Archlinux'
-- include: freebsd.yml
-  become: true
-  become_user: root
-  when: ansible_os_family == 'FreeBSD'
+#- include: freebsd.yml
+#  become: true
+#  become_user: root
+#  when: ansible_os_family == 'FreeBSD'
 
 - include: linux.yml
   when: (ansible_os_family == 'Archlinux' or

@@ -1,7 +1,5 @@
 - name: Change user directory rights
-  action: file path=/Users/{{ user }} state=directory owner={{ user }} group=users recurse=yes
-  become: true
-  become_user: root
+  action: file path=/Users/{{ user }} state=directory owner={{ user }} recurse=yes
 
 - name: Cleanup Homebrew cask
   command: "brew cask cleanup"

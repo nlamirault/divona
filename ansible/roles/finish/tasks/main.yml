@@ -6,3 +6,5 @@
 
 - include: finish_osx.yml
   when: ansible_os_family == 'Darwin'
+  become: true
+  become_user: root

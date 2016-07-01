@@ -13,6 +13,8 @@
   become_user: root
 - include: osx_init.yml
   when: ansible_os_family == 'Darwin'
+  become: true
+  become_user: root
 - include: win_init.yml
   when: ansible_os_family == 'Windows'
 
