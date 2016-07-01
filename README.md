@@ -10,18 +10,38 @@ Automated installation using [Ansible](https://www.ansible.com/). Support Linux,
 
 ## Requirements
 
-* Ansible
+* Python
 * Git
 
 Tools:
 - Linux: we use distribution packaging ([apt](https://wiki.debian.org/Apt) or [pacman](https://wiki.archlinux.org/index.php/pacman))
-- OSX: [homebrew](http://brew.sh/)
+- OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
 - Windows: [chocolatey](https://chocolatey.org)
 
 
 ## Installation
 
-    $ git clone https://github.com/nlamirault/divona.git
+### Linux
+
+* Clone repository and install Pip:
+
+        $ git clone https://github.com/nlamirault/divona.git
+        $ python get-pip.py
+
+* Install Ansible:
+
+        $ pip install ansible
+
+### OSX
+
+
+### Windows
+
+* Clone repository and install Pip:
+
+        $ git clone https://github.com/nlamirault/divona.git
+        $ python get-pip.py
+
 
 
 ## Usage
