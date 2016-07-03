@@ -1,6 +1,5 @@
 ---
 - name: Internet of Objects provisionning
   hosts: all
-  sudo: yes
   roles:
     - arduino
