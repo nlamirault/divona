@@ -8,9 +8,9 @@
   with_items:
     - virtualbox
 
-- stat: path=/home/{{ user }}/Apps/vagrant_1.8.3_x86_64.deb
+- stat: path=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
   register: vagrant_debfile
 
 - name: Download Vagrant
-  get_url: url=https://releases.hashicorp.com/vagrant/1.8.3/vagrant_1.8.3_x86_64.deb dest=/home/{{ user }}/Apps/vagrant_1.8.3_x86_64.deb mode=0440
-  when: vagrant_debfile.stat is not defined
+  get_url: url=https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb dest=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb mode=0440
+  when: vagrant_debfile.stat.exists == False

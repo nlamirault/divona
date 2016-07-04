@@ -1,30 +1,30 @@
-- stat: path=C:\Apps\go1.6.2.windows-amd64.msi
+- stat: path=C:\Apps\go{{ go_version }}.windows-amd64.msi
   register: golang_archive
 
 - name: Download Golang
-  get_url: url=https://storage.googleapis.com/golang/go1.6.2.windows-amd64.msi dest=C:\Apps\go1.6.2.windows-amd64.msi mode=0440
-  when: golang_archive.stat is not defined
+  get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.windows-amd64.msi dest=C:\Apps\go{{ go_version }}.windows-amd64.msi mode=0440
+  when: golang_archive.stat.exists == False
 
-- stat: path=C:\Apps\rust-1.9.0-x86_64-pc-windows-gnu.msi
+- stat: path=C:\Apps\rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi
   register: rust_archive
 
 - name: Download Rust
-  get_url: url=https://static.rust-lang.org/dist/rust-1.9.0-x86_64-pc-windows-gnu.msi dest=C:\Apps\rust-1.9.0-x86_64-pc-windows-gnu.msi mode=0440
-  when: rust_archive.stat is not defined
+  get_url: url=https://static.rust-lang.org/dist/rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi dest=C:\Apps\rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi mode=0440
+  when: rust_archive.stat.exists == False
 
-- stat: path=C:\Apps\node-v6.2.1-x64.msi
+- stat: path=C:\Apps\node-v{{ node_version }}-x64.msi
   register: node_archive
 
 - name: Download NodeJS
-  get_url: url=https://nodejs.org/dist/v6.2.1/node-v6.2.1-x64.msi dest=C:\Apps\node-v6.2.1-x64.msi mode=0440
-  when: node_archive.stat is not defined
+  get_url: url=https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-x64.msi dest=C:\Apps\node-v{{ node_version }}-x64.msi mode=0440
+  when: node_archive.stat.exists == False
 
-- stat: path=C:\Apps\otp_win64_19.0.exe
+- stat: path=C:\Apps\otp_win64_{{ erlang_version }}.exe
   register: erlang_archive
 
 - name: Download Erlang
-  get_url: url=http://erlang.org/download/otp_win64_19.0.exe dest=C:\Apps\otp_win64_19.0.exe mode=0440
-  when: erlang_archive.stat is not defined
+  get_url: url=http://erlang.org/download/otp_win64_{{ erlang_version }}.exe dest=C:\Apps\otp_win64_{{ erlang_version }}.exe mode=0440
+  when: erlang_archive.stat.exists == False
 
 - name: Install virtualbox
   win_chocolatey: name=virtualbox state=present

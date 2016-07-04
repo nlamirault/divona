@@ -3,9 +3,17 @@
 
 # Development languages
 
+go_version: "1.6.2"
+rust_version: "1.9.0"
+node_version: "6.2.1"
 erlang_version: "19.0"
+swift_version: "2.2.1"
 
+# Cloud
 
+packer_version: "0.10.1"
+terraform_version: "0.6.16"
+vagrant_version: "1.8.3"
 
 # Misc
 
