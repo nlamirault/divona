@@ -15,6 +15,11 @@ packer_version: "0.10.1"
 terraform_version: "0.6.16"
 vagrant_version: "1.8.3"
 
+# IOT
+
+arduino_version: "1.6.9"
+fritzing_version: "0.9.3b"
+
 # Misc
 
 company-name: Divona.
