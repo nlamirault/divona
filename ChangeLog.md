@@ -1,6 +1,6 @@
 # Divona ChangeLog
 
-## Version 1.0.0 (06/12/2016)
+## Version 1.0.0 (07/13/2016)
 
 - Add support for Windows
 - Add support for OSX.
