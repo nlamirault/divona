@@ -5,7 +5,7 @@
   homebrew_cask: name=terraform state=present
 
 - name: Install Docker tools
-  homebrew_cask: name={{ item }} state=installed
+  homebrew_cask: name={{ item }} state=present
   with_items:
     # - docker
     # - docker-compose

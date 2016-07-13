@@ -1,5 +1,5 @@
 - name: Install window manager
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - i3
     - openbox
@@ -13,7 +13,7 @@
     - tint2
 
 - name: Install XFCE
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - xfce4
     # - xfce4-goodies

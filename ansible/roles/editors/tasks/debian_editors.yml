@@ -5,10 +5,10 @@
   apt: update_cache=yes
 
 - name: Install Emacs Snapshot
-  apt: pkg=emacs-snapshot state=installed
+  apt: pkg=emacs-snapshot state=present
 
 - name: Install Neovim
-  apt: pkg=neovim state=installed
+  apt: pkg=neovim state=present
 
 - name: VIM directory
   action: file path=/home/{{ user }}/.vim state=directory

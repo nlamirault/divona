@@ -1,8 +1,8 @@
 - name: Install Emacs
-  pacman: name=emacs state=installed
+  pacman: name=emacs state=present
 
 - name: Install Neovim
-  pacman: name=neovim state=installed
+  pacman: name=neovim state=present
 
 - stat: path=/usr/bin/atom
   register: atom_executable

@@ -10,10 +10,10 @@
 #   command: pacman-key --refresh-keys
 
 - name: Install Yaourt
-  pacman: name=yaourt state=installed update_cache=yes
+  pacman: name=yaourt state=present update_cache=yes
 
 - name: Install defaults packages
-  pacman: name={{ item }} state=installed
+  pacman: name={{ item }} state=present
   with_items:
     - bash-completion
     - dhclient
@@ -41,7 +41,7 @@
     - feh
 
 - name: Install X
-  pacman: name={{ item }} state=installed
+  pacman: name={{ item }} state=present
   with_items:
     - xorg-server
     - xorg-xinit
@@ -60,7 +60,7 @@
 #   command: 'yaourt -Sy --noconfirm adapta-gtk-theme vertex-themes'
 
 - name: Install Python tools
-  pacman: name={{ item }} state=installed
+  pacman: name={{ item }} state=present
   with_items:
     - python-pip
     - python2-pip
@@ -70,7 +70,7 @@
     - python2-pycurl
 
 - name: Install Ruby
-  pacman: name={{ item }} state=installed
+  pacman: name={{ item }} state=present
   with_items:
     - ruby
 

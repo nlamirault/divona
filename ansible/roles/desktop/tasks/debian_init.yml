@@ -4,34 +4,34 @@
 #
 
 - name: Install X
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - xinit
     - gdm
     #- slim
 
 - name: Install web applications
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - chromium-browser
     - midori
 
 - name: Install multimedia applications
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - gimp
     - inkscape
     - vlc
 
 - name: Install communications applications
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - irssi
     - vinagre
     - rdesktop
 
 - name: Install documentation applications
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - libreoffice
     - evince
