@@ -1,10 +1,16 @@
 ---
 - include: debian_init.yml
   when: ansible_os_family == 'Debian'
+  become: true
+  become_user: root
 - include: arch_init.yml
   when: ansible_os_family == 'Archlinux'
+  become: true
+  become_user: root
 - include: freebsd_init.yml
   when: ansible_os_family == 'FreeBSD'
+  become: true
+  become_user: root
 - include: osx_init.yml
   when: ansible_os_family == 'Darwin'
 - include: win_init.yml
