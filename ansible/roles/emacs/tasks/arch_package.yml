@@ -1,2 +1,0 @@
-- name: Install Emacs
-  pacman: name=emacs state=installed

@@ -1,1 +1,7 @@
 - include: config.yml
+  when: (ansible_os_family == 'Debian' or
+         ansible_os_family == 'Archlinux' or
+         ansible_os_family == 'FreeBSD')
+
+- include: config_osx.yml
+  when: ansible_os_family == 'Darwin'

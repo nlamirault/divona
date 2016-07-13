@@ -1,5 +1,0 @@
-- name: Create Applications directory
-  command: mkdir /home/{{ user }}/Apps creates=/home/{{ user }}/Apps
-
-- name: Create user binary directory
-  command: mkdir /home/{{ user }}/bin creates=/home/{{ user }}/bin

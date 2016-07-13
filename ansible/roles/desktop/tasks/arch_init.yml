@@ -7,20 +7,13 @@
   pacman: name={{ item }} state=installed
   with_items:
     - chromium
-    - midori-gtk3
+    - midori
 
-- name: Install email applications
-  pacman: name={{ item }} state=installed
-  with_items:
-    - thunderbird
-    - thunderbird-i18n-fr
-
-- name: Install graphics applications
+- name: Install multimedia applications
   pacman: name={{ item }} state=installed
   with_items:
     - gimp
     - inkscape
-    - evince
     - vlc
 
 - name: Install communications applications
@@ -29,3 +22,8 @@
     - irssi
     - vinagre
     - rdesktop
+
+- name: Install documentation applications
+  pacman: name={{ item }} state=installed
+  with_items:
+    - evince

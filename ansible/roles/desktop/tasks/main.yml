@@ -5,5 +5,7 @@
   when: ansible_os_family == 'Archlinux'
 - include: freebsd_init.yml
   when: ansible_os_family == 'FreeBSD'
-
-- include: dotfiles.yml
+- include: osx_init.yml
+  when: ansible_os_family == 'Darwin'
+- include: win_init.yml
+  when: ansible_os_family == 'Windows'

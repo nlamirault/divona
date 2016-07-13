@@ -1,0 +1,34 @@
+- stat: path=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz
+  register: golang_archive
+
+- name: Download Golang
+  get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz dest=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz mode=0440
+  when: golang_archive.stat.exists == False
+
+- stat: path=/home/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz
+  register: rust_archive
+
+- name: Download Rust
+  get_url: url=https://static.rust-lang.org/dist/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz dest=/home/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz mode=0440
+  when: rust_archive.stat.exists == False
+
+- stat: path=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz
+  register: swift_archive
+
+- name: Download Swift
+  get_url: url=https://swift.org/builds/swift-{{ swift_version }}-release/ubuntu1510/swift-{{ swift_version }}-RELEASE/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz dest=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz mode=0440
+  when: swift_archive.stat.exists == False
+
+- stat: path=/home/{{ user }}/Apps/node-v{{ node_version }}-linux-x64.tar.xz
+  register: node_archive
+
+- name: Download NodeJS
+  get_url: url=https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-linux-x64.tar.xz dest=/home/{{ user }}/Apps/node-v{{ node_version }}-linux-x64.tar.xz mode=0440
+  when: node_archive.stat.exists == False
+
+- stat: path=/home/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz
+  register: erlang_archive
+
+- name: Download Erlang
+  get_url: url=http://erlang.org/download/otp_src_{{ erlang_version }}.tar.gz dest=/home/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz mode=0440
+  when: erlang_archive.stat.exists == False

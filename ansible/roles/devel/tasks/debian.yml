@@ -1,0 +1,16 @@
+- name: Install Docker
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - docker-engine
+
+- name: Install Virtualbox
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - virtualbox
+
+- stat: path=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+  register: vagrant_debfile
+
+- name: Download Vagrant
+  get_url: url=https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb dest=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb mode=0440
+  when: vagrant_debfile.stat.exists == False

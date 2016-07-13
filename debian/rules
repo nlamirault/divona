@@ -1,7 +1,0 @@
-#!/usr/bin/make -f
-# -*- makefile -*-
-
-PYTHON2=$(shell pyversions -r)
-PYTHON3=$(shell py3versions -r)
-
-

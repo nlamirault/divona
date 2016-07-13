@@ -1,12 +1,10 @@
 ---
 - name: Divona provisionning
   hosts: all
-  sudo: yes
   roles:
-    - common
     - base
     - wm
     - desktop
-    - emacs
-    - vim
+    - editors
+    - x11
     - finish

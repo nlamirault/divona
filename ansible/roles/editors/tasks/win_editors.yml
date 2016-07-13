@@ -1,0 +1,8 @@
+- name: Install Emacs
+  win_chocolatey: name=emacs state=present
+
+- name: Install Atom
+  win_chocolatey: name=atom state=present
+
+- name: Install Vim
+  win_chocolatey: name=vim state=present

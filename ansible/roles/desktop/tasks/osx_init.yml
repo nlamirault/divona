@@ -1,0 +1,20 @@
+#
+# Desktop settings for OSX
+#
+#
+
+- name: Install web applications
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - chromium
+
+- name: Install graphics applications
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - gimp
+    - vlc
+
+- name: Install communications applications
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - hexchat

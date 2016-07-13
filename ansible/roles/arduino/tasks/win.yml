@@ -1,0 +1,13 @@
+- stat: path=C:\Apps\arduino-{{ arduino_version }}-windows.zip
+  register: arduino_archive
+
+- name: Download Arduino
+  get_url: url=https://www.arduino.cc/download_handler.php?f=/arduino-{{ arduino_version }}-windows.zip dest=C:\Apps\arduino-{{ arduino_version }}-windows.zip mode=0440
+  when: arduino_archive.stat.exists == False
+
+- stat: path=C:\Apps\fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2
+  register: fritzing_archive
+
+- name: Download Fritzing
+  get_url: url=http://fritzing.org/download/{{ fritzing_version }}/windows-64bit/fritzing.{{ fritzing_version }}.64.pc.zip dest=dest=C:\Apps\fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2 mode=0440
+  when: fritzing_archive.stat.exists == False

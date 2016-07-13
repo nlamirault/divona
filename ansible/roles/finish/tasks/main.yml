@@ -1,3 +1,10 @@
 ---
 - include: finish.yml
-  when: ansible_os_family == 'Debian' or ansible_os_family == 'Archlinux'
+  when: (ansible_os_family == 'Debian' or
+         ansible_os_family == 'Archlinux' or
+         ansible_os_family == 'FreeBSD')
+
+- include: finish_osx.yml
+  when: ansible_os_family == 'Darwin'
+  become: true
+  become_user: root

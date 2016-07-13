@@ -1,0 +1,14 @@
+- name: Install Emacs
+  homebrew_cask: name=emacs state=present
+
+- name: Install Atom
+  homebrew_cask: name=atom state=present
+
+- name: VIM directory
+  action: file path=/Users/{{ user }}/.vim state=directory
+
+- name: VIM Bundle directory
+  action: file path=/Users/{{ user }}/.vim/bundle state=directory
+
+- name: VIM Vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/Users/{{ user }}/.vim/bundle/vundle

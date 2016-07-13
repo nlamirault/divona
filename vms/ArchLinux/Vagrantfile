@@ -4,9 +4,8 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define :divona do |divona_config|
-    divona_config.vm.box = "archlinux"
-    divona_config.vm.box_url = "https://dl.dropboxusercontent.com/u/31112574/arch64-20130801.box"
     divona_config.vm.hostname = "DivonaArchDev"
+    divona_config.vm.box = "nlamirault/archlinux"
 
     divona_config.vm.network :private_network, :ip => '10.10.2.33'
     divona_config.vm.network :forwarded_port, guest: 22, host: 8222

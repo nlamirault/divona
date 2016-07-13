@@ -6,6 +6,3 @@
 
 - name: VIM Vundle
   git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle
-
-- name: VIM configuration file
-  copy: src=vimrc dest=/home/{{ user }}/.vimrc

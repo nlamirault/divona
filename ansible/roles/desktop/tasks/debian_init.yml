@@ -13,21 +13,14 @@
 - name: Install web applications
   apt: pkg={{ item }} state=installed
   with_items:
-    #- chromium-browser
+    - chromium-browser
     - midori
 
-- name: Install email applications
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - thunderbird
-    - thunderbird-locale-fr
-
-- name: Install graphics applications
+- name: Install multimedia applications
   apt: pkg={{ item }} state=installed
   with_items:
     - gimp
     - inkscape
-    - evince
     - vlc
 
 - name: Install communications applications
@@ -36,3 +29,9 @@
     - irssi
     - vinagre
     - rdesktop
+
+- name: Install documentation applications
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - libreoffice
+    - evince
