@@ -37,11 +37,7 @@ Tools:
 
 ### Windows
 
-* Clone repository and install Pip:
-
-        $ git clone https://github.com/nlamirault/divona.git
-        $ python get-pip.py
-
+    UNKNOWN
 
 
 ## Usage
