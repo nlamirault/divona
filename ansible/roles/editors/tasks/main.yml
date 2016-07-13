@@ -1,9 +1,21 @@
 ---
 - include: debian_editors.yml
   when: ansible_os_family == 'Debian'
+  become: true
+  become_user: root
 - include: arch_editors.yml
   when: ansible_os_family == 'Archlinux'
+  become: true
+  become_user: root
+- include: centos_editors.yml
+  when: ansible_distribution == 'CentOS'
+  become: true
+  become_user: root
 - include: osx_editors.yml
   when: ansible_os_family == 'Darwin'
+  become: true
+  become_user: root
 - include: win_editors.yml
   when: ansible_os_family == 'Windows'
+  become: true
+  become_user: root
