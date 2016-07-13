@@ -18,7 +18,7 @@
 - include: win_init.yml
   when: ansible_os_family == 'Windows'
 
-- include: linux.yml
+- include: unix.yml
   when: (ansible_os_family == 'Debian' or
          ansible_os_family == 'Archlinux' or
          ansible_os_family == 'FreeBSD')

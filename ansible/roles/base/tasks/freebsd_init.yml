@@ -22,3 +22,6 @@
     - w3m
     - vim
     - terminator
+
+- name: Install X
+  pkgng: pkg=xorg state=present
