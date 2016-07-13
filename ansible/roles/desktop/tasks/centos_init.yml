@@ -1,0 +1,25 @@
+
+- name: Install web applications
+  yum: name={{ item }} state=present
+  with_items:
+    - firefox
+    # - chromium
+
+- name: Install multimedia applications
+  yum: name={{ item }} state=present
+  with_items:
+    - gimp
+    # - inkscape
+    # - vlc
+
+- name: Install communications applications
+  yum: name={{ item }} state=present
+  with_items:
+    - irssi
+    - vinagre
+    # - rdesktop
+
+- name: Install documentation applications
+  yum: name={{ item }} state=present
+  with_items:
+    - evince
