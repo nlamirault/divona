@@ -1,0 +1,16 @@
+- name: Install Docker
+  yum: name={{ item }} state=present
+  with_items:
+    - docker
+
+- name: Add Docker group
+  group: name=docker state=present
+
+
+- name: Add user to Docker group
+  user: name={{ user }} shell=/bin/bash groups=docker append=yes
+
+# - name: Install Virtualbox
+#   pacman: name={{ item }} state=present
+#   with_items:
+#     - virtualbox
