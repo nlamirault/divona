@@ -19,3 +19,11 @@
   when: ansible_os_family == 'Windows'
   become: true
   become_user: root
+- include: freebsd.yml
+  when: ansible_os_family == 'FreeBSD'
+  become: true
+  become_user: root
+- include: netbsd.yml
+  when: ansible_os_family == 'NetBSD'
+  become: true
+  become_user: root

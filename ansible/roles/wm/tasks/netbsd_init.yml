@@ -1,0 +1,21 @@
+- name: Install window manager
+  pkgin: pkg={{ item }} state=present
+  with_items:
+    - i3
+    - i3lock
+    # - i3status
+    - openbox
+    # - openbox-themes
+    - obconf
+    # - obmenu
+    - conky
+    - tint2
+
+# - name: Install XFCE4
+#   pkgin: pkg={{ item }} state=present
+#   with_items:
+#     - xfce4-desktop
+#     - xfce4-thunar
+#     - xfce4-thunar-vfs-plugin
+#     - xfce4-thunar-archive-plugin
+#     - xfce4-media-tags-plugin

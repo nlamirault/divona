@@ -30,4 +30,5 @@
   when: (ansible_os_family == 'Debian' or
          ansible_os_family == 'Archlinux' or
          ansible_distribution == 'CentOS' or
-         ansible_os_family == 'FreeBSD')
+         ansible_os_family == 'FreeBSD' or
+         ansible_os_family == 'NetBSD')

@@ -8,6 +8,11 @@
   become: true
   become_user: root
 
+- include: netbsd.yml
+  when: ansible_os_family == 'NetBSD'
+  become: true
+  become_user: root
+
 - include: finish_osx.yml
   when: ansible_os_family == 'Darwin'
   become: true
