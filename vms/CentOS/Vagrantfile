@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define :centos do |centos_config|
+    centos_config.vm.box = "nlamirault/centos-7.2"
+
+    # WTF : changing hostname make network broken
+    # centos_config.vm.hostname = "DivonaCentOSDev"
+    centos_config.vm.network :private_network, :ip => '10.10.5.33'
+
+    centos_config.ssh.insert_key = false
+    centos_config.ssh.forward_agent = true
+    centos_config.ssh.forward_x11 = true
+
+    centos_config.vm.provider :virtualbox do |vb|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.name = "DivonaCentOSDev"
+    end
+
+    centos_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "../../ansible/divona.yml"
+      ansible.inventory_path = "./host"
+      ansible.limit = "all"
+      ansible.verbose = 'vvvv'
+      ansible.host_key_checking = false
+    end
+
+    centos_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "../../ansible/dev.yml"
+      ansible.inventory_path = "./host"
+      ansible.limit = "all"
+      ansible.verbose = 'vvvv'
+      ansible.host_key_checking = false
+    end
+
+  end
+
+end
