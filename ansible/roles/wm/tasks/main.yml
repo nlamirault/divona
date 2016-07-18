@@ -19,3 +19,7 @@
   when: ansible_os_family == 'NetBSD'
   become: true
   become_user: root
+# - include: openbsd.yml
+#   when: ansible_os_family == 'OpenBSD'
+#   become: true
+#   become_user: root

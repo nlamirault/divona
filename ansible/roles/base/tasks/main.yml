@@ -19,6 +19,10 @@
   when: ansible_os_family == 'NetBSD'
   become: true
   become_user: root
+- include: openbsd_init.yml
+  when: ansible_os_family == 'OpenBSD'
+  become: true
+  become_user: root
 - include: osx_init.yml
   when: ansible_os_family == 'Darwin'
   become: true

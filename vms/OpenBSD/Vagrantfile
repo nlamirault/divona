@@ -4,28 +4,36 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define :openbsd do |openbsd_config|
-    openbsd_config.vm.box = "OpenBSD_5.3"
-    openbsd_config.vm.box_url = "https://dl.dropboxusercontent.com/u/12089300/VirtualBox/openbsd53_amd64.box"
+    openbsd_config.vm.box = "nlamirault/openbsd-5.9"
 
-    openbsd_config.vm.hostname = "DivonaOpenBSD"
-    openbsd_config.vm.network :private_network, :ip => '10.10.3.33'
+    openbsd_config.vm.hostname = "DivonaOpenBSDDev"
+    openbsd_config.vm.network :private_network, :ip => '10.10.6.33'
 
+    openbsd_config.ssh.insert_key = false
+    # openbsd_config.ssh.private_key_path = "./vagrant.pub"
     openbsd_config.ssh.forward_agent = true
     openbsd_config.ssh.forward_x11 = true
-
-    config.vm.synced_folder "../", "/vagrant", :disabled => true
 
     openbsd_config.vm.provider :virtualbox do |vb|
       vb.gui = true
       vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.name = "DivonaOpenBSD"
+      vb.name = "DivonaOpenBSDDev"
     end
 
     openbsd_config.vm.provision :ansible do |ansible|
       ansible.playbook = "../../ansible/divona.yml"
-      ansible.inventory_path = "../../ansible/hosts/vagrant"
-      ansible.verbose = '-vv'
+      ansible.inventory_path = "./host"
       ansible.limit = "all"
+      ansible.verbose = 'vvvv'
+      ansible.host_key_checking = false
+    end
+
+    openbsd_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "../../ansible/dev.yml"
+      ansible.inventory_path = "./host"
+      ansible.limit = "all"
+      ansible.verbose = 'vvvv'
+      ansible.host_key_checking = false
     end
 
   end
