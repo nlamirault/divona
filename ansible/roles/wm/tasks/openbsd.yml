@@ -1,7 +1,7 @@
 - name: Install window manager
-  pkgng: pkg={{ item }} state=present
+  openbsd_pkg: name={{ item }} state=present
   with_items:
-    - i3
+    - x11/i3
     - i3lock
     - i3status
     - openbox
@@ -15,6 +15,6 @@
     - tint2
 
 - name: Install XFCE4
-  pkgng: pkg={{ item }} state=present
+  openbsd_pkg: name={{ item }} state=present
   with_items:
     - xfce4-wm

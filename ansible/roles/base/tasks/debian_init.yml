@@ -4,7 +4,7 @@
 #
 
 - name: Install defaults packages
-  apt: pkg={{ item }} state=installed update_cache=yes
+  apt: pkg={{ item }} state=present update_cache=yes
   with_items:
     - man-db
     - apt-file
@@ -27,7 +27,7 @@
     - terminator
 
 - name: Install Python tools
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - python-software-properties
     - python-pip

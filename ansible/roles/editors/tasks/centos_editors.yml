@@ -1,14 +1,11 @@
-- name: Add the emacs-snapshot PPA
-  apt_repository: repo=ppa:ubuntu-elisp/ppa
+- name: Install Emacs
+  yum: name=emacs state=present
 
-- name: Update repositories
-  apt: update_cache=yes
+# - name: Install Neovim
+#   yum: name=neovim state=present
 
-- name: Install Emacs Snapshot
-  apt: pkg=emacs-snapshot state=present
-
-- name: Install Neovim
-  apt: pkg=neovim state=present
+# - name: Install Atom
+#   yum: name=atom state=present
 
 - name: VIM directory
   action: file path=/home/{{ user }}/.vim state=directory

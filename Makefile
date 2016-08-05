@@ -13,7 +13,7 @@
 # limitations under the License.
 
 APP = divona
-VERSION = 1.0.0
+VERSION = 1.1.0
 
 SHELL = /bin/bash
 

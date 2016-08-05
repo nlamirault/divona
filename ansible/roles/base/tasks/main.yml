@@ -7,8 +7,20 @@
   when: ansible_os_family == 'Archlinux'
   become: true
   become_user: root
+- include: centos_init.yml
+  when: ansible_distribution == 'CentOS'
+  become: true
+  become_user: root
 - include: freebsd_init.yml
   when: ansible_os_family == 'FreeBSD'
+  become: true
+  become_user: root
+- include: netbsd_init.yml
+  when: ansible_os_family == 'NetBSD'
+  become: true
+  become_user: root
+- include: openbsd_init.yml
+  when: ansible_os_family == 'OpenBSD'
   become: true
   become_user: root
 - include: osx_init.yml
@@ -18,7 +30,9 @@
 - include: win_init.yml
   when: ansible_os_family == 'Windows'
 
-- include: linux.yml
+- include: unix.yml
   when: (ansible_os_family == 'Debian' or
          ansible_os_family == 'Archlinux' or
-         ansible_os_family == 'FreeBSD')
+         ansible_distribution == 'CentOS' or
+         ansible_os_family == 'FreeBSD' or
+         ansible_os_family == 'NetBSD')

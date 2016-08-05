@@ -1,0 +1,10 @@
+#
+# Editors for FreeBSD
+#
+#
+
+- name: Emacs install
+  pkgin: pkg=emacs state=present
+
+- name: Vim install
+  pkgin: pkg=vim state=present

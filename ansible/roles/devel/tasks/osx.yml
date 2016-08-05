@@ -30,7 +30,7 @@
   when: erlang_archive.stat.exists == False
 
 - name: Install Virtualbox
-  homebrew_cask: name=virtualbox state=installed
+  homebrew_cask: name=virtualbox state=present
 
 - name: Install Vagrant
-  homebrew_cask: name=vagrant state=installed
+  homebrew_cask: name=vagrant state=present

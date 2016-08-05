@@ -1,10 +1,10 @@
 - name: Install Docker
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - docker-engine
 
 - name: Install Virtualbox
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
     - virtualbox
 

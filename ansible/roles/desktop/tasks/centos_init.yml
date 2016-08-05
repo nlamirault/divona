@@ -1,29 +1,25 @@
-#
-# Desktop settings for Arch
-#
-#
 
 - name: Install web applications
-  pacman: name={{ item }} state=present
+  yum: name={{ item }} state=present
   with_items:
-    - chromium
-    - midori
+    - firefox
+    # - chromium
 
 - name: Install multimedia applications
-  pacman: name={{ item }} state=present
+  yum: name={{ item }} state=present
   with_items:
     - gimp
-    - inkscape
-    - vlc
+    # - inkscape
+    # - vlc
 
 - name: Install communications applications
-  pacman: name={{ item }} state=present
+  yum: name={{ item }} state=present
   with_items:
     - irssi
     - vinagre
-    - rdesktop
+    # - rdesktop
 
 - name: Install documentation applications
-  pacman: name={{ item }} state=present
+  yum: name={{ item }} state=present
   with_items:
     - evince
