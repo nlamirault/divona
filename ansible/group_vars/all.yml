@@ -1,6 +1,5 @@
 ---
 
-
 # Development languages
 
 go_version: "1.6.2"
@@ -19,10 +18,3 @@ vagrant_version: "1.8.3"
 
 arduino_version: "1.6.9"
 fritzing_version: "0.9.3b"
-
-# Misc
-
-company-name: Divona.
-systemowner-name: Nicolas Lamirault
-systemowner-initials: NL
-systemowner-mail-address: nicolas.lamirault@gmail.com
