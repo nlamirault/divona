@@ -8,6 +8,7 @@
   with_items:
     - chromium
     - tor-browser
+    - qutebrowser
 
 - name: Install graphics applications
   win_chocolatey: name={{ item }} state=present
