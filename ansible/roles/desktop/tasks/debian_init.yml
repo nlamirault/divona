@@ -14,7 +14,7 @@
   apt: pkg={{ item }} state=present
   with_items:
     - chromium-browser
-    - midori
+    - qutebrowser
 
 - name: Install multimedia applications
   apt: pkg={{ item }} state=present
