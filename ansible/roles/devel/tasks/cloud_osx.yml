@@ -10,3 +10,6 @@
     # - docker
     # - docker-compose
     - dockertoolbox
+
+- name: Install QEmu
+  homebrew: name=qemu state=present
