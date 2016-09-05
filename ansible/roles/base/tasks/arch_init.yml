@@ -52,12 +52,12 @@
     - lxdm
     # - lxdm-gtk3
 
-- name: Install Login manager themes
-  become: false
-  command: 'yaourt -Sy --noconfirm lxdm-themes'
+  #- name: Install Login manager themes
+  #become: false
+  #command: 'yaourt -Sy --noconfirm lxdm-themes'
 
-# - name: Install themes
-#   command: 'yaourt -Sy --noconfirm adapta-gtk-theme vertex-themes'
+- name: Install themes
+  command: 'yaourt -S --noconfirm --needed adapta-gtk-theme vertex-themes'
 
 - name: Install Python tools
   pacman: name={{ item }} state=present
