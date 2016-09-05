@@ -11,3 +11,8 @@
 - name: Download Fritzing
   get_url: url=http://fritzing.org/media/downloads/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2 dest=/home/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2 mode=0440
   when: fritzing_archive.stat.exists == False
+
+- include: arch.yml
+  when: ansible_os_family == 'Archlinux'
+  become: true
+  become_user: root
