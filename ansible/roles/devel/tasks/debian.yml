@@ -3,6 +3,11 @@
   with_items:
     - docker-engine
 
+- name: Install Rkt
+  apt: pkg={{ item }} state=present
+  with_items:
+    - rkt
+
 - name: Install Virtualbox
   apt: pkg={{ item }} state=present
   with_items:

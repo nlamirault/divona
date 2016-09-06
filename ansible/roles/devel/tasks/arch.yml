@@ -3,6 +3,11 @@
   with_items:
     - docker
 
+- name: Install Rkt
+  pacman: name={{ item }} state=present
+  with_items:
+    - rkt
+
 - name: Install Virtualbox
   pacman: name={{ item }} state=present
   with_items:
