@@ -5,7 +5,7 @@
 go_version: "1.6.2"
 rust_version: "1.9.0"
 node_version: "6.2.1"
-erlang_version: "19.0"
+erlang_version: "19.1"
 swift_version: "2.2.1"
 
 # Cloud
