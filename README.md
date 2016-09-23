@@ -36,6 +36,19 @@ Tools:
 
 ### OSX
 
+* Clone repository and install Pip:
+
+        $ git clone https://github.com/nlamirault/divona.git
+        $ python get-pip.py
+
+* Install Ansible:
+
+        $ pip install ansible
+
+* Install homebrew:
+
+        $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 
 ### Windows
 

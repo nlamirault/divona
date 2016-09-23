@@ -4,8 +4,9 @@
 - name: Install Atom
   homebrew_cask: name=atom state=present
 
-- name: Install Neovim
-  homebrew: name=neovim/neovim/neovim state=present
+#- name: Install Neovim
+#  homebrew: name=neovim/neovim/neovim state=present
+#  become: false
 
 - name: VIM directory
   action: file path=/Users/{{ user }}/.vim state=directory
