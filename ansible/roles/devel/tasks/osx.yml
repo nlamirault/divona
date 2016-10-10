@@ -1,11 +1,13 @@
-- stat: path=/Users/{{ user }}/Apps/go{{ go_version }}.darwin-amd64.pkg
+- name: Verify Golang archive
+  stat: path=/Users/{{ user }}/Apps/go{{ go_version }}.darwin-amd64.pkg
   register: golang_archive
 
 - name: Download Golang
   get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.darwin-amd64.pkg dest=/Users/{{ user }}/Apps/go{{ go_version }}.darwin-amd64.pkg mode=0440
   when: golang_archive.stat.exists == False
 
-- stat: path=/Users/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-apple-darwin.pkg
+- name: Verify Rust archive
+  stat: path=/Users/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-apple-darwin.pkg
   register: rust_archive
 
 - name: Download Rust
@@ -15,14 +17,16 @@
 # - name: Download Swift
 #   get_url: url= dest=/Users/{{ user }}/Apps/swift-2.2.1-RELEASE-ubuntu15.10.tar.gz mode=0440
 
-- stat: path=/Users/{{ user }}/Apps/node-v{{ node_version }}-darwin-x64.tar.gz
+- name: Verify NodeJS archive
+  stat: path=/Users/{{ user }}/Apps/node-v{{ node_version }}-darwin-x64.tar.gz
   register: node_archive
 
 - name: Download NodeJS
   get_url: url=https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-darwin-x64.tar.gz dest=/Users/{{ user }}/Apps/node-v{{ node_version }}-darwin-x64.tar.gz mode=0440
   when: node_archive.stat.exists == False
 
-- stat: path=/Users/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz
+- name: Verify Erlang archive
+  stat: path=/Users/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz
   register: erlang_archive
 
 - name: Download Erlang

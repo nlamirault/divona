@@ -1,8 +1,8 @@
 - name: Create Applications directory
-  command: mkdir /home/{{ user }}/Apps creates=/home/{{ user }}/Apps
+  file: path=/home/{{ user }}/Apps  state=directory mode=0755
 
 - name: Create user binary directory
-  command: mkdir /home/{{ user }}/bin creates=/home/{{ user }}/bin
+  file: path=/home/{{ user }}/bin  state=directory mode=0755
 
 - name: Install inputrc
   copy: src=inputrc dest=/home/{{ user }}/.inputrc

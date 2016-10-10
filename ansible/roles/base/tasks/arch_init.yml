@@ -4,7 +4,7 @@
 #
 
 - name: Install Arch Pacman file
-  copy: src=pacman.conf dest=/etc/ owner=root mode=644
+  copy: src=pacman.conf dest=/etc/ owner=root mode=0644
 
 # - name: Arch refresh keys
 #   command: pacman-key --refresh-keys
@@ -49,15 +49,24 @@
     - slim
     - slim-themes
     - archlinux-themes-slim
-    - lxdm
+    # - lxdm
     # - lxdm-gtk3
+    - sddm
+    - lightdm
 
-  #- name: Install Login manager themes
-  #become: false
-  #command: 'yaourt -Sy --noconfirm lxdm-themes'
+# - name: Install sddm themes
+#   become: false
+#   command: 'yaourt -S --noconfirm --needed archlinux-themes-sddm'
+
+# - name: Install lxdm themes
+#   become: false
+#   command: 'yaourt -Sy --noconfirm lxdm-themes'
 
 - name: Install themes
-  command: 'yaourt -S --noconfirm --needed adapta-gtk-theme vertex-themes'
+  command: "yaourt -S --noconfirm {{item.package}} creates={{item.creates}}"
+  with_items:
+    - { package: vertex-themesvertex-themes, creates: /usr/share/themes/Vertex }
+    - { package: adapta-gtk-theme, creates: /usr/share/themes/Adapta}
 
 - name: Install Python tools
   pacman: name={{ item }} state=present
@@ -81,7 +90,7 @@
   service: name=cronie enabled=yes state=restarted
 
 - name: Install ChangeLog
-  copy: src=ChangeLog dest=/etc/ owner=root mode=644
+  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
 
 - name: Install motd
-  copy: src=motd dest=/etc/ owner=root mode=644
+  copy: src=motd dest=/etc/ owner=root mode=0644

@@ -40,12 +40,19 @@ clean: ## Cleanup
 .PHONY: init
 init: ## Install requirements
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
-	@echo "Install : ansible"
+	@echo "Install : ansible ansible-lint"
 
 .PHONY: ping
 ping: ## Check Ansible installation
 	@echo -e "$(OK_COLOR)[$(APP)] Check ansible$(NO_COLOR)"
 	@ansible -c local -m ping all -i $(host)
+
+.PHONY: lint
+lint: ## Check ansible style
+	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
+	@ansible-lint ansible/divona.yml
+	@ansible-lint ansible/dev.yml
+	@ansible-lint ansible/iot.yml
 
 .PHONY: default
 default: ## Default environment

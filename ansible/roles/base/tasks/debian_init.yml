@@ -35,14 +35,10 @@
     - python-pycurl
 
 - name: Install ChangeLog
-  copy: >
-    src=ChangeLog dest=/etc/
-    owner=root mode=644
+  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
 
 - name: Install motd
-  copy: >
-    src=motd dest=/etc/
-    owner=root mode=644
+  copy: src=motd dest=/etc/ owner=root mode=0644
 
 #- name: Install apt sources.list
 #  copy: >

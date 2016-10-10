@@ -15,4 +15,4 @@
   action: file path=/Users/{{ user }}/.vim/bundle state=directory
 
 - name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/Users/{{ user }}/.vim/bundle/vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/Users/{{ user }}/.vim/bundle/vundle version=master

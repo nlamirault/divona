@@ -13,7 +13,8 @@
   with_items:
     - virtualbox
 
-- stat: path=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+- name: Verify Vagrant deb file
+  stat: path=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
   register: vagrant_debfile
 
 - name: Download Vagrant

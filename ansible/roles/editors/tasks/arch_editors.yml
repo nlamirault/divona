@@ -4,7 +4,8 @@
 - name: Install Neovim
   pacman: name=neovim state=present
 
-- stat: path=/usr/bin/atom
+- name: Verify Atom executable
+  stat: path=/usr/bin/atom
   register: atom_executable
 
 - name: Install Atom
@@ -19,4 +20,4 @@
   action: file path=/home/{{ user }}/.vim/bundle state=directory
 
 - name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle
+  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle version=master
