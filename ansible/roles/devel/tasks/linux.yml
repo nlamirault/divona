@@ -6,7 +6,7 @@
   get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz dest=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz mode=0440
   when: golang_archive.stat.exists == False
 
-- name: Verify Reust archive
+- name: Verify Rust archive
   stat: path=/home/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz
   register: rust_archive
 
