@@ -1,0 +1,7 @@
+- name: Verify Android Studio
+  stat: path=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-windows.exe
+  register: android_studio_archive
+
+- name: Download Android Studio
+  get_url: url=https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_version }}/{{ android_studio_build }}-windows.exe dest=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-windows.exe mode=0440
+  when: android_studio_archive.stat.exists == False
