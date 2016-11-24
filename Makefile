@@ -68,3 +68,8 @@ dev: ## Development environment
 iot: ## Internet Of Things
 	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
 	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
+
+.PHONY: mobile
+mobile: ## Mobile
+	@echo -e "$(OK_COLOR)[$(APP)] Install mobile development environment$(NO_COLOR)"
+	@ansible-playbook -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
