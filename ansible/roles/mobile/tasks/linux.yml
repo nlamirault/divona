@@ -3,5 +3,5 @@
   register: android_studio_archive
 
 - name: Download Android Studio
-  get_url: url=https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_version }}/{{ android_studio_build }}-linux.zip dest=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip mode=0440
+  get_url: url=https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_version }}/android-studio-ide-{{ android_studio_build }}-linux.zip dest=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip mode=0440
   when: android_studio_archive.stat.exists == False
