@@ -14,16 +14,16 @@
     - tree
     - bash-completion
     - language-pack-fr
-    - git-core
-    - unzip
-    - logrotate
-    - rsyslog
-    - tmux
-    - w3m
-    - mlocate
-    - genisoimage
-    - dnsutils
-    - terminator
+    # - git-core
+    # - unzip
+    # - logrotate
+    # - rsyslog
+    # - tmux
+    # - w3m
+    # - mlocate
+    # - genisoimage
+    # - dnsutils
+    # - terminator
 
 - name: Install Python tools
   apt: pkg={{ item }} state=present
