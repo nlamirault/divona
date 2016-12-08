@@ -7,6 +7,9 @@
 - name: Install Emacs Snapshot
   apt: pkg=emacs-snapshot state=present
 
+- name: Add the neovim PPA
+  apt_repository: repo=ppa:neovim-ppa/unstable
+
 - name: Install Neovim
   apt: pkg=neovim state=present
 
