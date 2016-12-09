@@ -16,8 +16,8 @@
     - language-pack-fr
     - git-core
     - unzip
-    - logrotate
-    - rsyslog
+    #- logrotate
+    #- rsyslog
     - tmux
     # - w3m
     # - mlocate
