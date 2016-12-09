@@ -12,17 +12,17 @@
     - curl
     - ngrep
     - tree
-    # - bash-completion
-    # - language-pack-fr
-    # - git-core
-    # - unzip
-    # - logrotate
-    # - rsyslog
+    - bash-completion
+    - language-pack-fr
+    - git-core
+    - unzip
+    - logrotate
+    - rsyslog
     - tmux
-    # - w3m
-    # - mlocate
-    # - genisoimage
-    # - dnsutils
+    - w3m
+    - mlocate
+    - genisoimage
+    - dnsutils
     - terminator
 
 - name: Install Python tools
