@@ -62,11 +62,11 @@
 #   become: false
 #   command: 'yaourt -Sy --noconfirm lxdm-themes'
 
-- name: Install themes
-  command: "yaourt -S --noconfirm {{item.package}} creates={{item.creates}}"
-  with_items:
-    - { package: vertex-themesvertex-themes, creates: /usr/share/themes/Vertex }
-    - { package: adapta-gtk-theme, creates: /usr/share/themes/Adapta}
+# - name: Install themes
+#   command: "yaourt -S --noconfirm {{item.package}} creates={{item.creates}}"
+#   with_items:
+#     - { package: vertex-themesvertex-themes, creates: /usr/share/themes/Vertex }
+#     - { package: adapta-gtk-theme, creates: /usr/share/themes/Adapta}
 
 - name: Install Python tools
   pacman: name={{ item }} state=present

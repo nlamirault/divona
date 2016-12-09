@@ -7,7 +7,7 @@
   pacman: name={{ item }} state=present
   with_items:
     - chromium
-    - qutebrowser
+    # - qutebrowser
 
 - name: Install multimedia applications
   pacman: name={{ item }} state=present
