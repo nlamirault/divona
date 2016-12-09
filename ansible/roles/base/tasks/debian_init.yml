@@ -23,7 +23,7 @@
     # - mlocate
     # - genisoimage
     # - dnsutils
-    # - terminator
+    - terminator
 
 - name: Install Python tools
   apt: pkg={{ item }} state=present
