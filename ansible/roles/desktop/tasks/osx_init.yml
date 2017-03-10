@@ -3,11 +3,6 @@
 #
 #
 
-- name: Install windows manager
-  homebrew: name={{ item }} state=present
-  with_items:
-    - kwm
-
 - name: Install web applications
   homebrew_cask: name={{ item }} state=present
   with_items:

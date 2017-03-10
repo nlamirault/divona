@@ -13,8 +13,6 @@
   become_user: root
 - include: osx_editors.yml
   when: ansible_os_family == 'Darwin'
-  become: true
-  become_user: root
 - include: win_editors.yml
   when: ansible_os_family == 'Windows'
   become: true
