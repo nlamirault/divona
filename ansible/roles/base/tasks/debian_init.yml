@@ -24,6 +24,7 @@
     - genisoimage
     - dnsutils
     - terminator
+    - ncdu
 
 - name: Install Python tools
   apt: pkg={{ item }} state=present

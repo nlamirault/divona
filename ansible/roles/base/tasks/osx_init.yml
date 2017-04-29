@@ -11,6 +11,7 @@
     - tmux
     - vim
     - wget
+    - ncdu
 
 - name: Create user binary directory
   file: path=/Users/{{ user }}/bin state=directory mode=0755

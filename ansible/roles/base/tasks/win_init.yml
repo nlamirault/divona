@@ -7,6 +7,7 @@
   with_items:
     - git
     - cygwin
+    - windirstat
 
 - name: Create Applications directory
   file: path=C:\Apps state=directory mode=0755

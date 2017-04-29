@@ -39,6 +39,7 @@
     - termite
     - terminator
     - feh
+    - ncdu
 
 - name: Install X
   pacman: name={{ item }} state=present
