@@ -2,16 +2,16 @@
 
 # Development languages
 
-go_version: "1.8"
+go_version: "1.8.3"
 rust_version: "1.15.1"
-node_version: "7.7.1"
-erlang_version: "19.2"
+node_version: "8.0.0"
+erlang_version: "19.3"
 swift_version: "3.0"
 
 # Cloud
 
-packer_version: "0.12.3"
-terraform_version: "0.8.8"
+packer_version: "1.0.0"
+terraform_version: "0.9.6"
 vagrant_version: "1.9.2"
 
 # IOT
