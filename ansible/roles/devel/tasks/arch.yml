@@ -9,10 +9,10 @@
 - name: Add user to Docker group
   user: name={{ user }} shell=/bin/bash groups=docker append=yes
 
-- name: Install Rkt
-  pacman: name={{ item }} state=present
-  with_items:
-    - rkt
+ #- name: Install Rkt
+ # pacman: name={{ item }} state=present
+ # with_items:
+ #   - rkt
 
 - name: Add Rkt group
   group: name=rkt state=present
