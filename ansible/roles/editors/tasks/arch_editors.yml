@@ -13,11 +13,11 @@
   when: atom_executable.stat is not defined
   become: false
 
-- name: VIM directory
-  action: file path=/home/{{ user }}/.vim state=directory
+# - name: VIM directory
+#   action: file path=/home/{{ user }}/.vim state=directory
 
-- name: VIM Bundle directory
-  action: file path=/home/{{ user }}/.vim/bundle state=directory
+# - name: VIM Bundle directory
+#   action: file path=/home/{{ user }}/.vim/bundle state=directory
 
-- name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle version=master
+# - name: VIM Vundle
+#   git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle version=master
