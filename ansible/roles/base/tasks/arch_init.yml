@@ -13,33 +13,31 @@
   pacman: name=yaourt state=present update_cache=yes
 
 - name: Install defaults packages
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
-    - bash-completion
-    - dhclient
-    - openssh
-    - man-db
-    - wget
-    - curl
-    - dunst
-    - ngrep
-    - tree
-    - git-core
-    - gnupg
-    - tig
-    - unzip
-    - logrotate
-    - rsyslog
-    - sysstat
-    - tmux
-    - w3m
-    - mlocate
-    - dnsutils
-    - texi2html
-    - termite
-    - terminator
-    - feh
-    - ncdu
+   - bash-completion
+   - dhclient
+   - openssh
+   - man-db
+   - wget
+   - curl
+   - dunst
+   - ngrep
+   - tree
+   - git
+   - gnupg
+   - tig
+   - unzip
+   - logrotate
+   - rsyslog
+   - sysstat
+   - tmux
+   - mlocate
+   - bind-tools
+   - termite
+   - terminator
+   - feh
+   - ncdu
 
 - name: Install X
   pacman: name={{ item }} state=present
