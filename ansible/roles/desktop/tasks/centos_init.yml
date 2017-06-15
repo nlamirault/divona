@@ -3,7 +3,7 @@
   yum: name={{ item }} state=present
   with_items:
     - firefox
-    - qutebrowser
+    # - qutebrowser
 
 - name: Install multimedia applications
   yum: name={{ item }} state=present
