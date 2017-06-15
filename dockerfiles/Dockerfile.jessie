@@ -20,9 +20,10 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
     && apt-get install -y libffi-dev libssl-dev libyaml-dev python-dev python-pip
 
-RUN pip install cffi --upgrade \
+RUN pip install --upgrade pip \
+    && pip install cffi --upgrade \
     && pip install ansible
-RUN ansible -i localhost, -c local all -m apt -a "update_cache=yes"
+# RUN ansible -i localhost, -c local all -m apt -a "update_cache=yes"
 
 RUN mkdir -p /ansible/playbooks
 WORKDIR /ansible/playbooks
