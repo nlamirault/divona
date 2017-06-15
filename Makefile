@@ -1,4 +1,4 @@
-# Copyright (C) 2013-2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2013-2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -73,3 +73,17 @@ iot: ## Internet Of Things
 mobile: ## Mobile
 	@echo -e "$(OK_COLOR)[$(APP)] Install mobile development environment$(NO_COLOR)"
 	@ansible-playbook -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
+
+.PHONY: docker-build
+docker-build: ## Build a Docker image
+	@echo -e "$(OK_COLOR)[$(APP)] Docker build $(image)$(NO_COLOR)"
+	docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) dockerfiles
+
+.PHONY: docker-run
+docker-run: ## Run Ansible using a Docker image
+	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
+	docker run --rm -it \
+		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
+		-v `pwd`/ansible:/ansible/playbooks \
+		divona-$(image) ansible-playbook -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"

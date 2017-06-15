@@ -13,8 +13,7 @@
     - ngrep
     - tree
     - bash-completion
-    - language-pack-fr
-    - git-core
+    - git
     - unzip
     - logrotate
     - rsyslog
@@ -39,8 +38,3 @@
 
 - name: Install motd
   copy: src=motd dest=/etc/ owner=root mode=0644
-
-#- name: Install apt sources.list
-#  copy: >
-#    src=files/sources.list dest=/etc/apt/
-#    owner=root mode=644

@@ -7,13 +7,12 @@
   apt: pkg={{ item }} state=present
   with_items:
     - xinit
-    - gdm
-    #- slim
+    - gdm3
 
 - name: Install web applications
   apt: pkg={{ item }} state=present
   with_items:
-    - chromium-browser
+    - chromium
     # - qutebrowser
 
 - name: Install multimedia applications
