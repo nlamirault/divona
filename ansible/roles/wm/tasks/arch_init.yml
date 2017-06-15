@@ -1,5 +1,5 @@
 - name: Install window manager
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - i3-wm
     - i3status
@@ -17,7 +17,7 @@
     - tint2
 
 - name: Install XFCE
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - xfce4
     # - xfce4-goodies

@@ -2,11 +2,13 @@
   pacman:
     name: emacs
     state: present
+    update_cache: yes
 
 - name: Install Neovim
   pacman:
     name: neovim
     state: present
+    update_cache: yes
 
 - name: Verify Atom executable
   stat: path=/usr/bin/atom

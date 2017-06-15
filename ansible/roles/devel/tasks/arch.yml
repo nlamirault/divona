@@ -1,5 +1,5 @@
 - name: Install Docker
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - docker
 
@@ -21,7 +21,7 @@
   user: name={{ user }} shell=/bin/bash groups=rkt append=yes
 
 - name: Install Virtualbox
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - virtualbox
     - virtualbox-host-modules-arch
@@ -29,4 +29,4 @@
     # - linux-headers
 
 - name: Install Vagrant
-  pacman: name=vagrant state=present
+  pacman: name=vagrant state=present update_cache=yes

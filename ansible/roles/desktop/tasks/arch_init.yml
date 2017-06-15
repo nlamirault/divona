@@ -4,26 +4,26 @@
 #
 
 - name: Install web applications
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - chromium
     # - qutebrowser
 
 - name: Install multimedia applications
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - gimp
     - inkscape
     - vlc
 
 - name: Install communications applications
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - irssi
     - vinagre
     - rdesktop
 
 - name: Install documentation applications
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - evince

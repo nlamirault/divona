@@ -9,6 +9,14 @@
 # - name: Arch refresh keys
 #   command: pacman-key --refresh-keys
 
+- name: Refresh database
+  shell: pacman -Fy
+
+- name: Upgrade system
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
 - name: Install Yaourt
   pacman: name=yaourt state=present update_cache=yes
 
@@ -40,11 +48,11 @@
    - ncdu
 
 - name: Install X
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
+    - libglvnd
     - xorg-server
     - xorg-xinit
-    - xorg-server-utils
     - slim
     - slim-themes
     - archlinux-themes-slim
@@ -68,7 +76,7 @@
 #     - { package: adapta-gtk-theme, creates: /usr/share/themes/Adapta}
 
 - name: Install Python tools
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - python-pip
     - python2-pip
@@ -78,15 +86,15 @@
     - python2-pycurl
 
 - name: Install Ruby
-  pacman: name={{ item }} state=present
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - ruby
 
-- name: Install cronie
-  pacman: name=cronie state=present
+# - name: Install cronie
+#   pacman: name=cronie state=present
 
-- name: Enable cronie service
-  service: name=cronie enabled=yes state=restarted
+# - name: Enable cronie service
+#   service: name=cronie enabled=yes state=restarted
 
 - name: Install ChangeLog
   copy: src=ChangeLog dest=/etc/ owner=root mode=0644
