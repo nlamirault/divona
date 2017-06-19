@@ -11,6 +11,8 @@
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
+- include: linux_editors.yml
+  when: ansible_os_family == 'Linux'
 - include: osx_editors.yml
   when: ansible_os_family == 'Darwin'
 - include: win_editors.yml

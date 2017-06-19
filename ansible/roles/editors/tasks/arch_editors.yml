@@ -10,15 +10,6 @@
     state: present
     update_cache: yes
 
-- name: Verify Atom executable
-  stat: path=/usr/bin/atom
-  register: atom_executable
-
-- name: Install Atom
-  command: 'yaourt -Sy --noconfirm atom-editor'
-  when: atom_executable.stat is not defined
-  become: false
-
 # - name: VIM directory
 #   action: file path=/home/{{ user }}/.vim state=directory
 

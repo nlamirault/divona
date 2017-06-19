@@ -8,6 +8,9 @@ node_version: "8.0.0"
 erlang_version: "19.3"
 swift_version: "3.0"
 
+# Editors
+vscode_build: "1.13.1-1497464373"
+
 # Cloud
 
 packer_version: "1.0.0"
