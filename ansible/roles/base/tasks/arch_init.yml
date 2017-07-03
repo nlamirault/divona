@@ -46,6 +46,7 @@
    - terminator
    - feh
    - ncdu
+   - ccze
 
 - name: Install X
   pacman: name={{ item }} state=present update_cache=yes
