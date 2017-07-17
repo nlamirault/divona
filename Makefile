@@ -77,7 +77,13 @@ mobile: ## Mobile
 .PHONY: docker-build
 docker-build: ## Build a Docker image
 	@echo -e "$(OK_COLOR)[$(APP)] Docker build $(image)$(NO_COLOR)"
-	docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) dockerfiles
+	@docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) dockerfiles
+
+.PHONY: docker-publish
+docker-publish: ## Publish the Divona image
+	@echo -e "$(OK_COLOR)[$(APP)] Docker publish $(image)$(NO_COLOR)"
+	@docker tag divona-$(image) nlamirault/divona:$(image)
+	@docker push nlamirault/divona:$(image)
 
 .PHONY: docker-run
 docker-run: ## Run Ansible using a Docker image
@@ -86,4 +92,4 @@ docker-run: ## Run Ansible using a Docker image
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v `pwd`/ansible:/ansible/playbooks \
-		divona-$(image) ansible-playbook -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"

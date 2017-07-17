@@ -85,6 +85,26 @@ Tools:
         $ make iot host=ansible/hosts/xxxx user=yyyy
 
 
+
+## Development
+
+It's possible to test the `Ansible` playbooks using `docker` or `vagrant`.
+
+### Docker
+
+Build the image :
+
+    $ make docker-build image=jessie (or arch, ...)
+
+Run the playbooks :
+
+    $ make docker-run image=jessie (or arch, ...)
+
+### Vagrant
+
+
+
+
 ## Changelog
 
 A changelog is available [here](ChangeLog.md).
