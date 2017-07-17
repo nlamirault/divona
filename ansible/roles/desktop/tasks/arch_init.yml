@@ -27,3 +27,8 @@
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - evince
+
+- name: Install awesome-terminal-fonts
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+      - awesome-terminal-fonts
