@@ -22,3 +22,8 @@
 
 # - name: Install X
 #   openbsd_pkg: pkg=xorg state=present
+
+- name: Install torrent tools
+  openbsd_pkg: name={{ item }} state=present
+  with_items:
+    - transmission-gtk

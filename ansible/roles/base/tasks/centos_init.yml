@@ -25,3 +25,10 @@
     - xterm
     - terminus-fonts
     - lightdm
+
+- name: Install torrent tools
+  yum: name={{ item }} state=present
+  with_items:
+    - transmission-gtk
+    - rtorrent
+

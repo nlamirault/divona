@@ -102,6 +102,12 @@
 # - name: Enable cronie service
 #   service: name=cronie enabled=yes state=restarted
 
+- name: Install Torrent tools
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+    - transmission-gtk
+    - rtorrent
+
 - name: Install ChangeLog
   copy: src=ChangeLog dest=/etc/ owner=root mode=0644
 

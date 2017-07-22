@@ -33,6 +33,12 @@
     - pylint
     - python-pycurl
 
+- name: Install torrent tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - transmission-gtk
+    - rtorrent
+
 - name: Install ChangeLog
   copy: src=ChangeLog dest=/etc/ owner=root mode=0644
 
