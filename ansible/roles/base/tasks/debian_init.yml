@@ -6,8 +6,8 @@
 - name: Install defaults packages
   apt: pkg={{ item }} state=present update_cache=yes
   with_items:
-    - man-db
-    - apt-file
+#    - man-db
+#    - apt-file
     - wget
     - curl
     - ngrep
@@ -18,10 +18,10 @@
     - logrotate
     - rsyslog
     - tmux
-    - w3m
-    - mlocate
-    - genisoimage
-    - dnsutils
+#    - w3m
+#    - mlocate
+#    - genisoimage
+#    - dnsutils
     - terminator
     - ncdu
 
