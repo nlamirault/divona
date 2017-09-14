@@ -110,7 +110,14 @@ Run the playbooks :
 
 ### Vagrant
 
-
+- [Archlinux](vms/ArchLinux)
+- [Ubuntu](vms/Ubuntu)
+- [CentOS](vms/CentOS)
+- [FreeBSD](vms/FreeBSD)
+- [OpenBSD](vms/OpenBSD)
+- [NetBSD](vms/NetBSD)
+- [OSX](vms/OSX)
+- [Windows](vms/Windows)
 
 
 ## Changelog
