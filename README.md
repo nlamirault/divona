@@ -6,19 +6,27 @@ Master :
 Develop :
 * [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/develop)
 
-Automated installation using [Ansible](https://www.ansible.com/). Support Linux, OSX and Windows.
+Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
 
-## Requirements
+- [x] ArchLinux
+- [x] Debian based
+- [x] Centos
+- [x] OSX
+- [x] Windows.
+- [x] FreeBSD
+- [x] NetBSD
+- [x] OpenBSD
 
-* Python
-* Git
+## Tools
 
-Tools:
-- Archlinux: [pacman](https://wiki.archlinux.org/index.php/pacman))
+- Archlinux: [pacman](https://wiki.archlinux.org/index.php/pacman)
 - Debian : [apt](https://wiki.debian.org/Apt)
+- Centos: [yum](http://yum.baseurl.org/)
 - OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
 - Windows: [chocolatey](https://chocolatey.org)
 - FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
+- NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
+- OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
 
 
 ## Installation
