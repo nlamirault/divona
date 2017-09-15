@@ -15,11 +15,15 @@
     - chromium
     # - qutebrowser
 
-- name: Install multimedia applications
+- name: Install graphics applications
   apt: pkg={{ item }} state=present
   with_items:
     - gimp
     - inkscape
+
+- name: Install video applications
+  apt: pkg={{ item }} state=present
+  with_items:
     - vlc
 
 - name: Install communications applications

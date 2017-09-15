@@ -5,12 +5,16 @@
     - firefox
     # - qutebrowser
 
-- name: Install multimedia applications
+- name: Install graphics applications
   yum: name={{ item }} state=present
   with_items:
     - gimp
-    # - inkscape
-    # - vlc
+    - inkscape
+
+- name: Install video applications
+  yum: name={{ item }} state=present
+  with_items:
+    - vlc
 
 - name: Install communications applications
   yum: name={{ item }} state=present

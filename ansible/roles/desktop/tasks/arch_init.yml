@@ -14,6 +14,10 @@
   with_items:
     - gimp
     - inkscape
+
+- name: Install video applications
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
     - vlc
 
 - name: Install communications applications
@@ -31,4 +35,9 @@
 - name: Install awesome-terminal-fonts
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
-      - awesome-terminal-fonts
+    - awesome-terminal-fonts
+
+- name: Install Feed readers
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+    - newsbeuter
