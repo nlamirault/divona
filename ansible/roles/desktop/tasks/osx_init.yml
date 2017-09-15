@@ -12,7 +12,12 @@
   homebrew_cask: name={{ item }} state=present
   with_items:
     - gimp
+
+- name: Install video applications
+  homebrew_cask: name={{ item }} state=present
+  with_items:
     - vlc
+    - iina
 
 - name: Install communications applications
   homebrew_cask: name={{ item }} state=present
