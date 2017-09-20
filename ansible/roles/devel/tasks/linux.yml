@@ -15,11 +15,11 @@
   when: rust_archive.stat.exists == False
 
 - name: Verify Swift archive
-  stat: path=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz
+  stat: path=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz
   register: swift_archive
 
 - name: Download Swift
-  get_url: url=https://swift.org/builds/swift-{{ swift_version }}-release/ubuntu1510/swift-{{ swift_version }}-RELEASE/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz dest=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz mode=0440
+  get_url: url=https://swift.org/builds/swift-{{ swift_version }}-release/ubuntu1610/swift-{{ swift_version }}-RELEASE/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz dest=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz mode=0440
   when: swift_archive.stat.exists == False
 
 - name: Verify NodeJS archive
