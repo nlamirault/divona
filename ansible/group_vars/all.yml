@@ -3,7 +3,7 @@
 # Development languages
 
 go_version: "1.9"
-rust_version: "1.15.1"
+rust_version: "1.20.0"
 node_version: "8.0.0"
 erlang_version: "19.3"
 swift_version: "4.0"
