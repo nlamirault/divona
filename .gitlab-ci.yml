@@ -20,9 +20,6 @@ image: docker:git
 services:
   - docker:dind
 
-before_script:
-  - apt-get update -qq && apt-get install -y -qq build-essential
-
 variables:
   DOCKER_DRIVER: overlay
 
@@ -32,6 +29,7 @@ before_script:
 archlinux:
   stage: test
   script:
+    - apt-get update -qq && apt-get install -y -qq build-essential
     - make docker-build image=arch
     - make docker-run image=arch
   only:
