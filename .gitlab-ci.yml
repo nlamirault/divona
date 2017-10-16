@@ -14,6 +14,7 @@
 
 stages:
   - test
+  - deploy
 
 image: docker:git
 
@@ -26,8 +27,19 @@ variables:
 before_script:
   - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
 
-archlinux:
+
+test:ansible:
+  image: python:2.7
   stage: test
+  script:
+    - pip install ansible ansible-lint
+    - ansible --version
+    - ansible-lint ansible/divona.yml
+    - ansible-lint ansible/dev.yml
+    - ansible-lint ansible/iot.yml
+
+deploy:archlinux:
+  stage: deploy
   script:
     - apk add --update build-base bash
     - make docker-build image=arch
