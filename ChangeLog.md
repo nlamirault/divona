@@ -1,10 +1,18 @@
 # Divona ChangeLog
 
+## Version 2.0.0 (xx/xx/2017)
+
+- Refactoring default, dev, iot environments
+- Docker: test installation using Docker images
+- Add support for *NetBSD*
+- Add support for *CentOS*
+- `FIX`: FreeBSD installation
+
 ## Version 1.0.0 (07/13/2016)
 
-- Add support for Windows
-- Add support for OSX.
-- Add support for Arch Linux
+- Add support for *Windows*
+- Add support for *OSX*
+- Add support for *Arch Linux*
 - Remove dotfiles
 - Configure window managers for Linux
 - Remove Emacs setup
@@ -14,12 +22,12 @@
 
 - Add backup tools
 - Add Common Lisp setup
-- Update Emacs python, scheme, helm configurations
+- Update *Emacs*, *python*, *scheme*, ...
 
 ## Version 0.1.0 (12/09/2013)
 
 - Configure Git
-- Install desktop applications : chromium, evince, thunderbird, ...
+- Install some desktop applications
 - Add Emacs configuration
-- Add window manager (Openbox, I3)
-- Support for [Ubuntu](http://www.ubuntu.com)
+- Add window manager (*Openbox*, *i3*)
+- Support for *Ubuntu*

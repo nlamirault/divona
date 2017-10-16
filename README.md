@@ -1,10 +1,8 @@
 # Divona #
 
-Master :
-* [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/master.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/master)
+* Master: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/master/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/master)
 
-Develop :
-* [![Circle CI](https://circleci.com/gh/nlamirault/divona/tree/develop.svg?style=svg)](https://circleci.com/gh/nlamirault/divona/tree/develop)
+* Develop: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/develop/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/develop)
 
 Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
 
@@ -40,7 +38,7 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 * Install Ansible:
 
-        $ pip install ansible
+        $ pip install ansible==2.4.0.0
 
 ### OSX
 
@@ -51,7 +49,7 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 * Install Ansible:
 
-        $ pip install ansible
+        $ pip install ansible==2.4.0.0
 
 * Install homebrew:
 
@@ -76,6 +74,8 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
         iot                  : Internet Of Things
         ping                 : Check Ansible installation
 
+
+
 * Check Ansible is working :
 
         $ make ping host=ansible/hosts/xxxxx
@@ -92,7 +92,9 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
         $ make iot host=ansible/hosts/xxxx user=yyyy
 
+* You could increase verbosity with DEBUG environment variable :
 
+        $ DEBUG="-vvvv" make default host=ansible/hosts/xxxx user=yyyy
 
 ## Development
 
