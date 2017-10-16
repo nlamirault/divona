@@ -1,36 +1,43 @@
 ---
-- include: debian_init.yml
-  when: ansible_os_family == 'Debian'
+- import_tasks: debian_init.yml
+  when: ansible_distribution == 'Debian'
   become: true
   become_user: root
-- include: arch_init.yml
-  when: ansible_os_family == 'Archlinux'
+
+- import_tasks: arch_init.yml
+  when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
-- include: centos_init.yml
+
+- include_tasks: centos_init.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
-- include: freebsd_init.yml
-  when: ansible_os_family == 'FreeBSD'
-  become: true
-  become_user: root
-- include: netbsd_init.yml
-  when: ansible_os_family == 'NetBSD'
-  become: true
-  become_user: root
-- include: openbsd_init.yml
-  when: ansible_os_family == 'OpenBSD'
-  become: true
-  become_user: root
-- include: osx_init.yml
-  when: ansible_os_family == 'Darwin'
-- include: win_init.yml
-  when: ansible_os_family == 'Windows'
 
-- include: unix.yml
-  when: (ansible_os_family == 'Debian' or
-         ansible_os_family == 'Archlinux' or
+- include_tasks: freebsd_init.yml
+  when: ansible_distribution == 'FreeBSD'
+  become: true
+  become_user: root
+
+- include_tasks: netbsd_init.yml
+  when: ansible_distribution == 'NetBSD'
+  become: true
+  become_user: root
+
+- include_tasks: openbsd_init.yml
+  when: ansible_distribution == 'OpenBSD'
+  become: true
+  become_user: root
+
+- include_tasks: osx_init.yml
+  when: ansible_distribution == 'Darwin'
+
+- include_tasks: win_init.yml
+  when: ansible_distribution == 'Windows'
+
+- include_tasks: unix.yml
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'CentOS' or
-         ansible_os_family == 'FreeBSD' or
-         ansible_os_family == 'NetBSD')
+         ansible_distribution == 'FreeBSD' or
+         ansible_distribution == 'NetBSD')

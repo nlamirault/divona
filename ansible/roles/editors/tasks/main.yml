@@ -1,29 +1,29 @@
 ---
-- include: debian_editors.yml
-  when: ansible_os_family == 'Debian'
+- include_tasks: debian_editors.yml
+  when: ansible_distribution == 'Debian'
   become: true
   become_user: root
-- include: arch_editors.yml
-  when: ansible_os_family == 'Archlinux'
+- include_tasks: arch_editors.yml
+  when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
-- include: centos_editors.yml
+- include_tasks: centos_editors.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
-- include: linux_editors.yml
-  when: ansible_os_family == 'Linux'
-- include: osx_editors.yml
-  when: ansible_os_family == 'Darwin'
-- include: win_editors.yml
-  when: ansible_os_family == 'Windows'
+- include_tasks: linux_editors.yml
+  when: ansible_distribution == 'Linux'
+- include_tasks: osx_editors.yml
+  when: ansible_distribution == 'Darwin'
+- include_tasks: win_editors.yml
+  when: ansible_distribution == 'Windows'
   become: true
   become_user: root
-- include: freebsd.yml
-  when: ansible_os_family == 'FreeBSD'
+- include_tasks: freebsd.yml
+  when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
-- include: netbsd.yml
-  when: ansible_os_family == 'NetBSD'
+- include_tasks: netbsd.yml
+  when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root

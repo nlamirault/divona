@@ -1,19 +1,19 @@
 ---
-- include: finish.yml
-  when: (ansible_os_family == 'Debian' or
-         ansible_os_family == 'Archlinux')
+- include_tasks: finish.yml
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Arch Linux')
 
-- include: finish_freebsd.yml
-  when: ansible_os_family == 'FreeBSD'
+- include_tasks: finish_freebsd.yml
+  when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
 
-- include: netbsd.yml
-  when: ansible_os_family == 'NetBSD'
+- include_tasks: netbsd.yml
+  when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root
 
-- include: finish_osx.yml
-  when: ansible_os_family == 'Darwin'
+- include_tasks: finish_osx.yml
+  when: ansible_distribution == 'Darwin'
   become: true
   become_user: root
