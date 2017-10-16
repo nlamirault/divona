@@ -14,7 +14,8 @@
 
 stages:
   - test
-  - deploy
+  - archlinux
+  - debian
 
 services:
   - docker:dind
@@ -30,50 +31,46 @@ test:ansible:
     - ansible --version
     - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
 
-deploy:archlinux:
-  stage: deploy
+archlinux:build:
+  stage: archlinux
   image: docker:git
   script:
-    - apk add --update build-base bash
+    # - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - make docker-build image=arch
-    - make docker-run image=arch
+    - docker build -t "$CI_REGISTRY_IMAGE_archlinux:latest" -f dockerfiles/Dockerfile.archlinux dockerfiles
+    - docker push "$CI_REGISTRY_IMAGE_archlinux:latest"
   only:
     - master
     - develop
 
-deploy:debian:
-  stage: deploy
+archlinux:test:
+  stage: archlinux
   image: docker:git
   script:
-    - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - make docker-build image=debian
-    - make docker-run image=debian
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE_archlinux:latest" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
   only:
     - master
     - develop
 
-deploy:centos:
-  stage: deploy
+debian:build:
+  stage: debian
   image: docker:git
   script:
-    - apk add --update build-base bash
+    # - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - make docker-build image=centos
-    - make docker-run image=centos
+    - docker build -t "$CI_REGISTRY_IMAGE_debian:latest" -f dockerfiles/Dockerfile.debian dockerfiles
+    - docker push "$CI_REGISTRY_IMAGE_debian:latest"
   only:
     - master
     - develop
 
-deploy:ubuntu:
-  stage: deploy
+debian:test:
+  stage: debian
   image: docker:git
   script:
-    - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - make docker-build image=ubuntu
-    - make docker-run image=ubuntu
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE_debian:latest" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
   only:
     - master
     - develop

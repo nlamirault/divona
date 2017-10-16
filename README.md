@@ -104,22 +104,22 @@ It's possible to test the `Ansible` playbooks using `docker` or `vagrant`.
 
 Build the image :
 
-    $ make docker-build image=jessie (or arch, ...)
+    $ make docker-build image=debian (or arch, ...)
 
 Run the playbooks :
 
-    $ make docker-run image=jessie (or arch, ...)
+    $ make docker-run image=debian (or arch, ...)
 
 ### Vagrant
 
-- [Archlinux](vms/ArchLinux)
-- [Ubuntu](vms/Ubuntu)
-- [CentOS](vms/CentOS)
-- [FreeBSD](vms/FreeBSD)
-- [OpenBSD](vms/OpenBSD)
-- [NetBSD](vms/NetBSD)
-- [OSX](vms/OSX)
-- [Windows](vms/Windows)
+* [Archlinux](vms/ArchLinux)
+* [Ubuntu](vms/Ubuntu)
+* [CentOS](vms/CentOS)
+* [FreeBSD](vms/FreeBSD)
+* [OpenBSD](vms/OpenBSD)
+* [NetBSD](vms/NetBSD)
+* [OSX](vms/OSX)
+* [Windows](vms/Windows)
 
 
 ## Changelog
