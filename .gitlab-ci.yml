@@ -41,3 +41,39 @@ deploy:archlinux:
   only:
     - master
     - develop
+
+deploy:debian:
+  stage: deploy
+  image: docker:git
+  script:
+    - apk add --update build-base bash
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - make docker-build image=debian
+    - make docker-run image=debian
+  only:
+    - master
+    - develop
+
+deploy:centos:
+  stage: deploy
+  image: docker:git
+  script:
+    - apk add --update build-base bash
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - make docker-build image=centos
+    - make docker-run image=centos
+  only:
+    - master
+    - develop
+
+deploy:ubuntu:
+  stage: deploy
+  image: docker:git
+  script:
+    - apk add --update build-base bash
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - make docker-build image=ubuntu
+    - make docker-run image=ubuntu
+  only:
+    - master
+    - develop
