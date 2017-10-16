@@ -15,6 +15,8 @@
 APP = divona
 VERSION = 1.1.0
 
+DEBUG ?=
+
 SHELL = /bin/bash
 
 DIR = $(shell pwd)
@@ -57,22 +59,22 @@ lint: ## Check ansible style
 .PHONY: default
 default: ## Default environment
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/divona.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/divona.yml --extra-vars="user=$(user)"
 
 .PHONY: dev
 dev: ## Development environment
 	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
-	@ansible-playbook -vvvv -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
 
 .PHONY: iot
 iot: ## Internet Of Things
 	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
 
 .PHONY: mobile
 mobile: ## Mobile
 	@echo -e "$(OK_COLOR)[$(APP)] Install mobile development environment$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
 
 .PHONY: docker-build
 docker-build: ## Build a Docker image
@@ -88,7 +90,7 @@ docker-publish: ## Publish the Divona image
 .PHONY: docker-run
 docker-run: ## Run Ansible using a Docker image
 	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
-	docker run --rm -it \
+	docker run --rm -i \
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v `pwd`/ansible:/ansible/playbooks \
