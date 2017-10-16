@@ -23,7 +23,7 @@ services:
 variables:
   DOCKER_DRIVER: overlay
 
-test:ansible:
+ansible:lint:
   stage: test
   image: python:2.7
   script:
@@ -49,6 +49,8 @@ archlinux:test:
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
     - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+  dependencies:
+    - archlinux:build
   only:
     - master
     - develop
@@ -71,6 +73,8 @@ debian:test:
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
     - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+  dependencies:
+    - debian:build
   only:
     - master
     - develop
