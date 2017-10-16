@@ -15,6 +15,7 @@
     - thunar-volman
     - thunar-archive-plugin
     - tint2
+    - xautolock
 
 - name: Install XFCE
   pacman: name={{ item }} state=present update_cache=yes
