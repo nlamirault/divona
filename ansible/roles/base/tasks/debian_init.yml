@@ -28,7 +28,6 @@
 - name: Install Python tools
   apt: pkg={{ item }} state=present
   with_items:
-    - python-software-properties
     - python-pip
     - pylint
     - python-pycurl
