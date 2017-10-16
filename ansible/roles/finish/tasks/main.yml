@@ -1,19 +1,23 @@
 ---
-- include_tasks: finish.yml
+- name: Finish for Debian or ArchLinux
+  include_tasks: finish.yml
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Arch Linux')
 
-- include_tasks: finish_freebsd.yml
+- name: Finish for OSX
+  include_tasks: finish_osx.yml
+  when: ansible_distribution == 'Darwin'
+  become: true
+  become_user: root
+
+- name: Finish for FreeBSD
+  include_tasks: finish_freebsd.yml
   when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
 
-- include_tasks: netbsd.yml
+- name: Finish for NetBSD
+  include_tasks: netbsd.yml
   when: ansible_distribution == 'NetBSD'
-  become: true
-  become_user: root
-
-- include_tasks: finish_osx.yml
-  when: ansible_distribution == 'Darwin'
   become: true
   become_user: root

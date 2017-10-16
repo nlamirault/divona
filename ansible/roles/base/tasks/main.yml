@@ -1,41 +1,50 @@
 ---
-- import_tasks: debian_init.yml
+- name: Base for Debian
+  import_tasks: debian_init.yml
   when: ansible_distribution == 'Debian'
   become: true
   become_user: root
 
-- import_tasks: arch_init.yml
+- name: Base for Arch Linux
+  import_tasks: arch_init.yml
   when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
 
-- include_tasks: centos_init.yml
+- name: Base for CentOS
+  include_tasks: centos_init.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
 
-- include_tasks: freebsd_init.yml
+- name: Base for FreeBSD
+  include_tasks: freebsd_init.yml
   when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
 
-- include_tasks: netbsd_init.yml
+- name: Base for NetBSD
+  include_tasks: netbsd_init.yml
   when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root
 
-- include_tasks: openbsd_init.yml
+- name: Base for OpenBSD
+  include_tasks: openbsd_init.yml
   when: ansible_distribution == 'OpenBSD'
   become: true
   become_user: root
 
-- include_tasks: osx_init.yml
+- name: Base for Darwin
+  include_tasks: osx_init.yml
   when: ansible_distribution == 'Darwin'
 
-- include_tasks: win_init.yml
+- name: Base for Windows
+  include_tasks: win_init.yml
   when: ansible_distribution == 'Windows'
 
-- include_tasks: unix.yml
+- name: Base for Unix
+  include_tasks: unix.yml
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'CentOS' or

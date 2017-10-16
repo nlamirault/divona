@@ -1,29 +1,44 @@
 ---
-- include_tasks: debian_editors.yml
+- name: Editors for Debian
+  include_tasks: debian_editors.yml
   when: ansible_distribution == 'Debian'
   become: true
   become_user: root
-- include_tasks: arch_editors.yml
+
+- name: Editors for Arch Linux
+  include_tasks: arch_editors.yml
   when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
-- include_tasks: centos_editors.yml
+
+- name: Editors for CentOS
+  include_tasks: centos_editors.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
-- include_tasks: linux_editors.yml
+
+- name: Editors for Linux
+  include_tasks: linux_editors.yml
   when: ansible_distribution == 'Linux'
-- include_tasks: osx_editors.yml
+
+- name: Editors for OSX
+  include_tasks: osx_editors.yml
   when: ansible_distribution == 'Darwin'
-- include_tasks: win_editors.yml
+
+- name: Editors for Windows
+  include_tasks: win_editors.yml
   when: ansible_distribution == 'Windows'
   become: true
   become_user: root
-- include_tasks: freebsd.yml
+
+- name: Editors for FreeBSD
+  include_tasks: freebsd.yml
   when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
-- include_tasks: netbsd.yml
+
+- name: Editors for NetBSD
+  include_tasks: netbsd.yml
   when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root

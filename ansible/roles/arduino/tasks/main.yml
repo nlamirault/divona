@@ -1,8 +1,11 @@
 ---
-- include_tasks: linux.yml
+- name: Arduino for Debian or Archlinux
+  include_tasks: linux.yml
   when: (ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'Debian')
-- include_tasks: osx.yml
+- name: Arduino for OSX
+  include_tasks: osx.yml
   when: ansible_distribution == 'Darwin'
-- include_tasks: win.yml
+- name: Arduino for Windows
+  include_tasks: win.yml
   when: ansible_distribution == 'Windows'
