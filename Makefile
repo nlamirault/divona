@@ -52,7 +52,7 @@ ping: ## Check Ansible installation
 .PHONY: lint
 lint: ## Check ansible style
 	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
-	@ansible-lint ansible/*.yml
+	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
 
 .PHONY: default
 default: ## Default environment

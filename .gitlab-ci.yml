@@ -28,7 +28,7 @@ test:ansible:
   script:
     - pip install ansible ansible-lint
     - ansible --version
-    - ansible-lint ansible/*.yml
+    - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
 
 deploy:archlinux:
   stage: deploy
