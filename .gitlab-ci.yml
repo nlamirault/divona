@@ -29,7 +29,7 @@ before_script:
 archlinux:
   stage: test
   script:
-    - apt-get update -qq && apt-get install -y -qq build-essential
+    - apk add --update build-base
     - make docker-build image=arch
     - make docker-run image=arch
   # only:
