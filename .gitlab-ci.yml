@@ -32,6 +32,6 @@ archlinux:
     - apt-get update -qq && apt-get install -y -qq build-essential
     - make docker-build image=arch
     - make docker-run image=arch
-  only:
-    - master
-    - develop
+  # only:
+  #   - master
+  #   - develop
