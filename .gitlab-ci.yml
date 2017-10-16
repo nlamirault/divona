@@ -13,9 +13,9 @@
 # limitations under the License.
 
 stages:
+  - check
+  - build
   - test
-  - archlinux
-  - debian
 
 services:
   - docker:dind
@@ -23,19 +23,18 @@ services:
 variables:
   DOCKER_DRIVER: overlay
 
-ansible:lint:
-  stage: test
+check:ansible:
+  stage: check
   image: python:2.7
   script:
     - pip install ansible ansible-lint
     - ansible --version
     - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
 
-archlinux:build:
-  stage: archlinux
+build:archlinux:
+  stage: build
   image: docker:git
   script:
-    # - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
     - docker build -t "$CI_REGISTRY_IMAGE:archlinux" -f dockerfiles/Dockerfile.archlinux dockerfiles
     - docker push "$CI_REGISTRY_IMAGE:archlinux"
@@ -43,20 +42,8 @@ archlinux:build:
     - master
     - develop
 
-archlinux:test:
-  stage: archlinux
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  dependencies:
-    - archlinux:build
-  only:
-    - master
-    - develop
-
-debian:build:
-  stage: debian
+build:debian:
+  stage: build
   image: docker:git
   script:
     # - apk add --update build-base bash
@@ -67,11 +54,23 @@ debian:build:
     - master
     - develop
 
+test:archlinux:
+  stage: test
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop
+
 debian:test:
   stage: debian
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:debian"
     - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
   dependencies:
     - debian:build
