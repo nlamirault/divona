@@ -28,9 +28,9 @@ test:ansible:
   script:
     - pip install ansible ansible-lint
     - ansible --version
-    - ansible-lint ansible/divona.yml
-    - ansible-lint ansible/dev.yml
-    - ansible-lint ansible/iot.yml
+    # - ansible-lint ansible/divona.yml
+    # - ansible-lint ansible/dev.yml
+    # - ansible-lint ansible/iot.yml
 
 deploy:archlinux:
   stage: deploy
