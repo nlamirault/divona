@@ -14,24 +14,28 @@
 
 stages:
   - test
-
-image: docker:git
+  - deploy
 
 services:
   - docker:dind
 
-before_script:
-  - apt-get update -qq && apt-get install -y -qq build-essential
-
 variables:
   DOCKER_DRIVER: overlay
 
-before_script:
-  - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-
-archlinux:
+test:ansible:
   stage: test
+  image: python:2.7
   script:
+    - pip install ansible ansible-lint
+    - ansible --version
+    - ansible-lint ansible/*.yml
+
+deploy:archlinux:
+  stage: deploy
+  image: docker:git
+  script:
+    - apk add --update build-base bash
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
     - make docker-build image=arch
     - make docker-run image=arch
   only:

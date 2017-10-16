@@ -1,8 +1,13 @@
 ---
-- include_tasks: linux.yml
+- name: Mobile for Debian or Arch Linux
+  include_tasks: linux.yml
   when: (ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'Debian')
-- include_tasks: osx.yml
+
+- name: Mobile for OSX
+  include_tasks: osx.yml
   when: ansible_distribution == 'Darwin'
-- include_tasks: win.yml
+
+- name: Mobile for Windows
+  include_tasks: win.yml
   when: ansible_distribution == 'Windows'
