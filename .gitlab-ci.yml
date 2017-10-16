@@ -29,7 +29,7 @@ before_script:
 archlinux:
   stage: test
   script:
-    - apk add --update build-base
+    - apk add --update build-base bash
     - make docker-build image=arch
     - make docker-run image=arch
   # only:
