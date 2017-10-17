@@ -15,6 +15,8 @@
 APP = divona
 VERSION = 1.1.0
 
+ANSIBLE_VERSION = 2.4.0.0
+
 DEBUG ?=
 
 SHELL = /bin/bash
@@ -54,30 +56,30 @@ lint: ## Check ansible style
 	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
 	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
 
-.PHONY: default
-default: ## Default environment
+.PHONY: apply
+apply: ## Which type to apply
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/divona.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) $(which) --extra-vars="user=$(user)"
 
-.PHONY: dev
-dev: ## Development environment
-	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
+# .PHONY: dev
+# dev: ## Development environment
+# 	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
+# 	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
 
-.PHONY: iot
-iot: ## Internet Of Things
-	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
+# .PHONY: iot
+# iot: ## Internet Of Things
+# 	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
+# 	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
 
-.PHONY: mobile
-mobile: ## Mobile
-	@echo -e "$(OK_COLOR)[$(APP)] Install mobile development environment$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
+# .PHONY: mobile
+# mobile: ## Mobile
+# 	@echo -e "$(OK_COLOR)[$(APP)] Install mobile development environment$(NO_COLOR)"
+# 	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/mobile.yml --extra-vars="user=$(user)"
 
 .PHONY: docker-build
 docker-build: ## Build a Docker image
 	@echo -e "$(OK_COLOR)[$(APP)] Docker build $(image)$(NO_COLOR)"
-	@docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) dockerfiles
+	@docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) --build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) dockerfiles
 
 .PHONY: docker-publish
 docker-publish: ## Publish the Divona image
@@ -88,8 +90,8 @@ docker-publish: ## Publish the Divona image
 .PHONY: docker-run
 docker-run: ## Run Ansible using a Docker image
 	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
-	@docker run --rm -i \
+	docker run --rm -i \
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
-		-v `pwd`/ansible:/ansible/playbooks \
+		-v $$(pwd)/ansible:/ansible/playbooks \
 		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
