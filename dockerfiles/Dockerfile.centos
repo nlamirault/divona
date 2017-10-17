@@ -13,7 +13,14 @@
 # limitations under the License.
 
 FROM centos:7
-MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+LABEL summary="Divona - Centos" \
+      description="CentOS 7 image with Ansible installed" \
+      name="divona/centos" \
+      url="https://github.com/nlamirault/divona" \
+      maintainer="Nicolas Lamirault <nicolas.lamirault@gmail.com>"
+
+ARG ANSIBLE_VERSION
 
 RUN yum -y update \
     && yum -y --enablerepo=extras install epel-release \
@@ -21,7 +28,7 @@ RUN yum -y update \
 
 RUN pip install --upgrade pip \
     && pip install cffi --upgrade \
-    && pip install ansible
+    && pip install ansible==$ANSIBLE_VERSION
 
 RUN mkdir -p /ansible/playbooks
 WORKDIR /ansible/playbooks

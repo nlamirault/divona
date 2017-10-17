@@ -13,7 +13,14 @@
 # limitations under the License.
 
 FROM debian:stretch
-MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+LABEL summary="Divona - Debian" \
+      description="Debian Stretch image with Ansible installed" \
+      name="divona/stretch" \
+      url="https://github.com/nlamirault/divona" \
+      maintainer="Nicolas Lamirault <nicolas.lamirault@gmail.com>"
+
+ARG ANSIBLE_VERSION
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -22,8 +29,7 @@ RUN apt-get update \
 
 RUN pip install --upgrade pip \
     && pip install cffi --upgrade \
-    && pip install ansible
-# RUN ansible -i localhost, -c local all -m apt -a "update_cache=yes"
+    && pip install ansible==$ANSIBLE_VERSION
 
 RUN mkdir -p /ansible/playbooks
 WORKDIR /ansible/playbooks
