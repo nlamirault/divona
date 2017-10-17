@@ -108,7 +108,7 @@ Build the image :
 
 Run the playbooks :
 
-    $ make docker-run image=debian (or arch, ...)
+    $ make docker-run playbook=divona.yml image=debian (or arch, ...)
 
 ### Vagrant
 

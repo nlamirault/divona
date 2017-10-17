@@ -92,4 +92,4 @@ docker-run: ## Run Ansible using a Docker image
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v `pwd`/ansible:/ansible/playbooks \
-		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
