@@ -88,7 +88,7 @@ docker-publish: ## Publish the Divona image
 .PHONY: docker-run
 docker-run: ## Run Ansible using a Docker image
 	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
-	docker run --rm -i \
+	@docker run --rm -i \
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v `pwd`/ansible:/ansible/playbooks \
