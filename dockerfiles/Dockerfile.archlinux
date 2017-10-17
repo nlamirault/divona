@@ -24,7 +24,7 @@ ARG ANSIBLE_VERSION
 
 RUN pacman -Fy
 RUN pacman -Syu --noconfirm \
-    archlinux-keyring
+    archlinux-keyring \
     gcc \
     awk \
     python \
