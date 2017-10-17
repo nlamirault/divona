@@ -5,9 +5,9 @@
   become: true
   become_user: root
 
-- name: Editors for Arch Linux
+- name: Editors for Archlinux
   include_tasks: arch_editors.yml
-  when: ansible_distribution == 'Arch Linux'
+  when: ansible_distribution == 'Archlinux'
   become: true
   become_user: root
 

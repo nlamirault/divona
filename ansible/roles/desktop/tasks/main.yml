@@ -5,9 +5,9 @@
   become: true
   become_user: root
 
-- name: Desktop for Arch Linux
+- name: Desktop for Archlinux
   include_tasks: arch_init.yml
-  when: ansible_distribution == 'Arch Linux'
+  when: ansible_distribution == 'Archlinux'
   become: true
   become_user: root
 

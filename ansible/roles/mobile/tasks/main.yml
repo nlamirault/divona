@@ -1,7 +1,7 @@
 ---
-- name: Mobile for Debian or Arch Linux
+- name: Mobile for Debian or Archlinux
   include_tasks: linux.yml
-  when: (ansible_distribution == 'Arch Linux' or
+  when: (ansible_distribution == 'Archlinux' or
          ansible_distribution == 'Debian')
 
 - name: Mobile for OSX
