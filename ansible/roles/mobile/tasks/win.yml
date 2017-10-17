@@ -1,3 +1,6 @@
+- name: Create Applications directory
+  file: path=C:\Apps state=directory mode=0755
+
 - name: Verify Android Studio
   stat: path=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-windows.exe
   register: android_studio_archive
