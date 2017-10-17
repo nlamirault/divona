@@ -16,6 +16,7 @@ vscode_build: "1.13.1-1497464373"
 packer_version: "1.0.0"
 terraform_version: "0.9.6"
 vagrant_version: "2.0.0"
+rkt_version: "1.29.0"
 
 # IOT
 

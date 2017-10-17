@@ -1,4 +1,10 @@
 ---
+- name: Development base for Linux
+  include_tasks: linux.yml
+  when: (ansible_distribution == 'Arch Linux' or
+         ansible_distribution == 'Debian' or
+         ansible_distribution == 'CentOS')
+
 - name: Development for Debian
   include_tasks: debian.yml
   become: true
@@ -21,12 +27,6 @@
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
-
-- name: Development for Linux
-  include_tasks: linux.yml
-  when: (ansible_distribution == 'Arch Linux' or
-         ansible_distribution == 'Debian' or
-         ansible_distribution == 'CentOS')
 
 - name: Development for OSX
   include_tasks: osx.yml
