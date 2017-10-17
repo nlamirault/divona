@@ -57,7 +57,7 @@ build:debian:
     - develop
 
 default:archlinux:
-  stage: test
+  stage: default
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -68,7 +68,7 @@ default:archlinux:
     - develop
 
 default:debian:
-  stage: test
+  stage: default
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -79,7 +79,7 @@ default:debian:
     - develop
 
 dev:archlinux:
-  stage: test
+  stage: dev
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -90,7 +90,7 @@ dev:archlinux:
     - develop
 
 dev:debian:
-  stage: test
+  stage: dev
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -101,7 +101,7 @@ dev:debian:
     - develop
 
 iot:archlinux:
-  stage: test
+  stage: iot
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
@@ -112,7 +112,7 @@ iot:archlinux:
     - develop
 
 iot:debian:
-  stage: test
+  stage: iot
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
