@@ -26,6 +26,7 @@ services:
 
 variables:
   DOCKER_DRIVER: overlay
+  ANSIBLE_VERSION: 2.4.0.0
 
 check:ansible:
   stage: check
@@ -40,7 +41,7 @@ build:archlinux:
   image: docker:git
   script:
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:archlinux" -f dockerfiles/Dockerfile.archlinux dockerfiles
+    - docker build -t "$CI_REGISTRY_IMAGE:archlinux" -f dockerfiles/Dockerfile.archlinux --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
     - docker push "$CI_REGISTRY_IMAGE:archlinux"
   only:
     - master
@@ -52,7 +53,7 @@ build:debian:
   script:
     # - apk add --update build-base bash
     - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:debian" -f dockerfiles/Dockerfile.debian dockerfiles
+    - docker build -t "$CI_REGISTRY_IMAGE:debian" -f dockerfiles/Dockerfile.debian --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
     - docker push "$CI_REGISTRY_IMAGE:debian"
   only:
     - master
@@ -145,7 +146,6 @@ iot:debian:
   only:
     - master
     - develop
-
 
 mobile:archlinux:
   stage: mobile
