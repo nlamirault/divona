@@ -14,8 +14,8 @@
 
 stages:
   - check
-  - debug
   - build
+  - debug
   - default
   - dev
   - iot
