@@ -67,6 +67,7 @@ build:centos:
     - docker push "$CI_REGISTRY_IMAGE:centos"
   only:
     - master
+    - develop
 
 debug:archlinux:
   stage: debug
