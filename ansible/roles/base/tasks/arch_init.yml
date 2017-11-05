@@ -9,8 +9,8 @@
 # - name: Arch refresh keys
 #   command: pacman-key --refresh-keys
 
-- name: Refresh database
-  shell: pacman -Fy
+#- name: Refresh database
+#  shell: pacman -Fy
 
 # - name: Upgrade system
 #   pacman:
