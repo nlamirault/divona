@@ -74,12 +74,16 @@
 #   command: 'yaourt -Sy --noconfirm lxdm-themes'
 
 - name: Install themes
-  command: "pacaur -S {{item.package}}" # creates={{item.creates}}"
+  # command: "pacaur -S {{item.package}}" # creates={{item.creates}}"
+  # with_items:
+  #   # - { package: vertex-themesvertex-themes} #, creates: /usr/share/themes/Vertex }
+  #   # - { package: adapta-gtk-theme} #, creates: /usr/share/themes/Adapta}
+  #   - { package: gtk-theme-arc-git} #, creates: /usr/share/themes/
+  # become: false
+  pacman: name={{ item }} state=present update_cache=yes
   with_items:
-    # - { package: vertex-themesvertex-themes} #, creates: /usr/share/themes/Vertex }
-    # - { package: adapta-gtk-theme} #, creates: /usr/share/themes/Adapta}
-    - { package: gtk-theme-arc-git} #, creates: /usr/share/themes/
-  become: false
+    - arc-gtk-theme
+    - adapta-gtk-theme
 
 - name: Install Python tools
   pacman: name={{ item }} state=present update_cache=yes
