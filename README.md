@@ -31,34 +31,31 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 ### Linux
 
-* Clone repository and install Pip:
+* Clone repository and install `pip`:
 
         $ git clone https://github.com/nlamirault/divona.git
         $ python get-pip.py
 
-* Install Ansible:
+* Install `ansible`:
 
-        $ pip install ansible==2.4.0.0
+        $ sudo pip install ansible==2.4.0.0
+        $ sudo pip install ansible-lint==3.4.17
 
 ### OSX
 
-* Clone repository and install Pip:
+* Clone repository and install `pip`:
 
         $ git clone https://github.com/nlamirault/divona.git
         $ python get-pip.py
 
-* Install Ansible:
+* Install `ansible`:
 
-        $ pip install ansible==2.4.0.0
+        $ sudo pip install ansible==2.4.0.0
+        $ sudo pip install ansible-lint==3.4.17
 
-* Install homebrew:
+* Install `homebrew`:
 
         $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-
-### Windows
-
-    UNKNOWN
 
 
 ## Usage
@@ -66,39 +63,31 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 * Help:
 
         $ make
-        ==== divona [1.0.0] ====
+        ==== divona [1.1.0] ====
+        apply                : Which type to apply
         clean                : Cleanup
-        default              : Default environment
-        dev                  : Development environment
+        docker-build         : Build a Docker image
+        docker-publish       : Publish the Divona image
+        docker-run           : Run Ansible using a Docker image
         init                 : Install requirements
-        iot                  : Internet Of Things
+        lint                 : Check ansible style
         ping                 : Check Ansible installation
 
-
-
-* Check Ansible is working :
+* Check ansible is working :
 
         $ make ping host=ansible/hosts/xxxxx
 
-* Configure the default environment:
+* Apply a configuration using **which**, **host** and **user** :
 
-        $ make default host=ansible/hosts/xxxx user=yyyy
+        $ make apply which=ansible/divona.yml host=ansible/hosts/xxxx user=yyyy
 
-* Configure the development environment:
-
-        $ make dev host=ansible/hosts/xxxx user=yyyy
-
-* Configure the Internet of Things environment:
-
-        $ make iot host=ansible/hosts/xxxx user=yyyy
-
-* You could increase verbosity with DEBUG environment variable :
+* You could increase verbosity with `DEBUG` environment variable :
 
         $ DEBUG="-vvvv" make default host=ansible/hosts/xxxx user=yyyy
 
 ## Development
 
-It's possible to test the `Ansible` playbooks using `docker` or `vagrant`.
+It's possible to test the `ansible` playbooks using `docker` or `vagrant`.
 
 ### Docker
 
