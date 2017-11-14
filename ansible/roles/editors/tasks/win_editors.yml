@@ -4,5 +4,5 @@
 - name: Install Visual Studio Code
   win_chocolatey: name=visualstudiocode state=present
 
-- name: Install Vim
-  win_chocolatey: name=vim state=present
+- name: Install Neovim
+  win_chocolatey: name=neovim state=present
