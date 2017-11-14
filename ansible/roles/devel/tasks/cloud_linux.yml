@@ -1,9 +1,3 @@
-- name: User in Docker group
-  user: name={{ user }} groups=docker append=yes
-
-- name: Docker service enable
-  service: name=docker state=started enabled=yes use=service
-
 - name: Verify Packer archive
   stat: path=/home/{{ user }}/Apps/packer_{{ packer_version }}_linux_amd64.zip
   register: packer_archive
