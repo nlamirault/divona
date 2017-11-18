@@ -6,7 +6,7 @@
 
 - name: Finish for OSX
   include_tasks: finish_osx.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
   become: true
   become_user: root
 

@@ -6,7 +6,7 @@
 
 - name: Mobile for OSX
   include_tasks: osx.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 
 - name: Mobile for Windows
   include_tasks: win.yml

@@ -23,7 +23,7 @@
 
 - name: Editors for OSX
   include_tasks: osx_editors.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 
 - name: Editors for Windows
   include_tasks: win_editors.yml

@@ -35,9 +35,9 @@
   become: true
   become_user: root
 
-- name: Base for Darwin
+- name: Base for MacOSX
   include_tasks: osx_init.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 
 - name: Base for Windows
   include_tasks: win_init.yml

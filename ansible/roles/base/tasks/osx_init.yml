@@ -7,7 +7,8 @@
   homebrew: name={{ item }} state=present
   with_items:
     - git
-    - gnupg
+    - gpg2
+    - pinentry
     - tmux
     - vim
     - wget

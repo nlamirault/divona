@@ -35,4 +35,4 @@
 #   become_user: root
 
 #- include_tasks: osx_init.yml
-#  when: ansible_distribution == 'Darwin'
+#  when: ansible_distribution == 'MacOSX'

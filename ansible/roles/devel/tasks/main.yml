@@ -30,7 +30,7 @@
 
 - name: Development for OSX
   include_tasks: osx.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 
 - name: Development for Windows
   include_tasks: win.yml
@@ -44,9 +44,9 @@
   become: true
   become_user: root
 
-- name: Cloud for Darwin
+- name: Cloud for MacOSX
   include_tasks: cloud_osx.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 
 - name: Cloud for Windows
   include_tasks: cloud_win.yml

@@ -5,7 +5,7 @@
          ansible_distribution == 'Debian')
 - name: Arduino for OSX
   include_tasks: osx.yml
-  when: ansible_distribution == 'Darwin'
+  when: ansible_distribution == 'MacOSX'
 - name: Arduino for Windows
   include_tasks: win.yml
   when: ansible_distribution == 'Windows'
