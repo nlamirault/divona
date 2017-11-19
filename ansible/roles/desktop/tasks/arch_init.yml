@@ -37,11 +37,6 @@
   with_items:
     - awesome-terminal-fonts
 
-- name: Install Feed readers
-  pacman: name={{ item }} state=present update_cache=yes
-  with_items:
-    - newsbeuter
-
 - name: Install security tools
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
