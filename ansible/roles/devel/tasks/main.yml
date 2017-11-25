@@ -1,7 +1,7 @@
 ---
 - name: Development base for Linux
   include_tasks: linux.yml
-  when: (ansible_distribution == 'Archlinux' or
+  when: (ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'Debian' or
          ansible_distribution == 'CentOS')
 
@@ -11,11 +11,11 @@
   become_user: root
   when: ansible_distribution == 'Debian'
 
-- name: Development for Archlinux
+- name: Development for Arch Linux
   include_tasks: arch.yml
   become: true
   become_user: root
-  when: ansible_distribution == 'Archlinux'
+  when: ansible_distribution == 'Arch Linux'
 
 #- include_tasks: freebsd.yml
 #  become: true
@@ -38,7 +38,7 @@
 
 - name: Cloud for Linux
   include_tasks: cloud_linux.yml
-  when: (ansible_distribution == 'Archlinux' or
+  when: (ansible_distribution == 'Arch Linux' or
          ansible_distribution == 'Debian' or
          ansible_distribution == 'CentOS')
   become: true
