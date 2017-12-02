@@ -7,6 +7,14 @@
   with_items:
     - git
     - cygwin
+    - windirstat
+    - cmder
 
 - name: Create Applications directory
-  command: mkdir C:\Apps creates=C:\Apps
+  file: path=C:\Apps state=directory mode=0755
+
+- name: Install torrent tools
+  win_chocolatey: name={{ item }} state=present
+  with_items:
+    - transmission
+    - deluge

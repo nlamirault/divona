@@ -7,13 +7,20 @@
   homebrew: name={{ item }} state=present
   with_items:
     - git
-    - gnupg
+    - gpg2
+    - pinentry
     - tmux
     - vim
     - wget
+    - ncdu
 
 - name: Create user binary directory
-  command: mkdir /Users/{{ user }}/bin creates=/Users/{{ user }}/bin
+  file: path=/Users/{{ user }}/bin state=directory mode=0755
 
 - name: Create Applications directory
-  command: mkdir /Users/{{ user }}/Apps creates=/Users/{{ user }}/Apps
+  file: path=/Users/{{ user }}/Apps state=directory mode=0755
+
+- name: Install torrent tools
+  homebrew: name={{ item }} state=present
+  with_items:
+    - transmission

@@ -1,0 +1,8 @@
+- name: Create Applications directory
+  file: path=/home/{{ user }}/Apps  state=directory mode=0755
+
+- name: Create user binary directory
+  file: path=/home/{{ user }}/bin  state=directory mode=0755
+
+- name: Install inputrc
+  copy: src=inputrc dest=/home/{{ user }}/.inputrc

@@ -1,11 +1,38 @@
 ---
-- include: debian_init.yml
-  when: ansible_os_family == 'Debian'
-- include: arch_init.yml
-  when: ansible_os_family == 'Archlinux'
-- include: freebsd_init.yml
-  when: ansible_os_family == 'FreeBSD'
-- include: osx_init.yml
-  when: ansible_os_family == 'Darwin'
-- include: win_init.yml
-  when: ansible_os_family == 'Windows'
+- name: Desktop for Debian
+  include_tasks: debian_init.yml
+  when: ansible_distribution == 'Debian'
+  become: true
+  become_user: root
+
+- name: Desktop for Arch Linux
+  include_tasks: arch_init.yml
+  when: ansible_distribution == 'Arch Linux'
+  become: true
+  become_user: root
+
+- name: Desktop for CentOS
+  include_tasks: centos_init.yml
+  when: ansible_distribution == 'CentOS'
+  become: true
+  become_user: root
+
+- name: Desktop for FreeBSD
+  include_tasks: freebsd_init.yml
+  when: ansible_distribution == 'FreeBSD'
+  become: true
+  become_user: root
+
+- name: Desktop for NetBSD
+  include_tasks: netbsd_init.yml
+  when: ansible_distribution == 'NetBSD'
+  become: true
+  become_user: root
+
+- name: Desktop for OSX
+  include_tasks: osx_init.yml
+  when: ansible_distribution == 'MacOSX'
+
+- name: Desktop for Windows
+  include_tasks: win_init.yml
+  when: ansible_distribution == 'Windows'

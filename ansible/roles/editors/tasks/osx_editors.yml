@@ -1,14 +1,8 @@
 - name: Install Emacs
   homebrew_cask: name=emacs state=present
 
-- name: Install Atom
-  homebrew_cask: name=atom state=present
+- name: Install Visual Studio Code
+  homebrew_cask: name=visual-studio-code state=present
 
-- name: VIM directory
-  action: file path=/Users/{{ user }}/.vim state=directory
-
-- name: VIM Bundle directory
-  action: file path=/Users/{{ user }}/.vim/bundle state=directory
-
-- name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/Users/{{ user }}/.vim/bundle/vundle
+- name: Install VimR
+  homebrew_cask: name=vimr state=present

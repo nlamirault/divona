@@ -1,13 +1,26 @@
-- stat: path=/home/{{ user }}/Apps/arduino-{{ arduino_version }}-linux64.tar.xz
+- name: Create Applications directory
+  file: path=/home/{{ user }}/Apps  state=directory mode=0755
+
+- name: Create user binary directory
+  file: path=/home/{{ user }}/bin  state=directory mode=0755
+
+- name: Verify Arduino archive
+  stat: path=/home/{{ user }}/Apps/arduino-{{ arduino_version }}-linux64.tar.xz
   register: arduino_archive
 
 - name: Download Arduino
   get_url: url=https://downloads.arduino.cc/arduino-{{ arduino_version }}-linux64.tar.xz dest=/home/{{ user }}/Apps/arduino-{{ arduino_version }}-linux64.tar.xz mode=0440
   when: arduino_archive.stat.exists == False
 
-- stat: path=/home/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2
+- name: Verify Fritzing archive
+  stat: path=/home/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2
   register: fritzing_archive
 
 - name: Download Fritzing
   get_url: url=http://fritzing.org/media/downloads/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2 dest=/home/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2 mode=0440
   when: fritzing_archive.stat.exists == False
+
+- include_tasks: arch.yml
+  when: ansible_distribution == 'Arch Linux'
+  become: true
+  become_user: root

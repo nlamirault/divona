@@ -1,28 +1,29 @@
 ---
 
-
 # Development languages
 
-go_version: "1.6.2"
-rust_version: "1.9.0"
-node_version: "6.2.1"
-erlang_version: "19.0"
-swift_version: "2.2.1"
+go_version: "1.9.1"
+# rust_version: "1.20.0"
+node_version: "8.0.0"
+erlang_version: "19.3"
+swift_version: "4.0"
+
+# Editors
+vscode_build: "1.13.1-1497464373"
 
 # Cloud
 
-packer_version: "0.10.1"
-terraform_version: "0.6.16"
-vagrant_version: "1.8.3"
+packer_version: "1.0.0"
+terraform_version: "0.9.6"
+vagrant_version: "2.0.0"
+rkt_version: "1.29.0"
 
 # IOT
 
-arduino_version: "1.6.9"
+arduino_version: "1.8.0"
 fritzing_version: "0.9.3b"
 
-# Misc
+# Mobile
 
-company-name: Divona.
-systemowner-name: Nicolas Lamirault
-systemowner-initials: NL
-systemowner-mail-address: nicolas.lamirault@gmail.com
+android_studio_version: "2.3.3.0"
+android_studio_build: "162.4069837"

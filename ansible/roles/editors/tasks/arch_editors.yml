@@ -1,21 +1,20 @@
 - name: Install Emacs
-  pacman: name=emacs state=installed
+  pacman:
+    name: emacs
+    state: present
+    update_cache: yes
 
 - name: Install Neovim
-  pacman: name=neovim state=installed
+  pacman:
+    name: neovim
+    state: present
+    update_cache: yes
 
-- stat: path=/usr/bin/atom
-  register: atom_executable
+# - name: VIM directory
+#   action: file path=/home/{{ user }}/.vim state=directory
 
-- name: Install Atom
-  command: 'yaourt -Sy --noconfirm atom-editor'
-  when: atom_executable.stat is not defined
+# - name: VIM Bundle directory
+#   action: file path=/home/{{ user }}/.vim/bundle state=directory
 
-- name: VIM directory
-  action: file path=/home/{{ user }}/.vim state=directory
-
-- name: VIM Bundle directory
-  action: file path=/home/{{ user }}/.vim/bundle state=directory
-
-- name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle
+# - name: VIM Vundle
+#   git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle version=master

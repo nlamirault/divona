@@ -1,11 +1,13 @@
-- stat: path=/Users/{{ user }}/Apps/arduino-{{ arduino_version }}-macosx.zip
+- name: Verify Arduino archive
+  stat: path=/Users/{{ user }}/Apps/arduino-{{ arduino_version }}-macosx.zip
   register: arduino_archive
 
 - name: Download Arduino
   get_url: url=https://www.arduino.cc/download_handler.php?f=/arduino-{{ arduino_version }}-macosx.zip dest=/Users/{{ user }}/Apps/arduino-{{ arduino_version }}-macosx.zip mode=0440
   when: arduino_archive.stat.exists == False
 
-- stat: path=/Users/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2
+- name: Verify Fritzing archive
+  stat: path=/Users/{{ user }}/Apps/fritzing-{{ fritzing_version }}.linux.AMD64.tar.bz2
   register: fritzing_archive
 
 - name: Download Fritzing

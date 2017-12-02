@@ -1,9 +1,0 @@
-[vagrant]
-10.10.1.33
-10.10.2.33 ansible_python_interpreter=/usr/bin/python2
-10.10.3.33
-10.10.4.33 ansible_python_interpreter=/usr/local/bin/python
-10.10.5.33 ansible_connection=winrm ansible_ssh_port=5985
-
-[vagrant:vars]
-user= vagrant

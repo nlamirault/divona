@@ -1,0 +1,5 @@
+---
+- name: Mobile development
+  hosts: all
+  roles:
+    - mobile

@@ -4,47 +4,42 @@
 #
 
 - name: Install defaults packages
-  apt: pkg={{ item }} state=installed update_cache=yes
+  apt: pkg={{ item }} state=present update_cache=yes
   with_items:
-    - man-db
-    - apt-file
+#    - man-db
+#    - apt-file
     - wget
     - curl
     - ngrep
     - tree
     - bash-completion
-    - language-pack-fr
-    - git-core
+    - git
     - unzip
     - logrotate
     - rsyslog
     - tmux
-    - w3m
-    - mlocate
-    - genisoimage
-    - dnsutils
-    - neovim
+#    - w3m
+#    - mlocate
+#    - genisoimage
+#    - dnsutils
     - terminator
+    - ncdu
 
 - name: Install Python tools
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   with_items:
-    - python-software-properties
     - python-pip
     - pylint
     - python-pycurl
 
+- name: Install torrent tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - transmission-gtk
+    - rtorrent
+
 - name: Install ChangeLog
-  copy: >
-    src=ChangeLog dest=/etc/
-    owner=root mode=644
+  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
 
 - name: Install motd
-  copy: >
-    src=motd dest=/etc/
-    owner=root mode=644
-
-#- name: Install apt sources.list
-#  copy: >
-#    src=files/sources.list dest=/etc/apt/
-#    owner=root mode=644
+  copy: src=motd dest=/etc/ owner=root mode=0644

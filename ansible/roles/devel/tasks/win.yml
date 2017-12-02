@@ -1,25 +1,32 @@
-- stat: path=C:\Apps\go{{ go_version }}.windows-amd64.msi
+- name: Create Applications directory
+  file: path=C:\Apps state=directory mode=0755
+
+- name: Verify Go installer
+  stat: path=C:\Apps\go{{ go_version }}.windows-amd64.msi
   register: golang_archive
 
 - name: Download Golang
   get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.windows-amd64.msi dest=C:\Apps\go{{ go_version }}.windows-amd64.msi mode=0440
   when: golang_archive.stat.exists == False
 
-- stat: path=C:\Apps\rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi
+- name: Verify Rust installer
+  stat: path=C:\Apps\rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi
   register: rust_archive
 
 - name: Download Rust
   get_url: url=https://static.rust-lang.org/dist/rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi dest=C:\Apps\rust-{{ rust_version }}-x86_64-pc-windows-gnu.msi mode=0440
   when: rust_archive.stat.exists == False
 
-- stat: path=C:\Apps\node-v{{ node_version }}-x64.msi
+- name: Verify NodeJS installer
+  stat: path=C:\Apps\node-v{{ node_version }}-x64.msi
   register: node_archive
 
 - name: Download NodeJS
   get_url: url=https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-x64.msi dest=C:\Apps\node-v{{ node_version }}-x64.msi mode=0440
   when: node_archive.stat.exists == False
 
-- stat: path=C:\Apps\otp_win64_{{ erlang_version }}.exe
+- name: Verify Erlang executable
+  stat: path=C:\Apps\otp_win64_{{ erlang_version }}.exe
   register: erlang_archive
 
 - name: Download Erlang

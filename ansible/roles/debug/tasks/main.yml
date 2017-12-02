@@ -1,0 +1,9 @@
+---
+- name: OS informations
+  debug:
+    msg: "System: {{ inventory_hostname }}, OS: {{ ansible_distribution }}"
+
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4

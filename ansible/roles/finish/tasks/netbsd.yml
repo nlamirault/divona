@@ -1,0 +1,4 @@
+- name: Change user directory rights
+  action: file path=/home/{{ user }} state=directory owner={{ user }} group=users recurse=yes
+  become: true
+  become_user: root

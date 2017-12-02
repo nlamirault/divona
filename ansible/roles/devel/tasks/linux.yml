@@ -1,32 +1,43 @@
-- stat: path=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz
+- name: Create Applications directory
+  file: path=/home/{{ user }}/Apps  state=directory mode=0755
+
+- name: Create user binary directory
+  file: path=/home/{{ user }}/bin  state=directory mode=0755
+
+- name: Verify Golang archive
+  stat: path=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz
   register: golang_archive
 
 - name: Download Golang
   get_url: url=https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz dest=/home/{{ user }}/Apps/go{{ go_version }}.linux-amd64.tar.gz mode=0440
   when: golang_archive.stat.exists == False
 
-- stat: path=/home/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz
+- name: Verify Rustup
+  stat: path=/home/{{ user }}/Apps/rustup.sh
   register: rust_archive
 
-- name: Download Rust
-  get_url: url=https://static.rust-lang.org/dist/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz dest=/home/{{ user }}/Apps/rust-{{ rust_version }}-x86_64-unknown-linux-gnu.tar.gz mode=0440
+- name: Download Rustup
+  get_url: url=https://sh.rustup.rs dest=/home/{{ user }}/Apps/rustup.sh mode=0440
   when: rust_archive.stat.exists == False
 
-- stat: path=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz
+- name: Verify Swift archive
+  stat: path=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz
   register: swift_archive
 
 - name: Download Swift
-  get_url: url=https://swift.org/builds/swift-{{ swift_version }}-release/ubuntu1510/swift-{{ swift_version }}-RELEASE/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz dest=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu15.10.tar.gz mode=0440
+  get_url: url=https://swift.org/builds/swift-{{ swift_version }}-release/ubuntu1610/swift-{{ swift_version }}-RELEASE/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz dest=/home/{{ user }}/Apps/swift-{{ swift_version }}-RELEASE-ubuntu16.10.tar.gz mode=0440
   when: swift_archive.stat.exists == False
 
-- stat: path=/home/{{ user }}/Apps/node-v{{ node_version }}-linux-x64.tar.xz
+- name: Verify NodeJS archive
+  stat: path=/home/{{ user }}/Apps/node-v{{ node_version }}-linux-x64.tar.xz
   register: node_archive
 
 - name: Download NodeJS
   get_url: url=https://nodejs.org/dist/v{{ node_version }}/node-v{{ node_version }}-linux-x64.tar.xz dest=/home/{{ user }}/Apps/node-v{{ node_version }}-linux-x64.tar.xz mode=0440
   when: node_archive.stat.exists == False
 
-- stat: path=/home/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz
+- name: Verify Erlang archive
+  stat: path=/home/{{ user }}/Apps/otp_src_{{ erlang_version }}.tar.gz
   register: erlang_archive
 
 - name: Download Erlang

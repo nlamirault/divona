@@ -1,4 +1,4 @@
-# Copyright (C) 2013-2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2013-2017 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,11 @@
 # limitations under the License.
 
 APP = divona
-VERSION = 1.0.0
+VERSION = 2.0.0
+
+ANSIBLE_VERSION = 2.4.0.0
+
+DEBUG ?=
 
 SHELL = /bin/bash
 
@@ -40,24 +44,48 @@ clean: ## Cleanup
 .PHONY: init
 init: ## Install requirements
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
-	@echo "Install : ansible"
+	@echo "Install : ansible ansible-lint"
 
 .PHONY: ping
 ping: ## Check Ansible installation
 	@echo -e "$(OK_COLOR)[$(APP)] Check ansible$(NO_COLOR)"
 	@ansible -c local -m ping all -i $(host)
 
-.PHONY: default
-default: ## Default environment
+.PHONY: lint
+lint: ## Check ansible style
+	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
+	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
+
+.PHONY: apply
+apply: ## Which type to apply
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/divona.yml --extra-vars="user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) $(which) --extra-vars="user=$(user)"
 
-.PHONY: dev
-dev: ## Development environment
-	@echo -e "$(OK_COLOR)[$(APP)] Install development environment$(NO_COLOR)"
-	@ansible-playbook -vvvv -c local -i $(host) ansible/dev.yml --extra-vars="user=$(user)"
+.PHONY: docker-build
+docker-build: ## Build a Docker image
+	@echo -e "$(OK_COLOR)[$(APP)] Docker build $(image)$(NO_COLOR)"
+	@docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) --build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) dockerfiles
 
-.PHONY: iot
-iot: ## Internet Of Things
-	@echo -e "$(OK_COLOR)[$(APP)] Install IOT environment$(NO_COLOR)"
-	@ansible-playbook -c local -i $(host) ansible/iot.yml --extra-vars="user=$(user)"
+.PHONY: docker-publish
+docker-publish: ## Publish the Divona image
+	@echo -e "$(OK_COLOR)[$(APP)] Docker publish $(image)$(NO_COLOR)"
+	@docker tag divona-$(image) nlamirault/divona:$(image)
+	@docker push nlamirault/divona:$(image)
+
+.PHONY: docker-run
+docker-run: ## Run Ansible using a Docker image
+	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
+	docker run --rm -i \
+		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
+		-v $$(pwd)/ansible:/ansible/playbooks \
+		registry.gitlab.com/nicolas-lamirault/divona:$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
+
+.PHONY: docker-debug
+docker-debug: ## Run a bash from a Docker image
+	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
+	docker run --rm -i \
+		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
+		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
+		-v $$(pwd)/ansible:/ansible/playbooks \
+		registry.gitlab.com/nicolas-lamirault/divona:$(image) /bin/bash
