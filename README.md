@@ -7,7 +7,7 @@
 Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
 
 - [x] ArchLinux
-- [x] Debian based
+- [x] Debian, Ubuntu
 - [x] Centos
 - [x] OSX
 - [x] Windows.
@@ -17,7 +17,7 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 ## Tools
 
-- Archlinux: [pacman](https://wiki.archlinux.org/index.php/pacman)
+- Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
 - Debian : [apt](https://wiki.debian.org/Apt)
 - Centos: [yum](http://yum.baseurl.org/)
 - OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
@@ -101,7 +101,7 @@ Run the playbooks :
 
 ### Vagrant
 
-* [Archlinux](vms/ArchLinux)
+* [Arch Linux](vms/ArchLinux)
 * [Ubuntu](vms/Ubuntu)
 * [CentOS](vms/CentOS)
 * [FreeBSD](vms/FreeBSD)

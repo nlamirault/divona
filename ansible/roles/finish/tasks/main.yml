@@ -2,7 +2,7 @@
 - name: Finish for Debian or ArchLinux
   include_tasks: finish.yml
   when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Archlinux')
+         ansible_distribution == 'Arch Linux')
 
 - name: Finish for OSX
   include_tasks: finish_osx.yml

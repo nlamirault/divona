@@ -20,8 +20,8 @@
 # - name: Install Yaourt
 #   pacman: name=yaourt state=present update_cache=yes
 
-- name: Install Pacaur
-  pacman: name=pacaur state=present update_cache=yes
+#- name: Install Pacaur
+#  pacman: name=pacaur state=present update_cache=yes
 
 - name: Install defaults packages
   pacman: name={{ item }} state=present update_cache=yes

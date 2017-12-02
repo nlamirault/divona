@@ -21,6 +21,6 @@
   when: fritzing_archive.stat.exists == False
 
 - include_tasks: arch.yml
-  when: ansible_distribution == 'Archlinux'
+  when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root

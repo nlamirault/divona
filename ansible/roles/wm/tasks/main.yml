@@ -5,9 +5,9 @@
   become: true
   become_user: root
 
-- name: Window Manager for Archlinux
+- name: Window Manager for Arch Linux
   include_tasks: arch_init.yml
-  when: ansible_distribution == 'Archlinux'
+  when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
 
