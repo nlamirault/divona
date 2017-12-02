@@ -51,11 +51,11 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 * Help:
 
-        $ make
-        ==== divona [1.1.0] ====
+        $ ==== divona [2.0.0] ====
         apply                : Which type to apply
         clean                : Cleanup
         docker-build         : Build a Docker image
+        docker-debug         : Run a bash from a Docker image
         docker-publish       : Publish the Divona image
         docker-run           : Run Ansible using a Docker image
         init                 : Install requirements
