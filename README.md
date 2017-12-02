@@ -6,25 +6,14 @@
 
 Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
 
-- [x] ArchLinux
-- [x] Debian, Ubuntu
-- [x] Centos
-- [x] OSX
-- [x] Windows.
-- [x] FreeBSD
-- [x] NetBSD
-- [x] OpenBSD
-
-## Tools
-
-- Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
-- Debian : [apt](https://wiki.debian.org/Apt)
-- Centos: [yum](http://yum.baseurl.org/)
-- OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
-- Windows: [chocolatey](https://chocolatey.org)
-- FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
-- NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
-- OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
+- [x] Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
+- [x] Debian : [apt](https://wiki.debian.org/Apt)
+- [x] Centos: [yum](http://yum.baseurl.org/)
+- [x] OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
+- [x] Windows: [chocolatey](https://chocolatey.org)
+- [x] FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
+- [x] NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
+- [x] OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
 
 
 ## Installation
