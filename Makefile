@@ -13,7 +13,7 @@
 # limitations under the License.
 
 APP = divona
-VERSION = 1.1.0
+VERSION = 2.0.0
 
 ANSIBLE_VERSION = 2.4.0.0
 
