@@ -2,8 +2,13 @@
 
 ## Version 2.0.0 (xx/xx/2017)
 
+- Use of GitlabCI for continuous integration
+- Update to Ansible 2.4.x
 - Refactoring default, dev, iot environments
 - Docker: test installation using Docker images
+- Add mobile development setup
+- Add IOT environment setup
+- Add support for *OpenBSD*
 - Add support for *NetBSD*
 - Add support for *CentOS*
 - `FIX`: FreeBSD installation
