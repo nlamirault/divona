@@ -11,7 +11,7 @@
    - ncdu
 
 - name: Install terminal emulators
-  pacman: name={{ item }} state=present update_cache=yes
+  apt: pkg={{ item }} state=present update_cache=yes
   with_items:
     - termite
     - terminator
