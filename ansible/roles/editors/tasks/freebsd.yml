@@ -7,4 +7,4 @@
   pkgng: pkg=emacs state=present
 
 - name: Vim install
-  pkgng: pkg=vim state=present
+  pkgng: pkg=neovim state=present
