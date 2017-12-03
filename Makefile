@@ -47,7 +47,7 @@ init: ## Install requirements
 	@echo "Install : ansible ansible-lint"
 
 .PHONY: ping
-ping: ## Check Ansible installation
+ping: ## Check Ansible installation (host=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check ansible$(NO_COLOR)"
 	@ansible -c local -m ping all -i $(host)
 
@@ -57,35 +57,35 @@ lint: ## Check ansible style
 	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
 
 .PHONY: apply
-apply: ## Which type to apply
+apply: ## Which type to apply (host=xxx which=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
 	@ansible-playbook ${DEBUG} -c local -i $(host) $(which) --extra-vars="user=$(user)"
 
 .PHONY: docker-build
-docker-build: ## Build a Docker image
+docker-build: ## Build a Docker image (image=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Docker build $(image)$(NO_COLOR)"
 	@docker build -t divona-$(image) -f dockerfiles/Dockerfile.$(image) --build-arg ANSIBLE_VERSION=$(ANSIBLE_VERSION) dockerfiles
 
 .PHONY: docker-publish
-docker-publish: ## Publish the Divona image
+docker-publish: ## Publish the Divona image (image=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Docker publish $(image)$(NO_COLOR)"
 	@docker tag divona-$(image) nlamirault/divona:$(image)
 	@docker push nlamirault/divona:$(image)
 
 .PHONY: docker-run
-docker-run: ## Run Ansible using a Docker image
+docker-run: ## Run Ansible using a Docker image (image=xxx playbook=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
 	docker run --rm -i \
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v $$(pwd)/ansible:/ansible/playbooks \
-		registry.gitlab.com/nicolas-lamirault/divona:$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
+		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
 
 .PHONY: docker-debug
-docker-debug: ## Run a bash from a Docker image
+docker-debug: ## Run a bash from a Docker image (image=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Run Ansible playbook using Docker image $(image) for host $(local)$(NO_COLOR)"
 	docker run --rm -i \
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v $$(pwd)/ansible:/ansible/playbooks \
-		registry.gitlab.com/nicolas-lamirault/divona:$(image) /bin/bash
+		divona-$(image) /bin/bash
