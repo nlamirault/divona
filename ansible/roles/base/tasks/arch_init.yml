@@ -23,10 +23,24 @@
 #- name: Install Pacaur
 #  pacman: name=pacaur state=present update_cache=yes
 
-- name: Install defaults packages
+- name: Install shell tools
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
    - bash-completion
+   - fzf
+   - tree
+   - tmux
+   - ncdu
+
+- name: Install terminal emulators
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+    - termite
+    - terminator
+
+- name: Install defaults packages
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
    - dhclient
    - openssh
    - man-db
@@ -34,7 +48,6 @@
    - curl
    - dunst
    - ngrep
-   - tree
    - git
    - gnupg
    - tig
@@ -42,13 +55,9 @@
    - logrotate
    - rsyslog
    - sysstat
-   - tmux
    - mlocate
    - bind-tools
-   - termite
-   - terminator
    - feh
-   - ncdu
    - ccze
 
 - name: Install X

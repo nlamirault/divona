@@ -17,6 +17,12 @@
   become: true
   become_user: root
 
+- name: Editors for Linux Mint
+  include_tasks: mint_editors.yml
+  when: ansible_distribution == 'Linux Mint'
+  become: true
+  become_user: root
+
 - name: Editors for Linux
   include_tasks: linux_editors.yml
   when: ansible_distribution == 'Linux'

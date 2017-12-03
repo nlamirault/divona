@@ -1,6 +1,15 @@
 #
 # Base settings for Windows
 #
+- name: Install shell tools
+  win_chocolatey: name={{ item }} state=present
+  with_items:
+    - fzf
+
+- name: Install terminal emulators
+  win_chocolatey: name={{ item }} state=present
+  with_items:
+    - cmder
 
 - name: Install packages
   win_chocolatey: name={{ item }} state=present
@@ -8,7 +17,6 @@
     - git
     - cygwin
     - windirstat
-    - cmder
 
 - name: Create Applications directory
   file: path=C:\Apps state=directory mode=0755

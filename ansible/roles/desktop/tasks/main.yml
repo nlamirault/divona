@@ -17,6 +17,12 @@
   become: true
   become_user: root
 
+- name: Desktop for Linux Mint
+  include_tasks: mint_init.yml
+  when: ansible_distribution == 'Linux Mint'
+  become: true
+  become_user: root
+
 - name: Desktop for FreeBSD
   include_tasks: freebsd_init.yml
   when: ansible_distribution == 'FreeBSD'
