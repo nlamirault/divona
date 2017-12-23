@@ -23,6 +23,12 @@
   become: true
   become_user: root
 
+- name: Base for Fedora
+  import_tasks: fedora_init.yml
+  when: ansible_distribution == 'Fedora'
+  become: true
+  become_user: root
+
 - name: Base for FreeBSD
   include_tasks: freebsd_init.yml
   when: ansible_distribution == 'FreeBSD'
