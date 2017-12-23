@@ -1,0 +1,5 @@
+---
+- name: Cloud public development
+  hosts: all
+  roles:
+    - gcloud
