@@ -27,3 +27,7 @@ fritzing_version: "0.9.3b"
 
 android_studio_version: "2.3.3.0"
 android_studio_build: "162.4069837"
+
+# Cloud providers
+
+gcloud_version: "183.0.0"

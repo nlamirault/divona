@@ -29,7 +29,8 @@
       path: "/home/{{ user }}/Apps/google-cloud-sdk"
       state: directory
 
-- set_fact:
+- name: Set Gcloud archive name
+  set_fact:
     glcloud_archive_path: "/home/{{ user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
 
 - debug:
