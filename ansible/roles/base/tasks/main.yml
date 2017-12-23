@@ -5,9 +5,9 @@
   become: true
   become_user: root
 
-- name: Base for Arch Linux
+- name: Base for Archlinux
   import_tasks: arch_init.yml
-  when: ansible_distribution == 'Arch Linux'
+  when: ansible_distribution == 'Archlinux'
   become: true
   become_user: root
 
@@ -58,7 +58,7 @@
 - name: Base for Unix
   include_tasks: unix.yml
   when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Arch Linux' or
+         ansible_distribution == 'Archlinux' or
          ansible_distribution == 'CentOS' or
          ansible_distribution == 'FreeBSD' or
          ansible_distribution == 'NetBSD')
