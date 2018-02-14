@@ -73,22 +73,9 @@
     # - lxdm-gtk3
     - sddm
     - lightdm
-
-# - name: Install sddm themes
-#   become: false
-#   command: 'yaourt -S --noconfirm --needed archlinux-themes-sddm'
-
-# - name: Install lxdm themes
-#   become: false
-#   command: 'yaourt -Sy --noconfirm lxdm-themes'
+    - lightdm-gtk-greeter-settings
 
 - name: Install themes
-  # command: "pacaur -S {{item.package}}" # creates={{item.creates}}"
-  # with_items:
-  #   # - { package: vertex-themesvertex-themes} #, creates: /usr/share/themes/Vertex }
-  #   # - { package: adapta-gtk-theme} #, creates: /usr/share/themes/Adapta}
-  #   - { package: gtk-theme-arc-git} #, creates: /usr/share/themes/
-  # become: false
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - arc-gtk-theme
@@ -108,12 +95,6 @@
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - ruby
-
-# - name: Install cronie
-#   pacman: name=cronie state=present
-
-# - name: Enable cronie service
-#   service: name=cronie enabled=yes state=restarted
 
 - name: Install Torrent tools
   pacman: name={{ item }} state=present update_cache=yes
