@@ -31,11 +31,12 @@
     - pinentry
     - wget
 
-- name: Create user binary directory
-  file: path=/Users/{{ user }}/bin state=directory mode=0755
-
-- name: Create Applications directory
-  file: path=/Users/{{ user }}/Apps state=directory mode=0755
+- name: Install modern Unix tools
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+    - ripgrep
+    - exa
+    - fd
 
 - name: Install torrent tools
   homebrew: name={{ item }} state=present

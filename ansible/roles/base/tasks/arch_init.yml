@@ -74,6 +74,13 @@
    - feh
    - ccze
 
+- name: Install modern Unix tools
+  pacman: name={{ item }} state=present update_cache=yes
+  with_items:
+    - ripgrep
+    - exa
+    - fd
+
 - name: Install X
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
