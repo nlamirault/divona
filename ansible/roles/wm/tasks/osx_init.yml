@@ -1,0 +1,14 @@
+#
+# Desktop settings for OSX
+#
+#
+
+- name: Install windows manager
+  homebrew: name={{ item }} state=present
+  with_items:
+    - koekeishiya/formulae/kwm
+
+- name: Install windows manager
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - amethyst
