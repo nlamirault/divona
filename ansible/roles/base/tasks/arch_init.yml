@@ -17,8 +17,17 @@
 #
 #
 
-- name: Install Arch Pacman file
-  copy: src=pacman.conf dest=/etc/ owner=root mode=0644
+# - name: Install Arch Pacman file
+#   copy: src=pacman.conf dest=/etc/ owner=root mode=0644
+
+# - name: Update database
+#   pacman:
+#     update_cache: yes
+
+# Disable
+#- name: Upgrade installed packages
+#  pacman:
+#    upgrade: yes
 
 # - name: Arch refresh keys
 #   command: pacman-key --refresh-keys
@@ -37,31 +46,40 @@
 #- name: Install Pacaur
 #  pacman: name=pacaur state=present update_cache=yes
 
+- name: Install Archlinux tools
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - pacman-contrib
+
 - name: Install shell tools
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
    - bash-completion
-   - fzf
    - tree
    - tmux
    - ncdu
 
 - name: Install terminal emulators
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - termite
     - terminator
 
 - name: Install defaults packages
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
-   - dhclient
-   - openssh
    - man-db
    - wget
    - curl
    - dunst
-   - ngrep
    - git
    - gnupg
    - tig
@@ -70,19 +88,39 @@
    - rsyslog
    - sysstat
    - mlocate
-   - bind-tools
    - feh
    - ccze
 
-- name: Install modern Unix tools
-  pacman: name={{ item }} state=present update_cache=yes
+- name: Install networks tools
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
+    - dhclient
+    - openssh
+    - bind-tools
+    - mtr
+    - traceroute
+    - openbsd-netcat
+    - ipcalc
+    - nmap
+    - ngrep
+    - nethogs
+
+- name: Install modern Unix tools
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - fzf
     - ripgrep
     - exa
     - fd
 
 - name: Install X
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - libglvnd
     - xorg-server
@@ -97,13 +135,17 @@
     - lightdm-gtk-greeter-settings
 
 - name: Install themes
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - arc-gtk-theme
     - adapta-gtk-theme
 
 - name: Install Python tools
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - python-pip
     - python2-pip
@@ -113,18 +155,38 @@
     - python2-pycurl
 
 - name: Install Ruby
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - ruby
 
 - name: Install Torrent tools
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - transmission-gtk
     - rtorrent
 
+- name: Install Privacy tools
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - openvpn
+    - wireguard-tools
+
 - name: Install ChangeLog
-  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
+  copy:
+    src: ChangeLog
+    dest: /etc/
+    owner: root
+    mode: 0644
 
 - name: Install motd
-  copy: src=motd dest=/etc/ owner=root mode=0644
+  copy:
+    src: motd
+    dest: /etc/
+    owner: root
+    mode: 0644
