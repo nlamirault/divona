@@ -50,7 +50,7 @@
   pacman: name={{ item }} state=present update_cache=yes
   with_items:
     - awesome-terminal-fonts
-    - ttf-symbola
+    #    - ttf-symbola
 
 - name: Install security tools
   pacman: name={{ item }} state=present update_cache=yes
