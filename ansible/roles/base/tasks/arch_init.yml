@@ -141,6 +141,7 @@
   with_items:
     - arc-gtk-theme
     - adapta-gtk-theme
+    - python-pywal
 
 - name: Install Python tools
   pacman:
