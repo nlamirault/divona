@@ -15,44 +15,84 @@
 #
 # Desktop settings for Arch
 #
-#
+
+
+- name: Install X
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libglvnd
+    - xorg-server
+    - xorg-xinit
+    - slim
+    - slim-themes
+    - archlinux-themes-slim
+    # - lxdm
+    # - lxdm-gtk3
+    - sddm
+    - lightdm
+    - lightdm-gtk-greeter-settings
+
+- name: Install themes
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - arc-gtk-theme
+    - adapta-gtk-theme
 
 - name: Install web applications
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - chromium
     # - qutebrowser
 
 - name: Install multimedia applications
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - gimp
     - inkscape
 
 - name: Install video applications
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - vlc
 
 - name: Install communications applications
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - irssi
     - vinagre
     - rdesktop
 
 - name: Install documentation applications
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - evince
 
 - name: Install fonts
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - awesome-terminal-fonts
     - ttf-symbola
 
 - name: Install security tools
-  pacman: name={{ item }} state=present update_cache=yes
+  pacman:
+    name: "{{ item }}"
+    state: present
   with_items:
     - keepassxc
+    - arch-audit
