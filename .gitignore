@@ -1,4 +1,13 @@
+# Python
+venv
+
+# Molecule
+setup/molecule/default/tests/__pycache__/
+
+# Vagrant
 .vagrant/
 *.box
+
+# Misc
 divona_*
 divona-*
