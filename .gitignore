@@ -8,6 +8,10 @@ setup/molecule/default/tests/__pycache__/
 .vagrant/
 *.box
 
+# Editors
+*~
+.vscode
+
 # Misc
 divona_*
 divona-*
