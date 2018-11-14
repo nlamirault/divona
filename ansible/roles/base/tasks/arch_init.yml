@@ -117,31 +117,6 @@
     - exa
     - fd
 
-- name: Install X
-  pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libglvnd
-    - xorg-server
-    - xorg-xinit
-    - slim
-    - slim-themes
-    - archlinux-themes-slim
-    # - lxdm
-    # - lxdm-gtk3
-    - sddm
-    - lightdm
-    - lightdm-gtk-greeter-settings
-
-- name: Install themes
-  pacman:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - arc-gtk-theme
-    - adapta-gtk-theme
-
 - name: Install Python tools
   pacman:
     name: "{{ item }}"

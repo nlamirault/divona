@@ -18,7 +18,9 @@
 #
 
 - name: Install shell tools
-  dnf: name={{ item }} state=present
+  dnf:
+    name: "{{ item }}"
+    state: present
   with_items:
     - bash-completion
     - fzf
@@ -27,12 +29,16 @@
     - ncdu
 
 - name: Install terminal emulators
-  dnf: name={{ item }} state=present
+  dnf:
+    name: "{{ item }}"
+    state: present
   with_items:
     - terminator
 
 - name: Install defaults packages
-  dnf: name={{ item }} state=present
+  dnf:
+    name: "{{ item }}"
+    state: present
   with_items:
    - openssh
    - man-db
@@ -52,13 +58,23 @@
    - ccze
 
 - name: Install Torrent tools
-  dnf: name={{ item }} state=present
+  dnf:
+    name: "{{ item }}"
+    state: present
   with_items:
     - transmission-gtk
     - rtorrent
 
 - name: Install ChangeLog
-  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
+  copy:
+    src: ChangeLog
+    dest: /etc/
+    owner: root
+    mode: 0644
 
 - name: Install motd
-  copy: src=motd dest=/etc/ owner=root mode=0644
+  copy:
+    src: motd
+    dest: /etc/
+    owner: root
+    mode: 0644

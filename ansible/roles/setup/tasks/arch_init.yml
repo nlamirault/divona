@@ -12,14 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Verify VScode
-  stat:
-    path: /home/{{ ansible_user }}/Apps/code-stable-code_{{ vscode_build }}_amd64.tar.gz
-  register: vscode_archive
+#
+# Base settings for Arch
+#
+#
 
-- name: Download VSCode
-  get_url:
-    url: https://go.microsoft.com/fwlink/?LinkID=620884
-    dest: /home/{{ ansible_user }}/Apps/code-stable-code_{{ vscode_build }}_amd64.tar.gz
-    mode: 0440
-  when: vscode_archive.stat.exists == False
+- name: Install Arch Pacman file
+  copy:
+    src: pacman.conf
+    dest: /etc/
+    owner: root
+    mode: 0644
+
+- name: Update database
+  pacman:
+    update_cache: yes

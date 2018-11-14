@@ -18,25 +18,33 @@
 #
 
 - name: Install web applications
-  pkgng: pkg={{ item }} state=present
+  pkgng:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - chromium
 
 - name: Install multimedia
-  pkgng: pkg={{ item }} state=present
+  pkgng:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - gimp
     - inkscape
     - vlc
 
 - name: Install communications applications
-  pkgng: name={{ item }} state=present
+  pkgng:
+    name: "{{ item }}"
+    state: present
   with_items:
     - irssi
     - vinagre
     - rdesktop
 
 - name: Install documentation applications
-  pkgng: name={{ item }} state=present
+  pkgng:
+    name: "{{ item }}"
+    state: present
   with_items:
     - evince

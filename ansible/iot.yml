@@ -16,4 +16,5 @@
 - name: Internet of Objects provisionning
   hosts: all
   roles:
+    - setup
     - arduino

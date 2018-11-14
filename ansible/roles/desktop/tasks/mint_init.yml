@@ -18,31 +18,41 @@
 #
 
 - name: Install web applications
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - chromium-browser
     # - qutebrowser
 
 - name: Install multimedia applications
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - gimp
     - inkscape
 
 - name: Install video applications
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - vlc
 
 - name: Install communications applications
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - irssi
     - vinagre
     - rdesktop
 
 - name: Install documentation applications
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - evince
 

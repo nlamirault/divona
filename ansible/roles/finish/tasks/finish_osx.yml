@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Change user directory rights
-  action: file path=/Users/{{ user }} state=directory owner={{ user }} recurse=yes
+# - name: Change user directory rights
+#   file:
+#     path: "/Users/{{ ansible_user }}"
+#     state: directory
+#     owner: "{{ ansible_user }}"
+#     recurse: yes
 
-# - name: Cleanup Homebrew cask
-#   command: "brew cask cleanup"
+- name: Cleanup Homebrew cask
+  command: "brew cleanup"

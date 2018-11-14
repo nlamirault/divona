@@ -13,10 +13,16 @@
 # limitations under the License.
 
 - name: Install Emacs
-  win_chocolatey: name=emacs64 state=present
+  win_chocolatey:
+    name: emacs64
+    state: present
 
 - name: Install Visual Studio Code
-  win_chocolatey: name=visualstudiocode state=present
+  win_chocolatey:
+    name: visualstudiocode
+    state: present
 
 - name: Install Neovim
-  win_chocolatey: name=neovim state=present
+  win_chocolatey:
+    name: neovim
+    state: present

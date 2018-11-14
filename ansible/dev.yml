@@ -16,4 +16,5 @@
 - name: Development provisionning
   hosts: all
   roles:
+    - setup
     - devel

@@ -17,12 +17,16 @@
 #
 
 - name: Install Emacs
-  dnf: name={{ item }} state=present
+  dnf:
+    name: {{ item }}
+    state: present
   with_items:
     - emacs
 
 - name: Install Neovim
-  dnf: name={{ item }} state=present
+  dnf:
+    name: {{ item }}
+    state: present
   with_items:
     - neovim
     # - python2-neovim

@@ -18,10 +18,14 @@
 #
 
 - name: Be sure sudo is installed
-  pkgin: name=sudo state=present
+  pkgin:
+    name: sudo
+    state: present
 
 - name: Install defaults packages
-  pkgin: pkg={{ item }} state=present
+  pkgin:
+    pkg: {{ item }}
+    state: present
   with_items:
     - wget
     - curl
@@ -40,6 +44,8 @@
 #   pkgin: pkg=xorg state=present
 
 - name: Install torrent tools
-  pkgin: pkg={{ item }} state=present
+  pkgin:
+    pkg: {{ item }}
+    state: present
   with_items:
     - transmission-gtk

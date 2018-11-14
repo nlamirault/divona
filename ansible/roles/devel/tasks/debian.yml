@@ -14,7 +14,9 @@
 
 ---
 - name: Install Docker requirements
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - apt-transport-https
     - ca-certificates
@@ -34,10 +36,6 @@
     filename: 'docker'
     state: present
 
-- name: apt-get update
-  apt:
-    update_cache: yes
-
 - name: docker-engine present
   apt:
     name: "docker-ce"
@@ -45,16 +43,16 @@
     force: true
 
 - name: Download Rkt
-  get_url: >
-   url=https://github.com/coreos/rkt/releases/download/v{{ rkt_version }}/rkt-v{{ rkt_version }}.tar.gz
-   dest=/tmp/rkt.zip
+  get_url:
+   url: https://github.com/coreos/rkt/releases/download/v{{ rkt_version }}/rkt-v{{ rkt_version }}.tar.gz
+   dest: /tmp/rkt.zip
 
 - name: Extract Rkt
-  unarchive: >
-   src=/tmp/rkt.zip
-   dest=/srv/
-   copy=no
-   owner={{ ansible_ssh_user }}
+  unarchive:
+   src: /tmp/rkt.zip
+   dest: /srv/
+   copy: no
+   owner: {{ ansible_ssh_user }}
 
 - name: Oracle Virtualbox public key
   apt_key:
@@ -72,14 +70,20 @@
     update_cache: yes
 
 - name: Install Virtualbox
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - virtualbox-5.1
 
 - name: Verify Vagrant deb file
-  stat: path=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+  stat:
+    path: /home/{{ ansible_user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
   register: vagrant_debfile
 
 - name: Download Vagrant
-  get_url: url=https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb dest=/home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb mode=0440
+  get_url:
+    url: https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_x86_64.deb
+    dest: /home/{{ ansible_user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+    mode: 0440
   when: vagrant_debfile.stat.exists == False

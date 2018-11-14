@@ -16,15 +16,20 @@
 # Base settings for OSX
 #
 #
+
 - name: Install shell tools
-  homebrew: name={{ item }} state=present
+  homebrew:
+    name: "{{ item }}"
+    state: present
   with_items:
     - fzf
     - tmux
     - ncdu
 
 - name: Install libraries with homebrew
-  homebrew: name={{ item }} state=present
+  homebrew:
+    name: "{{ item }}"
+    state: present
   with_items:
     - git
     - gpg2
@@ -32,13 +37,17 @@
     - wget
 
 - name: Install modern Unix tools
-  pacman: name={{ item }} state=present update_cache=yes
+  homebrew:
+    name: "{{ item }}"
+    state: present
   with_items:
     - ripgrep
     - exa
     - fd
 
 - name: Install torrent tools
-  homebrew: name={{ item }} state=present
+  homebrew:
+    name: "{{ item }}"
+    state: present
   with_items:
     - transmission

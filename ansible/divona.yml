@@ -16,6 +16,7 @@
 - name: Divona provisionning
   hosts: all
   roles:
+    - setup
     - base
     - wm
     - desktop

@@ -21,15 +21,15 @@
 
 - name: Development for Debian
   include_tasks: debian.yml
+  when: ansible_distribution == 'Debian'
   become: true
   become_user: root
-  when: ansible_distribution == 'Debian'
 
 - name: Development for Archlinux
   include_tasks: arch.yml
+  when: ansible_distribution == 'Archlinux'
   become: true
   become_user: root
-  when: ansible_distribution == 'Archlinux'
 
 #- include_tasks: freebsd.yml
 #  become: true

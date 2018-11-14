@@ -18,7 +18,11 @@
 #
 
 - name: Emacs install
-  pkgin: pkg=emacs state=present
+  pkgin:
+    pkg: emacs
+    state: present
 
 - name: Vim install
-  pkgin: pkg=vim state=present
+  pkgin:
+    pkg: vim
+    state: present

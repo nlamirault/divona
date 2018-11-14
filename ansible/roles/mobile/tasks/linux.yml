@@ -12,16 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Create Applications directory
-  file: path=/home/{{ user }}/Apps  state=directory mode=0755
-
-- name: Create user binary directory
-  file: path=/home/{{ user }}/bin  state=directory mode=0755
-
 - name: Verify Android Studio
-  stat: path=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip
+  stat:
+    path: /home/{{ ansible_user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip
   register: android_studio_archive
 
 - name: Download Android Studio
-  get_url: url=https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_version }}/android-studio-ide-{{ android_studio_build }}-linux.zip dest=/home/{{ user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip mode=0440
+  get_url:
+    url: https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_version }}/android-studio-ide-{{ android_studio_build }}-linux.zip
+    dest: /home/{{ ansible_user }}/Apps/android-studio-ide-{{ android_studio_build }}-linux.zip
+    mode: 0440
   when: android_studio_archive.stat.exists == False

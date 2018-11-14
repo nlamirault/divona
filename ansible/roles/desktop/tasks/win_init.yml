@@ -18,7 +18,9 @@
 #
 
 - name: Install web applications
-  win_chocolatey: name={{ item }} state=present
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
   with_items:
     - chromium
     - tor-browser

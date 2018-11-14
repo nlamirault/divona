@@ -16,8 +16,15 @@
 # Base settings for Debian
 #
 #
+
+- name: Update database
+  apt:
+    update_cache: yes
+
 - name: Install shell tools
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
    - bash-completion
    - tree
@@ -25,12 +32,16 @@
    - ncdu
 
 - name: Install terminal emulators
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - terminator
 
 - name: Install defaults packages
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
 #    - man-db
 #    - apt-file
@@ -44,20 +55,32 @@
     - rsyslog
 
 - name: Install Python tools
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - python-pip
     - pylint
     - python-pycurl
 
 - name: Install torrent tools
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - transmission-gtk
     - rtorrent
 
 - name: Install ChangeLog
-  copy: src=ChangeLog dest=/etc/ owner=root mode=0644
+  copy:
+    src: ChangeLog
+    dest: /etc/
+    owner: root
+    mode: 0644
 
 - name: Install motd
-  copy: src=motd dest=/etc/ owner=root mode=0644
+  copy:
+    src: motd
+    dest: /etc/
+    owner: root
+    mode: 0644

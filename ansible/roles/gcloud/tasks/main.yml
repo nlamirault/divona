@@ -16,7 +16,7 @@
 - name: Download the Gcloud archive
   get_url:
     url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
-    dest: "/home/{{ user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
+    dest: "/home/{{ ansible_user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Archlinux' or
          ansible_distribution == 'CentOS')
@@ -24,28 +24,28 @@
 - name: Download the Gcloud archive
   get_url:
     url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ gcloud_version }}-darwin-x86_64.tar.gz"
-    dest: "/home/{{ user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
+    dest: "/home/{{ ansible_user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
   when: ansible_distribution == 'MacOSX'
 
 - name: Download the Gcloud installer
   get_url:
     url: "https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe"
-    dest: "/home/{{ user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
+    dest: "/home/{{ ansible_user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
   when: ansible_distribution == 'Windows'
 
 - name: Remove existing google-cloud-sdk directory
   file:
-      path: "/home/{{ user }}/Apps/google-cloud-sdk"
+      path: "/home/{{ ansible_user }}/Apps/google-cloud-sdk"
       state: absent
 
 - name: Create google-cloud-sdk directory
   file:
-      path: "/home/{{ user }}/Apps/google-cloud-sdk"
+      path: "/home/{{ ansible_user }}/Apps/google-cloud-sdk"
       state: directory
 
 - name: Set Gcloud archive name
   set_fact:
-    glcloud_archive_path: "/home/{{ user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
+    glcloud_archive_path: "/home/{{ ansible_user }}/Apps/google-cloud-sdk-{{ gcloud_version }}-linux-x86_64.tar.gz"
 
 - debug:
     msg: "Gcloud: {{ glcloud_archive_path }}"
@@ -53,7 +53,7 @@
 - name: Unarchive Gcloud archive
   unarchive:
     src: "{{ glcloud_archive_path }}"
-    dest: "/home/{{ user }}/Apps/"
+    dest: "/home/{{ ansible_user }}/Apps/"
 
 - name: Install Gcloud
-  command: "/home/{{ user }}/Apps/google-cloud-sdk/install.sh"
+  command: "/home/{{ ansible_user }}/Apps/google-cloud-sdk/install.sh"

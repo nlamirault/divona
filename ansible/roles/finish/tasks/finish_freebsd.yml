@@ -13,6 +13,8 @@
 # limitations under the License.
 
 - name: Change user directory rights
-  action: file path=/home/{{ user }} state=directory owner={{ user }} group=vagrant recurse=yes
-  become: true
-  become_user: root
+  file:
+    path: /home/{{ ansible_user }}
+    state: directory
+    owner: {{ ansible_user }}
+    recurse: yes

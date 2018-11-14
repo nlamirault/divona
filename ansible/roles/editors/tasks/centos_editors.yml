@@ -13,7 +13,9 @@
 # limitations under the License.
 
 - name: Install Emacs
-  yum: name=emacs state=present
+  yum:
+    name: emacs
+    state: present
 
 # - name: Install Neovim
 #   yum: name=neovim state=present
@@ -22,10 +24,17 @@
 #   yum: name=atom state=present
 
 - name: VIM directory
-  action: file path=/home/{{ user }}/.vim state=directory
+  file:
+    path: /home/{{ ansible_user }}/.vim
+    state: directory
 
 - name: VIM Bundle directory
-  action: file path=/home/{{ user }}/.vim/bundle state=directory
+  file:
+    path: /home/{{ ansible_user }}/.vim/bundle
+    state: directory
 
 - name: VIM Vundle
-  git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ user }}/.vim/bundle/vundle version=master
+  git:
+    repo: https://github.com/gmarik/vundle.git
+    dest: /home/{{ ansible_user }}/.vim/bundle/vundle
+    version: master

@@ -12,14 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Verify VScode
-  stat:
-    path: /home/{{ ansible_user }}/Apps/code-stable-code_{{ vscode_build }}_amd64.tar.gz
-  register: vscode_archive
 
-- name: Download VSCode
-  get_url:
-    url: https://go.microsoft.com/fwlink/?LinkID=620884
-    dest: /home/{{ ansible_user }}/Apps/code-stable-code_{{ vscode_build }}_amd64.tar.gz
-    mode: 0440
-  when: vscode_archive.stat.exists == False
+- name: Create Applications directory
+  file:
+    path: /home/{{ ansible_user }}/Apps
+    owner: {{ ansible_user }}
+    state: directory
+    mode: 0755
+
+- name: Create user binary directory
+  file:
+    path: /home/{{ ansible_user }}/bin
+    owner: {{ ansible_user }}
+    state: directory
+    mode: 0755
+
+- name: Install inputrc
+  copy:
+    src: inputrc
+    dest: /home/{{ ansible_user }}/.inputrc

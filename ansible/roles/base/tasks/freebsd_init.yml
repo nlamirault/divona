@@ -18,10 +18,14 @@
 #
 
 - name: Be sure sudo is installed
-  pkgng: pkg=sudo state=present
+  pkgng:
+    pkg: sudo
+    state: present
 
 - name: Install defaults packages
-  pkgng: pkg={{ item }} state=present
+  pkgng:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - wget
     - curl
@@ -38,9 +42,13 @@
     - terminator
 
 - name: Install X
-  pkgng: pkg=xorg state=present
+  pkgng:
+    pkg: xorg
+    state: present
 
 - name: Install torrent tools
-  pkgng: pkg={{ item }} state=present
+  pkgng:
+    pkg: "{{ item }}"
+    state: present
   with_items:
     - transmission-gtk
