@@ -87,6 +87,26 @@ Supported operating system:
 
 It's possible to test the `ansible` playbooks using `docker` or `vagrant`.
 
+### Molecule
+
+* Setup Molecule:
+
+        $ python3 -m venv venv
+        $ source venv/bin/activate
+        $ pip3 install molecule docker-py pytest==3.9.3
+
+* Execute all tasks:
+
+        $ molecule test
+
+Or :
+
+* Check yaml syntax: `molecule lint`
+* Check ansible syntax: `molecule syntax`
+* Create docker instance: `molecule create`
+* Execute the playbook: `molecule converge`
+* Execute unit tests: `molecule verify`
+
 ### Docker
 
 Build the image :
