@@ -4,7 +4,11 @@
 
 * Develop: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/develop/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/develop)
 
-Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
+Automated installation. Tools supported:
+
+* [x] [Ansible](https://www.ansible.com).
+
+Supported operating system:
 
 - [x] Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
 - [x] Debian : [apt](https://wiki.debian.org/Apt)
@@ -62,6 +66,10 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
         lint                 : Check ansible style
         ping                 : Check Ansible installation
 
+
+### Ansible
+
+
 * Check ansible is working :
 
         $ make ping host=ansible/hosts/xxxxx
@@ -73,6 +81,7 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 * You could increase verbosity with `DEBUG` environment variable :
 
         $ DEBUG="-vvvv" make default host=ansible/hosts/xxxx user=yyyy
+
 
 ## Development
 
