@@ -7,7 +7,7 @@ lint:
   name: yamllint
 platforms:
   - name: archlinux
-    image: nlamirault/archlinux:v2018.11.01
+    image: base/archlinux:2018.11.01
   - name: debian
     image: debian:stretch
   - name: centos
