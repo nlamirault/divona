@@ -6,10 +6,14 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
-  - name: instance
+  - name: archlinux
+    image: nlamirault/archlinux:v2018.11.01
+  - name: debian
     image: debian:stretch
+  - name: centos
+    image: centos:7
+  - name: fedora
+    image: fedora:29
 provisioner:
   name: ansible
   lint:

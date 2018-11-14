@@ -32,8 +32,3 @@
     owner: "{{ user }}"
     state: directory
     mode: 0755
-
-- name: Install inputrc
-  copy:
-    src: inputrc
-    dest: /home/{{ user }}/.inputrc

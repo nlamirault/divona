@@ -11,6 +11,7 @@ def test_user(host):
     assert user.exists
     assert user.shell == "/bin/bash"
 
+
 def _check_directory(directory, name):
     assert directory.exists
     assert directory.is_directory

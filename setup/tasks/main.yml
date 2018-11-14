@@ -34,11 +34,11 @@
   become: true
   become_user: root
 
-- name: Base for CentOS
-  include_tasks: centos_init.yml
-  when: ansible_distribution == 'CentOS'
-  become: true
-  become_user: root
+# - name: Base for CentOS
+#   include_tasks: centos_init.yml
+#   when: ansible_distribution == 'CentOS'
+#   become: true
+#   become_user: root
 
 - name: Base for Linux Mint
   import_tasks: mint_init.yml
