@@ -5,6 +5,7 @@ venv
 base/molecule/default/tests/__pycache__/
 debug/molecule/default/tests/__pycache__/
 setup/molecule/default/tests/__pycache__/
+wm/molecule/default/tests/__pycache__/
 
 # Vagrant
 .vagrant/
