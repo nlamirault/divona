@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Copyright (C) 2013-2016 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define :ubuntu_dev do |ubuntu_config|
+    ubuntu_config.vm.box = "yakkety64"
+    ubuntu_config.vm.box_url = "http://cloud-images.ubuntu.com/yakkety/current/yakkety-server-cloudimg-amd64-vagrant.box"
+    ubuntu_config.vm.hostname = "DivonaUbuntuDev"
+
+    ubuntu_config.vm.network :private_network, :ip => '10.10.1.33'
+    ubuntu_config.vm.network :forwarded_port, guest: 22, host: 8122
+
+    ubuntu_config.ssh.forward_agent = true
+    ubuntu_config.ssh.forward_x11 = true
+
+    ubuntu_config.vm.provider :virtualbox do |vb|
+      vb.gui = true
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+      vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+      vb.name = "DivonaUbuntuDev"
+    end
+
+    ubuntu_config.vm.provision :ansible do |ansible|
+      ansible.playbook = "../../ansible/divona.yml"
+      ansible.inventory_path = "./vagrant"
+      ansible.limit = "all"
+      #ansible.verbose = 'vvvv'
+      ansible.host_key_checking = false
+    end
+
+  end
+
+end
