@@ -36,7 +36,7 @@
     file: external_repos
     baseurl: http://apt.sw.be/redhat/el{{ ansible_distribution_major_version }}/en/$basearch/rpmforge
     mirrorlist: http://mirrorlist.repoforge.org/el{{ ansible_distribution_major_version }}/mirrors-rpmforge
-    enabled: no
+    enabled: true
 
 - name: Install shell tools
   yum:
@@ -48,14 +48,6 @@
       - tree
       - ncdu
 
-- name: Install terminal emulators
-  yum:
-    name: "{{ packages }}"
-    state: latest
-  vars:
-    packages:
-      - terminator
-
 - name: Install default packages
   yum:
     name: "{{ packages }}"
@@ -64,10 +56,18 @@
     packages:
       - ngrep
       - git
-      - gnupg
+      - gnupg2
       - tig
       - unzip
       - rsyslog
+
+- name: Install terminal emulators
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - terminator
 
 - name: Install network tools
   yum:

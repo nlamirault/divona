@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Update database
+  pacman:
+    update_cache: true
+
 - name: Install distribution tools
   pacman:
     name: "{{ packages }}"
@@ -32,16 +36,6 @@
       - ncdu
       - feh
 
-- name: Install terminal emulators
-  pacman:
-    name: "{{ packages }}"
-    state: latest
-  vars:
-    packages:
-      - termite
-      - kitty
-      - terminator
-
 - name: Install defaults packages
   pacman:
     name: "{{ packages }}"
@@ -55,6 +49,16 @@
       - tig
       - unzip
       - ccze
+
+- name: Install terminal emulators
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - termite
+      - kitty
+      - terminator
 
 - name: Install networks tools
   pacman:
