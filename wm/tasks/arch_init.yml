@@ -12,10 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Update database
+  pacman:
+    update_cache: true
+
 - name: Install i3 and tools
   pacman:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - i3-wm
@@ -27,7 +31,7 @@
 - name: Install Openbox and tools
   pacman:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - openbox
@@ -38,7 +42,7 @@
 - name: Install windows managers tools
   pacman:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - conky
@@ -50,7 +54,7 @@
 - name: Install XFCE and tools
   pacman:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - xfce4

@@ -15,7 +15,7 @@
 - name: Install window manager
   yum:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - i3
@@ -26,7 +26,7 @@
 - name: Install Openbox and tools
   yum:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - openbox
@@ -34,7 +34,7 @@
 - name: Install windows managers tools
   yum:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - conky
@@ -45,7 +45,7 @@
 - name: Install XFCE
   yum:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - "@xfce-desktop"

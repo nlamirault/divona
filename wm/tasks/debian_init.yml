@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Update database
+  apt:
+    update_cache: true
+
 - name: Install i3 and tools
   apt:
     pkg: "{{ packages }}"

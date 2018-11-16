@@ -15,7 +15,7 @@
 - name: Install windows manager
   homebrew:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - koekeishiya/formulae/kwm
@@ -23,7 +23,7 @@
 - name: Install windows manager
   homebrew_cask:
     name: "{{ packages }}"
-    state: present
+    state: latest
   vars:
     packages:
       - amethyst
