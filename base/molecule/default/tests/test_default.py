@@ -58,10 +58,10 @@ class Archlinux(Distribution):
 
     def check_network_tools(self, host):
         self.check_package_installed(
-          host, [
+            host, [
                 "dhclient", "openssh", "wget", "curl", "bind-tools", "mtr",
-                "traceroute", "openbsd-netcat", "ipcalc", "nmap", "ngrep", "nethogs"
-        ])
+                "traceroute", "openbsd-netcat", "ipcalc", "nmap", "ngrep",
+                "nethogs"])
 
     def check_modern_tools(self, host):
         self.check_package_installed(host, ["fzf", "ripgrep", "exa", "fd"])
@@ -87,10 +87,9 @@ class Centos(Distribution):
 
     def check_network_tools(self, host):
         self.check_package_installed(
-          host, [
-            "openssh", "wget", "curl", "net-tools", "mtr", "traceroute", "nmap",
-            "ngrep", "nethogs"
-        ])
+            host, [
+                "openssh", "wget", "curl", "net-tools", "mtr", "traceroute",
+                "nmap", "ngrep", "nethogs"])
 
     def check_modern_tools(self, host):
         pass

@@ -14,7 +14,7 @@
 ---
 - name: Update database
   apt:
-    update_cache: yes
+    update_cache: true
 
 - name: Install shell tools
   apt:
