@@ -59,12 +59,12 @@ lint: ## Check ansible style
 .PHONY: ansible-debug
 ansible-debug: ## Display some informations about hosts (host=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Retrieve informations$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -i $(host) ansible/debug.yml
+	@ansible-playbook ${DEBUG} -i $(host) debug.yml
 
 .PHONY: ansible-local-debug
 ansible-local-debug: ## Display some informations about hosts (host=xxx user=yyyy)
 	@echo -e "$(OK_COLOR)[$(APP)] Retrieve informations$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/debug.yml --extra-vars="ansible_user=$(user)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/debug.yml --extra-vars="user=$(user)"
 
 .PHONY: ansible-apply
 ansible-apply: ## Which type to apply (host=xxx which=xxx)
@@ -74,12 +74,7 @@ ansible-apply: ## Which type to apply (host=xxx which=xxx)
 .PHONY: ansible-local-apply
 ansible-local-apply: ## Which type to apply (host=xxx which=xxx user=yyyy)
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) $(which) --extra-vars="ansible_user=$(user)"
-
-.PHONY: salt-apply
-salt-apply: ## Which installation to apply
-	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@sudo salt '*' state.apply
+	@ansible-playbook ${DEBUG} -c local -i $(host) $(which) --extra-vars="user=$(user)"
 
 .PHONY: docker-build
 docker-build: ## Build a Docker image (image=xxx)
