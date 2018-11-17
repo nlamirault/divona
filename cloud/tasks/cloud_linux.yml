@@ -1,0 +1,61 @@
+# Copyright (C) 2013-2018 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+- name: Install Packer
+  unarchive:
+    src: "{{ packer_download_url }}"
+    dest: "{{ packer_dir }}"
+    remote_src: true
+
+- name: Adding Packer command to user path
+  file:
+    src: "{{ packer_dir }}/packer"
+    dest: /home/{{ user }}/bin/packer
+    state: link
+
+- name: Install Terraform
+  unarchive:
+    src: "{{ terraform_download_url }}"
+    dest: "{{ terraform_dir }}"
+    remote_src: true
+
+- name: Adding terraform command to user path
+  file:
+    src: "{{ terraform_dir }}/terraform"
+    dest: /home/{{ user }}/bin/terraform
+    state: link
+
+- name: Install Vault
+  unarchive:
+    src: "{{ vault_download_url }}"
+    dest: "{{ vault_dir }}"
+    remote_src: true
+
+- name: Adding Vault command to user path
+  file:
+    src: "{{ vault_dir }}/vault"
+    dest: /home/{{ user }}/bin/vault
+    state: link
+
+- name: Install Kubernetes CLI
+  get_url:
+    url: "{{ kubernetes_cli_download_url }}"
+    dest: "{{ kubernetes_cli_file }}"
+    mode: 0755
+
+- name: Install Minikube
+  get_url:
+    url: "{{ minikube_download_url }}"
+    dest: "{{ minikube_file }}"
+    mode: 0755

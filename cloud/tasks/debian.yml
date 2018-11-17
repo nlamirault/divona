@@ -1,0 +1,78 @@
+# Copyright (C) 2013-2018 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+- name: apt-get update
+  apt:
+    update_cache: true
+
+- name: Install Docker requirements
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
+- name: docker apt-key present
+  apt_key:
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: docker repo present
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+    filename: 'docker'
+    state: present
+
+- name: docker-engine present
+  apt:
+    name: "docker-ce"
+    state: latest
+
+- name: Oracle Virtualbox public key
+  apt_key:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    state: present
+
+- name: Third-party repo present
+  apt_repository:
+    repo: "deb http://download.virtualbox.org/virtualbox/debian stretch contrib"
+    filename: 'contrib'
+    state: present
+
+- name: Install Virtualbox
+  apt:
+    name: virtualbox-5.2
+    state: latest
+
+- name: Verify Vagrant deb file
+  stat:
+    path: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+  register: vagrant_debfile
+
+- name: Download Vagrant
+  get_url:
+    url: "{{ vagrant_download_url }}"
+    dest: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
+    mode: 0440
+  when: vagrant_debfile.stat.exists == False
+
+- name: Install Vagrant
+  apt:
+    deb: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
