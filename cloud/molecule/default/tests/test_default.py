@@ -27,7 +27,6 @@ class Distribution(abc.ABC):
         self.check_file_exists(host, "/home/divona/bin/kubectl")
         self.check_file_exists(host, "/home/divona/bin/minikube")
 
-
     def check_package_installed(self, host, packages):
         for pkg in packages:
             assert host.package(pkg).is_installed
@@ -53,6 +52,7 @@ class Centos(Distribution):
 
     def check_containers_tools(self, host):
         self.check_package_installed(host, ["docker"])
+
 
 class Fedora(Distribution):
 
