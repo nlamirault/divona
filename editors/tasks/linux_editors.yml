@@ -17,3 +17,9 @@
     src: "{{ vscode_download_url }}"
     dest: "{{ vscode_dir }}"
     remote_src: true
+
+- name: Adding VSCode command to user path
+  file:
+    src: "{{ vscode_dir }}/{{ vscode_name }}/bin/code"
+    dest: /home/{{ user }}/bin/code
+    state: link
