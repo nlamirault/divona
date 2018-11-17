@@ -3,6 +3,7 @@ venv
 
 # Molecule
 base/molecule/default/tests/__pycache__/
+cloud/molecule/default/tests/__pycache__/
 debug/molecule/default/tests/__pycache__/
 editors/molecule/default/tests/__pycache__/
 setup/molecule/default/tests/__pycache__/
