@@ -18,11 +18,11 @@
     dest: "{{ packer_dir }}"
     remote_src: true
 
-- name: Adding Packer command to user path
-  file:
-    src: "{{ packer_dir }}/packer"
-    dest: /home/{{ user }}/bin/packer
-    state: link
+# - name: Adding Packer command to user path
+#   file:
+#     src: "{{ packer_dir }}/packer"
+#     dest: /home/{{ user }}/bin/packer
+#     state: link
 
 - name: Install Terraform
   unarchive:
@@ -30,11 +30,11 @@
     dest: "{{ terraform_dir }}"
     remote_src: true
 
-- name: Adding terraform command to user path
-  file:
-    src: "{{ terraform_dir }}/terraform"
-    dest: /home/{{ user }}/bin/terraform
-    state: link
+# - name: Adding terraform command to user path
+#   file:
+#     src: "{{ terraform_dir }}/terraform"
+#     dest: /home/{{ user }}/bin/terraform
+#     state: link
 
 - name: Install Vault
   unarchive:
@@ -42,11 +42,11 @@
     dest: "{{ vault_dir }}"
     remote_src: true
 
-- name: Adding Vault command to user path
-  file:
-    src: "{{ vault_dir }}/vault"
-    dest: /home/{{ user }}/bin/vault
-    state: link
+# - name: Adding Vault command to user path
+#   file:
+#     src: "{{ vault_dir }}/vault"
+#     dest: /home/{{ user }}/bin/vault
+#     state: link
 
 - name: Install Kubernetes CLI
   get_url:
