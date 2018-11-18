@@ -30,3 +30,15 @@
   win_chocolatey:
     name: terraform
     state: latest
+
+- name: Install GCloud SDK
+  unarchive:
+    src: "{{ gcloud_sdk_win_download_url }}"
+    dest: "{{ gcloud_sdk_dir }}"
+    remote_src: true
+
+- name: Adding GCloud command to user path
+  file:
+    src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
+    dest: /home/{{ user }}/bin/gcloud
+    state: link
