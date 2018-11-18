@@ -93,12 +93,11 @@ def test_virtualization(host):
     if distribution:
         distribution.check_virtualization_tools(host)
 
-
-# def test_hashicorp_tools(host):
-#     Archlinux().check_hashicorp_tools(host)
-#     Debian().check_hashicorp_tools(host)
-#     Centos().check_hashicorp_tools(host)
-#     Fedora().check_hashicorp_tools(host)
+def test_hashicorp_tools(host):
+    Archlinux().check_hashicorp_tools(host)
+    Debian().check_hashicorp_tools(host)
+    Centos().check_hashicorp_tools(host)
+    Fedora().check_hashicorp_tools(host)
 
 def test_kubernetes_tools(host):
     Archlinux().check_kubernetes_tools(host)
