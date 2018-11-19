@@ -72,7 +72,7 @@
   check_mode: false
 
 - name: Get installed Vault version
-  shell: "{{ vault_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1|sed -e 's/v//g'"
+  shell: "{{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'"
   when: not vault_installation is failed
   changed_when: false
   check_mode: false
@@ -193,3 +193,37 @@
     src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
     dest: /home/{{ user }}/bin/gcloud
     state: link
+
+- name: Check Krew installation
+  command: which krew
+  register: krew_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Krew version
+  shell: "{{ krew_installation.stdout }} version"
+  when: not krew_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_krew_version
+
+- name: Krew installation is required
+  set_fact:
+    krew_installation_required: "{{ krew_installation is failed or installed_krew_version.stdout != krew_version }}"
+
+- name: Install Krew
+  when:
+    - krew_installation_required
+  unarchive:
+    src: "{{ krew_download_url }}"
+    dest: "/tmp"
+    remote_src: true
+
+- name: Copying Krew file to user path
+  copy:
+    src: "/tmp/krew-linux_amd64"
+    dest: "{{ krew_dir }}/krew"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
