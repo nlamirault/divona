@@ -15,15 +15,15 @@
 - name: Check Packer installation
   command: which packer
   register: packer_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Packer version
   shell: "{{ packer_installation.stdout }} -version"
   when: not packer_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_packer_version
 
 - name: Packer installation is required
@@ -41,15 +41,15 @@
 - name: Check Terraform installation
   command: which terraform
   register: terraform_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Terraform version
   shell: "{{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1"
   when: not terraform_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_terraform_version
 
 - name: Terraform installation is required
@@ -67,15 +67,15 @@
 - name: Check Vault installation
   command: which vault
   register: vault_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Vault version
   shell: "{{ vault_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1|sed -e 's/v//g'"
   when: not vault_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_vault_version
 
 - name: Vault installation is required
@@ -93,15 +93,15 @@
 - name: Check Kubernetes CLI installation
   command: which kubectl
   register: kubectl_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Kubernetes CLI version
   shell: "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
   when: not kubectl_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_kubectl_version
 
 - name: Kubernetes installation is required
@@ -119,15 +119,15 @@
 - name: Check Kubernetes CLI installation
   command: which kubectl
   register: kubectl_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Kubernetes CLI version
   shell: "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
   when: not kubectl_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_kubectl_version
 
 - name: Kubernetes installation is required
@@ -137,15 +137,15 @@
 - name: Check Minikube installation
   command: which minikube
   register: minikube_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed Minikube version
   shell: "{{ minikube_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'"
   when: not minikube_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_minikube_version
 
 - name: Minikube installation is required
@@ -163,15 +163,15 @@
 - name: Check GCloud SDK installation
   command: which gcloud
   register: gcloud_sdk_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed GCloud version
   shell: "{{ gcloud_sdk_installation.stdout }} version|head -1|awk -F ' ' '{ print $4 }'"
   when: not gcloud_sdk_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_gcloud_sdk_version
 
 - name: GCloud installation is required

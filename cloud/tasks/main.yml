@@ -56,8 +56,8 @@
          ansible_distribution == 'CentOS' or
          ansible_distribution == 'Linux Mint' or
          ansible_distribution == 'Fedora')
-  become: true
-  become_user: root
+  # become: true
+  # become_user: root
 
 - name: Cloud for MacOSX
   block:
