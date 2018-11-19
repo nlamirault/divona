@@ -202,7 +202,7 @@
   check_mode: false
 
 - name: Get installed Krew version
-  shell: "{{ krew_installation.stdout }} version"
+  shell: "{{ krew_installation.stdout }} version|awk -F' ' '{ print $2}'|sed -e 's/v//g'"
   when: not krew_installation is failed
   changed_when: false
   check_mode: false
