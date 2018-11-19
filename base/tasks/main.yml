@@ -26,6 +26,11 @@
   become: true
   become_user: root
 
+- name: Tools for Archlinux
+  block:
+    - import_tasks: arch_tools.yml
+  when: ansible_distribution == 'Archlinux'
+
 - name: Base for CentOS
   block:
     - include_tasks: centos_init.yml
