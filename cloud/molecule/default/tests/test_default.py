@@ -27,6 +27,9 @@ class Distribution(abc.ABC):
         self.check_file_exists(host, "/home/divona/bin/kubectl")
         self.check_file_exists(host, "/home/divona/bin/minikube")
 
+    def check_gcloud_sdk(self, host):
+        self.check_file_exists(host, "/home/divona/bin/google-clouds-sdk/bin/gcloud")
+
     def check_package_installed(self, host, packages):
         for pkg in packages:
             assert host.package(pkg).is_installed
@@ -104,3 +107,9 @@ def test_kubernetes_tools(host):
     Debian().check_kubernetes_tools(host)
     Centos().check_kubernetes_tools(host)
     Fedora().check_kubernetes_tools(host)
+
+def test_gcloud_sdk(host):
+    Archlinux().check_gcloud_sdk(host)
+    Debian().check_gcloud_sdk(host)
+    Centos().check_gcloud_sdk(host)
+    Fedora().check_gcloud_sdk(host)
