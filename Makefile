@@ -56,20 +56,10 @@ lint: ## Check ansible style
 	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
 	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
 
-.PHONY: ansible-debug
-ansible-debug: ## Display some informations about hosts (host=xxx)
-	@echo -e "$(OK_COLOR)[$(APP)] Retrieve informations$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -i $(host) debug.yml
-
-.PHONY: ansible-local-debug
-ansible-local-debug: ## Display some informations about hosts (host=xxx user=yyyy)
-	@echo -e "$(OK_COLOR)[$(APP)] Retrieve informations$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(host) ansible/debug.yml --extra-vars="user=$(user)"
-
 .PHONY: ansible-apply
-ansible-apply: ## Which type to apply (host=xxx which=xxx)
+ansible-apply: ## Which type to apply (host=xxx which=xxx user=yyyy)
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -i $(host) $(which)
+	@ansible-playbook ${DEBUG} -i $(host) $(which) --extra-vars="user=$(user)"
 
 .PHONY: ansible-local-apply
 ansible-local-apply: ## Which type to apply (host=xxx which=xxx user=yyyy)
@@ -94,7 +84,7 @@ docker-run: ## Run Ansible using a Docker image (image=xxx playbook=xxx)
 		-v ~/.ssh/id_rsa:/root/.ssh/id_rsa \
 		-v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub \
 		-v $$(pwd)/ansible:/ansible/playbooks \
-		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="ansible_user=root"
+		divona-$(image) ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/$(playbook) --extra-vars="user=root"
 
 .PHONY: docker-debug
 docker-debug: ## Run a bash from a Docker image (image=xxx)
