@@ -1,8 +1,0 @@
-#!/bin/sh
-
-eval $( gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh )
-export GNOME_KEYRING_CONTROL SSH_AUTH_SOCK GPG_AGENT_INFO
-
-#exec ck-launch-session dbus-launch openbox-session
-exec ck-launch-session dbus-launch i3 
-
