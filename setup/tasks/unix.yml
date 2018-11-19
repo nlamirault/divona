@@ -34,3 +34,35 @@
     group: "{{ user }}"
     state: directory
     mode: 0755
+
+- name: Create user configuration directory
+  file:
+    path: /home/{{ user }}/etc
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: Create Work directory
+  file:
+    path: /home/{{ user }}/Work
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: Create Personal directory
+  file:
+    path: /home/{{ user }}/Personal
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: Create Documents directory
+  file:
+    path: /home/{{ user }}/Documents
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
