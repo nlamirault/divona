@@ -12,46 +12,56 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Window Manager for Debian
-  include_tasks: debian_init.yml
+- name: Windows Managers for Debian
+  block:
+    - include_tasks: debian_init.yml
   when: ansible_distribution == 'Debian'
   become: true
   become_user: root
 
-- name: Window Manager for Arch Linux
-  include_tasks: arch_init.yml
+- name: Windows Managers for Arch Linux
+  block:
+    - include_tasks: arch_init.yml
   when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
 
-- name: Window Manager for CentOS
-  include_tasks: centos_init.yml
+- name: Windows Managers for CentOS
+  block:
+    - include_tasks: centos_init.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
 
-- name: Base for Fedora
-  import_tasks: fedora_init.yml
+- name: Windows Managers for Fedora
+  block:
+    - import_tasks: fedora_init.yml
   when: ansible_distribution == 'Fedora'
   become: true
   become_user: root
 
-- name: Window Manager for FreeBSD
-  include_tasks: freebsd_init.yml
+- name: Windows Managers for FreeBSD
+  block:
+    - include_tasks: freebsd_init.yml
   when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
 
-- name: Window Manager for NetBSD
-  include_tasks: netbsd_init.yml
+- name: Windows Managers for NetBSD
+  block:
+    - include_tasks: netbsd_init.yml
   when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root
 
-- include_tasks: openbsd.yml
+- name: "Windows managers for OpenBSD"
+  block:
+    - include_tasks: openbsd.yml
   when: ansible_distribution == 'OpenBSD'
   become: true
   become_user: root
 
-- include_tasks: osx_init.yml
+- name: Windows Managers for OSX
+  block:
+    - include_tasks: osx_init.yml
   when: ansible_distribution == 'MacOSX'

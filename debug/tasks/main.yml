@@ -15,9 +15,8 @@
 ---
 - name: OS informations
   debug:
-    msg: "System: {{ inventory_hostname }}, OS: {{ ansible_distribution }}"
+    msg: "{{ ansible_hostname }} is running on OS: {{ ansible_os_family }}"
 
-- name: Display all variables/facts known for a host
+- name: Specified user's home directory
   debug:
-    var: hostvars[inventory_hostname]
-    verbosity: "4"
+    var: ansible_env.HOME

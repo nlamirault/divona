@@ -13,13 +13,15 @@
 # limitations under the License.
 ---
 - name: Development for Debian
-  include_tasks: debian.yml
+  block:
+    - include_tasks: debian.yml
   when: ansible_distribution == 'Debian'
   become: true
   become_user: root
 
 - name: Development for Archlinux
-  include_tasks: arch.yml
+  block:
+    - include_tasks: arch.yml
   when: ansible_distribution == 'Archlinux'
   become: true
   become_user: root
@@ -30,21 +32,25 @@
 #   when: ansible_distribution == 'FreeBSD'
 
 - name: Development for CentOS
-  include_tasks: centos.yml
+  block:
+    - include_tasks: centos.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
 
 - name: Development for OSX
-  include_tasks: osx.yml
+  block:
+    - include_tasks: osx.yml
   when: ansible_distribution == 'MacOSX'
 
 - name: Development for Windows
-  include_tasks: win.yml
+  block:
+    - include_tasks: win.yml
   when: ansible_distribution == 'Windows'
 
 - name: Cloud for Linux
-  include_tasks: cloud_linux.yml
+  block:
+    - include_tasks: cloud_linux.yml
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Archlinux' or
          ansible_distribution == 'CentOS' or
@@ -54,9 +60,11 @@
   become_user: root
 
 - name: Cloud for MacOSX
-  include_tasks: cloud_osx.yml
+  block:
+    - include_tasks: cloud_osx.yml
   when: ansible_distribution == 'MacOSX'
 
 - name: Cloud for Windows
-  include_tasks: cloud_win.yml
+  block:
+    - include_tasks: cloud_win.yml
   when: ansible_distribution == 'Windows'

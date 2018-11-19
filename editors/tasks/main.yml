@@ -13,37 +13,43 @@
 # limitations under the License.
 ---
 - name: Editors for Debian
-  include_tasks: debian_editors.yml
+  block:
+    - include_tasks: debian_editors.yml
   when: ansible_distribution == 'Debian'
   become: true
   become_user: root
 
 - name: Editors for Arch Linux
-  include_tasks: arch_editors.yml
+  block:
+    - include_tasks: arch_editors.yml
   when: ansible_distribution == 'Arch Linux'
   become: true
   become_user: root
 
 - name: Editors for CentOS
-  include_tasks: centos_editors.yml
+  block:
+    - include_tasks: centos_editors.yml
   when: ansible_distribution == 'CentOS'
   become: true
   become_user: root
 
 - name: Editors for Linux Mint
-  include_tasks: mint_editors.yml
+  block:
+    - include_tasks: mint_editors.yml
   when: ansible_distribution == 'Linux Mint'
   become: true
   become_user: root
 
 - name: Editors for Fedora
-  include_tasks: fedora_editors.yml
+  block:
+    - include_tasks: fedora_editors.yml
   when: ansible_distribution == 'Fedora'
   become: true
   become_user: root
 
 - name: Editors for Linux
-  include_tasks: linux_editors.yml
+  block:
+    - include_tasks: linux_editors.yml
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Archlinux' or
          ansible_distribution == 'CentOS' or
@@ -51,23 +57,27 @@
          ansible_distribution == 'Fedora')
 
 - name: Editors for OSX
-  include_tasks: osx_editors.yml
+  block:
+    - include_tasks: osx_editors.yml
   when: ansible_distribution == 'MacOSX'
 
 - name: Editors for Windows
-  include_tasks: win_editors.yml
+  block:
+    - include_tasks: win_editors.yml
   when: ansible_distribution == 'Windows'
   become: true
   become_user: root
 
 - name: Editors for FreeBSD
-  include_tasks: freebsd.yml
+  block:
+    - include_tasks: freebsd.yml
   when: ansible_distribution == 'FreeBSD'
   become: true
   become_user: root
 
 - name: Editors for NetBSD
-  include_tasks: netbsd.yml
+  block:
+    - include_tasks: netbsd.yml
   when: ansible_distribution == 'NetBSD'
   become: true
   become_user: root
