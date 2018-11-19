@@ -89,3 +89,4 @@
       - ripgrep
       - exa
       - fd
+      - bat
