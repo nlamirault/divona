@@ -13,8 +13,10 @@
 # limitations under the License.
 
 ---
-- name: Divona provisionning
+- name: Base provisionning
   hosts: all
+  tags:
+    - base
   roles:
     - setup
     - base
@@ -22,3 +24,18 @@
     - desktop
     - editors
     - finish
+
+- name: Devops provisionning
+  hosts: all
+  tags:
+    - devops
+  roles:
+    - setup
+    - cloud
+
+- name: Debug informations
+  hosts: all
+  tags:
+    - debug
+  roles:
+    - debug

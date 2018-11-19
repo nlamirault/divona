@@ -56,6 +56,11 @@ lint: ## Check ansible style
 	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
 	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
 
+.PHONY: setup
+setup: ## Setup using Ansible (host=xxx user=yyyy tags=xxx,xx,xx)
+	@echo -e "$(OK_COLOR)[$(APP)] Setup using ansible$(NO_COLOR)"
+	@ansible-playbook ${DEBUG} -c local -i $(host) divona.yml -t $(tags) --extra-vars="user=$(user)"
+
 .PHONY: ansible-apply
 ansible-apply: ## Which type to apply (host=xxx which=xxx user=yyyy)
 	@echo -e "$(OK_COLOR)[$(APP)] Configure using default$(NO_COLOR)"
