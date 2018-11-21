@@ -1,6 +1,11 @@
 # Divona ChangeLog
 
-## Version 2.0.0 (xx/xx/2017)
+## Version 3.0.0 (11/21/2018)
+
+- Molecule: unit tests for roles
+- Refactoring: Ansible roles and build system
+
+## Version 2.0.0 (12/02/2017)
 
 - Use of GitlabCI for continuous integration
 - Update to Ansible 2.4.x
