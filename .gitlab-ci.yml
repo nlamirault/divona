@@ -28,6 +28,9 @@ variables:
   DOCKER_DRIVER: overlay
   ANSIBLE_VERSION: 2.4.0.0
 
+# ================================
+# CHECK
+
 check:ansible:
   stage: check
   image: python:2.7
@@ -35,6 +38,9 @@ check:ansible:
     - pip install ansible ansible-lint
     - ansible --version
     - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
+
+# ================================
+# BUILD
 
 build:archlinux:
   stage: build
@@ -80,6 +86,20 @@ build:ubuntu:
     - master
     - develop
 
+build:linuxmint:
+  stage: build
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker build -t "$CI_REGISTRY_IMAGE:linuxmint" -f dockerfiles/Dockerfile.linuxmint --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
+    - docker push "$CI_REGISTRY_IMAGE:linuxmint"
+  only:
+    - master
+    - develop
+
+# ================================
+# DEBUG
+
 debug:archlinux:
   stage: debug
   image: docker:git
@@ -123,6 +143,20 @@ debug:ubuntu:
   only:
     - master
     - develop
+
+debug:linuxmint:
+  stage: debug
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop
+
+# ================================
+# DEFAULT
 
 default:archlinux:
   stage: default
@@ -168,6 +202,20 @@ default:ubuntu:
     - master
     - develop
 
+default:linuxmint:
+  stage: default
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
+    - docker run --rm -i --cap-add=NET_ADMIN --cap-add SYS_ADMIN -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop
+
+# ================================
+# DEV
+
 dev:archlinux:
   stage: dev
   image: docker:git
@@ -211,6 +259,20 @@ dev:ubuntu:
   only:
     - master
     - develop
+
+dev:linuxmint:
+  stage: dev
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop
+
+# ================================
+# IOT
 
 iot:archlinux:
   stage: iot
@@ -256,6 +318,20 @@ iot:ubuntu:
     - master
     - develop
 
+iot:linuxmint:
+  stage: iot
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop
+
+# ================================
+# MOBILE
+
 mobile:archlinux:
   stage: mobile
   image: docker:git
@@ -300,3 +376,13 @@ mobile:ubuntu:
     - master
     - develop
 
+mobile:linuxmint:
+  stage: mobile
+  image: docker:git
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
+    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
+    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
+  only:
+    - master
+    - develop

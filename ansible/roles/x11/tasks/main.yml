@@ -1,7 +1,0 @@
----
-- name: X11 for Linux
-  include_tasks: linux.yml
-  when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Arch Linux')
-  become: true
-  become_user: root

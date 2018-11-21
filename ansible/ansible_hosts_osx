@@ -1,6 +1,0 @@
-[vagrant]
-10.44.44.44
-
-[vagrant:vars]
-user= vagrant
-

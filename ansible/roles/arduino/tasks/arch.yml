@@ -1,5 +1,0 @@
-- name: User in UUCP group
-  user: name={{ user }} groups=uucp append=yes
-
-- name: User in Lock group
-  user: name={{ user }} groups=lock append=yes

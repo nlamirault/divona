@@ -1,8 +1,0 @@
-- name: Install Emacs
-  homebrew_cask: name=emacs state=present
-
-- name: Install Visual Studio Code
-  homebrew_cask: name=visual-studio-code state=present
-
-- name: Install VimR
-  homebrew_cask: name=vimr state=present

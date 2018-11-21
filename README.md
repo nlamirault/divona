@@ -4,27 +4,20 @@
 
 * Develop: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/develop/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/develop)
 
-Automated installation using [Ansible](https://www.ansible.com/). Supported operating system:
+Automated installation. Tools supported:
 
-- [x] ArchLinux
-- [x] Debian, Ubuntu
-- [x] Centos
-- [x] OSX
-- [x] Windows.
-- [x] FreeBSD
-- [x] NetBSD
-- [x] OpenBSD
+* [x] [Ansible](https://www.ansible.com).
 
-## Tools
+Supported operating system:
 
-- Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
-- Debian : [apt](https://wiki.debian.org/Apt)
-- Centos: [yum](http://yum.baseurl.org/)
-- OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
-- Windows: [chocolatey](https://chocolatey.org)
-- FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
-- NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
-- OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
+- [x] Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
+- [x] Debian : [apt](https://wiki.debian.org/Apt)
+- [x] Centos: [yum](http://yum.baseurl.org/)
+- [x] OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
+- [x] Windows: [chocolatey](https://chocolatey.org)
+- [x] FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
+- [x] NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
+- [x] OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
 
 
 ## Installation
@@ -61,16 +54,20 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
 * Help:
 
-        $ make
-        ==== divona [1.1.0] ====
+        $ ==== divona [2.0.0] ====
         apply                : Which type to apply
         clean                : Cleanup
         docker-build         : Build a Docker image
+        docker-debug         : Run a bash from a Docker image
         docker-publish       : Publish the Divona image
         docker-run           : Run Ansible using a Docker image
         init                 : Install requirements
         lint                 : Check ansible style
         ping                 : Check Ansible installation
+
+
+### Ansible
+
 
 * Check ansible is working :
 
@@ -84,9 +81,30 @@ Automated installation using [Ansible](https://www.ansible.com/). Supported oper
 
         $ DEBUG="-vvvv" make default host=ansible/hosts/xxxx user=yyyy
 
+
 ## Development
 
 It's possible to test the `ansible` playbooks using `docker` or `vagrant`.
+
+### Molecule
+
+* Setup Molecule:
+
+        $ python3 -m venv venv
+        $ source venv/bin/activate
+        $ pip3 install molecule docker-py pytest==3.9.3
+
+* Execute all tasks:
+
+        $ molecule test
+
+Or :
+
+* Check yaml syntax: `molecule lint`
+* Check ansible syntax: `molecule syntax`
+* Create docker instance: `molecule create`
+* Execute the playbook: `molecule converge`
+* Execute unit tests: `molecule verify`
 
 ### Docker
 

@@ -1,0 +1,83 @@
+# Copyright (C) 2013-2018 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+- name: Editors for Debian
+  block:
+    - include_tasks: debian_editors.yml
+  when: ansible_distribution == 'Debian'
+  become: true
+  become_user: root
+
+- name: Editors for Arch Linux
+  block:
+    - include_tasks: arch_editors.yml
+  when: ansible_distribution == 'Arch Linux'
+  become: true
+  become_user: root
+
+- name: Editors for CentOS
+  block:
+    - include_tasks: centos_editors.yml
+  when: ansible_distribution == 'CentOS'
+  become: true
+  become_user: root
+
+- name: Editors for Linux Mint
+  block:
+    - include_tasks: mint_editors.yml
+  when: ansible_distribution == 'Linux Mint'
+  become: true
+  become_user: root
+
+- name: Editors for Fedora
+  block:
+    - include_tasks: fedora_editors.yml
+  when: ansible_distribution == 'Fedora'
+  become: true
+  become_user: root
+
+- name: Editors for Linux
+  block:
+    - include_tasks: linux_editors.yml
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Linux Mint' or
+         ansible_distribution == 'Fedora')
+
+- name: Editors for OSX
+  block:
+    - include_tasks: osx_editors.yml
+  when: ansible_distribution == 'MacOSX'
+
+- name: Editors for Windows
+  block:
+    - include_tasks: win_editors.yml
+  when: ansible_distribution == 'Windows'
+  become: true
+  become_user: root
+
+- name: Editors for FreeBSD
+  block:
+    - include_tasks: freebsd.yml
+  when: ansible_distribution == 'FreeBSD'
+  become: true
+  become_user: root
+
+- name: Editors for NetBSD
+  block:
+    - include_tasks: netbsd.yml
+  when: ansible_distribution == 'NetBSD'
+  become: true
+  become_user: root

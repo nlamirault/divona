@@ -1,4 +1,27 @@
+# Ansible
+ansible/hosts/inventory
+
+# Python
+venv
+
+# Molecule
+base/molecule/default/tests/__pycache__/
+cloud/molecule/default/tests/__pycache__/
+debug/molecule/default/tests/__pycache__/
+desktop/molecule/default/tests/__pycache__/
+editors/molecule/default/tests/__pycache__/
+finish/molecule/default/tests/__pycache__/
+setup/molecule/default/tests/__pycache__/
+wm/molecule/default/tests/__pycache__/
+
+# Vagrant
 .vagrant/
 *.box
+
+# Editors
+*~
+.vscode
+
+# Misc
 divona_*
 divona-*
