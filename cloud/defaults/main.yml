@@ -39,4 +39,5 @@ gcloud_sdk_win_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_arch
 
 krew_version: 0.2.1
 krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.zip
+krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.yaml
 krew_dir: /home/{{ user }}/bin

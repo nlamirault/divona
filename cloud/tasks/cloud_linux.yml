@@ -227,3 +227,10 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0755
+
+- name: Download Krew configuration
+  when:
+    - minikube_installation_required
+  get_url:
+    url: "{{ krew_yaml_download_url }}"
+    dest: "/home/{{ userc }}/etc/"
