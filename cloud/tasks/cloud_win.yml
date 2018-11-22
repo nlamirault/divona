@@ -15,7 +15,17 @@
 - name: Install Packer
   win_chocolatey:
     name: packer
-    state: latest
+    version: "{{ packer_version }}"
+
+- name: Install Terraform
+  win_chocolatey:
+    name: terraform
+    version: "{{ terraform_version }}"
+
+- name: Install Vault
+  win_chocolatey:
+    name: terraform
+    version: "{{ vault_version }}"
 
 - name: Install Docker tools
   win_chocolatey:
@@ -25,11 +35,6 @@
     - docker
     - docker-machine
     - docker-compose
-
-- name: Install Terraform
-  win_chocolatey:
-    name: terraform
-    state: latest
 
 - name: Install GCloud SDK
   unarchive:
@@ -42,3 +47,18 @@
     src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
     dest: /home/{{ user }}/bin/gcloud
     state: link
+
+- name: Install Kubernetes CLI
+  win_chocolatey:
+    name: kubernetes-cli
+    version: "{{ kubernetes_cli_version }}"
+
+- name: Install Minikube
+  win_chocolatey:
+    name: minikube
+    version: "{{ minikube_version }}"
+
+- name: Install Azure CLI
+  win_chocolatey:
+    name: azure-cli
+    version: "{{ azure_cli_version }}"
