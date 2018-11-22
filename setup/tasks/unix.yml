@@ -19,6 +19,11 @@
 #     groups: users
 #     append: true
 
+- name: Ensure group exists
+  group:
+    name: "{{ user }}"
+    state: present
+
 - name: Create Applications directory
   file:
     path: /home/{{ user }}/Apps
