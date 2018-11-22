@@ -225,7 +225,6 @@
     src: "/tmp/krew-linux_amd64"
     dest: "{{ krew_dir }}/krew"
     owner: "{{ user }}"
-    group: "{{ user }}"
     mode: 0755
 
 - name: Download Krew configuration
