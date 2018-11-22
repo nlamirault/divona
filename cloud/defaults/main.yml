@@ -37,6 +37,12 @@ gcloud_sdk_darwin_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_a
 gcloud_sdk_win_archive: "google-cloud-sdk-{{ gcloud_sdk_version }}-windows-x86_64.tar.gz"
 gcloud_sdk_win_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_archive }}"
 
+azure_cli_version: 2.0.51
+azure_cli_dir: /home/{{ user }}/Apps/azure-cli/venv
+
+aws_cli_version: 1.16.60
+aws_cli_dir: /home/{{ user }}/Apps/aws-cli/venv
+
 krew_version: 0.2.1
 krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.zip
 krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.yaml

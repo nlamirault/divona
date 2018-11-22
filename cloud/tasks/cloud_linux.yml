@@ -194,6 +194,18 @@
     dest: /home/{{ user }}/bin/gcloud
     state: link
 
+- name: Install Azure CLI
+  pip:
+    name: azure-cli
+    virtualenv: "{{ azure_cli_dir }}"
+    version: "{{ azure_cli_version }}"
+
+- name: Install AWS CLI
+  pip:
+    name: awscli
+    virtualenv: "{{ aws_cli_dir }}"
+    version: "{{ aws_cli_version }}"
+
 - name: Check Krew installation
   command: which krew
   register: krew_installation
