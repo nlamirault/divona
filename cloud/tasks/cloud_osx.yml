@@ -48,3 +48,15 @@
     src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
     dest: /home/{{ user }}/bin/gcloud
     state: link
+
+- name: Install Istio
+  unarchive:
+    src: "{{ istio_darwin_download_url }}"
+    dest: "{{ istio_dir }}"
+    remote_src: true
+
+- name: Adding Istio command to user path
+  file:
+    src: "{{ istio_dir }}/istio-{{ istio_version }}/bin/istioctl"
+    dest: /home/{{ user }}/bin/istioctl
+    state: link

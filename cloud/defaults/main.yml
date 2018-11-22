@@ -47,3 +47,9 @@ krew_version: 0.2.1
 krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.zip
 krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.yaml
 krew_dir: /home/{{ user }}/bin
+
+istio_version: 1.0.3
+istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-linux.tar.gz
+istio_darwin_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-osx.tar.gz
+istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-win.zip
+istio_dir: /home/{{ user }}/Apps

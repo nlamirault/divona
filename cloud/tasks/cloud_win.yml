@@ -62,3 +62,15 @@
   win_chocolatey:
     name: azure-cli
     version: "{{ azure_cli_version }}"
+
+- name: Install Istio
+  unarchive:
+    src: "{{ istio_win_download_url }}"
+    dest: "{{ istio_dir }}"
+    remote_src: true
+
+- name: Adding Istio command to user path
+  file:
+    src: "{{ istio_dir }}/istio-{{ istio_version }}/bin/istioctl"
+    dest: /home/{{ user }}/bin/istioctl
+    state: link

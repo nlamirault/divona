@@ -245,3 +245,38 @@
   get_url:
     url: "{{ krew_yaml_download_url }}"
     dest: "/home/{{ userc }}/etc/"
+
+- name: Check Istio installation
+  command: which istioctl
+  register: istio_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Istio version
+  shell: "{{ istio_installation.stdout }} version|grep -e '^Version'|awk -F': ' '{ print $2 }'"
+  when: not istio_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_istio_version
+
+- name: Istio installation is required
+  set_fact:
+    istio_installation_required: "{{ istio_installation is failed or installed_istio_version.stdout != istio_version }}"
+
+- name: Install Istio
+  when:
+    - istio_installation_required
+  unarchive:
+    src: "{{ istio_linux_download_url }}"
+    dest: "{{ istio_dir }}"
+    remote_src: true
+
+- name: Adding Istio command to user path
+  when:
+    - istio_installation_required
+  file:
+    src: "{{ istio_dir }}/istio-{{ istio_version }}/bin/istioctl"
+    dest: /home/{{ user }}/bin/istioctl
+    state: link
+
