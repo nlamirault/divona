@@ -17,3 +17,9 @@
     path: C:\Apps
     state: directory
     mode: 0755
+
+- name: Create local "Users" group
+  win_group:
+    name: Users
+    description: Local Users
+    state: present
