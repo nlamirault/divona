@@ -156,8 +156,8 @@
   when:
     - minikube_installation_required
   get_url:
-    url: "{{ minikube_download_url }}"
-    dest: "{{ minikube_file }}"
+    url: "{{ minikube_linux_download_url }}"
+    dest: "{{ minikube_linux_file }}"
     mode: 0755
 
 - name: Check GCloud SDK installation
@@ -244,7 +244,7 @@
     - minikube_installation_required
   get_url:
     url: "{{ krew_yaml_download_url }}"
-    dest: "/home/{{ userc }}/etc/"
+    dest: "/home/{{ user }}/etc/"
 
 - name: Check Istio installation
   command: which istioctl

@@ -33,20 +33,21 @@
     state: latest
 
 - name: Install Minikube
-  homebrew_cask:
-    name: minikube
-    state: latest
+  get_url:
+    url: "{{ minikube_darwin_download_url }}"
+    dest: "{{ minikube_darwin_file }}"
+    mode: 0755
 
 - name: Install GCloud SDK
   unarchive:
     src: "{{ gcloud_sdk_darwin_download_url }}"
-    dest: "{{ gcloud_sdk_dir }}"
+    dest: "{{ gcloud_sdk_darwin_dir }}"
     remote_src: true
 
 - name: Adding GCloud command to user path
   file:
     src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
-    dest: /home/{{ user }}/bin/gcloud
+    dest: /Users/{{ user }}/bin/gcloud
     state: link
 
 - name: Install Istio
@@ -58,5 +59,5 @@
 - name: Adding Istio command to user path
   file:
     src: "{{ istio_dir }}/istio-{{ istio_version }}/bin/istioctl"
-    dest: /home/{{ user }}/bin/istioctl
+    dest: /Users/{{ user }}/bin/istioctl
     state: link

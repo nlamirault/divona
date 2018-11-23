@@ -24,16 +24,20 @@ kubernetes_cli_download_url: https://storage.googleapis.com/kubernetes-release/r
 kubernetes_cli_file: /home/{{ user }}/bin/kubectl
 
 minikube_version: 0.30.0
-minikube_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-linux-amd64
-minikube_file: /home/{{ user }}/bin/minikube
+minikube_linux_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-linux-amd64
+minikube_darwin_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-darwin-amd64
+minikube_linux_file: /home/{{ user }}/bin/minikube
+minikube_darwin_file: /Users/{{ user }}/bin/minikube
 
 gcloud_sdk_version: 225.0.0
-gcloud_sdk_dir: /home/{{ user }}/Apps
 gcloud_sdk_base_url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
+gcloud_sdk_linux_dir: /home/{{ user }}/Apps
 gcloud_sdk_linux_archive: google-cloud-sdk-{{ gcloud_sdk_version }}-linux-x86_64.tar.gz
 gcloud_sdk_linux_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_archive }}"
+gcloud_sdk_darwin_dir: /Users/{{ user }}/Apps
 gcloud_sdk_darwin_archive: "google-cloud-sdk-{{ gcloud_sdk_version }}-darwin-x86_64.tar.gz"
 gcloud_sdk_darwin_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_archive }}"
+gcloud_sdk_win_dir: C:\Apps
 gcloud_sdk_win_archive: "google-cloud-sdk-{{ gcloud_sdk_version }}-windows-x86_64.tar.gz"
 gcloud_sdk_win_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_archive }}"
 

@@ -82,6 +82,7 @@
   vars:
     packages:
       - evince
+      - mupdf
 
 - name: Install fonts
   pacman:
