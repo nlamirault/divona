@@ -12,17 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Install Emacs
-  homebrew_cask:
-    name: emacs
-    state: latest
-
-- name: Install Visual Studio Code
-  homebrew_cask:
-    name: visual-studio-code
-    state: latest
-
-- name: Install VimR
-  homebrew_cask:
-    name: vimr
-    state: latest
+- name: Clean chocolatey/nuget cache
+  win_file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+  - '%UserProfile%\AppData\Local\Temp\chocolatey\'
+  tags: cache

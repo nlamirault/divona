@@ -12,26 +12,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Install Virtualbox
+- name: Install web applications
   homebrew_cask:
-    name: virtualbox
-    state: latest
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - chromium
+      - brave
 
-- name: Install Vagrant
+- name: Install graphics applications
   homebrew_cask:
-    name: vagrant
-    state: latest
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - gimp
 
-- name: Install Docker tools
+- name: Install video applications
   homebrew_cask:
-    name: {{ item }}
-    state: latest
-  with_items:
-    # - docker
-    # - docker-compose
-    - dockertoolbox
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - vlc
+      - iina
 
-- name: Install QEmu
-  homebrew:
-    name: qemu
-    state: latest
+- name: Install communications applications
+  homebrew_cask:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - hexchat
+
+- name: Install security tools
+  homebrew_cask:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - keepassxc

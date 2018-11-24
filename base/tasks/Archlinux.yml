@@ -35,6 +35,7 @@
       - tmux
       - ncdu
       - feh
+      - nnn
 
 - name: Install defaults packages
   pacman:

@@ -11,16 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: OS informations
-  debug:
-    msg: "{{ ansible_hostname }} is running on OS: {{ ansible_os_family }}"
+- name: Install Emacs
+  homebrew_cask:
+    name: emacs
+    state: present
 
-- name: Specified user's home directory
-  debug:
-    var: ansible_env.HOME
+- name: Install Visual Studio Code
+  homebrew_cask:
+    name: visual-studio-code
+    state: present
 
-- name: User used
-  debug:
-    var: user
+- name: Install VimR
+  homebrew_cask:
+    name: vimr
+    state: present

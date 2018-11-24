@@ -11,16 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: OS informations
-  debug:
-    msg: "{{ ansible_hostname }} is running on OS: {{ ansible_os_family }}"
-
-- name: Specified user's home directory
-  debug:
-    var: ansible_env.HOME
-
-- name: User used
-  debug:
-    var: user
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes

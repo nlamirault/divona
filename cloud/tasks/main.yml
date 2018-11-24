@@ -12,41 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Development for Debian
+- name: Include OS-specific tasks
   block:
-    - include_tasks: debian.yml
-  when: ansible_distribution == 'Debian'
+    - include_tasks: "{{ ansible_distribution }}.yml"
+  when: (ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Debian' or
+         ansible_distribution == 'Fedora' or
+         ansible_distribution == 'MacOSX' or
+         ansible_distribution == 'Windows')
   become: true
   become_user: root
-
-- name: Development for Archlinux
-  block:
-    - include_tasks: arch.yml
-  when: ansible_distribution == 'Archlinux'
-  become: true
-  become_user: root
-
-# - include_tasks: freebsd.yml
-#   become: true
-#   become_user: root
-#   when: ansible_distribution == 'FreeBSD'
-
-- name: Development for CentOS
-  block:
-    - include_tasks: centos.yml
-  when: ansible_distribution == 'CentOS'
-  become: true
-  become_user: root
-
-- name: Development for OSX
-  block:
-    - include_tasks: osx.yml
-  when: ansible_distribution == 'MacOSX'
-
-- name: Development for Windows
-  block:
-    - include_tasks: win.yml
-  when: ansible_distribution == 'Windows'
 
 - name: Cloud for Linux
   block:
@@ -56,8 +32,6 @@
          ansible_distribution == 'CentOS' or
          ansible_distribution == 'Linux Mint' or
          ansible_distribution == 'Fedora')
-  # become: true
-  # become_user: root
 
 - name: Cloud for MacOSX
   block:
