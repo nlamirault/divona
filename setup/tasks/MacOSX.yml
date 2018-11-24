@@ -21,7 +21,14 @@
 
 - name: Create Applications directory
   file:
-    path: "/Users/{{ user }}/Apps"
+    path: "/Users/{{ user }}/Applications"
+    owner: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: Create Documents directory
+  file:
+    path: "/Users/{{ user }}/Documents"
     owner: "{{ user }}"
     state: directory
     mode: 0755
@@ -29,4 +36,3 @@
 - name: brew update & upgrade
   homebrew:
     update_homebrew: true
-    upgrade_all: true
