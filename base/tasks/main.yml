@@ -28,6 +28,11 @@
   become: true
   become_user: root
 
+- name: Include OS-specific tasks
+  block:
+    - include_tasks: "{{ ansible_distribution }}.yml"
+  when: ansible_distribution == 'MacOSX'
+
 - name: Tools for Archlinux
   block:
     - import_tasks: arch_tools.yml
