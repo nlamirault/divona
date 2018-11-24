@@ -68,9 +68,6 @@
     - "/Users/{{ user }}/Projects"
     - "/Users/{{ user }}/Applications"
 
-- name: Restart dock
-  command: killall Dock
-
 - name: Install windows manager
   homebrew:
     name: "{{ packages }}"
