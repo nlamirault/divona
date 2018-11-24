@@ -27,6 +27,11 @@
   become: true
   become_user: root
 
+- name: Include OS-specific tasks
+  block:
+    - include_tasks: "{{ ansible_distribution }}.yml"
+  when: ansible_distribution == 'MacOSX'
+
 - name: Editors for Linux
   block:
     - include_tasks: linux.yml
