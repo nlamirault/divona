@@ -183,14 +183,14 @@
     - gcloud_sdk_installation_required
   unarchive:
     src: "{{ gcloud_sdk_linux_download_url }}"
-    dest: "{{ gcloud_sdk_dir }}"
+    dest: "{{ gcloud_sdk_linux_dir }}"
     remote_src: true
 
 - name: Adding GCloud command to user path
   when:
     - gcloud_sdk_installation_required
   file:
-    src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
+    src: "{{ gcloud_sdk_linux_dir }}/google-cloud-sdk/bin/gcloud"
     dest: /home/{{ user }}/bin/gcloud
     state: link
 

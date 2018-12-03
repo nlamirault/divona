@@ -46,7 +46,7 @@
 
 - name: Adding GCloud command to user path
   file:
-    src: "{{ gcloud_sdk_dir }}/google-cloud-sdk/bin/gcloud"
+    src: "{{ gcloud_sdk_darwin_dir }}/google-cloud-sdk/bin/gcloud"
     dest: /Users/{{ user }}/bin/gcloud
     state: link
 
