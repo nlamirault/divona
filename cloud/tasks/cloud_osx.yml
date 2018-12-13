@@ -53,7 +53,7 @@
 - name: Install Istio
   unarchive:
     src: "{{ istio_darwin_download_url }}"
-    dest: "{{ istio_dir }}"
+    dest: "{{ istio_darwin_dir }}"
     remote_src: true
 
 - name: Adding Istio command to user path

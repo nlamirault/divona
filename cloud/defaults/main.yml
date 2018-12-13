@@ -50,10 +50,17 @@ aws_cli_dir: /home/{{ user }}/Apps/aws-cli/venv
 krew_version: 0.2.1
 krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.zip
 krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.yaml
-krew_dir: /home/{{ user }}/bin
+krew_linux_dir: /home/{{ user }}/bin
 
 istio_version: 1.0.4
 istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-linux.tar.gz
+istio_linux_dir: /home/{{ user }}/Apps
 istio_darwin_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-osx.tar.gz
+istio_darwin_dir: /Users/{{ user }}/bin
 istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-win.zip
-istio_dir: /home/{{ user }}/Apps
+
+kind_version: 0.0.1
+kind_linux_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/kind-linux-amd64
+kind_linux_file: /home/{{ user }}/bin/kind
+kind_darwin_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/kind-darwin-amd64
+kind_darwin_file: /Users/{{ user }}/bin/kind

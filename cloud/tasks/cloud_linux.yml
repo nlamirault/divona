@@ -235,7 +235,7 @@
 - name: Copying Krew file to user path
   copy:
     src: "/tmp/krew-linux_amd64"
-    dest: "{{ krew_dir }}/krew"
+    dest: "{{ krew_linux_dir }}/krew"
     owner: "{{ user }}"
     mode: 0755
 
@@ -269,7 +269,7 @@
     - istio_installation_required
   unarchive:
     src: "{{ istio_linux_download_url }}"
-    dest: "{{ istio_dir }}"
+    dest: "{{ istio_linux_dir }}"
     remote_src: true
 
 - name: Adding Istio command to user path
@@ -280,3 +280,28 @@
     dest: /home/{{ user }}/bin/istioctl
     state: link
 
+- name: Check Kind installation
+  command: which kind
+  register: kind_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Kind version
+  shell: "{{ kind_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'"
+  when: not kind_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_kind_version
+
+- name: Kind installation is required
+  set_fact:
+    kind_installation_required: "{{ kind_installation is failed or installed_kind_version.stdout != kind_version }}"
+
+- name: Install Kind
+  when:
+    - kind_installation_required
+  get_url:
+    url: "{{ kind_linux_download_url }}"
+    dest: "{{ kind_linux_file }}"
+    mode: 0755
