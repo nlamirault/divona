@@ -29,6 +29,8 @@
       - sddm
       - lightdm
       - lightdm-gtk-greeter-settings
+      - lightdm-webkit2-greeter
+      - light-locker
 
 - name: Install themes
   pacman:
