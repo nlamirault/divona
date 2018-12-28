@@ -12,6 +12,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Check Vagrant installation
+  command: which vagrant
+  register: vagrant_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Vagrant version
+  shell: "{{ vagrant_installation.stdout }} -version"
+  when: not vagrant_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_vagrant_version
+
+- name: Vagrant installation is required
+  set_fact:
+    vagrant_installation_required: "{{ vagrant_installation is failed or installed_vagrant_version.stdout != vagrant_version }}"
+
+- name: Install Vagrant
+  when:
+    - vagrant_installation_required
+  unarchive:
+    src: "{{ vagrant_linux_download_url }}"
+    dest: "{{ vagrant_dir }}"
+    remote_src: true
+
 - name: Check Packer installation
   command: which packer
   register: packer_installation

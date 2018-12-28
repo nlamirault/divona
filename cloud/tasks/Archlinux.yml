@@ -29,7 +29,7 @@
     name: docker
     state: present
 
-- name: Install Vagrant and tools
+- name: Install virtualization tools
   pacman:
     name: "{{ packages }}"
     state: latest
@@ -38,7 +38,10 @@
       - virtualbox
       - libvirt
       - qemu
-      - vagrant
+      - virt-manager
+      - ebtables
+      - dnsmasq
+      - bridge-utils
 
 - name: Add user to cloud groups
   user:

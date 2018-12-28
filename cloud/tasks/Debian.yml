@@ -60,19 +60,3 @@
   apt:
     name: virtualbox-5.2
     state: latest
-
-- name: Verify Vagrant deb file
-  stat:
-    path: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
-  register: vagrant_debfile
-
-- name: Download Vagrant
-  get_url:
-    url: "{{ vagrant_download_url }}"
-    dest: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
-    mode: 0440
-  when: vagrant_debfile.stat.exists == False
-
-- name: Install Vagrant
-  apt:
-    deb: /home/{{ user }}/Apps/vagrant_{{ vagrant_version }}_x86_64.deb
