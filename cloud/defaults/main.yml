@@ -9,22 +9,29 @@ vagrant_dir: /home/{{ user }}/bin
 
 packer_version: 1.3.2
 packer_package_name: "packer_{{ packer_version }}_linux_amd64.zip"
-packer_download_url: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
-packer_dir: /home/{{ user }}/bin
+packer_linux_download_url: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
+packer_linux_dir: /home/{{ user }}/bin
+packer_darwin_download_url: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_darwin_amd64.zip
+packer_darwin_dir: /Users/{{ user }}/bin/
 
 terraform_version: 0.11.10
-terraform_package_name: "terraform_{{ terraform_version }}_linux_amd64.zip"
-terraform_download_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
-terraform_dir: /home/{{ user }}/bin
+terraform_linux_download_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
+terraform_linux_dir: /home/{{ user }}/bin
+terraform_darwin_download_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_darwin_amd64.zip
+terraform_darwin_dir: /Users/{{ user }}/bin/
 
 vault_version: 1.0.1
 vault_package_name: "vault_{{ vault_version }}_linux_amd64.zip"
-vault_download_url: https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip
-vault_dir: /home/{{ user }}/bin
+vault_linux_download_url: https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip
+vault_linux_dir: /home/{{ user }}/bin
+vault_darwin_download_url: https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_darwin_amd64.zip
+vault_darwin_dir: /Users/{{ user }}/bin/
 
 kubernetes_cli_version: 1.12.2
-kubernetes_cli_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/linux/amd64/kubectl
-kubernetes_cli_file: /home/{{ user }}/bin/kubectl
+kubernetes_cli_linux_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/linux/amd64/kubectl
+kubernetes_cli_linux_file: /home/{{ user }}/bin/kubectl
+kubernetes_cli_darwin_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/darwin/amd64/kubectl
+kubernetes_cli_darwin_file: /Users/{{ user }}/bin/kubectl
 
 minikube_version: 0.30.0
 minikube_linux_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-linux-amd64

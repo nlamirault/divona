@@ -28,7 +28,8 @@ class Distribution(abc.ABC):
         self.check_file_exists(host, "/home/divona/bin/minikube")
 
     def check_gcloud_sdk(self, host):
-        self.check_file_exists(host, "/home/divona/bin/google-clouds-sdk/bin/gcloud")
+        self.check_file_exists(
+            host, "/home/divona/bin/google-clouds-sdk/bin/gcloud")
 
     def check_package_installed(self, host, packages):
         for pkg in packages:
@@ -96,17 +97,20 @@ def test_virtualization(host):
     if distribution:
         distribution.check_virtualization_tools(host)
 
+
 def test_hashicorp_tools(host):
     Archlinux().check_hashicorp_tools(host)
     Debian().check_hashicorp_tools(host)
     Centos().check_hashicorp_tools(host)
     Fedora().check_hashicorp_tools(host)
 
+
 def test_kubernetes_tools(host):
     Archlinux().check_kubernetes_tools(host)
     Debian().check_kubernetes_tools(host)
     Centos().check_kubernetes_tools(host)
     Fedora().check_kubernetes_tools(host)
+
 
 def test_gcloud_sdk(host):
     Archlinux().check_gcloud_sdk(host)

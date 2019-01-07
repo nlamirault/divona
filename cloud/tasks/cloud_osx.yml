@@ -12,25 +12,129 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Check Packer installation
+  command: which packer
+  register: packer_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Packer version
+  command: "{{ packer_installation.stdout }} -version"
+  when: not packer_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_packer_version
+
+- name: Packer installation is required
+  set_fact:
+    packer_installation_required: "{{ packer_installation is failed or installed_packer_version.stdout != packer_version }}"
+
 - name: Install Packer
-  homebrew:
-    name: packer
-    state: latest
+  when:
+    - packer_installation_required
+  unarchive:
+    src: "{{ packer_darwin_download_url }}"
+    dest: "{{ packer_darwin_dir }}"
+    remote_src: true
+
+# - name: Install Packer
+#   homebrew:
+#     name: packer
+#     state: latest
+
+- name: Check Terraform installation
+  command: which terraform
+  register: terraform_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Terraform version
+  shell: "{{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1"
+  when: not terraform_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_terraform_version
+
+- name: Terraform installation is required
+  set_fact:
+    terraform_installation_required: "{{ terraform_installation is failed or installed_terraform_version.stdout != terraform_version }}"
 
 - name: Install Terraform
-  homebrew:
-    name: terraform
-    state: latest
+  when:
+    - terraform_installation_required
+  unarchive:
+    src: "{{ terraform_darwin_download_url }}"
+    dest: "{{ terraform_darwin_dir }}"
+    remote_src: true
+
+# - name: Install Terraform
+#   homebrew:
+#     name: terraform
+#     state: latest
+
+- name: Check Vault installation
+  command: which vault
+  register: vault_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Vault version
+  shell: "{{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'"
+  when: not vault_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_vault_version
+
+- name: Vault installation is required
+  set_fact:
+    vault_installation_required: "{{ vault_installation is failed or installed_vault_version.stdout != vault_version }}"
 
 - name: Install Vault
-  homebrew:
-    name: vault
-    state: latest
+  when:
+    - vault_installation_required
+  unarchive:
+    src: "{{ vault_darwin_download_url }}"
+    dest: "{{ vault_darwin_dir }}"
+    remote_src: true
+
+# - name: Install Vault
+#   homebrew:
+#     name: vault
+#     state: latest
+
+- name: Check Kubernetes CLI installation
+  command: which kubectl
+  register: kubectl_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Kubernetes CLI version
+  shell: "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
+  when: not kubectl_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_kubectl_version
+
+- name: Kubernetes installation is required
+  set_fact:
+    kubernetes_cli_installation_required: "{{ kubectl_installation is failed or installed_kubectl_version.stdout != kubernetes_cli_version }}"
 
 - name: Install Kubernetes CLI
-  homebrew:
-    name: kubernetes-cli
-    state: latest
+  when:
+    - kubernetes_cli_installation_required
+  get_url:
+    url: "{{ kubernetes_cli_darwin_download_url }}"
+    dest: "{{ kubernetes_cli_darwin_file }}"
+    mode: 0755
+
+# - name: Install Kubernetes CLI
+#   homebrew:
+#     name: kubernetes-cli
+#     state: latest
 
 - name: Install Minikube
   get_url:

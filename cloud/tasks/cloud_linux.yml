@@ -50,7 +50,7 @@
   check_mode: false
 
 - name: Get installed Packer version
-  shell: "{{ packer_installation.stdout }} -version"
+  command: "{{ packer_installation.stdout }} -version"
   when: not packer_installation is failed
   changed_when: false
   check_mode: false
@@ -64,8 +64,8 @@
   when:
     - packer_installation_required
   unarchive:
-    src: "{{ packer_download_url }}"
-    dest: "{{ packer_dir }}"
+    src: "{{ packer_linux_download_url }}"
+    dest: "{{ packer_linux_dir }}"
     remote_src: true
 
 - name: Check Terraform installation
@@ -90,8 +90,8 @@
   when:
     - terraform_installation_required
   unarchive:
-    src: "{{ terraform_download_url }}"
-    dest: "{{ terraform_dir }}"
+    src: "{{ terraform_linux_download_url }}"
+    dest: "{{ terraform_linux_dir }}"
     remote_src: true
 
 - name: Check Vault installation
@@ -116,8 +116,8 @@
   when:
     - vault_installation_required
   unarchive:
-    src: "{{ vault_download_url }}"
-    dest: "{{ vault_dir }}"
+    src: "{{ vault_linux_download_url }}"
+    dest: "{{ vault_linux_dir }}"
     remote_src: true
 
 - name: Check Kubernetes CLI installation
@@ -142,8 +142,8 @@
   when:
     - kubernetes_cli_installation_required
   get_url:
-    url: "{{ kubernetes_cli_download_url }}"
-    dest: "{{ kubernetes_cli_file }}"
+    url: "{{ kubernetes_cli_linux_download_url }}"
+    dest: "{{ kubernetes_cli_linux_file }}"
     mode: 0755
 
 - name: Check Kubernetes CLI installation
