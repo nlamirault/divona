@@ -8,7 +8,6 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-
 class Distribution(abc.ABC):
 
     @abc.abstractmethod
@@ -77,4 +76,3 @@ def test_editors(host):
     distribution = _create_distribution(host.system_info.distribution)
     if distribution:
         distribution.check_editors(host)
-

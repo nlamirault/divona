@@ -8,12 +8,12 @@ lint:
 platforms:
   - name: archlinux
     image: base/archlinux:2018.11.01
-  # - name: debian
-  #   image: debian:stretch
-  # - name: centos
-  #   image: centos:7
-  # - name: fedora
-  #   image: fedora:29
+  - name: debian
+    image: debian:stretch
+  - name: centos
+    image: centos:7
+  - name: fedora
+    image: fedora:29
 provisioner:
   name: ansible
   lint:
