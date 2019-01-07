@@ -13,7 +13,8 @@
 # limitations under the License.
 
 stages:
-  - check
+  - lint
+  - configure
   - test
 
 services:
@@ -24,65 +25,154 @@ variables:
   ANSIBLE_VERSION: 2.4.0.0
 
 # ================================
-# CHECK
+# lint
 
-check:debug:
-  stage: check
+lint:debug:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd debug && molecule lint
 
-check:setup:
-  stage: check
+lint:setup:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd debug && molecule lint
-    # - ansible --version
-    # - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
 
-check:base:
-  stage: check
+lint:base:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd base && molecule lint
 
-check:wm:
-  stage: check
+lint:wm:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd wm && molecule lint
 
-check:desktop:
-  stage: check
+lint:desktop:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd desktop && molecule lint
 
-check:editors:
-  stage: check
+lint:editors:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd editors && molecule lint
 
-check:finish:
-  stage: check
+lint:finish:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd finish && molecule lint
 
-check:cloud:
-  stage: check
+lint:cloud:
+  stage: lint
   image: python:2.7
   script:
     - pip install ansible molecule
     - cd cloud && molecule lint
+
+# ================================
+# CONFIGURE
+
+configure:debug:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd debug
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:setup:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd setup
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:base:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd base
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:wm:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd wm
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:desktop:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd desktop
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:editors:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd editors
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:finish:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd finish
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+
+configure:cloud:
+  stage: configure
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd cloud
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
 
 # ================================
 # TEST
@@ -93,12 +183,93 @@ test:debug:
   script:
     - pip install ansible molecule
     - cd debug
-    - molecule destroy
-    - molecule dependency
-    - molecule create
-    - molecule prepare
     - molecule converge
     - molecule idempotence
     - molecule side_effect
     - molecule verify
     - molecule destroy
+
+test:setup:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd setup
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:base:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd base
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:wm:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd wm
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:desktop:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd desktop
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:editors:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd editors
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:finish:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd finish
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
+test:cloud:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd cloud
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
+
