@@ -87,9 +87,9 @@ check:cloud:
 # ================================
 # TEST
 
-# test:debug:
-#   stage: test
-#   image: python:2.7
-#   script:
-#     - pip install ansible molecule
-#     - cd debug && molecule test
+test:debug:
+  stage: test
+  image: python:2.7
+  script:
+    - pip install ansible molecule
+    - cd debug && molecule destroy dependency create prepare converge idempotence side_effect verify destroy
