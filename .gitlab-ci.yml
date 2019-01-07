@@ -14,7 +14,7 @@
 
 stages:
   - check
-  - docker
+  - test
 
 services:
   - docker:dind

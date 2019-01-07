@@ -43,10 +43,18 @@
       - dnsmasq
       - bridge-utils
 
+- name: Install Vagrant
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - vagrant
+
 - name: Add user to cloud groups
   user:
     name: "{{ user }}"
-    groups: docker
+    groups: docker, libvirt, kvm
     append: true
 
 # - name: Start Docker service

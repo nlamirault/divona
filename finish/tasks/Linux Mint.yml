@@ -14,4 +14,4 @@
 ---
 - name: Remove useless packages from the cache
   apt:
-    autoclean: yes
+    autoclean: true

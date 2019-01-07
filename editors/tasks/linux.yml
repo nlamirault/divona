@@ -15,15 +15,15 @@
 - name: Check vscode installation
   command: which code
   register: vscode_installation
-  changed_when: False
-  ignore_errors: True
-  check_mode: False
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
 
 - name: Get installed vscode version
   shell: "{{ vscode_installation.stdout }} -version|head -1"
   when: not vscode_installation is failed
-  changed_when: False
-  check_mode: False
+  changed_when: false
+  check_mode: false
   register: installed_vscode_version
 
 - name: vscode installation is required
