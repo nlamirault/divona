@@ -92,4 +92,13 @@ test:debug:
   image: python:2.7
   script:
     - pip install ansible molecule
-    - cd debug && molecule destroy dependency create prepare converge idempotence side_effect verify destroy
+    - cd debug
+    - molecule destroy
+    - molecule dependency
+    - molecule create
+    - molecule prepare
+    - molecule converge
+    - molecule idempotence
+    - molecule side_effect
+    - molecule verify
+    - molecule destroy
