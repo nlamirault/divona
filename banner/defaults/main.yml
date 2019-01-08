@@ -11,32 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  roles:
-    - setup
-    - banner
-    - base
-    - wm
-    - desktop
-    - editors
-    - finish
-
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    - setup
-    - cloud
-
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - debug
+banner_motd: true
+banner_motd_file: /etc/motd
+banner_motd_template: motd.j2
+banner_updated: true

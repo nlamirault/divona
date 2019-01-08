@@ -11,32 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
+- name: Copy banner file
+  template:
+    src: "templates/{{ banner_motd_template }}"
+    dest: "{{ banner_motd_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  when: banner_motd
   tags:
-    - base
-  roles:
-    - setup
-    - banner
-    - base
-    - wm
-    - desktop
-    - editors
-    - finish
-
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    - setup
-    - cloud
-
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - debug
+    - banners
+    - banners:motd
