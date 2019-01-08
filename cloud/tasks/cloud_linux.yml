@@ -212,6 +212,7 @@
   get_url:
     url: "{{ minikube_linux_download_url }}"
     dest: "{{ minikube_linux_file }}"
+    checksum: "{{ minikube_linux_checksum }}"
     mode: 0755
 
 - name: Check GCloud SDK installation

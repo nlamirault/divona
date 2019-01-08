@@ -43,10 +43,12 @@ kubernetes_cli_linux_file: /home/{{ user }}/bin/kubectl
 kubernetes_cli_darwin_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/darwin/amd64/kubectl
 kubernetes_cli_darwin_file: /Users/{{ user }}/bin/kubectl
 
-minikube_version: 0.30.0
+minikube_version: 0.32.0
+minikube_linux_checksum: "sha256:3298d3183deacd9ddd3032dab113a64d863df7648d6d24693284ba4193e95b49"
 minikube_linux_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-linux-amd64
-minikube_darwin_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-darwin-amd64
 minikube_linux_file: /home/{{ user }}/bin/minikube
+minikube_darwin_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-darwin-amd64
+minikube_darwin_checksum: "sha256:d5b21adacd4b6bad9006816e4bdb29f39318a60919e7a6bb5e388a6299fffd0f"
 minikube_darwin_file: /Users/{{ user }}/bin/minikube
 
 gcloud_sdk_version: 228.0.0

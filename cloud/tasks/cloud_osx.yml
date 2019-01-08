@@ -129,6 +129,7 @@
   get_url:
     url: "{{ kubernetes_cli_darwin_download_url }}"
     dest: "{{ kubernetes_cli_darwin_file }}"
+    checksum: "{{ minikube_darwin_checksum }}"
     mode: 0755
 
 # - name: Install Kubernetes CLI
