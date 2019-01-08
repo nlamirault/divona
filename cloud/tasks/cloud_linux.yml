@@ -60,21 +60,22 @@
   set_fact:
     packer_installation_required: "{{ packer_installation is failed or installed_packer_version.stdout != packer_version }}"
 
-- name: Download Packer archive
+- name: Packer installation
   when:
     - packer_installation_required
-  get_url:
-    url: "{{ packer_linux_download_url }}"
-    dest: "/tmp/{{ packer_linux_package_name }}"
-    mode: 0600
-    checksum: "{{ packer_linux_checksum }}"
+  block:
+    - name: Download Packer archive
+      get_url:
+        url: "{{ packer_linux_download_url }}"
+        dest: "/tmp/{{ packer_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ packer_linux_checksum }}"
+        force: true
 
-- name: Install Packer
-  when:
-    - packer_installation_required
-  unarchive:
-    src: "/tmp/{{ packer_linux_package_name }}"
-    dest: "{{ packer_linux_dir }}"
+    - name: Install Packer CLI
+      unarchive:
+        src: "/tmp/{{ packer_linux_package_name }}"
+        dest: "{{ packer_linux_dir }}"
 
 - name: Check Terraform installation
   command: which terraform
@@ -94,21 +95,22 @@
   set_fact:
     terraform_installation_required: "{{ terraform_installation is failed or installed_terraform_version.stdout != terraform_version }}"
 
-- name: Download Terraform archive
+- name: Terraform installation
   when:
     - terraform_installation_required
-  get_url:
-    url: "{{ terraform_linux_download_url }}"
-    dest: "/tmp/{{ terraform_linux_package_name }}"
-    mode: 0600
-    checksum: "{{ terraform_linux_checksum }}"
+  block:
+    - name: Download Terraform archive
+      get_url:
+        url: "{{ terraform_linux_download_url }}"
+        dest: "/tmp/{{ terraform_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ terraform_linux_checksum }}"
+        force: true
 
-- name: Install Terraform
-  when:
-    - terraform_installation_required
-  unarchive:
-    src: "/tmp/{{ terraform_linux_package_name }}"
-    dest: "{{ terraform_linux_dir }}"
+    - name: Install Terraform CLI
+      unarchive:
+        src: "/tmp/{{ terraform_linux_package_name }}"
+        dest: "{{ terraform_linux_dir }}"
 
 - name: Check Vault installation
   command: which vault
@@ -128,21 +130,22 @@
   set_fact:
     vault_installation_required: "{{ vault_installation is failed or installed_vault_version.stdout != vault_version }}"
 
-- name: Download Vault archive
+- name: Vault installation
   when:
     - vault_installation_required
-  get_url:
-    url: "{{ vault_linux_download_url }}"
-    dest: "/tmp/{{ vault_linux_package_name }}"
-    mode: 0600
-    checksum: "{{ vault_linux_checksum }}"
+  block:
+    - name: Download Vault archive
+      get_url:
+        url: "{{ vault_linux_download_url }}"
+        dest: "/tmp/{{ vault_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ vault_linux_checksum }}"
+        force: true
 
-- name: Install Vault
-  when:
-    - vault_installation_required
-  unarchive:
-    src: "/tmp/{{ vault_linux_package_name }}"
-    dest: "{{ vault_linux_dir }}"
+    - name: Install Vault CLI
+      unarchive:
+        src: "/tmp/{{ vault_linux_package_name }}"
+        dest: "{{ vault_linux_dir }}"
 
 - name: Check Kubernetes CLI installation
   command: which kubectl
@@ -168,25 +171,8 @@
   get_url:
     url: "{{ kubernetes_cli_linux_download_url }}"
     dest: "{{ kubernetes_cli_linux_file }}"
+    force: true
     mode: 0755
-
-- name: Check Kubernetes CLI installation
-  command: which kubectl
-  register: kubectl_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
-
-- name: Get installed Kubernetes CLI version
-  shell: "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
-  when: not kubectl_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_kubectl_version
-
-- name: Kubernetes installation is required
-  set_fact:
-    kubernetes_cli_installation_required: "{{ kubectl_installation is failed or installed_kubectl_version.stdout != kubernetes_cli_version }}"
 
 - name: Check Minikube installation
   command: which minikube
@@ -206,7 +192,7 @@
   set_fact:
     minikube_installation_required: "{{ minikube_installation is failed or installed_minikube_version.stdout != minikube_version }}"
 
-- name: Install Minikube
+- name: Install Minikube CLI
   when:
     - minikube_installation_required
   get_url:
@@ -214,6 +200,7 @@
     dest: "{{ minikube_linux_file }}"
     checksum: "{{ minikube_linux_checksum }}"
     mode: 0755
+    force: true
 
 - name: Check GCloud SDK installation
   command: which gcloud
@@ -233,21 +220,21 @@
   set_fact:
     gcloud_sdk_installation_required: "{{ gcloud_sdk_installation is failed or installed_gcloud_sdk_version.stdout != gcloud_sdk_version }}"
 
-- name: Install GCloud SDK
+- name: Google Clouds SDK installation
   when:
     - gcloud_sdk_installation_required
-  unarchive:
-    src: "{{ gcloud_sdk_linux_download_url }}"
-    dest: "{{ gcloud_sdk_linux_dir }}"
-    remote_src: true
+  block:
+    - name: Install Google Cloud SDK
+      unarchive:
+        src: "{{ gcloud_sdk_linux_download_url }}"
+        dest: "{{ gcloud_sdk_linux_dir }}"
+        remote_src: true
 
-- name: Adding GCloud command to user path
-  when:
-    - gcloud_sdk_installation_required
-  file:
-    src: "{{ gcloud_sdk_linux_dir }}/google-cloud-sdk/bin/gcloud"
-    dest: /home/{{ user }}/bin/gcloud
-    state: link
+    - name: Adding GCloud command to user path
+      file:
+        src: "{{ gcloud_sdk_linux_dir }}/google-cloud-sdk/bin/gcloud"
+        dest: /home/{{ user }}/bin/gcloud
+        state: link
 
 - name: Install Azure CLI
   pip:
@@ -269,7 +256,7 @@
   check_mode: false
 
 - name: Get installed Krew version
-  shell: "{{ krew_installation.stdout }} version|awk -F' ' '{ print $2}'|sed -e 's/v//g'"
+  shell: "{{ krew_installation.stdout }} version|grep GitTag|awk -F' ' '{ print $2}'|sed -e 's/v//g'"
   when: not krew_installation is failed
   changed_when: false
   check_mode: false
@@ -279,35 +266,34 @@
   set_fact:
     krew_installation_required: "{{ krew_installation is failed or installed_krew_version.stdout != krew_version }}"
 
-- name: Download Krew archive
+- name: Krew installation
   when:
     - krew_installation_required
-  get_url:
-    url: "{{ krew_download_url }}"
-    dest: "/tmp/{{ krew_package_name }}"
-    mode: 0600
-    checksum: "{{ krew_checksum }}"
+  block:
+    - name: Download Krew archive
+      get_url:
+        url: "{{ krew_download_url }}"
+        dest: "/tmp/{{ krew_package_name }}"
+        mode: 0600
+        checksum: "{{ krew_checksum }}"
+        force: true
 
-- name: Install Krew
-  when:
-    - krew_installation_required
-  unarchive:
-    src: "/tmp/{{ krew_package_name }}"
-    dest: "/tmp"
+    - name: Extract Krew archive
+      unarchive:
+        src: "/tmp/{{ krew_package_name }}"
+        dest: "/tmp"
 
-- name: Copying Krew file to user path
-  copy:
-    src: "/tmp/{{ krew_linux_file }}"
-    dest: "{{ krew_linux_dir }}/krew"
-    owner: "{{ user }}"
-    mode: 0755
+    - name: Install Krew CLI
+      copy:
+        src: "/tmp/{{ krew_linux_file }}"
+        dest: "{{ krew_linux_dir }}/krew"
+        owner: "{{ user }}"
+        mode: 0755
 
-- name: Download Krew configuration
-  when:
-    - minikube_installation_required
-  get_url:
-    url: "{{ krew_yaml_download_url }}"
-    dest: "/home/{{ user }}/etc/"
+    - name: Download Krew configuration
+      get_url:
+        url: "{{ krew_yaml_download_url }}"
+        dest: "/home/{{ user }}/etc/"
 
 - name: Check Istio installation
   command: which istioctl
@@ -327,29 +313,28 @@
   set_fact:
     istio_installation_required: "{{ istio_installation is failed or installed_istio_version.stdout != istio_version }}"
 
-- name: Download Istio archive
+- name: Istio installation
   when:
     - istio_installation_required
-  get_url:
-    url: "{{ istio_linux_download_url }}"
-    dest: "/tmp/{{ istio_linux_package_name }}"
-    mode: 0600
-    checksum: "{{ istio_linux_checksum }}"
+  block:
+    - name: Download Istio archive
+      get_url:
+        url: "{{ istio_linux_download_url }}"
+        dest: "/tmp/{{ istio_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ istio_linux_checksum }}"
+        force: true
 
-- name: Install Istio
-  when:
-    - istio_installation_required
-  unarchive:
-    src: "/tmp/{{ istio_linux_package_name }}"
-    dest: "{{ istio_linux_dir }}"
+    - name: Extract Istio archive
+      unarchive:
+        src: "/tmp/{{ istio_linux_package_name }}"
+        dest: "{{ istio_linux_dir }}"
 
-- name: Adding Istio command to user path
-  when:
-    - istio_installation_required
-  file:
-    src: "{{ istio_linux_dir }}/istio-{{ istio_version }}/bin/istioctl"
-    dest: /home/{{ user }}/bin/istioctl
-    state: link
+    - name: Install Istio CLI
+      file:
+        src: "{{ istio_linux_dir }}/istio-{{ istio_version }}/bin/istioctl"
+        dest: /home/{{ user }}/bin/istioctl
+        state: link
 
 - name: Check Kustomize installation
   command: which kustomize
@@ -369,7 +354,7 @@
   set_fact:
     kustomize_installation_required: "{{ kustomize_installation is failed or installed_kustomize_version.stdout != kustomize_version }}"
 
-- name: Install Kustomize
+- name: Install Kustomize CLI
   when:
     - kustomize_installation_required
   get_url:
@@ -377,6 +362,7 @@
     dest: "{{ kustomize_linux_file }}"
     checksum: "{{ kustomize_linux_checksum }}"
     mode: 0755
+    force: true
 
 - name: Check Kind installation
   command: which kind
@@ -394,12 +380,16 @@
 
 - name: Kind installation is required
   set_fact:
-    kind_installation_required: "{{ kind_installation is failed or installed_kind_version.stdout != kind_version }}"
+    kind_installation_required: "{{ kind_installation is failed or installed_kind_version.stderr != kind_version }}"
+    # kind_installation_required: "{{ kind_installation is failed or installed_kind_version.stdout != kind_version }}"
 
-- name: Install Kind
+# See https://github.com/kubernetes-sigs/kind/pull/203
+
+- name: Install Kind CLI
   when:
     - kind_installation_required
   get_url:
     url: "{{ kind_linux_download_url }}"
     dest: "{{ kind_linux_file }}"
     mode: 0755
+    force: true
