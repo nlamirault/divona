@@ -17,11 +17,13 @@ stages:
   - configure
   - test
 
+image: docker:stable
+
 services:
   - docker:dind
 
 variables:
-  DOCKER_DRIVER: overlay
+  DOCKER_DRIVER: overlay2
   ANSIBLE_VERSION: 2.4.0.0
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
 
@@ -32,76 +34,73 @@ cache:
 
 before_script:
   - pip3.6 install virtualenv
+  - docker info
   - virtualenv virtenv
   - source virtenv/bin/activate
+
+.gitlab_molecule: &gitlab_molecule
+  before_script:
+    - pip install ansible molecule docker
+
 
 # ================================
 # lint
 
 lint:debug:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule
     - cd debug && molecule lint
 
 lint:setup:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd debug && molecule lint
 
 lint:base:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd base && molecule lint
 
 lint:wm:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd wm && molecule lint
 
 lint:desktop:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd desktop && molecule lint
 
 lint:editors:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd editors && molecule lint
 
 lint:finish:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd finish && molecule lint
 
 lint:cloud:
+  <<: *gitlab_molecule
   stage: lint
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd cloud && molecule lint
 
 # ================================
 # CONFIGURE
 
 configure:debug:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd debug
     - molecule --debug destroy
     - molecule dependency
@@ -109,10 +108,9 @@ configure:debug:
     - molecule prepare
 
 configure:setup:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd setup
     - molecule destroy
     - molecule dependency
@@ -120,10 +118,9 @@ configure:setup:
     - molecule prepare
 
 configure:base:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd base
     - molecule destroy
     - molecule dependency
@@ -131,10 +128,9 @@ configure:base:
     - molecule prepare
 
 configure:wm:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd wm
     - molecule destroy
     - molecule dependency
@@ -142,10 +138,9 @@ configure:wm:
     - molecule prepare
 
 configure:desktop:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd desktop
     - molecule destroy
     - molecule dependency
@@ -153,10 +148,9 @@ configure:desktop:
     - molecule prepare
 
 configure:editors:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd editors
     - molecule destroy
     - molecule dependency
@@ -164,10 +158,9 @@ configure:editors:
     - molecule prepare
 
 configure:finish:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd finish
     - molecule destroy
     - molecule dependency
@@ -175,10 +168,9 @@ configure:finish:
     - molecule prepare
 
 configure:cloud:
+  <<: *gitlab_molecule
   stage: configure
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd cloud
     - molecule destroy
     - molecule dependency
@@ -189,10 +181,9 @@ configure:cloud:
 # TEST
 
 test:debug:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd debug
     - molecule converge
     - molecule idempotence
@@ -201,10 +192,9 @@ test:debug:
     - molecule destroy
 
 test:setup:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd setup
     - molecule converge
     - molecule idempotence
@@ -213,10 +203,9 @@ test:setup:
     - molecule destroy
 
 test:base:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd base
     - molecule converge
     - molecule idempotence
@@ -225,10 +214,9 @@ test:base:
     - molecule destroy
 
 test:wm:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd wm
     - molecule converge
     - molecule idempotence
@@ -237,10 +225,9 @@ test:wm:
     - molecule destroy
 
 test:desktop:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd desktop
     - molecule converge
     - molecule idempotence
@@ -249,10 +236,9 @@ test:desktop:
     - molecule destroy
 
 test:editors:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd editors
     - molecule converge
     - molecule idempotence
@@ -261,10 +247,9 @@ test:editors:
     - molecule destroy
 
 test:finish:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd finish
     - molecule converge
     - molecule idempotence
@@ -273,10 +258,9 @@ test:finish:
     - molecule destroy
 
 test:cloud:
+  <<: *gitlab_molecule
   stage: test
-  image: python:3.6
   script:
-    - pip install ansible molecule docker
     - cd cloud
     - molecule converge
     - molecule idempotence
