@@ -93,7 +93,9 @@ istio_win_checksum: "sha256:ae50302ce5c45fdb06b3ffcdeb0d8f7e57ad74ff293f80740981
 istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_win_package_name }}
 
 kind_version: 0.0.1
-kind_linux_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/kind-linux-amd64
+kind_linux_package_name: kind-linux-amd64
+kind_linux_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/{{ kind_linux_package_name }}
 kind_linux_file: /home/{{ user }}/bin/kind
-kind_darwin_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/kind-darwin-amd64
+kind_darwin_package_name: kind-darwin-amd64
+kind_darwin_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/{{ kind_darwin_package_name }}
 kind_darwin_file: /Users/{{ user }}/bin/kind
