@@ -32,15 +32,15 @@ cache:
     - .pip/
     - virtenv/
 
-before_script:
-  - apt-get install python3-pip python3-virtualenv
-  - pip3 install virtualenv
-  - docker info
-  - virtualenv virtenv
-  - source virtenv/bin/activate
+# before_script:
 
 .gitlab_molecule: &gitlab_molecule
   before_script:
+    - apt-get install python3-pip python3-virtualenv
+    - pip3 install virtualenv
+    - docker info
+    - virtualenv virtenv
+    - source virtenv/bin/activate
     - pip3 install ansible molecule docker
 
 
