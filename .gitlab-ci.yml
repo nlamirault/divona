@@ -37,8 +37,8 @@ cache:
 
 .gitlab_molecule: &gitlab_molecule
   before_script:
-    - apt-get install python3-pip python3-virtualenv
-    - pip3 install virtualenv
+    # - apt-get install python3-pip python3-virtualenv
+    # - pip3 install virtualenv
     - docker info
     - virtualenv virtenv
     - source virtenv/bin/activate
