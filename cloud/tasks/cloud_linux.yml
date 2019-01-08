@@ -351,6 +351,33 @@
     dest: /home/{{ user }}/bin/istioctl
     state: link
 
+- name: Check Kustomize installation
+  command: which kustomize
+  register: kustomize_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Kustomize version
+  shell: "{{ kustomize_installation.stdout }} version|awk -F' ' '{ print $2 }'|awk -F':' '{ print $2 }'"
+  when: not kustomize_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_kustomize_version
+
+- name: Kustomize installation is required
+  set_fact:
+    kustomize_installation_required: "{{ kustomize_installation is failed or installed_kustomize_version.stdout != kustomize_version }}"
+
+- name: Install Kustomize
+  when:
+    - kustomize_installation_required
+  get_url:
+    url: "{{ kustomize_linux_download_url }}"
+    dest: "{{ kustomize_linux_file }}"
+    checksum: "{{ kustomize_linux_checksum }}"
+    mode: 0755
+
 - name: Check Kind installation
   command: which kind
   register: kind_installation

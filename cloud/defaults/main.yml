@@ -92,6 +92,16 @@ istio_win_package_name: istio-{{ istio_version }}-win.zip
 istio_win_checksum: "sha256:ae50302ce5c45fdb06b3ffcdeb0d8f7e57ad74ff293f80740981a26d982b6982"
 istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_win_package_name }}
 
+kustomize_version: 1.0.11
+kustomize_linux_package_name: kustomize_{{ kustomize_version }}_linux_amd64
+kustomize_linux_checksum: "sha256:2b21b44f0245ac774f0b35e5181fd8ad7fc42a9426bc0bbfe82a75bea286b48b"
+kustomize_linux_download_url: https://github.com/kubernetes-sigs/kustomize/releases/download/v{{ kustomize_version }}/{{ kustomize_linux_package_name }}
+kustomize_linux_file: /home/{{ user }}/bin/kustomize
+kustomize_darwin_package_name: kustomize_{{ kustomize_version }}_darwin_amd64
+kustomize_darwin_checksum: "sha256:f04c220e66ad8b662510baf002c1f64bdfc72f1c205103fc37ca97df1b830b17"
+kustomize_darwin_download_url: https://github.com/kubernetes-sigs/kustomize/releases/download/v{{ kustomize_version }}/{{ kustomize_darwin_package_name }}
+kustomize_darwin_file: /Users/{{ user }}/bin/kustomize
+
 kind_version: 0.0.1
 kind_linux_package_name: kind-linux-amd64
 kind_linux_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/{{ kind_linux_package_name }}
