@@ -41,7 +41,7 @@ before_script:
 
 .gitlab_molecule: &gitlab_molecule
   before_script:
-    - pip install ansible molecule docker
+    - pip3 install ansible molecule docker
 
 
 # ================================
