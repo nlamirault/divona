@@ -279,17 +279,25 @@
   set_fact:
     krew_installation_required: "{{ krew_installation is failed or installed_krew_version.stdout != krew_version }}"
 
+- name: Download Krew archive
+  when:
+    - krew_installation_required
+  get_url:
+    url: "{{ krew_download_url }}"
+    dest: "/tmp/{{ krew_package_name }}"
+    mode: 0600
+    checksum: "{{ krew_checksum }}"
+
 - name: Install Krew
   when:
     - krew_installation_required
   unarchive:
-    src: "{{ krew_download_url }}"
+    src: "/tmp/{{ krew_package_name }}"
     dest: "/tmp"
-    remote_src: true
 
 - name: Copying Krew file to user path
   copy:
-    src: "/tmp/krew-linux_amd64"
+    src: "/tmp/{{ krew_linux_file }}"
     dest: "{{ krew_linux_dir }}/krew"
     owner: "{{ user }}"
     mode: 0755

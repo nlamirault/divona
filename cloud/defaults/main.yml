@@ -37,7 +37,7 @@ vault_darwin_checksum: "sha256:10c1c3a0071dc0d50c2751027def3a0011a003e573bb9586c
 vault_darwin_download_url: https://releases.hashicorp.com/vault/{{ vault_version }}/{{ vault_darwin_package_name }}
 vault_darwin_dir: /Users/{{ user }}/bin/
 
-kubernetes_cli_version: 1.12.2
+kubernetes_cli_version: 1.12.4
 kubernetes_cli_linux_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/linux/amd64/kubectl
 kubernetes_cli_linux_file: /home/{{ user }}/bin/kubectl
 kubernetes_cli_darwin_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/darwin/amd64/kubectl
@@ -70,9 +70,14 @@ aws_cli_version: 1.16.60
 aws_cli_dir: /home/{{ user }}/Apps/aws-cli/venv
 
 krew_version: 0.2.1
-krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.zip
+krew_package_name: krew.zip
+krew_checksum: "sha256:57788e8c7af1b5b000954455aa9ca2e4a18a50a020faf54d18a3ccf79ad04049"
+krew_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/{{ krew_package_name }}
 krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/krew.yaml
+krew_linux_file: krew-linux_amd64
 krew_linux_dir: /home/{{ user }}/bin
+krew_darwin_file: krew-darwin_amd64
+krew_darwin_dir: /home/{{ user }}/bin
 
 istio_version: 1.0.4
 istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-linux.tar.gz
