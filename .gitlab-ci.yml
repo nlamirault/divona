@@ -17,7 +17,8 @@ stages:
   - configure
   - test
 
-image: docker:stable
+# image: docker:stable
+image: python:3
 
 services:
   - docker:dind
