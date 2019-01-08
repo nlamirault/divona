@@ -23,64 +23,75 @@ services:
 variables:
   DOCKER_DRIVER: overlay
   ANSIBLE_VERSION: 2.4.0.0
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
+
+cache:
+  paths:
+    - .pip/
+    - virtenv/
+
+before_script:
+  - pip3.6 install virtualenv
+  - virtualenv virtenv
+  - source virtenv/bin/activate
 
 # ================================
 # lint
 
 lint:debug:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
     - pip install ansible molecule
     - cd debug && molecule lint
 
 lint:setup:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd debug && molecule lint
 
 lint:base:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd base && molecule lint
 
 lint:wm:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd wm && molecule lint
 
 lint:desktop:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd desktop && molecule lint
 
 lint:editors:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd editors && molecule lint
 
 lint:finish:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd finish && molecule lint
 
 lint:cloud:
   stage: lint
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd cloud && molecule lint
 
 # ================================
@@ -88,20 +99,20 @@ lint:cloud:
 
 configure:debug:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd debug
-    - molecule destroy
+    - molecule --debug destroy
     - molecule dependency
     - molecule create
     - molecule prepare
 
 configure:setup:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd setup
     - molecule destroy
     - molecule dependency
@@ -110,9 +121,9 @@ configure:setup:
 
 configure:base:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd base
     - molecule destroy
     - molecule dependency
@@ -121,9 +132,9 @@ configure:base:
 
 configure:wm:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd wm
     - molecule destroy
     - molecule dependency
@@ -132,9 +143,9 @@ configure:wm:
 
 configure:desktop:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd desktop
     - molecule destroy
     - molecule dependency
@@ -143,9 +154,9 @@ configure:desktop:
 
 configure:editors:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd editors
     - molecule destroy
     - molecule dependency
@@ -154,9 +165,9 @@ configure:editors:
 
 configure:finish:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd finish
     - molecule destroy
     - molecule dependency
@@ -165,9 +176,9 @@ configure:finish:
 
 configure:cloud:
   stage: configure
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd cloud
     - molecule destroy
     - molecule dependency
@@ -179,9 +190,9 @@ configure:cloud:
 
 test:debug:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd debug
     - molecule converge
     - molecule idempotence
@@ -191,9 +202,9 @@ test:debug:
 
 test:setup:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd setup
     - molecule converge
     - molecule idempotence
@@ -203,9 +214,9 @@ test:setup:
 
 test:base:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd base
     - molecule converge
     - molecule idempotence
@@ -215,9 +226,9 @@ test:base:
 
 test:wm:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd wm
     - molecule converge
     - molecule idempotence
@@ -227,9 +238,9 @@ test:wm:
 
 test:desktop:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd desktop
     - molecule converge
     - molecule idempotence
@@ -239,9 +250,9 @@ test:desktop:
 
 test:editors:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd editors
     - molecule converge
     - molecule idempotence
@@ -251,9 +262,9 @@ test:editors:
 
 test:finish:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd finish
     - molecule converge
     - molecule idempotence
@@ -263,9 +274,9 @@ test:finish:
 
 test:cloud:
   stage: test
-  image: python:2.7
+  image: python:3.6
   script:
-    - pip install ansible molecule
+    - pip install ansible molecule docker
     - cd cloud
     - molecule converge
     - molecule idempotence
