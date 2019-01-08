@@ -65,7 +65,7 @@
     - packer_installation_required
   get_url:
     url: "{{ packer_linux_download_url }}"
-    dest: /tmp/{{ packer_linux_package_name }}
+    dest: "/tmp/{{ packer_linux_package_name }}"
     mode: 0600
     checksum: "{{ packer_linux_checksum }}"
 
