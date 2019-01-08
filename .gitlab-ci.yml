@@ -32,20 +32,15 @@ cache:
     - .pip/
     - virtenv/
 
-before_script:
-  - docker info
-  - apk add --update python py-pip python-dev
-  - apk add --update curl && rm -rf /var/cache/apk/*
-  - pip install virtualenv
-
 .gitlab_molecule: &gitlab_molecule
   before_script:
-    # - apt-get install python3-pip python3-virtualenv
-    # - pip3 install virtualenv
-    # - docker info
+    - docker info
+    - apk add --update python py-pip python-dev
+    - apk add --update curl && rm -rf /var/cache/apk/*
+    - pip install virtualenv
     - virtualenv virtenv
     - source virtenv/bin/activate
-    - pip3 install ansible molecule docker
+    - pip install ansible molecule docker
 
 
 # ================================
