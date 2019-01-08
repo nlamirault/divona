@@ -79,12 +79,18 @@ krew_linux_dir: /home/{{ user }}/bin
 krew_darwin_file: krew-darwin_amd64
 krew_darwin_dir: /home/{{ user }}/bin
 
-istio_version: 1.0.4
-istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-linux.tar.gz
+istio_version: 1.0.5
+istio_linux_package_name: istio-{{ istio_version }}-linux.tar.gz
+istio_linux_checksum: "sha256:2ab3c0c78a87522cd73e33476d821e1de2c74b47b47569232cdec829adeb6b24"
+istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_linux_package_name }}
 istio_linux_dir: /home/{{ user }}/Apps
-istio_darwin_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-osx.tar.gz
+istio_darwin_package_name: istio-{{ istio_version }}-osx.tar.gz
+istio_darwin_checksum: "sha256:98043349092853796d2eb2709df0bfd029689ffcc70c451dce04ec45f5fabc83"
+istio_darwin_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_darwin_package_name }}
 istio_darwin_dir: /Users/{{ user }}/bin
-istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/istio-{{ istio_version }}-win.zip
+istio_win_package_name: istio-{{ istio_version }}-win.zip
+istio_win_checksum: "sha256:ae50302ce5c45fdb06b3ffcdeb0d8f7e57ad74ff293f80740981a26d982b6982"
+istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_win_package_name }}
 
 kind_version: 0.0.1
 kind_linux_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/kind-linux-amd64

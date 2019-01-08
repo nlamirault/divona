@@ -327,19 +327,27 @@
   set_fact:
     istio_installation_required: "{{ istio_installation is failed or installed_istio_version.stdout != istio_version }}"
 
+- name: Download Istio archive
+  when:
+    - istio_installation_required
+  get_url:
+    url: "{{ istio_linux_download_url }}"
+    dest: "/tmp/{{ istio_linux_package_name }}"
+    mode: 0600
+    checksum: "{{ istio_linux_checksum }}"
+
 - name: Install Istio
   when:
     - istio_installation_required
   unarchive:
-    src: "{{ istio_linux_download_url }}"
+    src: "/tmp/{{ istio_linux_package_name }}"
     dest: "{{ istio_linux_dir }}"
-    remote_src: true
 
 - name: Adding Istio command to user path
   when:
     - istio_installation_required
   file:
-    src: "{{ istio_dir }}/istio-{{ istio_version }}/bin/istioctl"
+    src: "{{ istio_linux_dir }}/istio-{{ istio_version }}/bin/istioctl"
     dest: /home/{{ user }}/bin/istioctl
     state: link
 
