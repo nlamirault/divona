@@ -35,7 +35,7 @@ cache:
 .gitlab_molecule: &gitlab_molecule
   before_script:
     - docker info
-    - apk add --update python py-pip python-dev
+    - apk add --update .build-deps curl gcc python3 python3-dev musl-dev linux-headers py-pip
     - apk add --update curl && rm -rf /var/cache/apk/*
     - pip install virtualenv
     - virtualenv virtenv
