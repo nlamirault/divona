@@ -14,7 +14,7 @@
 ---
 - name: Change applications directory rights
   file:
-    path: /home/{{ user }}/Apps
+    path: /home/{{ user }}/Applications
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"

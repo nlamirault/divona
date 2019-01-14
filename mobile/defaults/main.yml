@@ -14,46 +14,53 @@
 ---
 # defaults file for mobile
 
+# https://flutter.io/docs/get-started/install
 flutter_version: 1.0.0
 flutter_download_website: "https://storage.googleapis.com/flutter_infra/releases/stable"
 flutter_linux_package_name: "flutter_linux_v{{ flutter_version }}-stable.tar.xz"
 flutter_linux_download_url: "{{ flutter_download_website }}/linux/{{ flutter_linux_package_name }}"
-flutter_linux_dir: /home/{{ user }}/Apps
+flutter_linux_dir: /home/{{ user }}/Applications
 flutter_linux_file: /home/{{ user }}/bin/flutter
 flutter_darwin_package_name: "flutter_macos_v{{ flutter_version }}-stable.zip"
 flutter_darwin_download_url: "{{ flutter_download_website }}/macos/{{ flutter_darwin_package_name }}"
-flutter_darwin_dir: /Users/{{ user }}/Apps
+flutter_darwin_dir: /Users/{{ user }}/Applications
 flutter_darwin_file: /Users/{{ user }}/bin/flutter
 flutter_win_package_name: "flutter_win_v{{ flutter_version }}-stable.zip"
 flutter_win_download_url: "{{ flutter_download_website }}/windows/{{ flutter_win_package_name }}"
 
+# https://developer.android.com/studio/#downloads
 android_studio_version: 3.2.1.0
 android_studio_build_version: 181.5056338
 android_studio_download_website: https://dl.google.com/dl/android/studio/ide-zips
 android_studio_linux_package_name: android-studio-ide-{{ android_studio_build_version }}-linux.zip
 android_studio_linux_checksum: "sha256:b9ec0d44f2feaafe1e3fbd1ed696bf325f9e05cfb6c1ace84dbf87ae249efa84"
 android_studio_linux_download_url: "{{ android_studio_download_website }}/{{ android_studio_version }}/{{ android_studio_linux_package_name }}"
-android_studio_linux_dir: /home/{{ user }}/Apps
+android_studio_linux_dir: /home/{{ user }}/Applications
 android_studio_linux_file: /home/{{ user }}/bin/android-studio
 android_studio_darwin_package_name: android-studio-ide-{{ android_studio_build_version }}-mac.dmg
 android_studio_darwin_checksum: "sha256:b8d2b7add6a7c776d16a8e48bd35c3e2bba18b4717131d7b9a00fa416ebe4480"
 android_studio_darwin_download_url: "{{ android_studio_download_website }}/{{ android_studio_version }}/{{ android_studio_darwin_package_name }}"
-android_studio_darwin_dir: /home/{{ user }}/Apps
+android_studio_darwin_dir: /home/{{ user }}/Applications
 android_studio_darwin_file: /home/{{ user }}/bin/android-studio
 android_studio_win_package_name: android-studio-ide-{{ android_studio_build_version }}-windows32.zip
 android_studio_win_checksum: "sha256:3a61a587c90e358ab15d076d0306550564ad4cc5a8aa1dd0c22c6afd092e976a"
 android_studio_win_download_url: "{{ android_studio_download_website }}/{{ android_studio_version }}/{{ android_studio_darwin_package_name }}"
-android_studio_win_dir: /home/{{ user }}/Apps
+android_studio_win_dir: /home/{{ user }}/Applications
 android_studio_win_file: /home/{{ user }}/bin/android-studio
 
-# TODO ?
-
-# 92ffee5a1d98d856634e8b71132e8a95d96c83a63fde1099be3d86df3106def9
-# https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-
-
-# ecb29358bc0f13d7c2fa0f9290135a5b608e38434aad9bf7067d0252c160853e
-# https://dl.google.com/android/repository/sdk-tools-darwin-4333796.zip
-
-# 7e81d69c303e47a4f0e748a6352d85cd0c8fd90a5a95ae4e076b5e5f960d3c7a
-# https://dl.google.com/android/repository/sdk-tools-windows-4333796.zip
+# https://developer.android.com/studio/#downloads
+android_sdk_tools_version: 26.1.1
+android_sdk_tools_build_version: 4333796
+android_sdk_download_website: https://dl.google.com/android/repository/
+android_sdk_tools_linux_package_name: sdk-tools-linux-{{ android_sdk_tools_build_version }}.zip
+android_sdk_tools_linux_download_url: "{{ android_sdk_download_website }}/{{ android_sdk_tools_linux_package_name }}"
+android_sdk_tools_linux_checksum: "sha256:92ffee5a1d98d856634e8b71132e8a95d96c83a63fde1099be3d86df3106def9"
+android_sdk_tools_linux_dir: /home/{{ user }}/Applications/Android
+android_sdk_tools_darwin_package_name: sdk-tools-darwin-{{ android_sdk_tools_build_version }}.zip
+android_sdk_tools_darwin_download_url: "{{ android_sdk_download_website }}/{{ android_sdk_tools_darwin_package_name }}"
+android_sdk_tools_darwin_checksum: "sha256:ecb29358bc0f13d7c2fa0f9290135a5b608e38434aad9bf7067d0252c160853e"
+android_sdk_tools_darwin_dir: /Users/{{ user }}/Applications/Android
+android_sdk_tools_win_package_name: sdk-tools-windows-{{ android_sdk_tools_build_version }}.zip
+android_sdk_tools_win_download_url: "{{ android_sdk_download_website }}/{{ android_sdk_tools_win_package_name }}"
+android_sdk_tools_win_checksum: "sha256:7e81d69c303e47a4f0e748a6352d85cd0c8fd90a5a95ae4e076b5e5f960d3c7a"
+android_sdk_tools_win_dir: C:\Applications

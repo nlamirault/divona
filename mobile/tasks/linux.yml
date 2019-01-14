@@ -12,6 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
+- name: Create Android SDK directory
+  file:
+    path: /home/{{ user }}/Applications/Android
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: Copy udev rules for Android
+  become: yes
+  copy:
+    src: "{{ role_path }}/files/51-android.rules"
+    dest: /etc/udev/rules.d/51-android.rules
+
 - name: Check Flutter installation
   command: which flutter
   register: flutter_installation
@@ -52,57 +66,69 @@
         dest: "{{ flutter_linux_file }}"
         state: link
 
-- name: Check Android Studio installation
-  command: which androidstudio
-  register: android_studio_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
+# - name: Check Android Studio installation
+#   command: which androidstudio
+#   register: android_studio_installation
+#   changed_when: false
+#   ignore_errors: true
+#   check_mode: false
 
-- name: Get installed Android Studio version
-  command: "{{ android_studio_installation.stdout }} -version"
-  when: not android_studio_installation is failed
+# - name: Get installed Android Studio version
+#   command: "{{ android_studio_installation.stdout }} -version"
+#   when: not android_studio_installation is failed
+#   changed_when: false
+#   check_mode: false
+#   register: installed_android_studio_version
+
+# - name: Android Studio installation is required
+#   set_fact:
+#     android_studio_installation_required: "{{ android_studio_installation is failed or installed_android_studio_version.stdout != android_studio_version }}"
+
+# - name: Android Studio installation
+#   when:
+#     - android_studio_installation_required
+#   block:
+#     - name: Download Android Studio archive
+#       get_url:
+#         url: "{{ android_studio_linux_download_url }}"
+#         dest: "/tmp/{{ android_studio_linux_package_name }}"
+#         checksum: "{{ android_studio_linux_checksum }}"
+#         mode: 0600
+#         force: true
+
+#     - name: Install Android Studio
+#       unarchive:
+#         src: "/tmp/{{ android_studio_linux_package_name }}"
+#         dest: "{{ android_studio_linux_dir }}"
+
+#     - name: Adding Android Studio command to user path
+#       file:
+#         src: "{{ android_studio_linux_dir }}/android-studio/bin/studio.sh"
+#         dest: "{{ android_studio_linux_file }}"
+#         state: link
+
+- name: Get installed Android SDK tools version
+  shell: "grep Pkg.Revision {{ android_sdk_tools_linux_dir }}/tools/source.properties|awk -F'=' '{ print $2 }'"
   changed_when: false
   check_mode: false
-  register: installed_android_studio_version
+  register: installed_android_sdk_tools_version
 
-- name: Android Studio installation is required
+- name: Android SDK tools installation is required
   set_fact:
-    android_studio_installation_required: "{{ android_studio_installation is failed or installed_android_studio_version.stdout != android_studio_version }}"
+    android_sdk_tools_installation_required: "{{ installed_android_sdk_tools_version.stdout != android_sdk_tools_version }}"
 
-- name: Android Studio installation
+- name: Android SDK tools installation
   when:
-    - android_studio_installation_required
+    - android_sdk_tools_installation_required
   block:
-    - name: Download Android Studio archive
+    - name: Download Android SDK archive
       get_url:
-        url: "{{ android_studio_linux_download_url }}"
-        dest: "/tmp/{{ android_studio_linux_package_name }}"
-        checksum: "{{ android_studio_linux_checksum }}"
+        url: "{{ android_sdk_tools_linux_download_url }}"
+        dest: "/tmp/{{ android_sdk_tools_linux_package_name }}"
         mode: 0600
         force: true
 
-    - name: Install Android Studio
+    - name: Install Android SDK tools
       unarchive:
-        src: "/tmp/{{ android_studio_linux_package_name }}"
-        dest: "{{ android_studio_linux_dir }}"
-
-    - name: Adding Android Studio command to user path
-      file:
-        src: "{{ android_studio_linux_dir }}/android-studio/bin/studio.sh"
-        dest: "{{ android_studio_linux_file }}"
-        state: link
-
-    - name: Copy udev rules for Android
-      become: yes
-      copy:
-        src: "{{ role_path }}/files/51-android.rules"
-        dest: /etc/udev/rules.d/51-android.rules
-
-    - name: Create Android SDK directory
-      file:
-        path: /home/{{ user }}/Apps/Android
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        state: directory
-        mode: 0755
+        src: "/tmp/{{  android_sdk_tools_linux_package_name}}"
+        dest: "{{ android_sdk_tools_linux_dir }}"

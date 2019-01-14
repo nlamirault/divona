@@ -19,7 +19,7 @@ class Distribution(abc.ABC):
             assert host.package(pkg).is_installed
 
     def check_directory_exists(self, host, name):
-        host.file("/home/divona/Apps/VSCode-linux-x64/").is_directory
+        host.file("/home/divona/Applications/VSCode-linux-x64/").is_directory
 
 
 class Archlinux(Distribution):
@@ -28,7 +28,7 @@ class Archlinux(Distribution):
         self.check_package_installed(host, ["emacs"])
         self.check_package_installed(host, ["neovim"])
         self.check_directory_exists(
-            host, "/home/divona/Apps/VSCode-linux-x64/")
+            host, "/home/divona/Applications/VSCode-linux-x64/")
 
 
 class Debian(Distribution):
@@ -37,7 +37,7 @@ class Debian(Distribution):
         self.check_package_installed(host, ["emacs"])
         self.check_package_installed(host, ["neovim"])
         self.check_directory_exists(
-            host, "/home/divona/Apps/VSCode-linux-x64/")
+            host, "/home/divona/Applications/VSCode-linux-x64/")
 
 
 class Centos(Distribution):
@@ -46,7 +46,7 @@ class Centos(Distribution):
         self.check_package_installed(host, ["emacs"])
         self.check_package_installed(host, ["neovim"])
         self.check_directory_exists(
-            host, "/home/divona/Apps/VSCode-linux-x64/")
+            host, "/home/divona/Applications/VSCode-linux-x64/")
 
 
 class Fedora(Distribution):
@@ -56,7 +56,7 @@ class Fedora(Distribution):
         self.check_package_installed(host, [
             "neovim", "python2-neovim", "python3-neovim"])
         self.check_directory_exists(
-            host, "/home/divona/Apps/VSCode-linux-x64/")
+            host, "/home/divona/Applications/VSCode-linux-x64/")
 
 
 def _create_distribution(name):

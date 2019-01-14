@@ -26,7 +26,7 @@
 
 - name: Create Applications directory
   file:
-    path: /home/{{ user }}/Apps
+    path: /home/{{ user }}/Applications
     owner: "{{ user }}"
     group: "{{ user }}"
     state: directory
