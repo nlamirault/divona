@@ -1,0 +1,53 @@
+# Copyright (C) 2013-2019 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+- name: Check Flutter installation
+  command: which flutter
+  register: flutter_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Flutter version
+  shell: "{{ flutter_installation.stdout }} --version|grep Flutter|awk -F' ' '{ print $2 }'"
+  when: not flutter_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_flutter_version
+
+- name: Flutter installation is required
+  set_fact:
+    flutter_installation_required: "{{ flutter_installation is failed or installed_flutter_version.stdout != flutter_version }}"
+
+- name: Flutter installation
+  when:
+    - flutter_installation_required
+  block:
+    - name: Download Flutter archive
+      get_url:
+        url: "{{ flutter_linux_download_url }}"
+        dest: "/tmp/{{ flutter_linux_package_name }}"
+        mode: 0600
+        force: true
+
+    - name: Install Flutter SDK
+      unarchive:
+        src: "/tmp/{{ flutter_linux_package_name }}"
+        dest: "{{ flutter_linux_dir }}"
+
+    - name: Adding Flutter command to user path
+      file:
+        src: "{{ flutter_linux_dir }}/flutter/bin/flutter"
+        dest: "{{ flutter_linux_file }}"
+        state: link

@@ -1,0 +1,28 @@
+# Copyright (C) 2013-2019 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# defaults file for mobile
+
+flutter_version: 1.0.0
+flutter_download_website: "https://storage.googleapis.com/flutter_infra/releases/stable"
+flutter_linux_package_name: "flutter_linux_v{{ flutter_version }}-stable.tar.xz"
+flutter_linux_download_url: "{{ flutter_download_website }}/linux/{{ flutter_linux_package_name }}"
+flutter_linux_dir: /home/{{ user }}/Apps
+flutter_linux_file: /home/{{ user }}/bin/flutter
+flutter_darwin_package_name: "flutter_macos_v{{ flutter_version }}-stable.zip"
+flutter_darwin_download_url: "{{ flutter_download_website }}/macos/{{ flutter_darwin_package_name }}"
+flutter_darwin_dir: /Users/{{ user }}/Apps
+flutter_darwin_file: /Users/{{ user }}/bin/flutter
+flutter_win_package_name: "flutter_win_v{{ flutter_version }}-stable.zip"
+flutter_win_download_url: "{{ flutter_download_website }}/windows/{{ flutter_win_package_name }}"
