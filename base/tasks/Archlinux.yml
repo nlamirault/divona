@@ -24,13 +24,39 @@
     packages:
       - pacman-contrib
 
-- name: Install shell tools
+- name: Install Bash shell
   pacman:
     name: "{{ packages }}"
     state: latest
   vars:
     packages:
       - bash-completion
+
+- name: Install Zsh shell
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - zsh-completions
+      - zsh-autosuggestions
+      - zsh-theme-powerlevel9k
+
+- name: Install Fish shell
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - fish
+
+- name: Install shell tools
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - screenfetch
       - tree
       - tmux
       - ncdu
