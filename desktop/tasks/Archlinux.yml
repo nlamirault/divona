@@ -32,14 +32,14 @@
       - lightdm-webkit2-greeter
       - light-locker
 
-- name: Install themes
-  pacman:
-    name: "{{ packages }}"
-    state: latest
-  vars:
-    packages:
-      - arc-gtk-theme
-      - adapta-gtk-theme
+# - name: Install themes
+#   pacman:
+#     name: "{{ packages }}"
+#     state: latest
+#   vars:
+#     packages:
+#       - arc-gtk-theme
+#       - adapta-gtk-theme
 
 - name: Install web browsers
   pacman:
