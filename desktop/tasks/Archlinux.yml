@@ -50,7 +50,7 @@
       - chromium
       # - brave
 
-- name: Install multimedia applications
+- name: Install graphics applications
   pacman:
     name: "{{ packages }}"
     state: latest
@@ -58,6 +58,7 @@
     packages:
       - gimp
       - inkscape
+      - flameshot
 
 - name: Install video applications
   pacman:
@@ -66,6 +67,14 @@
   vars:
     packages:
       - vlc
+
+- name: Install music applications
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - playerctl
 
 - name: Install communications applications
   pacman:
