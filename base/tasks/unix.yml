@@ -56,9 +56,9 @@
     state: directory
     mode: 0755
 
-- name: Create Personal directory
+- name: Create own projects directory
   file:
-    path: /home/{{ user }}/Personal
+    path: /home/{{ user }}/Projects
     owner: "{{ user }}"
     group: "{{ user }}"
     state: directory
@@ -71,3 +71,4 @@
     group: "{{ user }}"
     state: directory
     mode: 0755
+
