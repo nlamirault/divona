@@ -61,3 +61,15 @@
       - xfce4
       # - xfce4-goodies
       # - xfce4-notifyd
+
+- name: Install sway and tools
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - sway
+      - mako
+      - grim
+      - imv
+      - slurp
