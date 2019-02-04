@@ -21,7 +21,8 @@ image: docker:stable
 
 variables:
   DOCKER_DRIVER: overlay2
-  ANSIBLE_VERSION: 2.4.0.0
+  ANSIBLE_VERSION: "2.7.6"
+  MOLECULE_VERSION: "2.19.0"
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
 
 services:
@@ -42,7 +43,7 @@ cache:
     - pip3 install virtualenv
     # - virtualenv virtenv
     # - source virtenv/bin/activate
-    - pip3 install ansible molecule docker
+    - pip3 install ansible=${ANSIBLE_VERSION} molecule=${MOLECULE_VERSION} docker
 
 
 # ================================
@@ -189,7 +190,7 @@ test:debug:
     - cd debug
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -200,7 +201,7 @@ test:setup:
     - cd setup
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -211,7 +212,7 @@ test:base:
     - cd base
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -222,7 +223,7 @@ test:wm:
     - cd wm
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -233,7 +234,7 @@ test:desktop:
     - cd desktop
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -244,7 +245,7 @@ test:editors:
     - cd editors
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -255,7 +256,7 @@ test:finish:
     - cd finish
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
@@ -266,7 +267,7 @@ test:cloud:
     - cd cloud
     - molecule converge
     - molecule idempotence
-    - molecule side_effect
+    - molecule side-effect
     - molecule verify
     - molecule destroy
 
