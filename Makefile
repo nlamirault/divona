@@ -13,9 +13,9 @@
 # limitations under the License.
 
 APP = divona
-VERSION = 2.0.0
+VERSION = 3.0.0
 
-ANSIBLE_VERSION = 2.4.0.0
+ANSIBLE_VERSION = 2.7.6
 
 DEBUG ?=
 
