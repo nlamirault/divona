@@ -71,4 +71,3 @@
     group: "{{ user }}"
     state: directory
     mode: 0755
-
