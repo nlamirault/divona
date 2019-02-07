@@ -30,18 +30,18 @@
   set_fact:
     vscode_installation_required: "{{ vscode_installation is failed or installed_vscode_version.stdout != vscode_version }}"
 
-- name: Install VSCode
+- name: VSCode installation
   when:
     - vscode_installation_required
-  unarchive:
-    src: "{{ vscode_download_url }}"
-    dest: "{{ vscode_dir }}"
-    remote_src: true
+  block:
+    - name: Download VSCode archive
+      unarchive:
+        src: "{{ vscode_download_url }}"
+        dest: "{{ vscode_dir }}"
+        remote_src: true
 
-- name: Adding VSCode command to user path
-  when:
-    - vscode_installation_required
-  file:
-    src: "{{ vscode_dir }}/{{ vscode_name }}/bin/code"
-    dest: /home/{{ user }}/bin/code
-    state: link
+    - name: Adding VSCode command to user path
+      file:
+        src: "{{ vscode_dir }}/{{ vscode_name }}/bin/code"
+        dest: /home/{{ user }}/bin/code
+        state: link
