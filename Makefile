@@ -16,6 +16,7 @@ APP = divona
 VERSION = 3.0.0
 
 ANSIBLE_VERSION = 2.7.6
+MOLECULE_VERSION = 2.19.0
 
 DEBUG ?=
 
@@ -44,7 +45,9 @@ clean: ## Cleanup
 .PHONY: init
 init: ## Install requirements
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
-	@echo "Install : ansible ansible-lint"
+	@echo "Install : ansible ansible-lint molecule"
+	@test -d venv || python3 -m venv venv
+	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
 
 .PHONY: ping
 ping: ## Check Ansible installation (host=xxx)

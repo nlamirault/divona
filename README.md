@@ -31,8 +31,7 @@ Supported operating system:
 
 * Install `ansible`:
 
-        $ sudo pip install ansible==2.4.0.0
-        $ sudo pip install ansible-lint==3.4.17
+        $ make init
 
 ### OSX
 
@@ -43,8 +42,7 @@ Supported operating system:
 
 * Install `ansible`:
 
-        $ sudo pip install ansible==2.4.0.0
-        $ sudo pip install ansible-lint==3.4.17
+        $ sudo pip install ansible==2.7.6
 
 * Install `homebrew`:
 
