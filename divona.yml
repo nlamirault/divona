@@ -24,6 +24,7 @@
     - wm
     - desktop
     - editors
+    - backup
     - finish
 
 - name: Devops provisionning
@@ -47,3 +48,10 @@
     - debug
   roles:
     - debug
+
+- name: Test a single role
+  hosts: all
+  tags:
+    - test
+  roles:
+    - backup
