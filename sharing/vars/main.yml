@@ -11,48 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  roles:
-    - setup
-    - banner
-    - base
-    - wm
-    - desktop
-    - editors
-    - backup
-    - sharing
-    - finish
-
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    - setup
-    - cloud
-
-- name: Mobile development provisionning
-  hosts: all
-  tags:
-    - mobile
-  roles:
-    - mobile
-
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - debug
-
-- name: Test a single role
-  hosts: all
-  tags:
-    - test
-  roles:
-    - sharing
+# vars file for debug
+user: divona
