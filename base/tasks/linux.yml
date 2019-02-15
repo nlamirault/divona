@@ -37,7 +37,7 @@
 
 - name: LF installation is required
   set_fact:
-    lf_installation_required: "{{ lf_installation is failed or installed_lf_version.stdout != packer_version }}"
+    lf_installation_required: "{{ lf_installation is failed or installed_lf_version.stdout != lf_version }}"
 
 - name: LF installation
   when:
