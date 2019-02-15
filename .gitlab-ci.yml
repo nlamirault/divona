@@ -106,9 +106,9 @@ configure:debug:
   script:
     - cd debug
     - molecule --debug destroy
-    - molecule dependency
-    - molecule create
-    - molecule prepare
+    - molecule --debug dependency
+    - molecule --debug create
+    - molecule --debug prepare
 
 configure:setup:
   <<: *gitlab_molecule
