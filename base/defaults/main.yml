@@ -33,3 +33,14 @@ lf_linux_dir: /home/{{ user }}/bin
 lf_darwin_package_name: lf-darwin-amd64.tar.gz
 lf_darwin_download_url: https://github.com/gokcehan/lf/releases/download/{{ lf_version }}/{{ lf_darwin_package_name }}
 lf_darwin_dir: /Users/{{ user }}/bin/lf
+
+gotop_version: 2.0.0
+gotop_linux_package_name: gotop_2.0.1_linux_amd64.tgz
+gotop_linux_download_url: https://github.com/cjbassi/gotop/releases/download/{{ gotop_version }}/gotop_{{ gotop_version }}_linux_amd64.tgz
+gotop_linux_dir: /home/{{ user }}/bin
+gotop_darwin_package_name: gotop_2.0.1_darwin_amd64.tgz
+gotop_darwin_download_url: https://github.com/cjbassi/gotop/releases/download/{{ gotop_version }}/gotop_{{ gotop_version }}_darwin_amd64.tgz
+gotop_darwin_dir: /Users/{{ user }}/bin
+
+
+
