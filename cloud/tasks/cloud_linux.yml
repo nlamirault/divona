@@ -336,6 +336,34 @@
         dest: /home/{{ user }}/bin/istioctl
         state: link
 
+- name: Check Linkerd installation
+  command: which linkerd
+  register: linkerd_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Linkerd version
+  shell: "{{ linkerd_installation.stdout }} version|awk -F'-' '{ print $2 }'|head -1"
+  when: not linkerd_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_linux_version
+
+- name: Linkerd installation is required
+  set_fact:
+    linkerd_installation_required: "{{ linkerd_installation is failed or installed_linkerd_version.stdout != linkerd_version }}"
+
+- name: Install Linkerd binary
+  when:
+    - linkerd_installation_required
+  get_url:
+    url: "{{ linkerd_linux_download_url }}"
+    dest: "{{ linkerd_linux_file }}"
+    mode: 0755
+    checksum: "{{ linkerd_linux_checksum }}"
+    force: true
+
 - name: Check Kustomize installation
   command: which kustomize
   register: kustomize_installation

@@ -105,6 +105,20 @@ istio_win_package_name: istio-{{ istio_version }}-win.zip
 istio_win_checksum: "sha256:ae50302ce5c45fdb06b3ffcdeb0d8f7e57ad74ff293f80740981a26d982b6982"
 istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_win_package_name }}
 
+linkerd_version: 2.2.0
+linkerd_linux_package_name: linkerd2-cli-stable-{{ linkerd_version }}-linux
+linkerd_linux_checksum: "sha256:4ce57680053f133043f3547181d7cc134b67ff7335e6765085c72e5d1b5a6e42"
+linkerd_linux_download_url: https://github.com/linkerd/linkerd2/releases/download/stable-{{ linkerd_version }}/{{ linkerd_linux_package_name }}
+linkerd_linux_file: /home/{{ user }}/bin/linkerd
+linkerd_darwin_package_name: linkerd2-cli-stable-{{ linkerd_version }}-darwin
+linkerd_darwin_checksum: "sha256:42dfdd2ab58b13230748f67d861cc08600c667a062ab8eb3d1a0c17ebbcb55d3"
+linkerd_darwin_download_url: https://github.com/linkerd/linkerd2/releases/download/stable-{{ linkerd_version }}/{{ linkerd_darwin_package_name }}
+linkerd_darwin_file: /Users/{{ user }}/bin/linkerd
+linkerd_win_package_name: linkerd2-cli-stable-{{ linkerd_version }}-windows.exe
+linkerd_win_checksum: "sha256:00d89ca10abd9db5fcb6b43e40f8cdc1d3e25582f3a4e3e6eec502d36922ed07"
+linkerd_win_download_url: https://github.com/linkerd/linkerd2/releases/download/stable-{{ linkerd_version }}/{{ linkerd_darwin_package_name }}
+linkerd_win_file: C:\
+
 kustomize_version: 1.0.11
 kustomize_linux_package_name: kustomize_{{ kustomize_version }}_linux_amd64
 kustomize_linux_checksum: "sha256:2b21b44f0245ac774f0b35e5181fd8ad7fc42a9426bc0bbfe82a75bea286b48b"
