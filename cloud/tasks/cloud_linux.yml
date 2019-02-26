@@ -348,7 +348,7 @@
   when: not linkerd_installation is failed
   changed_when: false
   check_mode: false
-  register: installed_linux_version
+  register: installed_linkerd_version
 
 - name: Linkerd installation is required
   set_fact:
