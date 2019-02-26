@@ -23,6 +23,7 @@
   vars:
     packages:
       - docker
+      - docker-compose
 
 - name: Add Docker group
   group:
