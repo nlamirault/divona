@@ -90,7 +90,7 @@ krew_yaml_download_url: https://storage.googleapis.com/krew/v{{ krew_version }}/
 krew_linux_file: krew-linux_amd64
 krew_linux_dir: /home/{{ user }}/bin
 krew_darwin_file: krew-darwin_amd64
-krew_darwin_dir: /home/{{ user }}/bin
+krew_darwin_dir: /Users/{{ user }}/bin
 
 istio_version: 1.0.5
 istio_linux_package_name: istio-{{ istio_version }}-linux.tar.gz
