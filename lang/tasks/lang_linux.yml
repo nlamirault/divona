@@ -47,3 +47,55 @@
       unarchive:
         src: "/tmp/{{ go_linux_package_name }}"
         dest: "{{ go_linux_dir }}"
+
+- name: Check Rust installation
+  command: which rustc
+  register: rust_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Rust version
+  command: "{{ rust_installation.stdout }} --version"
+  when: not rust_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_rust_version
+
+- name: Rust installation is required
+  set_fact:
+    rust_installation_required: "{{ rust_installation is failed or installed_rust_version.stdout != rust_version }}"
+
+- name: Download rustup installer
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rustup.sh
+    mode: 0755
+  register: rustup_installer
+  when: not("~/.cargo/bin/rustup" is exists)
+
+- name: Rust installation
+  when:
+    - rust_installation_required
+  block:
+    - name: Install rustup
+      command: /tmp/rustup.sh -y --no-modify-path
+      args:
+        creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
+
+    - name: rustup self update
+      command: ~/.cargo/bin/rustup self update
+      changed_when: false
+
+    - name: download stable rust
+      command: ~/.cargo/bin/rustup install stable
+      changed_when: false
+
+    - name: use stable rust
+      command: ~/.cargo/bin/rustup default stable
+      changed_when: false
+
+    - name: update rust
+      command: ~/.cargo/bin/rustup update
+      changed_when: false
+
