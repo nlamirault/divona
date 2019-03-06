@@ -11,49 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  roles:
-    - setup
-    - banner
-    - base
-    - wm
-    - desktop
-    - editors
-    - backup
-    - sharing
-    - finish
-
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    - setup
-    - lang
-    - cloud
-
-- name: Mobile development provisionning
-  hosts: all
-  tags:
-    - mobile
-  roles:
-    - mobile
-
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - debug
-
-- name: Test a single role
-  hosts: all
-  tags:
-    - test
-  roles:
-    - sharing
+- name: Languages for Linux
+  block:
+    - include_tasks: lang_linux.yml
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Linux Mint' or
+         ansible_distribution == 'Fedora')
