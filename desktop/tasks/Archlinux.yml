@@ -21,6 +21,7 @@
       - libglvnd
       - xorg-server
       - xorg-xinit
+      - arandr
       - slim
       - slim-themes
       - archlinux-themes-slim
@@ -74,6 +75,9 @@
     state: latest
   vars:
     packages:
+      - pulseaudio
+      - pavucontrol
+      - pulsemixer
       - playerctl
 
 - name: Install communications applications
@@ -110,5 +114,6 @@
     state: latest
   vars:
     packages:
+      - openvpn
       - keepassxc
       - arch-audit
