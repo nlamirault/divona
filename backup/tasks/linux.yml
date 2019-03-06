@@ -35,5 +35,5 @@
     name: "vorta"
     # executable: pip3
     virtualenv: "{{ vorta_linux_dir }}"
-    virtualenv_python: python3.6
+    virtualenv_python: python3.7
     # virtualenv_command: "python -m venv venv"
