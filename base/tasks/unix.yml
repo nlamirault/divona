@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Add the user
-  user:
-    name: "{{ user }}"
-    shell: /bin/bash
-    groups: users
-    append: true
+#- name: Add the user
+#  user:
+#    name: "{{ user }}"
+#    shell: /bin/bash
+#    groups: users
+#    append: true
 
-- name: Ensure group exists
-  group:
-    name: "{{ user }}"
-    state: present
+#- name: Ensure group exists
+#  group:
+#    name: "{{ user }}"
+#    state: present
 
 - name: Create Applications directory
   file:

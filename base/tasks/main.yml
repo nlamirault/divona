@@ -22,6 +22,8 @@
          ansible_distribution == 'Fedora' or
          ansible_distribution == 'FreeBSD' or
          ansible_distribution == 'NetBSD')
+  become: true
+  become_user: root
 
 - name: Include OS-specific tasks
   block:
