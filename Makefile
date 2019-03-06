@@ -44,7 +44,8 @@ clean: ## Cleanup
 .PHONY: init
 init: ## Install requirements
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
-	@echo "Install : ansible ansible-lint"
+	@test -d venv || python3.7 -m venv venv
+	@. venv/bin/activate && pip3 install ansible molecule
 
 .PHONY: ping
 ping: ## Check Ansible installation (host=xxx)
