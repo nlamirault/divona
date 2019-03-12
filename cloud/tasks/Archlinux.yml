@@ -16,7 +16,7 @@
 #   pacman:
 #     update_cache: true
 
-- name: Install Docker packages
+- name: Install Container packages
   pacman:
     name: "{{ packages }}"
     state: latest
@@ -24,6 +24,9 @@
     packages:
       - docker
       - docker-compose
+      - podman
+      - buildah
+      # - podman-docker => replace Docker or not
 
 - name: Add Docker group
   group:
