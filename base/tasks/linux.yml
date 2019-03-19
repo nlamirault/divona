@@ -90,3 +90,39 @@
       unarchive:
         src: "/tmp/{{ gotop_linux_package_name }}"
         dest: "{{ gotop_linux_dir }}"
+
+- name: Check Lazygit installation
+  command: which lazygit
+  register: lazygit_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Lazygit version
+  shell: "{{ lazygit_installation.stdout }} -v|awk -F',' '{ print $4 }'|awk -F'=' '{ print $2 }'"
+  when: not lazygit_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_lazygit_version
+
+- name: Lazygit installation is required
+  set_fact:
+    lazygit_installation_required: "{{ lazygit_installation is failed or installed_lazygit_version.stdout != lazygit_version }}"
+
+- name: Lazygit installation
+  when:
+    - lazygit_installation_required
+  block:
+    - name: Download Lazygit archive
+      get_url:
+        url: "{{ lazygit_linux_download_url }}"
+        dest: "/tmp/{{ lazygit_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ lazygit_linux_checksum }}"
+        force: true
+
+    - name: Install Lazygit
+      unarchive:
+        src: "/tmp/{{ lazygit_linux_package_name }}"
+        dest: "{{ lazygit_linux_dir }}"
+
