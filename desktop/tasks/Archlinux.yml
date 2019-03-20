@@ -120,3 +120,11 @@
       - keepassxc
       - arch-audit
 
+- name: Install clipboard tools
+  pacman:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - clipmenu
+      - clipnotify
