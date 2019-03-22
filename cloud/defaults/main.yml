@@ -50,7 +50,7 @@ vault_darwin_checksum: "sha256:10c1c3a0071dc0d50c2751027def3a0011a003e573bb9586c
 vault_darwin_download_url: https://releases.hashicorp.com/vault/{{ vault_version }}/{{ vault_darwin_package_name }}
 vault_darwin_dir: /Users/{{ user }}/bin/
 
-kubernetes_cli_version: 1.12.4
+kubernetes_cli_version: 1.13.0
 kubernetes_cli_linux_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/linux/amd64/kubectl
 kubernetes_cli_linux_file: /home/{{ user }}/bin/kubectl
 kubernetes_cli_darwin_download_url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_cli_version }}/bin/darwin/amd64/kubectl
@@ -119,13 +119,13 @@ linkerd_win_checksum: "sha256:00d89ca10abd9db5fcb6b43e40f8cdc1d3e25582f3a4e3e6ee
 linkerd_win_download_url: https://github.com/linkerd/linkerd2/releases/download/stable-{{ linkerd_version }}/{{ linkerd_darwin_package_name }}
 linkerd_win_file: C:\
 
-kustomize_version: 1.0.11
+kustomize_version: 2.0.3
 kustomize_linux_package_name: kustomize_{{ kustomize_version }}_linux_amd64
-kustomize_linux_checksum: "sha256:2b21b44f0245ac774f0b35e5181fd8ad7fc42a9426bc0bbfe82a75bea286b48b"
+kustomize_linux_checksum: "sha256:a04d79a013827c9ebb0abfe9d41cbcedf507a0310386c8d9a7efec7a36f9d7a3"
 kustomize_linux_download_url: https://github.com/kubernetes-sigs/kustomize/releases/download/v{{ kustomize_version }}/{{ kustomize_linux_package_name }}
 kustomize_linux_file: /home/{{ user }}/bin/kustomize
 kustomize_darwin_package_name: kustomize_{{ kustomize_version }}_darwin_amd64
-kustomize_darwin_checksum: "sha256:f04c220e66ad8b662510baf002c1f64bdfc72f1c205103fc37ca97df1b830b17"
+kustomize_darwin_checksum: "sha256:da4e4b7fe785a25997a0c34708faa6bce13d7847fc4d19d9ce46a0794098ba9b"
 kustomize_darwin_download_url: https://github.com/kubernetes-sigs/kustomize/releases/download/v{{ kustomize_version }}/{{ kustomize_darwin_package_name }}
 kustomize_darwin_file: /Users/{{ user }}/bin/kustomize
 
