@@ -62,6 +62,7 @@
       - ncdu
       - feh
       - nnn
+      - htop
 
 - name: Install defaults packages
   pacman:
@@ -76,6 +77,7 @@
       - tig
       - unzip
       - ccze
+      - dmidecode
 
 - name: Install terminal emulators
   pacman:
