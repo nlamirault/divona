@@ -26,4 +26,3 @@ syncthing_windows_package_name: "syncthing-windows-amd64-v{{ syncthing_version }
 syncthing_windows_checksum: "sha256:7bd18e00ed6a3b9001e8f7d1b56063cdd51753e049a8614df8dd083b11d2cf86"
 syncthing_windows_download_url: https://github.com/syncthing/syncthing/releases/download/v{{ syncthing_version }}/{{ syncthing_darwin_package_name }}
 syncthing_windows_dir: /Users/{{ user }}/Applications/
-

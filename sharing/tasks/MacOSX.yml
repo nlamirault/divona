@@ -20,7 +20,9 @@
   check_mode: false
 
 - name: Get installed Syncthing version
-  shell: "{{ syncthing_installation.stdout }} --version|awk -F' ' '{ print $2 }'|sed -e 's/v//g'"
+  shell: |
+    set -o pipefail
+    "{{ syncthing_installation.stdout }} --version|awk -F' ' '{ print $2 }'|sed -e 's/v//g'"
   when: not syncthing_installation is failed
   changed_when: false
   check_mode: false
@@ -52,4 +54,3 @@
         src: "{{ syncthing_darwin_file }}"
         dest: /home/{{ user }}/bin/syncthing
         state: link
-

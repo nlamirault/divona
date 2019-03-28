@@ -45,4 +45,3 @@
   block:
     - include_tasks: "{{ ansible_distribution }}.yml"
   when: ansible_distribution == 'OpenBSD'
-
