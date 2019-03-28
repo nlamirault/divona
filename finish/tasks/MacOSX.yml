@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- name: Cleanup Homebrew cask
-  command: "brew cleanup"
-  tags: cache
+# - name: Cleanup Homebrew cask
+#   command: "brew cleanup"
+#   tags: cache
