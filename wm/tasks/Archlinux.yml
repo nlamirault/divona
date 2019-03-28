@@ -19,7 +19,7 @@
 - name: Install i3 and tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - i3-wm
@@ -32,7 +32,7 @@
 - name: Install Openbox and tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - openbox
@@ -43,7 +43,7 @@
 - name: Install windows managers tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - conky
@@ -55,7 +55,7 @@
 - name: Install XFCE and tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - xfce4
@@ -65,7 +65,7 @@
 - name: Install sway and tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - sway

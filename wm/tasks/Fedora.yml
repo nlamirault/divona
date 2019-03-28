@@ -15,7 +15,7 @@
 - name: Install i3 and tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - i3
@@ -27,7 +27,7 @@
 - name: Install windows managers tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - conky
