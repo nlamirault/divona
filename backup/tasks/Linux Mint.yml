@@ -15,7 +15,7 @@
 - name: Install Borg backup
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - borgbackup

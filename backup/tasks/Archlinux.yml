@@ -15,7 +15,7 @@
 - name: Install Borg backup tool
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - borg

@@ -15,7 +15,7 @@
 - name: Install Borg backup
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - borgbackup
