@@ -24,12 +24,11 @@
 
 - name: Install Docker tools
   homebrew_cask:
-    name: {{ item }}
+    name: "{{ packages }}"
     state: present
-  with_items:
-    # - docker
-    # - docker-compose
-    - dockertoolbox
+  vars:
+    packages:
+      - dockertoolbox
 
 - name: Install QEmu
   homebrew:

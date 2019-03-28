@@ -30,7 +30,7 @@
 - name: Install Docker tools
   win_chocolatey:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - docker
     - docker-machine
@@ -38,7 +38,7 @@
 
 - name: Install GCloud SDK
   unarchive:
-    src: "{{ gcloud_sdk_win_download_url }}"
+    src: "{{ gcloud_sdk_win_download_url }}"
     dest: "{{ gcloud_sdk_win_dir }}"
     remote_src: true
 

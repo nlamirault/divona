@@ -15,19 +15,19 @@
 - name: Install virtualbox
   win_chocolatey:
     name: virtualbox
-    state: latest
+    state: present
 
 - name: Install vagrant
   win_chocolatey:
     name: vagrant
-    state: latest
+    state: present
 
 - name: Install Kubernetes CLI
   win_chocolatey:
     name: kubernetes-cli
-    state: latest
+    state: present
 
 - name: Install Minikube
   win_chocolatey:
     name: minikube
-    state: latest
+    state: present

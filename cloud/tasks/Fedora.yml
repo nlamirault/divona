@@ -15,7 +15,7 @@
 - name: Install Virtualization tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vagrant
@@ -24,17 +24,17 @@
 - name: Install yum utils
   yum:
     name: yum-utils
-    state: latest
+    state: present
 
 # - name: Install device-mapper-persistent-data
 #   yum:
 #     name: device-mapper-persistent-data
-#     state: latest
+#     state: present
 
 # - name: Install lvm2
 #   yum:
 #     name: lvm2
-#     state: latest
+#     state: present
 
 - name: Add Docker repo
   get_url:
@@ -56,9 +56,9 @@
     value: "0"
 
 - name: Install Docker
-  YUM:
+  yum:
     name: docker-ce
-    state: latest
+    state: present
 
 # - name: Start Docker service
 #   service:

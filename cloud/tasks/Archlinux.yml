@@ -19,7 +19,7 @@
 - name: Install Container packages
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - docker
@@ -36,7 +36,7 @@
 - name: Install virtualization tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - virtualbox
@@ -50,7 +50,7 @@
 - name: Install Vagrant
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vagrant

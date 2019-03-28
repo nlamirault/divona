@@ -19,7 +19,7 @@
 - name: Install Docker requirements
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - apt-transport-https
@@ -43,7 +43,7 @@
 - name: docker-engine present
   apt:
     name: "docker-ce"
-    state: latest
+    state: present
 
 - name: Oracle Virtualbox public key
   apt_key:
@@ -59,4 +59,4 @@
 - name: Install Virtualbox
   apt:
     name: virtualbox-5.2
-    state: latest
+    state: present
