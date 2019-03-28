@@ -15,7 +15,7 @@
 - name: Install web applications
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - chromium
@@ -23,19 +23,21 @@
 - name: Install multimedia applications
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
       - inkscape
 
 - name: Install rpmfusion repo
-  shell: dnf install -y  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+  dnf:
+    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    state: present
 
 - name: Install video applications
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vlc
@@ -43,7 +45,7 @@
 - name: Install communications applications
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - irssi
@@ -53,7 +55,7 @@
 - name: Install documentation applications
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - evince
@@ -61,7 +63,7 @@
 - name: Install security tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - keepassxc

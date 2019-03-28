@@ -15,7 +15,7 @@
 - name: Install X
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - libglvnd
@@ -36,7 +36,7 @@
 # - name: Install themes
 #   pacman:
 #     name: "{{ packages }}"
-#     state: latest
+#     state: present
 #   vars:
 #     packages:
 #       - arc-gtk-theme
@@ -45,7 +45,7 @@
 - name: Install web browsers
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - chromium
@@ -54,7 +54,7 @@
 - name: Install graphics applications
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
@@ -64,7 +64,7 @@
 - name: Install video applications
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vlc
@@ -72,7 +72,7 @@
 - name: Install music applications
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - pulseaudio
@@ -83,7 +83,7 @@
 - name: Install communications applications
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - irssi
@@ -93,7 +93,7 @@
 - name: Install documentation applications
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - evince
@@ -102,7 +102,7 @@
 - name: Install fonts
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - awesome-terminal-fonts
@@ -111,7 +111,7 @@
 - name: Install security tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - openvpn
@@ -123,7 +123,7 @@
 - name: Install clipboard tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - clipmenu

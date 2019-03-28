@@ -15,7 +15,7 @@
 - name: Install X
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - xinit
@@ -24,7 +24,7 @@
 - name: Install web applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - chromium
@@ -32,7 +32,7 @@
 - name: Install graphics applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
@@ -41,7 +41,7 @@
 - name: Install video applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vlc
@@ -49,7 +49,7 @@
 - name: Install communications applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - irssi
@@ -59,7 +59,7 @@
 - name: Install documentation applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - libreoffice

@@ -15,7 +15,7 @@
 - name: Install web applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - chromium-browser
@@ -23,7 +23,7 @@
 - name: Install multimedia applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
@@ -32,7 +32,7 @@
 - name: Install video applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vlc
@@ -40,7 +40,7 @@
 - name: Install communications applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - irssi
@@ -50,7 +50,7 @@
 - name: Install documentation applications
   apt:
     pkg: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - evince
@@ -60,6 +60,6 @@
 #   apt_repository: repo=ppa:phoerious/keepassxc
 
 # - name: Install security tools
-#   apt: pkg={{ packages }} state=latest update_cache=yes
+#   apt: pkg={{ packages }} state=present update_cache=yes
 #   with_packagess:
 #     - keepassxc

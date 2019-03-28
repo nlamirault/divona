@@ -15,7 +15,7 @@
 - name: Install web applications
   win_chocolatey:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - chromium
@@ -25,7 +25,7 @@
 - name: Install graphics applications
   win_chocolatey:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
@@ -34,7 +34,7 @@
 - name: Install communications applications
   win_chocolatey:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - hexchat
@@ -42,7 +42,7 @@
 - name: Install security tools
   win_chocolatey:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - keepassxc

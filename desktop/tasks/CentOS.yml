@@ -15,7 +15,7 @@
 - name: Install web applications
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - firefox
@@ -23,7 +23,7 @@
 - name: Install graphics applications
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - gimp
@@ -32,7 +32,7 @@
 - name: Install video applications
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - vlc
@@ -40,7 +40,7 @@
 - name: Install communications applications
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - irssi
@@ -49,7 +49,7 @@
 - name: Install documentation applications
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - evince
