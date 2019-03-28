@@ -99,7 +99,9 @@
   check_mode: false
 
 - name: Get installed Lazygit version
-  shell: "{{ lazygit_installation.stdout }} -v|awk -F',' '{ print $4 }'|awk -F'=' '{ print $2 }'"
+  shell: |
+    set -o pipefail
+    "{{ lazygit_installation.stdout }} -v|awk -F',' '{ print $4 }'|awk -F'=' '{ print $2 }'"
   when: not lazygit_installation is failed
   changed_when: false
   check_mode: false
@@ -125,4 +127,3 @@
       unarchive:
         src: "/tmp/{{ lazygit_linux_package_name }}"
         dest: "{{ lazygit_linux_dir }}"
-

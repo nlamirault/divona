@@ -15,7 +15,7 @@
 - name: Install EPEL Repository
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - epel-release
@@ -24,7 +24,7 @@
   yum_repository:
     name: nux-dextop
     description: Nux.Ro RPMs for general desktop use
-    baseurl: http://li.nux.ro/download/nux/dextop/el{{ ansible_distribution_major_version }}/$basearch/ http://mirror.li.nux.ro/li.nux.ro/nux/dextop/el{{ ansible_distribution_major_version }}/$basearch/
+    baseurl: "{{ nux_url }} {{ nux_mirror url }}"
     gpgkey: http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
     gpgcheck: true
     skip_if_unavailable: true
@@ -41,7 +41,7 @@
 - name: Install shell tools
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - tmux
@@ -51,7 +51,7 @@
 - name: Install default packages
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - ngrep
@@ -64,7 +64,7 @@
 - name: Install terminal emulators
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - terminator
@@ -72,7 +72,7 @@
 - name: Install network tools
   yum:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - openssh

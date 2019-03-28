@@ -19,7 +19,7 @@
 - name: Install distribution tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - pacman-contrib
@@ -27,7 +27,7 @@
 - name: Install Bash shell
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - bash-completion
@@ -35,7 +35,7 @@
 - name: Install Zsh shell
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - zsh-completions
@@ -45,7 +45,7 @@
 - name: Install Fish shell
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - fish
@@ -53,7 +53,7 @@
 - name: Install shell tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - screenfetch
@@ -67,7 +67,7 @@
 - name: Install defaults packages
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - man-db
@@ -82,7 +82,7 @@
 - name: Install terminal emulators
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - termite
@@ -92,7 +92,7 @@
 - name: Install networks tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - dhclient
@@ -111,7 +111,7 @@
 - name: Install modern Unix tools
   pacman:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - fzf

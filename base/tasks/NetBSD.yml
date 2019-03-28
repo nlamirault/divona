@@ -14,18 +14,19 @@
 ---
 - name: Install defaults packages
   pkgin:
-    pkg: {{ item }}
+    pkg: "{{ packages }}"
     state: present
-  with_items:
-    - wget
-    - curl
-    # - ngrep
-    # - tree
-    # - bash-completion
-    - git
-    - unzip
-    # - logrotate
-    - rsyslog
-    - tmux
-    - vim
-    # - terminator
+  vars:
+    packages:
+      - wget
+      - curl
+      # - ngrep
+      # - tree
+      # - bash-completion
+      - git
+      - unzip
+      # - logrotate
+      - rsyslog
+      - tmux
+      - vim
+      # - terminator

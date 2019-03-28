@@ -14,6 +14,9 @@
 ---
 # defaults file for base
 
+nux_url: http://li.nux.ro/download/nux/dextop/el{{ ansible_distribution_major_version }}/$basearch/
+nux_miroror_url: http://mirror.li.nux.ro/li.nux.ro/nux/dextop/el{{ ansible_distribution_major_version }}/$basearch/
+
 yay_version: 9.0.1
 yay_package_name: "yay_{{ yay_version }}_x86_64.tar.gz"
 yay_download_url: https://github.com/Jguer/yay/releases/download/v{{ yay_version }}/yay_{{ yay_version }}_x86_64.tar.gz
@@ -51,4 +54,3 @@ lazygit_darwin_package_name: lazygit_{{ lazygit_version }}_Darwin_x86_64.tar.gz
 lazygit_darwin_checksum: "sha256:a51fb5bebcde0c01b21ee8b2d75e13846601f9b996eb23ef87f5ea89775f0737"
 lazygit_darwin_download_url: https://github.com/jesseduffield/lazygit/releases/download/v{{ lazygit_version }}/{{ lazygit_darwin_package_name }}
 lazygit_darwin_dir: /Users/{{ user }}/bin
-

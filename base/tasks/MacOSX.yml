@@ -36,7 +36,7 @@
 - name: Install shell tools
   homebrew:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - fzf
     - tmux
@@ -45,7 +45,7 @@
 - name: Install libraries with homebrew
   homebrew:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - git
     - gpg2
@@ -55,7 +55,7 @@
 - name: Install modern Unix tools
   homebrew:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - ripgrep
     - exa

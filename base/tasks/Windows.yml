@@ -27,21 +27,21 @@
 - name: Install shell tools
   win_chocolatey:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - fzf
 
 - name: Install terminal emulators
   win_chocolatey:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - cmder
 
 - name: Install packages
   win_chocolatey:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - git
     - cygwin

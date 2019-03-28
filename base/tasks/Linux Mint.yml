@@ -15,7 +15,7 @@
 - name: Install shell tools
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - bash-completion
@@ -27,7 +27,7 @@
 - name: Install terminal emulators
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - terminator
@@ -35,7 +35,7 @@
 - name: Install networks tools
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - openssh-server
@@ -46,7 +46,7 @@
 - name: Install defaults packages
   apt:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - man-db

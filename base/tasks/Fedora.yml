@@ -15,7 +15,7 @@
 - name: Install shell tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - bash-completion
@@ -28,7 +28,7 @@
 - name: Install terminal emulators
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - terminator
@@ -36,7 +36,7 @@
 - name: Install network tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - openssh
@@ -47,7 +47,7 @@
 - name: Install defaults packages
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - man-db
@@ -65,7 +65,7 @@
 - name: Install modern Unix tools
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - fd-find
