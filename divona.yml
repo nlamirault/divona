@@ -37,13 +37,6 @@
     - lang
     - cloud
 
-- name: Mobile development provisionning
-  hosts: all
-  tags:
-    - mobile
-  roles:
-    - mobile
-
 - name: Debug informations
   hosts: all
   tags:
