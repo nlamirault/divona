@@ -19,9 +19,9 @@
 - name: Install Emacs
   pacman:
     name: emacs
-    state: latest
+    state: present
 
 - name: Install Neovim
   pacman:
     name: neovim
-    state: latest
+    state: present

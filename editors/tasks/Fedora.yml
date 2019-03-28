@@ -15,7 +15,7 @@
 - name: Install Emacs
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - emacs
@@ -23,7 +23,7 @@
 - name: Install Neovim
   dnf:
     name: "{{ packages }}"
-    state: latest
+    state: present
   vars:
     packages:
       - neovim

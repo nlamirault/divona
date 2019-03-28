@@ -15,9 +15,9 @@
 - name: Install Emacs
   yum:
     name: emacs
-    state: latest
+    state: present
 
 - name: Install Neovim
   yum:
     name: neovim
-    state: latest
+    state: present

@@ -19,9 +19,9 @@
 - name: Install Emacs
   apt:
     name: emacs
-    state: latest
+    state: present
 
 - name: Install Neovim
   apt:
     name: neovim
-    state: latest
+    state: present
