@@ -98,4 +98,3 @@
     - name: update rust
       command: ~/.cargo/bin/rustup update
       changed_when: false
-
