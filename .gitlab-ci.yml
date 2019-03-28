@@ -46,7 +46,7 @@ cache:
 
 test:debug:
   <<: *gitlab_molecule
-  stage: debug
+  stage: test
   script:
     - cd debug && molecule test
 
