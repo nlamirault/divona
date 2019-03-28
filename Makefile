@@ -53,9 +53,9 @@ ping: ## Check Ansible installation (host=xxx)
 	@ansible -c local -m ping all -i $(host)
 
 .PHONY: lint
-lint: ## Check ansible style
+lint: ## Check ansible style (role=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Verify ansible$(NO_COLOR)"
-	@for i in $$(find ansible/ -name "*.yml"); do echo $$i; ansible-lint $$i; done
+	@cd $(role) && molecule lint
 
 .PHONY: setup-local
 setup-local: ## Setup using Ansible (host=xxx user=yyyy tags=xxx,xx,xx)
