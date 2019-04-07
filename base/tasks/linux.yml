@@ -101,7 +101,7 @@
 - name: Get installed Lazygit version
   shell: |
     set -o pipefail
-    "{{ lazygit_installation.stdout }} -v|awk -F',' '{ print $4 }'|awk -F'=' '{ print $2 }'"
+    {{ lazygit_installation.stdout }} -v|awk -F',' '{ print $4 }'|awk -F'=' '{ print $2 }'
   when: not lazygit_installation is failed
   changed_when: false
   check_mode: false

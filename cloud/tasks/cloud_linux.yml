@@ -87,7 +87,7 @@
 - name: Get installed Terraform version
   shell: |
     set -o pipefail
-    "{{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1"
+    {{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1
   when: not terraform_installation is failed
   changed_when: false
   check_mode: false
@@ -124,7 +124,7 @@
 - name: Get installed Vault version
   shell: |
     set -o pipefail
-    "{{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'"
+    {{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'
   when: not vault_installation is failed
   changed_when: false
   check_mode: false
@@ -161,7 +161,7 @@
 - name: Get installed Kubernetes CLI version
   shell: |
     set -o pipefail
-    "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
+    {{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'
   when: not kubectl_installation is failed
   changed_when: false
   check_mode: false
@@ -190,7 +190,7 @@
 - name: Get installed Minikube version
   shell: |
     set -o pipefail
-    "{{ minikube_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'"
+    {{ minikube_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'
   when: not minikube_installation is failed
   changed_when: false
   check_mode: false
@@ -220,7 +220,7 @@
 - name: Get installed GCloud version
   shell: |
     set -o pipefail
-    "{{ gcloud_sdk_installation.stdout }} version|head -1|awk -F ' ' '{ print $4 }'"
+    {{ gcloud_sdk_installation.stdout }} version|head -1|awk -F ' ' '{ print $4 }'
   when: not gcloud_sdk_installation is failed
   changed_when: false
   check_mode: false
@@ -268,7 +268,7 @@
 - name: Get installed Krew version
   shell: |
     set -o pipefail
-    "{{ krew_installation.stdout }} version|grep GitTag|awk -F' ' '{ print $2}'|sed -e 's/v//g'"
+    {{ krew_installation.stdout }} version|grep GitTag|awk -F' ' '{ print $2}'|sed -e 's/v//g'
   when: not krew_installation is failed
   changed_when: false
   check_mode: false
@@ -317,7 +317,7 @@
 - name: Get installed Istio version
   shell: |
     set -o pipefail
-    "{{ istio_installation.stdout }} version|grep -e '^Version'|awk -F': ' '{ print $2 }'"
+    {{ istio_installation.stdout }} version|grep -e '^Version'|awk -F': ' '{ print $2 }'
   when: not istio_installation is failed
   changed_when: false
   check_mode: false
@@ -360,7 +360,7 @@
 - name: Get installed Linkerd version
   shell: |
     set -o pipefail
-    "{{ linkerd_installation.stdout }} version|awk -F'-' '{ print $2 }'|head -1"
+    {{ linkerd_installation.stdout }} version|awk -F'-' '{ print $2 }'|head -1
   when: not linkerd_installation is failed
   changed_when: false
   check_mode: false
@@ -390,7 +390,7 @@
 - name: Get installed Kustomize version
   shell: |
     set -o pipefail
-    "{{ kustomize_installation.stdout }} version|awk -F' ' '{ print $2 }'|awk -F':' '{ print $2 }'"
+    {{ kustomize_installation.stdout }} version|awk -F' ' '{ print $2 }'|awk -F':' '{ print $2 }'
   when: not kustomize_installation is failed
   changed_when: false
   check_mode: false
@@ -420,7 +420,7 @@
 - name: Get installed Kind version
   shell: |
     set -o pipefail
-    "{{ kind_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'"
+    {{ kind_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'
   when: not kind_installation is failed
   changed_when: false
   check_mode: false

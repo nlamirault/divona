@@ -61,7 +61,7 @@
 - name: Get installed Terraform version
   shell: |
     set -o pipefail
-    "{{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1"
+    {{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1
   when: not terraform_installation is failed
   changed_when: false
   check_mode: false
@@ -102,7 +102,7 @@
 - name: Get installed Vault version
   shell: |
     set -o pipefail
-    "{{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'"
+    {{ vault_installation.stdout }} -version|awk -F ' ' '{ print $2}'|head -1|sed -e 's/v//g'
   when: not vault_installation is failed
   changed_when: false
   check_mode: false
@@ -143,7 +143,7 @@
 - name: Get installed Kubernetes CLI version
   shell: |
     set -o pipefail
-    "{{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'"
+    {{ kubectl_installation.stdout }} version --client --short|awk -F 'v' '{ print $2}'
   when: not kubectl_installation is failed
   changed_when: false
   check_mode: false

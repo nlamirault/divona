@@ -22,7 +22,7 @@
 - name: Get installed vscode version
   shell: |
     set -o pipefail
-    "{{ vscode_installation.stdout }} -version|head -1"
+    {{ vscode_installation.stdout }} -version|head -1
   when: not vscode_installation is failed
   changed_when: false
   check_mode: false

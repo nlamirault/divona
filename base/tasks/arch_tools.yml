@@ -38,7 +38,7 @@
 - name: Get installed Yay version
   shell: |
     set -o pipefail
-    "{{ yay_installation.stdout }} --version|awk -F' ' '{ print $2}'|sed -e 's/v//g'"
+    {{ yay_installation.stdout }} --version|awk -F' ' '{ print $2}'|sed -e 's/v//g'
   when: not yay_installation is failed
   changed_when: false
   check_mode: false
