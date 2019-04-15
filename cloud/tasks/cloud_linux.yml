@@ -317,7 +317,7 @@
 - name: Get installed Istio version
   shell: |
     set -o pipefail
-    {{ istio_installation.stdout }} version|grep -e '^Version'|awk -F': ' '{ print $2 }'
+    {{ istio_installation.stdout }} version -s
   when: not istio_installation is failed
   changed_when: false
   check_mode: false
