@@ -64,7 +64,7 @@ minikube_darwin_download_url: https://github.com/kubernetes/minikube/releases/do
 minikube_darwin_checksum: "sha256:d5b21adacd4b6bad9006816e4bdb29f39318a60919e7a6bb5e388a6299fffd0f"
 minikube_darwin_file: /Users/{{ user }}/bin/minikube
 
-gcloud_sdk_version: 228.0.0
+gcloud_sdk_version: 241.0.0
 gcloud_sdk_base_url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 gcloud_sdk_linux_dir: /home/{{ user }}/Applications
 gcloud_sdk_linux_archive: google-cloud-sdk-{{ gcloud_sdk_version }}-linux-x86_64.tar.gz
