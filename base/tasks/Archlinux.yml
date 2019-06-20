@@ -99,6 +99,7 @@
       - openssh
       - wget
       - curl
+      - nghttp2
       - bind-tools
       - mtr
       - traceroute
