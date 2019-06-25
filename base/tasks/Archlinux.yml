@@ -96,6 +96,7 @@
   vars:
     packages:
       - dhclient
+      - iw
       - openssh
       - wget
       - curl
