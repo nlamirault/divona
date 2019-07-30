@@ -360,7 +360,7 @@
 - name: Get installed Linkerd version
   shell: |
     set -o pipefail
-    {{ linkerd_installation.stdout }} version|awk -F'-' '{ print $2 }'|head -1
+    {{ linkerd_installation.stdout }} version --client|awk -F'-' '{ print $2 }'|head -1
   when: not linkerd_installation is failed
   changed_when: false
   check_mode: false
@@ -441,3 +441,47 @@
     dest: "{{ kind_linux_file }}"
     mode: 0755
     force: true
+
+- name: Check Eksctl installation
+  command: which eksctl
+  register: eksctl_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Get installed Eksctl version
+  shell: |
+    set -o pipefail
+    {{ eksctl_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'
+  when: not eksctl_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_eksctl_version
+
+- name: Eksctl installation is required
+  set_fact:
+    eksctl_installation_required: "{{ eksctl_installation is failed or installed_eksctl_version.stderr != eksctl_version }}"
+
+- name: Eksctl CLI installation
+  when:
+    - eksctl_installation_required
+  block:
+    - name: Download Eksctl archive
+      get_url:
+        url: "{{ eksctl_linux_download_url }}"
+        dest: "/tmp/{{ eksctl_linux_package_name }}"
+        mode: 0600
+        checksum: "{{ eksctl_linux_checksum }}"
+        force: true
+
+    - name: Extract Eksctl archive
+      unarchive:
+        src: "/tmp/{{ eksctl_linux_package_name }}"
+        dest: "{{ eksctl_linux_dir }}"
+
+    - name: Install Eksctl CLI
+      copy:
+        src: "{{ eksctl_linux_dir }}/eksctl"
+        dest: "/home/{{ user }}/bin/"
+        owner: "{{ user }}"
+        mode: 0755

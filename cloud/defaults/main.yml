@@ -64,7 +64,7 @@ minikube_darwin_download_url: https://github.com/kubernetes/minikube/releases/do
 minikube_darwin_checksum: "sha256:d5b21adacd4b6bad9006816e4bdb29f39318a60919e7a6bb5e388a6299fffd0f"
 minikube_darwin_file: /Users/{{ user }}/bin/minikube
 
-gcloud_sdk_version: 241.0.0
+gcloud_sdk_version: 245.0.0
 gcloud_sdk_base_url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 gcloud_sdk_linux_dir: /home/{{ user }}/Applications
 gcloud_sdk_linux_archive: google-cloud-sdk-{{ gcloud_sdk_version }}-linux-x86_64.tar.gz
@@ -136,3 +136,16 @@ kind_linux_file: /home/{{ user }}/bin/kind
 kind_darwin_package_name: kind-darwin-amd64
 kind_darwin_download_url: https://github.com/kubernetes-sigs/kind/releases/download/{{ kind_version }}/{{ kind_darwin_package_name }}
 kind_darwin_file: /Users/{{ user }}/bin/kind
+
+eksctl_version: 0.2.1
+eksctl_linux_package_name: eksctl_Linux_amd64.tar.gz
+eksctl_linux_checksum: "sha256:0ebf82eae20cd1a0cf38cf3aadee759d93300b6b26ca23ca4fd0c7a564dcca41"
+eksctl_linux_download_url: https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/{{eksctl_linux_package_name }}
+eksctl_linux_dir: /home/{{ user }}/Applications
+eksctl_darwin_package_name: eksctl_Darwin_amd64.tar.gz
+eksctl_darwin_checksum: "sha256:d5c40b196b431651b8ef06c03bd8d5b4bc084eb7d5a1d489be09d486a7895f64"
+eksctl_darwin_download_url: https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/{{ eksctl_darwin_package_name }}
+eksctl_darwin_dir: /Users/{{ user }}/bin
+eksctl_win_package_name: eksctl_Windows_amd64.zip
+eksctl_win_checksum: "sha256:f6bb4d53637ec04cb2b4253d4fb432bf6831036f95e4d0d918f2253b08fd4451"
+eksctl_win_download_url: https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/{{ eksctl_win_package_name }}
