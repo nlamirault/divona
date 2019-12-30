@@ -15,6 +15,7 @@
 APP = divona
 VERSION = 3.0.0
 
+PYTHON3 = python3
 ANSIBLE_VERSION = 2.7.6
 
 DEBUG ?=
@@ -50,7 +51,7 @@ clean: ## Cleanup
 .PHONY: init
 init: ## Install requirements
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
-	@test -d venv || python3.7 -m venv venv
+	@test -d venv || $(PYTHON3) -m venv venv
 	@. venv/bin/activate && pip3 install ansible molecule
 
 .PHONY: ping
