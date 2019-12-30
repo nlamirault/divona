@@ -123,3 +123,12 @@
       - bat
       - lsd
       - diskus
+
+- name: Install file system tools
+  pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - extfat-utils
+
