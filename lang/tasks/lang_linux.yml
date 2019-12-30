@@ -14,7 +14,7 @@
 ---
 
 - name: Check Golang installation
-  command: which version
+  command: which go
   register: go_installation
   changed_when: false
   ignore_errors: true
