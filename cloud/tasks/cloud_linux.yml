@@ -42,77 +42,145 @@
 #     dest: "{{ vagrant_dir }}"
 #     remote_src: true
 
-- name: Check Packer installation
-  command: which packer
-  register: packer_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
+#############################################################################
+# Packer
+#
 
-- name: Get installed Packer version
-  command: "{{ packer_installation.stdout }} -version"
-  when: not packer_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_packer_version
-
-- name: Packer installation is required
-  set_fact:
-    packer_installation_required: "{{ packer_installation is failed or installed_packer_version.stdout != packer_version }}"
-
-- name: Packer installation
+- name: Packer setup using official binary
   when:
-    - packer_installation_required
+    - ansible_distribution != 'Archlinux'
   block:
-    - name: Download Packer archive
+
+    - name: Check Packer installation
+      command: which packer
+      register: packer_installation
+      changed_when: false
+      ignore_errors: true
+      check_mode: false
+
+    - name: Get installed Packer version
+      command: "{{ packer_installation.stdout }} -version"
+      when: not packer_installation is failed
+      changed_when: false
+      check_mode: false
+      register: installed_packer_version
+
+    - name: Packer installation is required
+      set_fact:
+        packer_installation_required: "{{ packer_installation is failed or installed_packer_version.stdout != packer_version }}"
+
+    - name: Packer installation
+      when:
+        - packer_installation_required
+      block:
+        - name: Download Packer archive
+          get_url:
+            url: "{{ packer_linux_download_url }}"
+            dest: "/tmp/{{ packer_linux_package_name }}"
+            mode: 0600
+            checksum: "{{ packer_linux_checksum }}"
+            force: true
+
+        - name: Install Packer CLI
+          unarchive:
+            src: "/tmp/{{ packer_linux_package_name }}"
+            dest: "{{ packer_linux_dir }}"
+
+- name: Packer setup using pkenv
+  when:
+    - ansible_distribution == 'Archlinux'
+  become: true
+  become_user: root
+  block:
+
+    - name: Install pkenv to manage Packer versions
       get_url:
-        url: "{{ packer_linux_download_url }}"
-        dest: "/tmp/{{ packer_linux_package_name }}"
+        url: "{{ pkenv_linux_package_download_url }}"
+        dest: "/tmp/{{ pkenv_linux_package_name }}"
         mode: 0600
-        checksum: "{{ packer_linux_checksum }}"
+        # checksum: "{{ pkenv_linux_checksum }}"
         force: true
 
-    - name: Install Packer CLI
-      unarchive:
-        src: "/tmp/{{ packer_linux_package_name }}"
-        dest: "{{ packer_linux_dir }}"
+    - name: Install pkenv
+      shell: |
+        set -o pipefail
+        pacman -U --noconfirm /tmp/{{ pkenv_linux_package_name }}
 
-- name: Check Terraform installation
-  command: which terraform
-  register: terraform_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
+#############################################################################
+# Terraform
+#
 
-- name: Get installed Terraform version
-  shell: |
-    set -o pipefail
-    {{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1
-  when: not terraform_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_terraform_version
-
-- name: Terraform installation is required
-  set_fact:
-    terraform_installation_required: "{{ terraform_installation is failed or installed_terraform_version.stdout != terraform_version }}"
-
-- name: Terraform installation
+- name: Terraform setup using official binary
   when:
-    - terraform_installation_required
+    - ansible_distribution != 'Archlinux'
   block:
-    - name: Download Terraform archive
-      get_url:
-        url: "{{ terraform_linux_download_url }}"
-        dest: "/tmp/{{ terraform_linux_package_name }}"
-        mode: 0600
-        checksum: "{{ terraform_linux_checksum }}"
-        force: true
 
-    - name: Install Terraform CLI
-      unarchive:
-        src: "/tmp/{{ terraform_linux_package_name }}"
-        dest: "{{ terraform_linux_dir }}"
+    - name: Check Terraform installation
+      command: which terraform
+      register: terraform_installation
+      changed_when: false
+      ignore_errors: true
+      check_mode: false
+
+    - name: Get installed Terraform version
+      shell: |
+        set -o pipefail
+        {{ terraform_installation.stdout }} -version|awk -F 'v' '{ print $2}'|head -1
+      when: not terraform_installation is failed
+      changed_when: false
+      check_mode: false
+      register: installed_terraform_version
+
+    - name: Terraform installation is required
+      set_fact:
+        terraform_installation_required: "{{ terraform_installation is failed or installed_terraform_version.stdout != terraform_version }}"
+
+    - name: Terraform installation
+      when:
+        - terraform_installation_required
+      block:
+        - name: Download Terraform archive
+          get_url:
+            url: "{{ terraform_linux_download_url }}"
+            dest: "/tmp/{{ terraform_linux_package_name }}"
+            mode: 0600
+            checksum: "{{ terraform_linux_checksum }}"
+            force: true
+
+        - name: Install Terraform CLI
+          unarchive:
+            src: "/tmp/{{ terraform_linux_package_name }}"
+            dest: "{{ terraform_linux_dir }}"
+
+- name: Terraform setup using tfenv
+  when:
+    - ansible_distribution == 'Archlinux'
+  # become: true
+  # become_user: root
+  block:
+
+    # - name: Install tfenv to manage Terraform versions
+    #   get_url:
+    #     url: "{{ tfenv_linux_package_download_url }}"
+    #     dest: "/tmp/{{ tfenv_linux_package_name }}"
+    #     mode: 0600
+    #     # checksum: "{{ tfenv_linux_checksum }}"
+    #     force: true
+
+    # - name: Install tfenv
+    #   shell: |
+    #     set -o pipefail
+    #     pacman -U --noconfirm /tmp/{{ tfenv_linux_package_name }}
+
+    - name: Install tfenv
+      shell: |
+        set -o pipefail
+        yay -S --noconfirm tfenv
+
+
+#############################################################################
+# Vault
+#
 
 - name: Check Vault installation
   command: which vault
@@ -151,6 +219,10 @@
         src: "/tmp/{{ vault_linux_package_name }}"
         dest: "{{ vault_linux_dir }}"
 
+#############################################################################
+# Kubectl
+#
+
 - name: Check Kubernetes CLI installation
   command: which kubectl
   register: kubectl_installation
@@ -180,35 +252,43 @@
     force: true
     mode: 0755
 
-- name: Check Minikube installation
-  command: which minikube
-  register: minikube_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
+#############################################################################
+# Minikube
+#
 
-- name: Get installed Minikube version
-  shell: |
-    set -o pipefail
-    {{ minikube_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'
-  when: not minikube_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_minikube_version
+# - name: Check Minikube installation
+#   command: which minikube
+#   register: minikube_installation
+#   changed_when: false
+#   ignore_errors: true
+#   check_mode: false
 
-- name: Minikube installation is required
-  set_fact:
-    minikube_installation_required: "{{ minikube_installation is failed or installed_minikube_version.stdout != minikube_version }}"
+# - name: Get installed Minikube version
+#   shell: |
+#     set -o pipefail
+#     {{ minikube_installation.stdout }} version |awk -F ' ' '{ print $3 }'|sed -e 's/v//g'
+#   when: not minikube_installation is failed
+#   changed_when: false
+#   check_mode: false
+#   register: installed_minikube_version
 
-- name: Install Minikube CLI
-  when:
-    - minikube_installation_required
-  get_url:
-    url: "{{ minikube_linux_download_url }}"
-    dest: "{{ minikube_linux_file }}"
-    checksum: "{{ minikube_linux_checksum }}"
-    mode: 0755
-    force: true
+# - name: Minikube installation is required
+#   set_fact:
+#     minikube_installation_required: "{{ minikube_installation is failed or installed_minikube_version.stdout != minikube_version }}"
+
+# - name: Install Minikube CLI
+#   when:
+#     - minikube_installation_required
+#   get_url:
+#     url: "{{ minikube_linux_download_url }}"
+#     dest: "{{ minikube_linux_file }}"
+#     checksum: "{{ minikube_linux_checksum }}"
+#     mode: 0755
+#     force: true
+
+#############################################################################
+# GCloud
+#
 
 - name: Check GCloud SDK installation
   command: which gcloud
@@ -246,6 +326,17 @@
         dest: /home/{{ user }}/bin/gcloud
         state: link
 
+    - name: Adding Gsutil command to user path
+      file:
+        src: "{{ gcloud_sdk_linux_dir }}/google-cloud-sdk/bin/gsutil"
+        dest: /home/{{ user }}/bin/gsutil
+        state: link
+
+
+#############################################################################
+# Azure CLI
+#
+
 - name: Install Azure CLI
   pip:
     name: azure-cli
@@ -257,6 +348,11 @@
     name: awscli
     virtualenv: "{{ aws_cli_dir }}"
     version: "{{ aws_cli_version }}"
+
+
+#############################################################################
+# Krew
+#
 
 - name: Check Krew installation
   command: which krew
@@ -307,108 +403,153 @@
         url: "{{ krew_yaml_download_url }}"
         dest: "/home/{{ user }}/etc/"
 
-- name: Check Istio installation
-  command: which istioctl
-  register: istio_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
 
-- name: Get installed Istio version
-  shell: |
-    set -o pipefail
-    {{ istio_installation.stdout }} version -s
-  when: not istio_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_istio_version
+#############################################################################
+# Istio
+#
 
-- name: Istio installation is required
-  set_fact:
-    istio_installation_required: "{{ istio_installation is failed or installed_istio_version.stdout != istio_version }}"
+# - name: Check Istio installation
+#   command: which istioctl
+#   register: istio_installation
+#   changed_when: false
+#   ignore_errors: true
+#   check_mode: false
 
-- name: Istio installation
+# - name: Get installed Istio version
+#   shell: |
+#     set -o pipefail
+#     {{ istio_installation.stdout }} version -s
+#   when: not istio_installation is failed
+#   changed_when: false
+#   check_mode: false
+#   register: installed_istio_version
+
+# - name: Istio installation is required
+#   set_fact:
+#     istio_installation_required: "{{ istio_installation is failed or installed_istio_version.stdout != istio_version }}"
+
+# - name: Istio installation
+#   when:
+#     - istio_installation_required
+#   block:
+#     - name: Download Istio archive
+#       get_url:
+#         url: "{{ istio_linux_download_url }}"
+#         dest: "/tmp/{{ istio_linux_package_name }}"
+#         mode: 0600
+#         checksum: "{{ istio_linux_checksum }}"
+#         force: true
+
+#     - name: Extract Istio archive
+#       unarchive:
+#         src: "/tmp/{{ istio_linux_package_name }}"
+#         dest: "{{ istio_linux_dir }}"
+
+#     - name: Install Istio CLI
+#       file:
+#         src: "{{ istio_linux_dir }}/istio-{{ istio_version }}/bin/istioctl"
+#         dest: /home/{{ user }}/bin/istioctl
+#         state: link
+
+
+#############################################################################
+# Linkerd
+#
+
+# - name: Check Linkerd installation
+#   command: which linkerd
+#   register: linkerd_installation
+#   changed_when: false
+#   ignore_errors: true
+#   check_mode: false
+
+# - name: Get installed Linkerd version
+#   shell: |
+#     set -o pipefail
+#     {{ linkerd_installation.stdout }} version --client|awk -F'-' '{ print $2 }'|head -1
+#   when: not linkerd_installation is failed
+#   changed_when: false
+#   check_mode: false
+#   register: installed_linkerd_version
+
+# - name: Linkerd installation is required
+#   set_fact:
+#     linkerd_installation_required: "{{ linkerd_installation is failed or installed_linkerd_version.stdout != linkerd_version }}"
+
+# - name: Install Linkerd binary
+#   when:
+#     - linkerd_installation_required
+#   get_url:
+#     url: "{{ linkerd_linux_download_url }}"
+#     dest: "{{ linkerd_linux_file }}"
+#     mode: 0755
+#     checksum: "{{ linkerd_linux_checksum }}"
+#     force: true
+
+
+#############################################################################
+# Kustomize
+#
+
+- name: Kustomize setup using official binary
   when:
-    - istio_installation_required
+    - ansible_distribution != 'Archlinux'
   block:
-    - name: Download Istio archive
+
+    - name: Check Kustomize installation
+      command: which kustomize
+      register: kustomize_installation
+      changed_when: false
+      ignore_errors: true
+      check_mode: false
+
+    - name: Get installed Kustomize version
+      shell: |
+        set -o pipefail
+        {{ kustomize_installation.stdout }} version|awk -F' ' '{ print $2 }'|awk -F':' '{ print $2 }'
+      when: not kustomize_installation is failed
+      changed_when: false
+      check_mode: false
+      register: installed_kustomize_version
+
+    - name: Kustomize installation is required
+      set_fact:
+        kustomize_installation_required: "{{ kustomize_installation is failed or installed_kustomize_version.stdout != kustomize_version }}"
+
+    - name: Install Kustomize CLI
+      when:
+        - kustomize_installation_required
       get_url:
-        url: "{{ istio_linux_download_url }}"
-        dest: "/tmp/{{ istio_linux_package_name }}"
-        mode: 0600
-        checksum: "{{ istio_linux_checksum }}"
+        url: "{{ kustomize_linux_download_url }}"
+        dest: "{{ kustomize_linux_file }}"
+        checksum: "{{ kustomize_linux_checksum }}"
+        mode: 0755
         force: true
 
-    - name: Extract Istio archive
-      unarchive:
-        src: "/tmp/{{ istio_linux_package_name }}"
-        dest: "{{ istio_linux_dir }}"
-
-    - name: Install Istio CLI
-      file:
-        src: "{{ istio_linux_dir }}/istio-{{ istio_version }}/bin/istioctl"
-        dest: /home/{{ user }}/bin/istioctl
-        state: link
-
-- name: Check Linkerd installation
-  command: which linkerd
-  register: linkerd_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
-
-- name: Get installed Linkerd version
-  shell: |
-    set -o pipefail
-    {{ linkerd_installation.stdout }} version --client|awk -F'-' '{ print $2 }'|head -1
-  when: not linkerd_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_linkerd_version
-
-- name: Linkerd installation is required
-  set_fact:
-    linkerd_installation_required: "{{ linkerd_installation is failed or installed_linkerd_version.stdout != linkerd_version }}"
-
-- name: Install Linkerd binary
+- name: Kustomize setup using kzenv
   when:
-    - linkerd_installation_required
-  get_url:
-    url: "{{ linkerd_linux_download_url }}"
-    dest: "{{ linkerd_linux_file }}"
-    mode: 0755
-    checksum: "{{ linkerd_linux_checksum }}"
-    force: true
+    - ansible_distribution == 'Archlinux'
+  become: true
+  become_user: root
+  block:
 
-- name: Check Kustomize installation
-  command: which kustomize
-  register: kustomize_installation
-  changed_when: false
-  ignore_errors: true
-  check_mode: false
+    - name: Install kzenv to manage Kustomize versions
+      get_url:
+        url: "{{ kzenv_linux_package_download_url }}"
+        dest: "/tmp/{{ kzenv_linux_package_name }}"
+        mode: 0600
+        # checksum: "{{ kzenv_linux_checksum }}"
+        force: true
 
-- name: Get installed Kustomize version
-  shell: |
-    set -o pipefail
-    {{ kustomize_installation.stdout }} version|awk -F' ' '{ print $2 }'|awk -F':' '{ print $2 }'
-  when: not kustomize_installation is failed
-  changed_when: false
-  check_mode: false
-  register: installed_kustomize_version
+    - name: Install kzenv
+      shell: |
+        set -o pipefail
+        pacman -U --noconfirm /tmp/{{ kzenv_linux_package_name }}
 
-- name: Kustomize installation is required
-  set_fact:
-    kustomize_installation_required: "{{ kustomize_installation is failed or installed_kustomize_version.stdout != kustomize_version }}"
 
-- name: Install Kustomize CLI
-  when:
-    - kustomize_installation_required
-  get_url:
-    url: "{{ kustomize_linux_download_url }}"
-    dest: "{{ kustomize_linux_file }}"
-    checksum: "{{ kustomize_linux_checksum }}"
-    mode: 0755
-    force: true
+#############################################################################
+# Kind
+#
 
 - name: Check Kind installation
   command: which kind
@@ -441,6 +582,11 @@
     dest: "{{ kind_linux_file }}"
     mode: 0755
     force: true
+
+
+#############################################################################
+# Eksctl
+#
 
 - name: Check Eksctl installation
   command: which eksctl

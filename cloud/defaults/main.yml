@@ -30,6 +30,10 @@ packer_darwin_checksum: "sha256:6ffbb13bee76e02f7b065955307d454b14773feee9fcfc3b
 packer_darwin_download_url: https://releases.hashicorp.com/packer/{{ packer_version }}/{{ packer_darwin_package_name }}
 packer_darwin_dir: /Users/{{ user }}/bin/
 
+pkenv_version: 0.5.0
+pkenv_linux_package_name: pkenv-{{ pkenv_version }}-1-x86_64.pkg.tar.xz
+pkenv_linux_package_download_url: https://github.com/nlamirault/archlinux-packages/releases/download/v0.2.0/{{ pkenv_linux_package_name }}
+
 terraform_version: 0.11.11
 terraform_linux_package_name: terraform_{{ terraform_version }}_linux_amd64.zip
 terraform_linux_checksum: "sha256:94504f4a67bad612b5c8e3a4b7ce6ca2772b3c1559630dfd71e9c519e3d6149c"
@@ -39,6 +43,10 @@ terraform_darwin_package_name: terraform_{{ terraform_version }}_darwin_amd64.zi
 terraform_darwin_checksum: "sha256:6b6e8253b678554c67d717c42209fd857bfe64a1461763c05d3d1d85c6f618d3"
 terraform_darwin_download_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/{{ terraform_darwin_package_name }}
 terraform_darwin_dir: /Users/{{ user }}/bin/
+
+tfenv_version: 2.0.0_alpha3
+tfenv_linux_package_name: tfenv-v{{ tfenv_version }}-1-x86_64.pkg.tar.xz
+tfenv_linux_package_download_url: https://github.com/nlamirault/archlinux-packages/releases/download/v0.2.0/{{ tfenv_linux_package_name }}
 
 vault_version: 1.0.1
 vault_linux_package_name: "vault_{{ vault_version }}_linux_amd64.zip"
@@ -76,7 +84,7 @@ gcloud_sdk_win_dir: C:\Applications
 gcloud_sdk_win_archive: "google-cloud-sdk-{{ gcloud_sdk_version }}-windows-x86_64.tar.gz"
 gcloud_sdk_win_download_url: "{{ gcloud_sdk_base_url }}/{{ gcloud_sdk_linux_archive }}"
 
-azure_cli_version: 2.0.51
+azure_cli_version: 2.0.70
 azure_cli_dir: /home/{{ user }}/Applications/azure-cli/venv
 
 aws_cli_version: 1.16.60
@@ -92,17 +100,17 @@ krew_linux_dir: /home/{{ user }}/bin
 krew_darwin_file: krew-darwin_amd64
 krew_darwin_dir: /Users/{{ user }}/bin
 
-istio_version: 1.1.1
+istio_version: 1.2.2
 istio_linux_package_name: istio-{{ istio_version }}-linux.tar.gz
-istio_linux_checksum: "sha256:989c46dba26608846b7351b858e77c4788e27416dfd070011493687da8b156dc"
+istio_linux_checksum: "sha256:a6ad3684d1b42901a526e7a755088b48402d7cd3420002fbbbb445a8a0117813"
 istio_linux_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_linux_package_name }}
 istio_linux_dir: /home/{{ user }}/Applications
 istio_darwin_package_name: istio-{{ istio_version }}-osx.tar.gz
-istio_darwin_checksum: "sha256:ef6becb84344c48d34d0ab9d523aabc822e8d1cbf6f719c23538ef96d310d8a4"
+istio_darwin_checksum: "sha256:46f12a808298e41191eea5a31780592d941fe843009dc6ae8d300edab2274135"
 istio_darwin_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_darwin_package_name }}
 istio_darwin_dir: /Users/{{ user }}/bin
 istio_win_package_name: istio-{{ istio_version }}-win.zip
-istio_win_checksum: "sha256:99ae9a979a37aafc06cf5228d8a634d402a1b64aab28d833a09c70aba2d1040c"
+istio_win_checksum: "sha256:054bd8293e12b8f0de37a3983d21a835bd700901b0336e5cc6d16da1f6da1a91"
 istio_win_download_url: https://github.com/istio/istio/releases/download/{{ istio_version }}/{{ istio_win_package_name }}
 
 linkerd_version: 2.2.0
@@ -128,6 +136,10 @@ kustomize_darwin_package_name: kustomize_{{ kustomize_version }}_darwin_amd64
 kustomize_darwin_checksum: "sha256:da4e4b7fe785a25997a0c34708faa6bce13d7847fc4d19d9ce46a0794098ba9b"
 kustomize_darwin_download_url: https://github.com/kubernetes-sigs/kustomize/releases/download/v{{ kustomize_version }}/{{ kustomize_darwin_package_name }}
 kustomize_darwin_file: /Users/{{ user }}/bin/kustomize
+
+kzenv_version: 0.4.0
+kzenv_linux_package_name: kzenv-{{ kzenv_version }}-1-x86_64.pkg.tar.xz
+kzenv_linux_package_download_url: https://github.com/nlamirault/kzenv/releases/download/v{{ kzenv_version }}/{{ kzenv_linux_package_name }}
 
 kind_version: 0.0.1
 kind_linux_package_name: kind-linux-amd64
