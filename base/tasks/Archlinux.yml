@@ -86,8 +86,7 @@
   vars:
     packages:
       - termite
-      - kitty
-      - terminator
+      - alacritty
 
 - name: Install networks tools
   pacman:
