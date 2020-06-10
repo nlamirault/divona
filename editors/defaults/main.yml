@@ -15,7 +15,7 @@
 # defaults file for editors
 
 vscode_name: "VSCode-linux-x64"
-vscode_version: 1.41.0
+vscode_version: 1.45.0
 # vscode_build: 1557957899
 # vscode_package_name: "code-stable-code_{{ vscode_build }}_amd64.tar.gz"
 # vscode_download_url: https://vscode-update.azurewebsites.net/{{ vscode_version }}/linux-x64/stable
