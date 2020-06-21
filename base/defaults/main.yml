@@ -1,8 +1,0 @@
----
-# defaults file for base
-
-yay_version: 8.1173.0
-yay_package_name: "yay_{{ yay_version }}_x86_64.tar.gz"
-yay_download_url: https://github.com/Jguer/yay/releases/download/v{{ yay_version }}/yay_{{ yay_version }}_x86_64.tar.gz
-yay_dir: /home/{{ user }}/Apps
-yay_install_dir: /home/{{ user }}/Apps/yay_{{ yay_version }}_x86_64

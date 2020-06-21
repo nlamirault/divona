@@ -13,376 +13,82 @@
 # limitations under the License.
 
 stages:
-  - check
-  - build
-  - debug
-  - default
-  - dev
-  - iot
-  - mobile
+  - test
+
+image: docker:stable
+
+variables:
+  DOCKER_DRIVER: overlay2
+  ANSIBLE_VERSION: "2.7.6"
+  MOLECULE_VERSION: "2.19.0"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip"
 
 services:
   - docker:dind
 
-variables:
-  DOCKER_DRIVER: overlay
-  ANSIBLE_VERSION: 2.4.0.0
+cache:
+  paths:
+    - .pip/
+    # - virtenv/
 
-# ================================
-# CHECK
+.gitlab_molecule: &gitlab_molecule
+  before_script:
+    - docker info
+    - apk add --update build-base curl gcc python3 python3-dev musl-dev libffi-dev openssl-dev linux-headers
+    - apk add --update curl && rm -rf /var/cache/apk/*
+    - curl -o /get-pip.py https://bootstrap.pypa.io/get-pip.py && python3 /get-pip.py
+    - pip3 install --upgrade pip
+    - pip3 install virtualenv
+    # - virtualenv virtenv
+    # - source virtenv/bin/activate
+    - pip3 install ansible==${ANSIBLE_VERSION} molecule==${MOLECULE_VERSION} docker
 
-check:ansible:
-  stage: check
-  image: python:2.7
+
+test:debug:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - pip install ansible ansible-lint
-    - ansible --version
-    - for i in $(find ansible/ -name "*.yml"); do echo $i; ansible-lint $i; done
+    - cd debug && molecule test
 
-# ================================
-# BUILD
-
-build:archlinux:
-  stage: build
-  image: docker:git
+test:setup:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:archlinux" -f dockerfiles/Dockerfile.archlinux --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
-    - docker push "$CI_REGISTRY_IMAGE:archlinux"
-  only:
-    - master
-    - develop
+    - cd setup && molecule test
 
-build:debian:
-  stage: build
-  image: docker:git
+test:base:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:debian" -f dockerfiles/Dockerfile.debian --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
-    - docker push "$CI_REGISTRY_IMAGE:debian"
-  only:
-    - master
-    - develop
+    - cd base && molecule test
 
-build:centos:
-  stage: build
-  image: docker:git
+test:wm:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:centos" -f dockerfiles/Dockerfile.centos --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
-    - docker push "$CI_REGISTRY_IMAGE:centos"
-  only:
-    - master
-    - develop
+    - cd wm && molecule test
 
-build:ubuntu:
-  stage: build
-  image: docker:git
+test:desktop:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:ubuntu" -f dockerfiles/Dockerfile.ubuntu --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
-    - docker push "$CI_REGISTRY_IMAGE:ubuntu"
-  only:
-    - master
-    - develop
+    - cd desktop && molecule test
 
-build:linuxmint:
-  stage: build
-  image: docker:git
+test:editors:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker build -t "$CI_REGISTRY_IMAGE:linuxmint" -f dockerfiles/Dockerfile.linuxmint --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} dockerfiles
-    - docker push "$CI_REGISTRY_IMAGE:linuxmint"
-  only:
-    - master
-    - develop
+    - cd editors && molecule test
 
-# ================================
-# DEBUG
-
-debug:archlinux:
-  stage: debug
-  image: docker:git
+test:finish:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
+    - cd finish && molecule test
 
-debug:debian:
-  stage: debug
-  image: docker:git
+test:cloud:
+  <<: *gitlab_molecule
+  stage: test
   script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:debian"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
+    - cd cloud && molecule test
 
-debug:centos:
-  stage: debug
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:centos"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:centos" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-debug:ubuntu:
-  stage: debug
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:ubuntu"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:ubuntu" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-debug:linuxmint:
-  stage: debug
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/debug.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-# ================================
-# DEFAULT
-
-default:archlinux:
-  stage: default
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-default:debian:
-  stage: default
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:debian"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-default:centos:
-  stage: default
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:centos"
-    - docker run --rm -i --cap-add=NET_ADMIN --cap-add SYS_ADMIN -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:centos" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-default:ubuntu:
-  stage: default
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:ubuntu"
-    - docker run --rm -i --cap-add=NET_ADMIN --cap-add SYS_ADMIN -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:ubuntu" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-default:linuxmint:
-  stage: default
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
-    - docker run --rm -i --cap-add=NET_ADMIN --cap-add SYS_ADMIN -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/divona.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-# ================================
-# DEV
-
-dev:archlinux:
-  stage: dev
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-dev:debian:
-  stage: dev
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:debian"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-dev:centos:
-  stage: dev
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:centos"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:centos" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-dev:ubuntu:
-  stage: dev
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:ubuntu"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:ubuntu" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-dev:linuxmint:
-  stage: dev
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/dev.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-# ================================
-# IOT
-
-iot:archlinux:
-  stage: iot
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-iot:debian:
-  stage: iot
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:debian"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-iot:centos:
-  stage: iot
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:centos"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:centos" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-iot:ubuntu:
-  stage: iot
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:ubuntu"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:ubuntu" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-iot:linuxmint:
-  stage: iot
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/iot.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-# ================================
-# MOBILE
-
-mobile:archlinux:
-  stage: mobile
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:archlinux"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:archlinux" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-mobile:debian:
-  stage: mobile
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:debian"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:debian" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-mobile:centos:
-  stage: mobile
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:centos"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:centos" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-mobile:ubuntu:
-  stage: mobile
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:ubuntu"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:ubuntu" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop
-
-mobile:linuxmint:
-  stage: mobile
-  image: docker:git
-  script:
-    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" "$CI_REGISTRY"
-    - docker pull "$CI_REGISTRY_IMAGE:linuxmint"
-    - docker run --rm -i -v ~/.ssh/id_rsa:/root/.ssh/id_rsa -v ~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub -v `pwd`/ansible:/ansible/playbooks "$CI_REGISTRY_IMAGE:linuxmint" ansible-playbook -vvv -c local -i /ansible/playbooks/hosts/local /ansible/playbooks/mobile.yml --extra-vars="user=root"
-  only:
-    - master
-    - develop

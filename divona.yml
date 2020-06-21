@@ -1,4 +1,4 @@
-# Copyright (C) 2013-2018 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) 2013-2019 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,29 +13,38 @@
 # limitations under the License.
 
 ---
+- name: Debug informations
+  hosts: all
+  tags:
+    - debug
+  roles:
+    - divona.debug
+
 - name: Base provisionning
   hosts: all
   tags:
     - base
   roles:
-    - setup
-    - base
-    - wm
-    - desktop
-    - editors
-    - finish
+    # - divona.bootstrap
+    # - divona.motd
+    # - divona.base
+    # - divona.wm
+    # - divona.desktop
+    # - divona.editors
+    - divona.finish
 
 - name: Devops provisionning
   hosts: all
   tags:
     - devops
   roles:
-    - setup
+    # - setup
+    # - lang
     - cloud
 
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - debug
+# - name: Test a single role
+#   hosts: all
+#   tags:
+#     - test
+#   roles:
+#     - sharing

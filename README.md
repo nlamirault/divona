@@ -1,5 +1,7 @@
 # Divona
 
+![divona](logo.png)
+
 * Master: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/master/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/master)
 
 * Develop: [![pipeline status](https://gitlab.com/nicolas-lamirault/divona/badges/develop/pipeline.svg)](https://gitlab.com/nicolas-lamirault/divona/commits/develop)
@@ -10,14 +12,14 @@ Automated installation. Tools supported:
 
 Supported operating system:
 
-- [x] Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
-- [x] Debian : [apt](https://wiki.debian.org/Apt)
-- [x] Centos: [yum](http://yum.baseurl.org/)
-- [x] OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
-- [x] Windows: [chocolatey](https://chocolatey.org)
-- [x] FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
-- [x] NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
-- [x] OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
+* [x] Arch Linux: [pacman](https://wiki.archlinux.org/index.php/pacman)
+* [x] Debian : [apt](https://wiki.debian.org/Apt)
+* [x] Centos: [yum](http://yum.baseurl.org/)
+* [x] OSX: [homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io)
+* [x] Windows: [chocolatey](https://chocolatey.org)
+* [x] FreeBSD: [pkgng](https://wiki.freebsd.org/pkgng)
+* [x] NetBSD: [pkgin](https://man.openbsd.org/pkg_add)
+* [x] OpenBSD: [pkg_add](https://man.openbsd.org/pkg_add)
 
 
 ## Installation
@@ -68,18 +70,33 @@ Supported operating system:
 
 ### Ansible
 
+Help:
+
+        $ make
+        ==== divona [2.0.0] ====
+        clean                : Cleanup
+        docker-build         : Build a Docker image (image=xxx)
+        docker-debug         : Run a bash from a Docker image (image=xxx)
+        docker-publish       : Publish the Divona image (image=xxx)
+        docker-run           : Run Ansible using a Docker image (image=xxx playbook=xxx)
+        init                 : Install requirements
+        lint                 : Check ansible style
+        ping                 : Check Ansible installation (host=xxx)
+        setup-local          : Setup using Ansible (host=xxx user=yyyy tags=xxx,xx,xx)
+        setup                : Setup using Ansible (host=xxx user=yyyy tags=xxx,xx,xx)
+
 
 * Check ansible is working :
 
-        $ make ping host=ansible/hosts/xxxxx
+        $ make ping host=inventory/xxxxx
 
-* Apply a configuration using **which**, **host** and **user** :
+* Apply a configuration:
 
-        $ make apply which=ansible/divona.yml host=ansible/hosts/xxxx user=yyyy
+        $ make setup-local host=inventory/local_arch user=nlamirault tags=base
 
 * You could increase verbosity with `DEBUG` environment variable :
 
-        $ DEBUG="-vvvv" make default host=ansible/hosts/xxxx user=yyyy
+        $ DEBUG="-vvvv" make setup-local host=inventory/local_arch user=nlamirault tags=base
 
 
 ## Development
