@@ -18,22 +18,20 @@
   tags:
     - debug
   roles:
-    - debug
+    - divona.debug
 
 - name: Base provisionning
   hosts: all
   tags:
     - base
   roles:
-    # - setup
-    # - banner
-    # - base
-    # - wm
-    # - desktop
-    - editors
-    # - backup
-    # - sharing
-    # - finish
+    # - divona.bootstrap
+    # - divona.motd
+    # - divona.base
+    # - divona.wm
+    # - divona.desktop
+    # - divona.editors
+    - divona.finish
 
 - name: Devops provisionning
   hosts: all
@@ -44,9 +42,9 @@
     # - lang
     - cloud
 
-- name: Test a single role
-  hosts: all
-  tags:
-    - test
-  roles:
-    - sharing
+# - name: Test a single role
+#   hosts: all
+#   tags:
+#     - test
+#   roles:
+#     - sharing

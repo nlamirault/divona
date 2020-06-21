@@ -16,10 +16,12 @@ BANNER = D I V O N A
 VERSION = 3.0.0
 
 PYTHON3 = python3
-ANSIBLE_VERSION = 2.7.10
-MOLECULE_VERSION = 2.20.1
+
+ANSIBLE_VERSION = 2.9.9
+MOLECULE_VERSION = 3.0.2
 ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
+
 DEBUG ?=
 
 SHELL = /bin/bash
@@ -76,30 +78,49 @@ print-%:
 
 clean: ## Cleanup
 	@echo -e "$(OK_COLOR)[$(BANNER)] Cleanup$(NO_COLOR)"
-	@find . -name "*.retry"|xargs rm
+	@find . -name "*.retry"|xargs rm -fr {} \;
+	@rm -fr roles
 
-.PHONY: init
-init: ## Install requirements
+
+# ====================================
+# A N S I B L E
+# ====================================
+
+##@ Ansible
+
+.PHONY: ansible-init
+ansible-init: ## Bootstrap Ansible
 	@echo -e "$(OK_COLOR)[$(BANNER)] Install requirements$(NO_COLOR)"
 	@test -d venv || $(PYTHON3) -m venv venv
 	@. venv/bin/activate && pip3 install ansible molecule
 
-.PHONY: ping
-ping: guard-HOST ## Check Ansible installation (HOST=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Check ansible$(NO_COLOR)"
-	@ansible -c local -m ping all -i $(HOST)
+.PHONY: ansible-deps
+ansible-deps: ## Install dependencies
+	@echo -e "$(OK_COLOR)[$(BANNER)] Install dependencies$(NO_COLOR)"
+	@. $(ANSIBLE_VENV)/bin/activate \
+		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
 
-.PHONY: lint
-lint: guard-ROLE ## Check ansible style (ROLE=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Verify ansible$(NO_COLOR)"
-	@cd $(ROLE) && molecule lint
+.PHONY: ansible-ping
+ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
+	@@. $(ANSIBLE_VENV)/bin/activate \
+		&& ansible -c local -m ping all -i inventories/$(ENV).ini
 
-.PHONY: setup-local
-setup-local: guard-HOST guard-TAGS guard-USER ## Setup using Ansible (HOST=xxx USER=yyyy TAGS=xxx,xx,xx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Setup using ansible$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -c local -i $(HOST) divona.yml -t $(TAGS) --extra-vars="user=$(USER)"
+.PHONY: ansible-debug
+ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
+	@. $(ANSIBLE_VENV)/bin/activate \
+		&& ansible -m setup all -i inventories/$(ENV).ini
 
-.PHONY: setup
-setup: guard-HOST guard-TAGS guard-USER ## Setup using Ansible (HOST=xxx USER=yyyy TAGS=xxx,xx,xx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Setup using ansible$(NO_COLOR)"
-	@ansible-playbook ${DEBUG} -i $(HOST) divona.yml -t $(TAGS) --extra-vars="user=$(USER)"
+.PHONY: ansible-run
+ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
+	@. $(ANSIBLE_VENV)/bin/activate \
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --extra-vars="user=$(USER)"
+
+.PHONY: ansible-dryrun
+ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
+	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
+	@. $(ANSIBLE_VENV)/bin/activate \
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --check
+
