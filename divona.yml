@@ -13,36 +13,36 @@
 # limitations under the License.
 
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  roles:
-    - setup
-    - banner
-    - base
-    - wm
-    - desktop
-    - editors
-    - backup
-    - sharing
-    - finish
-
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    - setup
-    - lang
-    - cloud
-
 - name: Debug informations
   hosts: all
   tags:
     - debug
   roles:
     - debug
+
+- name: Base provisionning
+  hosts: all
+  tags:
+    - base
+  roles:
+    # - setup
+    # - banner
+    # - base
+    # - wm
+    # - desktop
+    - editors
+    # - backup
+    # - sharing
+    # - finish
+
+- name: Devops provisionning
+  hosts: all
+  tags:
+    - devops
+  roles:
+    # - setup
+    # - lang
+    - cloud
 
 - name: Test a single role
   hosts: all
