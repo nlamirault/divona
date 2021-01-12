@@ -23,7 +23,7 @@
 - name: divona.editors
   src: git@github.com:divona-roles/ansible-editors-role.git
   scm: git
-  version: v1.0.0
+  version: v1.1.0
 - name: divona.wm
   src: git@github.com:divona-roles/ansible-window-managers-role.git
   scm: git
