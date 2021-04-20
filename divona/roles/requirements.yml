@@ -23,7 +23,7 @@
 - name: divona.editors
   src: git@github.com:divona-roles/ansible-editors-role.git
   scm: git
-  version: v1.1.0
+  version: v2.0.0
 - name: divona.languages
   src: git@github.com:divona-roles/ansible-languages-role.git
   scm: git
