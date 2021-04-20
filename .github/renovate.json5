@@ -1,0 +1,65 @@
+{
+  "extends": [
+    "config:base",
+    ":gitSignOff"
+  ],
+  "enabled": true,
+  "timezone": "Europe/Paris",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  // "gitAuthor": "Nicolas Lamirault <nlamirault@users.noreply.github.com>",
+  // "commitBody": "Signed-off-by: Nicolas Lamirault <nlamirault@users.noreply.github.com>",
+  // Do not notify on closed unmerged PRs
+  "suppressNotifications": ["prIgnoreNotification"],
+  // Do not rebase PRs
+  "rebaseWhen": "conflicted",
+  "assignees": ["@nlamirault"],
+  "reviewersFromCodeOwners": true,
+  "labels": ["area/renovate"],
+  // "regexManagers": [
+  //   {
+  //     "fileMatch": ["kubernetes/.+\\.yaml$"],
+  //     "matchStrings": [
+  //       // helmrelease
+  //       "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
+  //       // kube-prometheus-stack
+  //       "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
+  //       // cert-manager
+  //       "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
+  //     ],
+  //     "datasourceTemplate": "helm"
+  //   },
+  // ],
+  "packageRules": [
+    // Labels for Ansible
+    {
+      "datasources": ["galaxy", "galaxy-collection"],
+      "updateTypes": ["major"],
+      "labels": ["area/renovate", "dependency/ansible", "priority/high", "size/xs"]
+    },
+    {
+      "datasources": ["galaxy", "galaxy-collection"],
+      "updateTypes": ["minor"],
+      "labels": ["area/renovate", "dependency/ansible", "priority/medium", "size/xs"]
+    },
+    {
+      "datasources": ["galaxy", "galaxy-collection"],
+      "updateTypes": ["patch"],
+      "labels": ["area/renovate", "dependency/ansible", "priority/low", "size/xs"]
+    },
+    // Enable auto-merge docker
+    // {
+    //   "datasources": ["docker"],
+    //   "automerge": true,
+    //   "requiredStatusChecks": null,
+    //   "updateTypes": ["minor", "patch"],
+    // },
+    // Enable auto-merge helm
+    // {
+    //   "datasources": ["helm"],
+    //   "automerge": true,
+    //   "requiredStatusChecks": null,
+    //   "updateTypes": ["patch"],
+    // }
+  ]
+}

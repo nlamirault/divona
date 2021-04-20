@@ -13,34 +13,38 @@
 # limitations under the License.
 
 ---
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - divona.debug
+# - name: Debug informations
+#   hosts: all
+#   tags:
+#     - debug
+#   roles:
+#     - divona.debug
 
 - name: Base provisionning
   hosts: all
   tags:
     - base
+  vars_files:
+    - ./env_vars/{{ env }}/base.yml
   roles:
     # - divona.bootstrap
     # - divona.motd
     # - divona.base
     # - divona.wm
     # - divona.desktop
-    # - divona.editors
-    - divona.finish
+    - divona.editors
+    # - divona.finish
 
-- name: Devops provisionning
-  hosts: all
-  tags:
-    - devops
-  roles:
-    # - setup
-    # - lang
-    - cloud
+# - name: Devops provisionning
+#   hosts: all
+#   vars_files:
+#     - ./env_vars/{{ env }}/devops.yml
+#   tags:
+#     - devops
+#   roles:
+#     - divona.languages
+#     - divona.cloud
+#     # - markosamuli.asdf
 
 # - name: Test a single role
 #   hosts: all
