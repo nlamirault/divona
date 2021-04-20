@@ -13,6 +13,7 @@
 # limitations under the License.
 
 BANNER = D I V O N A
+
 VERSION = 3.0.0
 
 PYTHON3 = python3
@@ -23,6 +24,7 @@ ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
 
 DEBUG ?=
+TAGS ?=
 
 SHELL = /bin/bash
 
@@ -116,7 +118,7 @@ ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --extra-vars="user=$(USER)"
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
