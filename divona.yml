@@ -31,8 +31,8 @@
     # - divona.motd
     # - divona.base
     # - divona.wm
-    # - divona.desktop
-    - divona.editors
+    - divona.desktop
+    # - divona.editors
     # - divona.finish
 
 # - name: Devops provisionning

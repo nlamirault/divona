@@ -106,23 +106,23 @@ ansible-deps: ## Install dependencies
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
 	@@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -c local -m ping all -i inventories/$(ENV).ini
+		&& ansible -c local -m ping all -i $(ENV)
 
 .PHONY: ansible-debug
 ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -m setup all -i inventories/$(ENV).ini
+		&& ansible -m setup all -i $(ENV)
 
 .PHONY: ansible-run
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --extra-vars="user=$(USER) $(TAGS)"
+		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona.yml --check
+		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --check
 
