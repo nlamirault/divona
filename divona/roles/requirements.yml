@@ -19,7 +19,7 @@
 - name: divona.desktop
   src: git@github.com:divona-roles/ansible-desktop-role.git
   scm: git
-  version: v1.0.0
+  version: v2.0.0
 - name: divona.editors
   src: git@github.com:divona-roles/ansible-editors-role.git
   scm: git
