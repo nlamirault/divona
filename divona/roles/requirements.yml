@@ -33,7 +33,7 @@ roles:
   - name: divona.cloud
     src: git@github.com:divona-roles/ansible-cloud-role.git
     scm: git
-    version: v0.1.0
+    version: v1.0.1
   - name: divona.wm
     src: git@github.com:divona-roles/ansible-window-managers-role.git
     scm: git
