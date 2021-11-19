@@ -41,7 +41,7 @@ roles:
   - name: divona.finish
     src: git@github.com:divona-roles/ansible-finish-role.git
     scm: git
-    version: v1.0.0
+    version: v1.1.0
 
   # External
   # ========================================
