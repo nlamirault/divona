@@ -15,6 +15,7 @@
 # labels to be used with /area command
 area:
   - 'ansible'
+  - 'github'
 
 kind:
   - 'documentation'

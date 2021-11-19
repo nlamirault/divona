@@ -15,7 +15,7 @@
   "rebaseWhen": "conflicted",
   "assignees": ["@nlamirault"],
   "reviewersFromCodeOwners": true,
-  "labels": ["area/renovate"],
+  "labels": ["kind/renovate"],
   // "regexManagers": [
   //   {
   //     "fileMatch": ["kubernetes/.+\\.yaml$"],
@@ -35,17 +35,17 @@
     {
       "datasources": ["role", "galaxy", "galaxy-collection"],
       "updateTypes": ["major"],
-      "labels": ["area/renovate", "dependency/ansible", "priority/high", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/ansible", "dependency/ansible", "priority/high", "size/xs"]
     },
     {
       "datasources": ["role", "galaxy", "galaxy-collection"],
       "updateTypes": ["minor"],
-      "labels": ["area/renovate", "dependency/ansible", "priority/medium", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/ansible", "dependency/ansible", "priority/medium", "size/xs"]
     },
     {
       "datasources": ["role", "galaxy", "galaxy-collection"],
       "updateTypes": ["patch"],
-      "labels": ["area/renovate", "dependency/ansible", "priority/low", "size/xs"]
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "area/ansible", "dependency/ansible", "priority/low", "size/xs"]
     },
     // Enable auto-merge docker
     // {
