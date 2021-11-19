@@ -1,5 +1,5 @@
-# Copyright (C) 2013-2019 Nicolas Lamirault <nicolas.lamirault@gmail.com>
-
+# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,6 +13,8 @@
 # limitations under the License.
 
 BANNER = D I V O N A
+
+APP = divona
 
 VERSION = 3.0.0
 
@@ -76,12 +78,25 @@ print-%:
 		echo -e "$(OK_COLOR)[OK]$(NO_COLOR) $* = ${$*}"; \
 	fi
 
+# ====================================
+# D E V E L O P M E N T
+# ====================================
+
 ##@ Development
 
 clean: ## Cleanup
-	@echo -e "$(OK_COLOR)[$(BANNER)] Cleanup$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Cleanup$(NO_COLOR)"
 	@find . -name "*.retry"|xargs rm -fr {} \;
 	@rm -fr roles
+
+.PHONY: validate
+validate: ## Execute git-hooks
+	@pre-commit run -a
+
+.PHONY: license
+license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
+	@docker run -it --rm -v $(shell pwd):/github/workspace ghcr.io/apache/skywalking-eyes/license-eye --config /github/workspace/.licenserc.yaml header $(ACTION)
+
 
 
 # ====================================
@@ -92,38 +107,37 @@ clean: ## Cleanup
 
 .PHONY: ansible-init
 ansible-init: ## Bootstrap Ansible
-	@echo -e "$(OK_COLOR)[$(BANNER)] Install requirements$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
 	@test -d venv || $(PYTHON3) -m venv venv
 	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
 
 .PHONY: ansible-deps
 ansible-deps: ## Install dependencies
-	@echo -e "$(OK_COLOR)[$(BANNER)] Install dependencies$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Install dependencies$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force \
 		&& ansible-galaxy collection install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible -c local -m ping all -i $(ENV)
 
 .PHONY: ansible-debug
 ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Check Ansible$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible -m setup all -i $(ENV)
 
 .PHONY: ansible-run
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
-	@echo -e "$(OK_COLOR)[$(BANNER)] Execute Ansible playbook$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
 		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --check
-
