@@ -11,27 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Nicolas Lamirault <nicolas.lamirault@gmail.com>
-  paths-ignore:
-    - '.gitignore'
-    - '.gitattributes'
-    - '.git-crypt/.gitattributes'
-    - '.dockerignore'
-    - '.editorconfig'
-    - '**/*.md'
-    - '**/*.svg'
-    - 'README.md'
-    - 'DCO'
-    - 'LICENSE'
-    - '.github/'
-    - '.git/'
-    - 'roles/'
-    - '.whitesource'
-    - '.envrc'
-    - '**/.galaxy_install_info'
 
-  comment: on-failure
+---
+- name: Debug informations
+  hosts: all
+  tags:
+    - debug
+  roles:
+    - divona.debug
+

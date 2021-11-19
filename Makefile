@@ -25,6 +25,8 @@ MOLECULE_VERSION = 3.5.2
 ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
 
+ANSIBLE_PLAYBOOK ?= divona.yml
+
 DEBUG ?=
 TAGS ?=
 
@@ -134,10 +136,10 @@ ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --extra-vars="user=$(USER) $(TAGS)"
+		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) divona.yml --check
+		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --check

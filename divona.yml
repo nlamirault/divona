@@ -13,13 +13,6 @@
 # limitations under the License.
 
 ---
-# - name: Debug informations
-#   hosts: all
-#   tags:
-#     - debug
-#   roles:
-#     - divona.debug
-
 - name: Base provisionning
   hosts: all
   tags:
@@ -35,14 +28,8 @@
     - divona.wm
     - divona.desktop
     - divona.editors
+    - divona.cloud
     - gantsign.golang
     - hurricanehrndz.rustup
     - markosamuli.asdf
     - divona.finish
-
-# - name: Test a single role
-#   hosts: all
-#   tags:
-#     - test
-#   roles:
-#     - sharing
