@@ -12,29 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# labels to be used with /area command
-area:
-  - 'ansible'
-  - 'github'
+---
+- name: Debug informations
+  hosts: all
+  tags:
+    - debug
+  roles:
+    - divona.debug
 
-kind:
-  - 'documentation'
-  - 'discussion'
-  - 'feature'
-  - 'question'
-
-priority:
-  - 'low'
-  - 'medium'
-  - 'high'
-  - 'critical'
-
-status:
-  - available
-  - blocked
-  - in_progress
-  - on_hold
-
-# File globs for PR labeler
-# tests:
-#   - '**/*.test.ts'

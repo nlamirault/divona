@@ -11,30 +11,27 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+---
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: Nicolas Lamirault <nicolas.lamirault@gmail.com>
+  paths-ignore:
+    - '.gitignore'
+    - '.gitattributes'
+    - '.git-crypt/.gitattributes'
+    - '.dockerignore'
+    - '.editorconfig'
+    - '**/*.md'
+    - '**/*.svg'
+    - 'README.md'
+    - 'DCO'
+    - 'LICENSE'
+    - '.github/'
+    - '.git/'
+    - 'roles/'
+    - '.whitesource'
+    - '.envrc'
+    - '**/.galaxy_install_info'
 
-# labels to be used with /area command
-area:
-  - 'ansible'
-  - 'github'
-
-kind:
-  - 'documentation'
-  - 'discussion'
-  - 'feature'
-  - 'question'
-
-priority:
-  - 'low'
-  - 'medium'
-  - 'high'
-  - 'critical'
-
-status:
-  - available
-  - blocked
-  - in_progress
-  - on_hold
-
-# File globs for PR labeler
-# tests:
-#   - '**/*.test.ts'
+  comment: on-failure

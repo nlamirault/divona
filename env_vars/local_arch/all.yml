@@ -37,8 +37,8 @@ rustup_cargo_crates: []
 asdf_version: "v0.8.1"
 asdf_init_shell: true
 asdf_plugins:
-  - name: "argocd"   
-    repository: "https://github.com/beardix/asdf-argocd.git"      
+  - name: "argocd"
+    repository: "https://github.com/beardix/asdf-argocd.git"
     versions:
       - "2.0.1"
     global: "2.0.1"
@@ -192,4 +192,3 @@ asdf_plugins:
     versions:
       - "1.2.2"
     global: "1.2.2"
-  
