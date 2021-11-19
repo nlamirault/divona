@@ -17,7 +17,7 @@ roles:
   - name: divona.base
     src: git@github.com:divona-roles/ansible-base-role.git
     scm: git
-    version: v2.0.0
+    version: v3.1.0
   - name: divona.desktop
     src: git@github.com:divona-roles/ansible-desktop-role.git
     scm: git
