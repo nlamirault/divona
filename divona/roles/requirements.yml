@@ -9,7 +9,7 @@ roles:
   - name: divona.motd
     src: git@github.com:divona-roles/ansible-motd-role.git
     scm: git
-    version: v1.0.0
+    version: v2.0.0
   - name: divona.debug
     src: git@github.com:divona-roles/ansible-debug-role.git
     scm: git
