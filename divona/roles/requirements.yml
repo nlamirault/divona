@@ -37,7 +37,7 @@ roles:
   - name: divona.wm
     src: git@github.com:divona-roles/ansible-window-managers-role.git
     scm: git
-    version: v1.0.0
+    version: v2.0.0
   - name: divona.finish
     src: git@github.com:divona-roles/ansible-finish-role.git
     scm: git
