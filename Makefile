@@ -18,8 +18,8 @@ VERSION = 3.0.0
 
 PYTHON3 = python3
 
-ANSIBLE_VERSION = 2.9.9
-MOLECULE_VERSION = 3.0.2
+ANSIBLE_VERSION = 4.8.0
+MOLECULE_VERSION = 3.5.2
 ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
 
@@ -94,13 +94,14 @@ clean: ## Cleanup
 ansible-init: ## Bootstrap Ansible
 	@echo -e "$(OK_COLOR)[$(BANNER)] Install requirements$(NO_COLOR)"
 	@test -d venv || $(PYTHON3) -m venv venv
-	@. venv/bin/activate && pip3 install ansible molecule
+	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
 
 .PHONY: ansible-deps
 ansible-deps: ## Install dependencies
 	@echo -e "$(OK_COLOR)[$(BANNER)] Install dependencies$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
+		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force \
+		&& ansible-galaxy collection install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)

@@ -29,16 +29,16 @@
     - ./env_vars/{{ env }}/base.yml
     - ./env_vars/{{ env }}/editors.yml
   roles:
-    # - divona.bootstrap
-    # - divona.motd
-    # - divona.base
-    # - divona.wm
-    # - divona.desktop
-    # - divona.editors
-    # - gantsign.golang
-    # - hurricanehrndz.rustup
+    - divona.bootstrap
+    - divona.motd
+    - divona.base
+    - divona.wm
+    - divona.desktop
+    - divona.editors
+    - gantsign.golang
+    - hurricanehrndz.rustup
     - markosamuli.asdf
-    # - divona.finish
+    - divona.finish
 
 # - name: Test a single role
 #   hosts: all
