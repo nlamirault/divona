@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM fedora:35
+FROM fedora:36
 
 LABEL summary="Divona - Fedora" \
       description="Fedora 27 image with Ansible installed" \
