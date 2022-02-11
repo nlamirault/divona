@@ -12,28 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-# gantsign.golang
-# ======================
-
-golang_version: '1.17.3'
-golang_install_dir: '/home/{{ user }}/Applications/go-{{ golang_version }}'
-# Directory to store files downloaded for Go language SDK installation
-golang_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
-# Location for GOPATH environment variable
-golang_gopath: /home/{{ user }}/Applications/golang
-
-
-# hurricanehrndz.rustup
-# ======================
-
-rustup_user: "{{ user }}"
-rustup_home_suffix: ".rustup"
-rustup_cargo_home_suffix: ".cargo"
-rustup_cargo_crates: []
-
-# markosamuli.asdf
-# ======================
-
 asdf_version: "v0.8.1"
 asdf_init_shell: true
 asdf_plugins:
@@ -80,12 +58,12 @@ asdf_plugins:
   - name: "flux2"
     repository: "https://github.com/tablexi/asdf-flux2.git"
     versions:
-      - "0.15.1"
+      - "0.24.1"
     global: "0.15.1"
   - name: "gcloud"
     repository: "https://github.com/jthegedus/asdf-gcloud"
     versions:
-      - "358.0.0"
+      - "367.0.0"
     global: "358.0.0"
   - name: "helm"
     repository: "https://github.com/Antiarchitect/asdf-helm.git"
@@ -132,11 +110,11 @@ asdf_plugins:
     versions:
       - "3.4.0"
     global: "3.4.0"
-  - name: "kubectl"
-    repository: "https://github.com/asdf-community/asdf-kubectl.git"
-    versions:
-      - "1.21.0"
-    global: "1.21.0"
+  # - name: "kubectl"
+  #   repository: "https://github.com/asdf-community/asdf-kubectl.git"
+  #   versions:
+  #     - "1.21.0"
+  #   global: "1.21.0"
   - name: "opa"
     repository: "https://github.com/tochukwuvictor/asdf-opa.git"
     versions:

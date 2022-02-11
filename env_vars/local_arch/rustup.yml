@@ -11,28 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  vars_files:
-    - ./env_vars/{{ env }}/asdf.yml
-    - ./env_vars/{{ env }}/base.yml
-    - ./env_vars/{{ env }}/editors.yml
-    - ./env_vars/{{ env }}/finish.yml
-    - ./env_vars/{{ env }}/golang.yml
-    - ./env_vars/{{ env }}/rustup.yml
-  roles:
-    # - divona.bootstrap
-    # - divona.motd
-    # - divona.base
-    # - divona.wm
-    # - divona.desktop
-    # - divona.editors
-    # - divona.cloud
-    # - gantsign.golang
-    # - hurricanehrndz.rustup
-    - markosamuli.asdf
-    # - divona.finish
+rustup_user: "{{ user }}"
+rustup_home_suffix: ".rustup"
+rustup_cargo_home_suffix: ".cargo"
+rustup_cargo_crates: []

@@ -11,28 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  vars_files:
-    - ./env_vars/{{ env }}/asdf.yml
-    - ./env_vars/{{ env }}/base.yml
-    - ./env_vars/{{ env }}/editors.yml
-    - ./env_vars/{{ env }}/finish.yml
-    - ./env_vars/{{ env }}/golang.yml
-    - ./env_vars/{{ env }}/rustup.yml
-  roles:
-    # - divona.bootstrap
-    # - divona.motd
-    # - divona.base
-    # - divona.wm
-    # - divona.desktop
-    # - divona.editors
-    # - divona.cloud
-    # - gantsign.golang
-    # - hurricanehrndz.rustup
-    - markosamuli.asdf
-    # - divona.finish
+golang_version: '1.17.3'
+golang_install_dir: '/home/{{ user }}/Applications/go'
+# Directory to store files downloaded for Go language SDK installation
+golang_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
+# Location for GOPATH environment variable
+golang_gopath: /home/{{ user }}/Applications/golang
