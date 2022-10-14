@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-yay_version: 11.0.2
-lf_version: r26
+#datasource=github-tags depName=Jguer/yay
+yay_version: 11.1.2
+#datasource=github-tags depName=jesseduffield/lazygit
 lazygit_version: 0.31.3
