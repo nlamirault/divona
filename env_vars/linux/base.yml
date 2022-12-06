@@ -1,4 +1,4 @@
-# Copyright (C) 2021 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+# Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,8 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ---
-#datasource=github-tags depName=Jguer/yay
+# datasource=github-tags depName=Jguer/yay
 yay_version: 11.1.2
-#datasource=github-tags depName=jesseduffield/lazygit
+# datasource=github-tags depName=jesseduffield/lazygit
 lazygit_version: 0.31.3

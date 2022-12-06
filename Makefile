@@ -91,7 +91,8 @@ clean: ## Cleanup
 
 .PHONY: validate
 validate: ## Execute git-hooks
-	@pre-commit run -a
+	@. venv/bin/activate \
+		&& pre-commit run -a
 
 .PHONY: license
 license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
