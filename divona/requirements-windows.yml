@@ -13,11 +13,11 @@
 # limitations under the License.
 
 ---
+
 collections:
-  - name: divona.linux
-    src: git@github.com:divona-roles/ansible-collection-linux.git
-    scm: git
-    version: master
+  - name: git@github.com:divona-roles/ansible-collection-windows.git
+    type: git
+    version: main
 
 roles:
   - src: gantsign.golang

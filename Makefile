@@ -20,12 +20,10 @@ VERSION = 3.0.0
 
 PYTHON3 = python3
 
-ANSIBLE_VERSION = 4.8.0
+ANSIBLE_VERSION = 7.0.0
 MOLECULE_VERSION = 3.5.2
 ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
-
-ANSIBLE_PLAYBOOK ?= divona.yml
 
 DEBUG ?=
 TAGS ?=
@@ -111,14 +109,16 @@ license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
 ansible-init: ## Bootstrap Ansible
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
 	@test -d venv || $(PYTHON3) -m venv venv
-	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
+	@. venv/bin/activate \
+		&& pip3 install --upgrade pip \
+		&& pip3 install ansible==$(ANSIBLE_VERSION) molecule
 
 .PHONY: ansible-deps
 ansible-deps: guard-ENV ## Install dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install dependencies$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-galaxy install -r divona/roles/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force \
-		&& ansible-galaxy collection install -r divona/roles/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force
+		&& ansible-galaxy collection install -r divona/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force \
+		&& ansible-galaxy install -r divona/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
@@ -136,10 +136,10 @@ ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i inventories/local_$(ENV).ini $(ANSIBLE_PLAYBOOK) --extra-vars="user=$(USER) $(TAGS)"
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona_$(ENV).yml --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini $(ANSIBLE_PLAYBOOK) --check
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona_$(ENV).yml --check

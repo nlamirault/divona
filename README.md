@@ -57,7 +57,7 @@ pacman -Sy ansible
 ### Setup Linux Workstation
 
 ```shell
-make ansible-run ENV=local_osx
+make ansible-run ENV=linux
 ```
 
 ## OSX
@@ -79,7 +79,7 @@ brew install git python ansible
 ### Setup OSX Workstation
 
 ```shell
-make ansible-run ENV=local_osx
+make ansible-run ENV=mac
 ```
 
 ## Windows
