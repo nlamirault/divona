@@ -32,13 +32,15 @@ Ansible
 Install Ansible using pip or your package manager. For Archlinux:
 
 ```shell
-pacman -Sy ansible
+> pacman -Sy ansible
 ```
 
 ### Setup Linux Workstation
 
 ```shell
-make ansible-run ENV=linux
+> make ansible-init
+> make ansible-deps ENV=linux
+> make ansible-run ENV=linux
 ```
 
 ## OSX
@@ -60,7 +62,9 @@ brew install git python ansible
 ### Setup OSX Workstation
 
 ```shell
-make ansible-run ENV=mac
+> make ansible-init
+> make ansible-deps ENV=mac
+> make ansible-run ENV=mac
 ```
 
 ## Windows
