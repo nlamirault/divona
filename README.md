@@ -1,7 +1,5 @@
 # Divona
 
-![divona](logo.png)
-
 ## Usage
 
 ```shell
