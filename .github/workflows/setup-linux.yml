@@ -19,7 +19,7 @@ on:
   - pull_request
 
 jobs:
-  test:
+  build:
     runs-on: macos-latest
     steps:
 
@@ -35,7 +35,6 @@ jobs:
           # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
           # key: ${{ secrets.ansible_ssh_private_key }}
           # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
-          # inventory: inventories/linux.ini
+          inventory: inventories/linux.ini
           options: |
-            --inventory inventories/linux.ini
             --verbose
