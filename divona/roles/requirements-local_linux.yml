@@ -11,6 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ---
-#datasource=github-tags depName=microsoft/vscode
-vscode_version: 1.73.1
+collections:
+  - name: divona.linux
+    src: git@github.com:divona-roles/ansible-collection-linux.git
+    scm: git
+    version: master
+
+roles:
+  - src: gantsign.golang
+    version: 3.0.3
+  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
+  - src: hurricanehrndz.rustup

@@ -11,25 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 ---
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  vars_files:
-    - ./env_vars/{{ env }}/all.yml
-    - ./env_vars/{{ env }}/base.yml
-    - ./env_vars/{{ env }}/editors.yml
-  roles:
-    - divona.bootstrap
-    - divona.motd
-    - divona.base
-    - divona.wm
-    - divona.desktop
-    - divona.editors
-    - divona.cloud
-    - gantsign.golang
-    - hurricanehrndz.rustup
-    - markosamuli.asdf
-    - divona.finish
+#datasource=github-tags depName=microsoft/vscode
+vscode_version: 1.73.1

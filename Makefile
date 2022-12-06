@@ -114,32 +114,32 @@ ansible-init: ## Bootstrap Ansible
 	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
 
 .PHONY: ansible-deps
-ansible-deps: ## Install dependencies
+ansible-deps: guard-ENV ## Install dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install dependencies$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force \
-		&& ansible-galaxy collection install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
+		&& ansible-galaxy install -r divona/roles/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force \
+		&& ansible-galaxy collection install -r divona/roles/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -c local -m ping all -i $(ENV)
+		&& ansible -c local -m ping all -i inventories/$(ENV).ini
 
 .PHONY: ansible-debug
 ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -m setup all -i $(ENV)
+		&& ansible -m setup all -i inventories/$(ENV).ini
 
 .PHONY: ansible-run
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --extra-vars="user=$(USER) $(TAGS)"
+		&& ansible-playbook ${DEBUG} -c local -i inventories/local_$(ENV).ini $(ANSIBLE_PLAYBOOK) --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --check
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini $(ANSIBLE_PLAYBOOK) --check

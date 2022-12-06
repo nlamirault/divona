@@ -44,6 +44,47 @@ Ansible
   ansible-dryrun             Execute Ansible playbook (ENV=xxx)
 ```
 
+## Linux
+
+### Ansible
+
+Install Ansible using pip or your package manager. For Archlinux:
+
+```shell
+pacman -Sy ansible
+```
+
+### Setup Linux Workstation
+
+```shell
+make ansible-run ENV=local_osx
+```
+
+## OSX
+
+### Install homebrew
+
+See http://brew.sh/
+
+```shell
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+### Install ansible
+
+```shell
+brew install git python ansible
+```
+
+### Setup OSX Workstation
+
+```shell
+make ansible-run ENV=local_osx
+```
+
+## Windows
+
+`TODO`
 
 ## Contact
 

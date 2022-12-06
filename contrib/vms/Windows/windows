@@ -1,1 +1,0 @@
-10.10.5.33 ansible_connection=winrm ansible_port=5985 ansible_user=IEUser ansible_password=Passw0rd!
