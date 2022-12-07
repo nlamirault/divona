@@ -15,7 +15,7 @@
 ---
 
 collections:
-  - name: git@github.com:divona-roles/ansible-collection-mac.git
+  - name: https://github.com/divona-roles/ansible-collection-mac
     type: git
     version: main
 

@@ -14,7 +14,7 @@
 
 ---
 collections:
-  - name: git@github.com:divona-roles/ansible-collection-linux.git
+  - name: https://github.com/divona-roles/ansible-collection-linux
     type: git
     version: main
 

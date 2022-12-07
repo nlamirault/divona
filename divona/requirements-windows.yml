@@ -15,7 +15,7 @@
 ---
 
 collections:
-  - name: git@github.com:divona-roles/ansible-collection-windows.git
+  - name: https://github.com/divona-roles/ansible-collection-windows
     type: git
     version: main
 
