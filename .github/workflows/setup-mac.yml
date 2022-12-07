@@ -44,7 +44,6 @@ jobs:
           playbook: ./divona_mac.yml
           directory: ./
           requirements: divona/requirements-mac.yml
-          # inventory: inventories/mac.ini
           inventory: |
             [all]
             localhost

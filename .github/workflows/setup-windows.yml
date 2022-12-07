@@ -44,7 +44,6 @@ jobs:
           playbook: ./divona_windows.yml
           directory: ./
           requirements: divona/requirements-windows.yml
-          # inventory: inventories/windows.ini
           inventory: |
             [all]
             localhost
