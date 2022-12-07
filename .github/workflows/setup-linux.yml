@@ -49,6 +49,6 @@ jobs:
           playbook: ./divona_linux.yml
           directory: ./
           requirements: divona/requirements-linux.yml
-          inventory: inventories/linux.ini
+          # inventory: inventories/linux.ini
           options: |
             --verbose
