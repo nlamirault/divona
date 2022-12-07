@@ -38,6 +38,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible==7.0.0
 
+      - name: Debug
+        run: |
+          pwd
+          ls -alFrt
+
       - name: Run Ansible playbook
         uses: dawidd6/action-ansible-playbook@v2.6.1
         with:
