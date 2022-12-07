@@ -13,5 +13,3 @@
 # limitations under the License.
 
 ---
-# datasource=github-tags depName=microsoft/vscode
-vscode_version: 1.73.1
