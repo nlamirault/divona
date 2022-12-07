@@ -20,12 +20,10 @@ VERSION = 3.0.0
 
 PYTHON3 = python3
 
-ANSIBLE_VERSION = 4.8.0
+ANSIBLE_VERSION = 7.0.0
 MOLECULE_VERSION = 3.5.2
 ANSIBLE_VENV = $(DIR)/venv
 ANSIBLE_ROLES = $(DIR)/roles/
-
-ANSIBLE_PLAYBOOK ?= divona.yml
 
 DEBUG ?=
 TAGS ?=
@@ -54,7 +52,7 @@ WARN=[⚠️]
 
 .PHONY: help
 help:
-	@echo -e "$(OK_COLOR)                  $(BANNER)$(NO_COLOR)"
+	@echo -e "$(OK_COLOR)                        $(BANNER)$(NO_COLOR)"
 	@echo "------------------------------------------------------------------"
 	@echo ""
 	@awk 'BEGIN {FS = ":.*##"; printf "${ERROR_COLOR}Usage${NO_COLOR}: make ${INFO_COLOR}<target>${NO_COLOR}\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  ${INFO_COLOR}%-25s${NO_COLOR} %s\n", $$1, $$2 } /^##@/ { printf "\n${WHITE_COLOR}%s${NO_COLOR}\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -93,7 +91,8 @@ clean: ## Cleanup
 
 .PHONY: validate
 validate: ## Execute git-hooks
-	@pre-commit run -a
+	@. venv/bin/activate \
+		&& pre-commit run -a
 
 .PHONY: license
 license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
@@ -111,35 +110,37 @@ license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
 ansible-init: ## Bootstrap Ansible
 	@echo -e "$(OK_COLOR)[$(APP)] Install requirements$(NO_COLOR)"
 	@test -d venv || $(PYTHON3) -m venv venv
-	@. venv/bin/activate && pip3 install ansible==$(ANSIBLE_VERSION) molecule==$(MOLECULE_VERSION)
+	@. venv/bin/activate \
+		&& pip3 install --upgrade pip \
+		&& pip3 install ansible==$(ANSIBLE_VERSION) molecule
 
 .PHONY: ansible-deps
-ansible-deps: ## Install dependencies
+ansible-deps: guard-ENV ## Install dependencies
 	@echo -e "$(OK_COLOR)[$(APP)] Install dependencies$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-galaxy install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force \
-		&& ansible-galaxy collection install -r divona/roles/requirements.yml -p $(ANSIBLE_ROLES) --force
+		&& ansible-galaxy collection install -r divona/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force \
+		&& ansible-galaxy install -r divona/requirements-$(ENV).yml -p $(ANSIBLE_ROLES) --force
 
 .PHONY: ansible-ping
 ansible-ping: guard-ENV ## Check Ansible installation (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -c local -m ping all -i $(ENV)
+		&& ansible -c local -m ping all -i inventories/$(ENV).ini
 
 .PHONY: ansible-debug
 ansible-debug: guard-ENV ## Retrieve informations from hosts (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Check Ansible$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible -m setup all -i $(ENV)
+		&& ansible -m setup all -i inventories/$(ENV).ini
 
 .PHONY: ansible-run
 ansible-run: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --extra-vars="user=$(USER) $(TAGS)"
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona_$(ENV).yml --extra-vars="user=$(USER) $(TAGS)"
 
 .PHONY: ansible-dryrun
 ansible-dryrun: guard-ENV ## Execute Ansible playbook (ENV=xxx)
 	@echo -e "$(OK_COLOR)[$(APP)] Execute Ansible playbook$(NO_COLOR)"
 	@. $(ANSIBLE_VENV)/bin/activate \
-		&& ansible-playbook ${DEBUG} -c local -i $(ENV) $(ANSIBLE_PLAYBOOK) --check
+		&& ansible-playbook ${DEBUG} -c local -i inventories/$(ENV).ini divona_$(ENV).yml --check

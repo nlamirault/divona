@@ -12,7 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-label-alias:
-  bug: 'kind/bug'
-  feature_request: 'kind/feature'
-  question: 'kind/question'
+---

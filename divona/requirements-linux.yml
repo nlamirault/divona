@@ -12,7 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-label-alias:
-  bug: 'kind/bug'
-  feature_request: 'kind/feature'
-  question: 'kind/question'
+---
+collections:
+  - name: https://github.com/divona-roles/ansible-collection-linux
+    type: git
+    version: main
+
+roles:
+  - src: gantsign.golang
+    version: 3.0.3
+  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
+  - src: hurricanehrndz.rustup

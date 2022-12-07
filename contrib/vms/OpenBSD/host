@@ -1,5 +1,0 @@
-[vagrant]
-10.10.6.33 ansible_python_interpreter=/usr/local/bin/python2.7
-
-[vagrant:vars]
-user= vagrant
