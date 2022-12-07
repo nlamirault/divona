@@ -44,8 +44,13 @@ jobs:
           playbook: ./divona_windows.yml
           directory: ./
           requirements: divona/requirements-windows.yml
-          inventory: inventories/windows.ini
+          # inventory: inventories/windows.ini
+          inventory: |
+            [all]
+            localhost
+
+            [all:vars]
+            env=windows
           options: |
             -c local
-            --extra-vars="user=cicd"
             --verbose

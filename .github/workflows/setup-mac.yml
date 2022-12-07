@@ -44,8 +44,13 @@ jobs:
           playbook: ./divona_mac.yml
           directory: ./
           requirements: divona/requirements-mac.yml
-          inventory: inventories/mac.ini
+          # inventory: inventories/mac.ini
+          inventory: |
+            [all]
+            localhost
+
+            [all:vars]
+            env=mac
           options: |
             -c local
-            --extra-vars="user=cicd"
             --verbose
