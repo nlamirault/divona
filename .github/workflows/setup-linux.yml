@@ -16,7 +16,9 @@ name: Test / Linux
 
 on:
   # - push
-  - pull_request
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -41,19 +43,7 @@ jobs:
         with:
           playbook: ./divona_linux.yml
           directory: ./
-          # requirements: divona/requirements-linux.yml
-          requirements: |
-            collections:
-              - name: https://github.com/divona-roles/ansible-collection-linux
-                type: git
-                version: ${GITHUB_REF##*/}
-
-            roles:
-              - src: gantsign.golang
-                version: 3.0.3
-              # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-              - src: hurricanehrndz.rustup
-
+          requirements: divona/requirements-linux.yml
           inventory: inventories/linux.ini
           options: |
             --verbose

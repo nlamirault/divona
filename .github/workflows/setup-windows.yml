@@ -16,7 +16,9 @@ name: Test / Windows
 
 on:
   # - push
-  - pull_request
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -41,12 +43,7 @@ jobs:
         with:
           playbook: ./divona_windows.yml
           directory: ./
-          # requirements: divona/requirements-windows.yml
-          requirements: |
-            collections:
-              - name: https://github.com/divona-roles/ansible-collection-windows
-                type: git
-                version: ${GITHUB_REF##*/}
+          requirements: divona/requirements-windows.yml
           inventory: inventories/windows.ini
           options: |
             --verbose

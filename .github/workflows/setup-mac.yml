@@ -16,7 +16,9 @@ name: Test / MacOS
 
 on:
   # - push
-  - pull_request
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -41,12 +43,7 @@ jobs:
         with:
           playbook: ./divona_mac.yml
           directory: ./
-          # requirements: divona/requirements-mac.yml
-          requirements: |
-            collections:
-              - name: https://github.com/divona-roles/ansible-collection-mac
-                type: git
-                version: ${GITHUB_REF##*/}
+          requirements: divona/requirements-mac.yml
           inventory: inventories/mac.ini
           options: |
             --verbose
