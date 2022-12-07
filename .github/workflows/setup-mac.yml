@@ -41,10 +41,12 @@ jobs:
         with:
           playbook: ./divona_mac.yml
           directory: ./
-          requirements: divona/requirements-mac.yml
-          # the ssh private key for ansible to use to connect to the servers, stored as "ansible_ssh_private_key" in the GitHub secrets
-          # key: ${{ secrets.ansible_ssh_private_key }}
-          # the ansible inventory to use, stored as "ansible_inventory" in the GitHub secrets
+          # requirements: divona/requirements-mac.yml
+          requirements: |
+            collections:
+              - name: https://github.com/divona-roles/ansible-collection-mac
+                type: git
+                version: ${GITHUB_REF##*/}
           inventory: inventories/mac.ini
           options: |
             --verbose
