@@ -27,6 +27,6 @@
     - divona.windows.desktop
     - divona.windows.editors
     - divona.windows.cloud
+    - divona.windows.finish
     - gantsign.golang
     - hurricanehrndz.rustup
-    - divona.windows.finish

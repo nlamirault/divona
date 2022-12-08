@@ -27,9 +27,9 @@
     - divona.mac.desktop
     - divona.mac.editors
     - divona.mac.cloud
+    - divona.mac.finish
     - gantsign.golang
     - hurricanehrndz.rustup
-    - divona.mac.finish
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
       ansible.builtin.stat:
