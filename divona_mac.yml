@@ -28,7 +28,7 @@
     - divona.mac.editors
     - divona.mac.cloud
     - divona.mac.finish
-    - gantsign.golang
+    # - gantsign.golang
     # - hurricanehrndz.rustup
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
