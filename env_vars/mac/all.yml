@@ -18,11 +18,11 @@
 
 # datasource=github-tags depName=golang/go
 golang_version: '1.19.2'
-golang_install_dir: '/home/{{ user }}/Applications/go-{{ golang_version }}'
+golang_install_dir: '/Users/{{ user }}/Applications/go-{{ golang_version }}'
 # Directory to store files downloaded for Go language SDK installation
 golang_download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
 # Location for GOPATH environment variable
-golang_gopath: /home/{{ user }}/Applications/golang
+golang_gopath: /Users/{{ user }}/Applications/golang
 # SHA256 sum for the redistributable package (i.e. "go{{ golang_version }}.linux-amd64.tar.gz")
 golang_redis_sha256sum: '6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82'
 

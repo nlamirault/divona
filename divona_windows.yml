@@ -13,3 +13,20 @@
 # limitations under the License.
 
 ---
+- name: Base provisionning
+  hosts: all
+  tags:
+    - base
+  vars_files:
+    - ./env_vars/{{ env }}/all.yml
+    - ./env_vars/{{ env }}/base.yml
+    - ./env_vars/{{ env }}/editors.yml
+  roles:
+    - divona.windows.base
+    - divona.windows.wm
+    - divona.windows.desktop
+    - divona.windows.editors
+    - divona.windows.cloud
+    - divona.windows.finish
+    - gantsign.golang
+    # - hurricanehrndz.rustup
