@@ -58,10 +58,10 @@ See http://brew.sh/
 ### Install ansible
 
 ```shell
-brew install git python ansible
+brew install git python3 ansible
 ```
 
-### Setup OSX Workstation
+### Setup Mac
 
 ```shell
 > make ansible-init
