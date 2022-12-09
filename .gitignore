@@ -22,7 +22,3 @@ wm/molecule/default/tests/__pycache__/
 # Editors
 *~
 .vscode
-
-# Misc
-divona_*
-divona-*

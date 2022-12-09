@@ -1,5 +1,9 @@
 # Divona
 
+[![Linux](https://github.com/nlamirault/divona/actions/workflows/setup-linux.yml/badge.svg)](https://github.com/nlamirault/divona/actions/workflows/setup-linux.yml)
+[![MacOS](https://github.com/nlamirault/divona/actions/workflows/setup-mac.yml/badge.svg)](https://github.com/nlamirault/divona/actions/workflows/setup-mac.yml)
+[![Windows](https://github.com/nlamirault/divona/actions/workflows/setup-windows.yml/badge.svg)](https://github.com/nlamirault/divona/actions/workflows/setup-windows.yml)
+
 ## Usage
 
 ```shell

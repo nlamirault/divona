@@ -21,5 +21,4 @@ collections:
 roles:
   - src: gantsign.golang
     version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+# - src: hurricanehrndz.rustup

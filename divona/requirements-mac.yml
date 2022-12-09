@@ -19,8 +19,7 @@ collections:
     type: git
     version: main
 
-roles:
-  - src: gantsign.golang
-    version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+# roles:
+#   - src: gantsign.golang
+#     version: 3.0.3
+#   - src: hurricanehrndz.rustup
