@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
 
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -36,14 +38,14 @@ repos:
     rev: v1.3.1
     hooks:
     -   id: insert-license
-        files: \.yaml
+        files: (Makefile|\.yaml|\.yml|\.yamllint|.ansible-lint|\.toml)
         args:
         - --license-filepath
-        - hack/config/licence.txt
+        - LICENSE
         # - --remove-header
-    -   id: insert-license
-        files: \.yml
-        args:
-        - --license-filepath
-        - hack/config/licence.txt
-        # - --remove-header
+    # -   id: insert-license
+    #     files: \.yml
+    #     args:
+    #     - --license-filepath
+    #     - LICENSE
+    #     # - --remove-header
