@@ -52,7 +52,7 @@ Install Ansible using pip or your package manager. For Archlinux:
 See http://brew.sh/
 
 ```shell
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ### Install ansible
