@@ -30,23 +30,21 @@
     - divona.mac.editors
     - divona.mac.cloud
     - divona.mac.finish
-    # - gantsign.golang
-    # - hurricanehrndz.rustup
   pre_tasks:
-    - name: Ensuring Homebrew Is Installed
+    - name: Init | Ensuring Homebrew Is Installed
       ansible.builtin.stat:
-        path: /usr/local/bin/brew
+        path: /opt/homebrew/bin/brew
       register: homebrew_check
 
-    - name: Fail If Homebrew Is Not Installed and install_homebrew_if_missing Is False
+    - name: Init | Fail If Homebrew Is Not Installed and install_homebrew_if_missing Is False
       ansible.builtin.fail:
         msg: Homebrew is missing...Install from http://brew.sh/
       when:
         - not homebrew_check.stat.exists
         - not install_homebrew_if_missing
 
-    - name: Installing Homebrew
-      ansible.builtin.shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    - name: Init | Installing Homebrew
+      ansible.builtin.shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       when:
         - not homebrew_check.stat.exists
         - install_homebrew_if_missing
