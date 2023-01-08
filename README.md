@@ -40,6 +40,8 @@ Install Ansible using pip or your package manager. For Archlinux:
 ### Setup Linux Workstation
 
 ```shell
+> git clone https://github.com/nlamirault/divona.git
+> cd divona
 > make ansible-init
 > make ansible-deps ENV=linux
 > make ansible-run ENV=linux
@@ -64,6 +66,8 @@ brew install git python3 ansible
 ### Setup Mac
 
 ```shell
+> git clone https://github.com/nlamirault/divona.git
+> cd divona
 > make ansible-init
 > make ansible-deps ENV=mac
 > make ansible-run ENV=mac
