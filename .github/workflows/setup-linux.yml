@@ -17,7 +17,9 @@
 name: Test / Linux
 
 on:
-  # - push
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -54,7 +56,7 @@ jobs:
           requirements: divona/requirements-linux.yml
           inventory: |
             [all]
-            localhost
+            localhost ansible_python_interpreter=/usr/bin/python3   user=runner
 
             [all:vars]
             env=linux
