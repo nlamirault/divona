@@ -19,6 +19,6 @@ formatter:
   type: basic
   include_document_start: true
   indent: 2
-  indentless_arrays: true
+  indentless_arrays: false
   max_line_length: 120
   retain_line_breaks: true

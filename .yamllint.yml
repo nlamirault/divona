@@ -17,20 +17,37 @@
 
 extends: default
 
+# ignore: |
+#   **/templates/*.yaml
+
+# rules:
+#   comments:
+#     min-spaces-from-content: 1
+#   comments-indentation: disable
+#   line-length: disable
+#   braces:
+#     min-spaces-inside: 0
+#     max-spaces-inside: 0
+#   brackets:
+#     min-spaces-inside: 0
+#     max-spaces-inside: 0
+#   indentation:
+#     spaces: 2
+#     indent-sequences: false # consistent
+
 ignore: |
-  **/templates/*.yaml
+  .github/
+  venv
+  roles
+  .yamllint
+  .pre-commit-config.yaml
+  .licencerc.yaml
 
 rules:
-  comments:
-    min-spaces-from-content: 1
-  comments-indentation: disable
-  line-length: disable
   braces:
-    min-spaces-inside: 0
-    max-spaces-inside: 0
+    max-spaces-inside: 1
+    level: error
   brackets:
-    min-spaces-inside: 0
-    max-spaces-inside: 0
-  indentation:
-    spaces: 2
-    indent-sequences: false # consistent
+    max-spaces-inside: 1
+    level: error
+  line-length: disable

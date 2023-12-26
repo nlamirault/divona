@@ -16,9 +16,17 @@
 # SPDX-License-Identifier: Apache-2.0
 
 collections:
-- name: https://github.com/divona-roles/ansible-collection-windows
-  type: git
-  version: main
+  - name: community.general
+    version: 7.0.1
+  - name: ansible.windows
+    version: 1.14.0
+  - name: chocolatey.chocolatey
+    version: 1.4.0
+  - name: community.windows
+    version: 1.13.0
+  - name: https://github.com/divona-roles/ansible-collection-windows
+    type: git
+    version: main
 
 # roles:
 #   - src: gantsign.golang

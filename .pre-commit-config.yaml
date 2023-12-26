@@ -18,48 +18,48 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
-  hooks:
-  - id: trailing-whitespace
-  - id: end-of-file-fixer
-  - id: check-yaml
-    args:
-    - '--allow-multiple-documents'
-    exclude: mkdocs.yml
-  - id: check-added-large-files
-- repo: https://github.com/ansible-community/ansible-lint.git
-  rev: v6.22.1
-  hooks:
-  - id: ansible-lint
-    #   files: \.(yaml|yml)$
-    # do not pass files to ansible-lint, see:
-    # https://github.com/ansible-community/ansible-lint/issues/611
-- repo: https://github.com/Lucas-C/pre-commit-hooks
-  rev: v1.5.4
-  hooks:
-  - id: insert-license
-    files: (Makefile|\.yaml|\.yml|\.yamllint|.ansible-lint|\.toml)
-    args:
-    - --license-filepath
-    - LICENSE
-    # - --remove-header
-  # -   id: insert-license
-  #     files: \.yml
-  #     args:
-  #     - --license-filepath
-  #     - LICENSE
-  #     # - --remove-header
-# - repo: https://github.com/adrienverge/yamllint.git
-#   rev: v1.33.0
-#   hooks:
-#   - id: yamllint
-#     stages: [commit]
-#     # exclude:
-#     #   ^gitops/(?:templates|files)/.*\.yaml
-- repo: https://github.com/google/yamlfmt
-  rev: v0.10.0
-  hooks:
-  - id: yamlfmt
-    stages: [commit]
-    language: system
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args:
+          - '--allow-multiple-documents'
+        exclude: mkdocs.yml
+      - id: check-added-large-files
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.4
+    hooks:
+      - id: insert-license
+        files: (Makefile|\.yaml|\.yml|\.yamllint|.ansible-lint|\.toml)
+        args:
+          - --license-filepath
+          - LICENSE
+          # - --remove-header
+    # -   id: insert-license
+    #     files: \.yml
+    #     args:
+    #     - --license-filepath
+    #     - LICENSE
+    #     # - --remove-header
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        stages: [commit]
+        # exclude:
+        #   ^gitops/(?:templates|files)/.*\.yaml
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.10.0
+    hooks:
+      - id: yamlfmt
+        stages: [commit]
+        language: system
+  - repo: https://github.com/ansible-community/ansible-lint.git
+    rev: v6.22.1
+    hooks:
+      - id: ansible-lint
+        #   files: \.(yaml|yml)$
+        # do not pass files to ansible-lint, see:
+        # https://github.com/ansible-community/ansible-lint/issues/611

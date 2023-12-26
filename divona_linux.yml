@@ -18,17 +18,17 @@
 - name: Base provisionning
   hosts: all
   tags:
-  - base
+    - base
   vars_files:
-  - ./env_vars/{{ env }}/all.yml
-  - ./env_vars/{{ env }}/base.yml
-  - ./env_vars/{{ env }}/editors.yml
+    - ./env_vars/{{ env }}/all.yml
+    - ./env_vars/{{ env }}/base.yml
+    - ./env_vars/{{ env }}/editors.yml
   roles:
-  - divona.linux.base
-  - divona.linux.wm
-  - divona.linux.desktop
-  - divona.linux.editors
-  - divona.linux.cloud
-  - divona.linux.finish
-  - gantsign.golang
-  # - hurricanehrndz.rustup
+    - divona.linux.base
+    - divona.linux.wm
+    - divona.linux.desktop
+    - divona.linux.editors
+    - divona.linux.cloud
+    - divona.linux.finish
+    - gantsign.golang
+    # - hurricanehrndz.rustup
