@@ -114,8 +114,6 @@ validate: ## Execute git-hooks
 license: guard-ACTION ## Check license (ACTION=xxx : fix or check)
 	@docker run -it --rm -v $(shell pwd):/github/workspace ghcr.io/apache/skywalking-eyes/license-eye --config /github/workspace/.licenserc.yaml header $(ACTION)
 
-
-
 # ====================================
 # A N S I B L E
 # ====================================
@@ -128,7 +126,7 @@ ansible-init: ## Bootstrap Ansible
 	@test -d venv || $(PYTHON3) -m venv venv
 	@. venv/bin/activate \
 		&& pip3 install --upgrade pip \
-		&& pip3 install ansible==$(ANSIBLE_VERSION) molecule
+		&& pip3 install -r requirements.txt
 
 .PHONY: ansible-deps
 ansible-deps: guard-ENV ## Install dependencies
