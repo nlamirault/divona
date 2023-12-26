@@ -15,9 +15,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Debug informations
-  hosts: all
-  tags:
-    - debug
-  roles:
-    - divona.debug
+formatter:
+  type: basic
+  include_document_start: true
+  indent: 2
+  indentless_arrays: false
+  max_line_length: 120
+  retain_line_breaks: true

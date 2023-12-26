@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +15,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Nicolas Lamirault <nicolas.lamirault@gmail.com>
-  paths-ignore:
-    - '.gitignore'
-    - '.gitattributes'
-    - '.git-crypt/.gitattributes'
-    - '.dockerignore'
-    - '.editorconfig'
-    - '**/*.md'
-    - '**/*.svg'
-    - 'README.md'
-    - 'DCO'
-    - 'LICENSE'
-    - '.github/'
-    - '.git/'
-    - 'roles/'
-    - '.whitesource'
-    - '.envrc'
-    - '**/.galaxy_install_info'
+exclude_paths:
+  - .cache/ # implicit unless exclude_paths is defined in config
+  - .github/
+  - .ansible-lint
+  - roles/
 
-  comment: on-failure
+skip_list:
+  - name[template]
+  - galaxy[no-changelog] # Rule for checking collection version is greater than 1.0.0 and checking for changelog.
+  - galaxy[version-incorrect] # Rule for checking collection version is greater than 1.0.0 and checking for changelog.

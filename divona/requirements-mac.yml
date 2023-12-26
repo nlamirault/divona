@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,14 +15,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
-
 collections:
   - name: https://github.com/divona-roles/ansible-collection-mac
     type: git
     version: main
 
-# roles:
+roles: []
 #   - src: gantsign.golang
 #     version: 3.0.3
 #   - src: hurricanehrndz.rustup
