@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +18,7 @@
 # Labels for action/labeler
 
 area/ansible:
-  - defaults/*
-  - tasks/*
-  - handlers/*
-  - vars/*
+- defaults/*
+- tasks/*
+- handlers/*
+- vars/*

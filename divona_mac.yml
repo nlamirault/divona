@@ -1,3 +1,4 @@
+---
 # Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +15,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
 - name: Base provisionning
   hosts: all
   tags:
-    - base
+  - base
   vars_files:
-    - ./env_vars/{{ env }}/all.yml
-    - ./env_vars/{{ env }}/base.yml
-    - ./env_vars/{{ env }}/editors.yml
+  - ./env_vars/{{ env }}/all.yml
+  - ./env_vars/{{ env }}/base.yml
+  - ./env_vars/{{ env }}/editors.yml
   roles:
-    - divona.mac.base
-    - divona.mac.wm
-    - divona.mac.desktop
-    - divona.mac.editors
-    - divona.mac.cloud
-    - divona.mac.finish
+  - divona.mac.base
+  - divona.mac.wm
+  - divona.mac.desktop
+  - divona.mac.editors
+  - divona.mac.cloud
+  - divona.mac.finish
