@@ -44,7 +44,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Ansible playbook
-        uses: dawidd6/action-ansible-playbook@v2.6.1
+        uses: dawidd6/action-ansible-playbook@v2.8.0
         with:
           playbook: ./divona_linux.yml
           directory: ./
