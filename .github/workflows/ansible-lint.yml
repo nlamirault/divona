@@ -54,4 +54,4 @@ jobs:
           ansible-galaxy install -r divona/requirements-windows.yml -p roles --force
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@v24.2.0
+        uses: ansible/ansible-lint@v24.10.0
