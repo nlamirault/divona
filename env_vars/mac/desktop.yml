@@ -15,22 +15,5 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-- name: Base provisionning
-  hosts: all
-  tags:
-    - base
-  vars_files:
-    - ./env_vars/{{ env }}/all.yml
-    - ./env_vars/{{ env }}/base.yml
-    - ./env_vars/{{ env }}/cloud.yml
-    - ./env_vars/{{ env }}/desktop.yml
-    - ./env_vars/{{ env }}/editors.yml
-  roles:
-    - divona.linux.base
-    - divona.linux.wm
-    - divona.linux.desktop
-    - divona.linux.editors
-    - divona.linux.cloud
-    - divona.linux.finish
-    # - gantsign.golang
-    # - hurricanehrndz.rustup
+appstore_applications:
+  - Tailscale
