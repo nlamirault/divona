@@ -30,5 +30,5 @@
     - divona.windows.editors
     - divona.windows.cloud
     - divona.windows.finish
-    - gantsign.golang
+    # - gantsign.golang
     # - hurricanehrndz.rustup

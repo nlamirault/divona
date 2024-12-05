@@ -17,18 +17,18 @@
 
 collections:
   - name: community.general
-    version: 7.0.1
-  - name: ansible.windows
-    version: 1.14.0
-  - name: chocolatey.chocolatey
-    version: 1.4.0
+    version: 10.1.0
   - name: community.windows
-    version: 1.13.0
+    version: 2.3.0
+  - name: ansible.windows
+    version: 2.5.0
+  - name: chocolatey.chocolatey
+    version: 1.5.3
   - name: https://github.com/divona-roles/ansible-collection-windows
     type: git
     version: main
 
-# roles:
-#   - src: gantsign.golang
-#     version: 3.0.3
-#   - src: hurricanehrndz.rustup
+roles: []
+# - src: gantsign.golang
+#   version: 3.0.3
+# - src: hurricanehrndz.rustup

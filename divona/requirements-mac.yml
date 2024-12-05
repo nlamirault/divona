@@ -16,6 +16,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 collections:
+  - name: community.general
+    version: 10.1.0
   - name: https://github.com/divona-roles/ansible-collection-mac
     type: git
     version: main
